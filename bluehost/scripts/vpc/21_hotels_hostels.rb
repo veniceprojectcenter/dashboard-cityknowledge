@@ -11,7 +11,7 @@ FB_KEY = 'gG1wZ2oyUxca6Rro3XYsXaKH9ODG7nrKEUqVujWm';
   agent.user_agent_alias = 'Mac Safari'
 }
 
-page = @mechanize.get('https://www.hostels.com/')
+page = @mechanize.get('http://www.hostels.com/')
 # form = page.form_with(:id => 'homeSearchForm')
 data_checkin  = Time.now.tomorrow
 # USO DUE GIORNI PERCHE' MOLTI OSTELLI VOGLIONO LA PRENOTAZIONE DI ALMENO DUE GIORNI
@@ -40,7 +40,7 @@ ajax_headers = {
   # 'Cookie' => @mechanize.cookies
 }
 # my_uri = page.uri.to_s
-my_uri = "https://www.hostels.com/venice/italy?"+{
+my_uri = "http://www.hostels.com/venice/italy?"+{
   :dateFrom           => data_checkin.to_date.to_s ,
   :dateTo             => data_checkout.to_date.to_s,
   :guestCount         => 2                         ,

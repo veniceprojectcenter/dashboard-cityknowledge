@@ -22,7 +22,7 @@
 	}
 
 	function getVisibility() {
-		$html = file_get_html('https://www.ilmeteo.it/portale/meteo/previsioni1.php?citta=Venezia&c=7729');
+		$html = file_get_html('http://www.ilmeteo.it/portale/meteo/previsioni1.php?citta=Venezia&c=7729');
 		$visibility = "";
 		foreach($html->find('tr') as $row) {
 			if (strpos($row, "class=\"dark\"") || strpos($row, "class=\"light\"")) {

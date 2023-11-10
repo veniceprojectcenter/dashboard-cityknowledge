@@ -3,7 +3,7 @@
  *  (c) 2005-2007 Sam Stephenson
  *
  *  Prototype is freely distributable under the terms of an MIT-style license.
- *  For details, see the Prototype web site: https://www.prototypejs.org/
+ *  For details, see the Prototype web site: http://www.prototypejs.org/
  *
  *--------------------------------------------------------------------------*/
 
@@ -2719,7 +2719,7 @@ document.viewport = {
 };
 /* Portions of the Selector class are derived from Jack Slocum’s DomQuery,
  * part of YUI-Ext version 0.40, distributed under the terms of an MIT-style
- * license.  Please see https://www.yui-ext.com/ for more information. */
+ * license.  Please see http://www.yui-ext.com/ for more information. */
 
 var Selector = Class.create({
   initialize: function(expression) {
@@ -5348,7 +5348,7 @@ Element.addMethods(Effect.Methods);
 
 
 // Copyright (c) 2005-2008 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
-//           (c) 2005-2007 Sammi Williams (https://www.oriontransfer.co.nz, sammi@oriontransfer.co.nz)
+//           (c) 2005-2007 Sammi Williams (http://www.oriontransfer.co.nz, sammi@oriontransfer.co.nz)
 // 
 // script.aculo.us is freely distributable under the terms of an MIT-style license.
 // For details, see the script.aculo.us web site: http://script.aculo.us/
@@ -6323,7 +6323,7 @@ Element.offsetSize = function (element, type) {
 
 // Copyright (c) 2005-2008 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //           (c) 2005-2007 Ivan Krstic (http://blogs.law.harvard.edu/ivan)
-//           (c) 2005-2007 Jon Tirsen (https://www.tirsen.com)
+//           (c) 2005-2007 Jon Tirsen (http://www.tirsen.com)
 // Contributors:
 //  Richard Livsey
 //  Rahul Bhargava

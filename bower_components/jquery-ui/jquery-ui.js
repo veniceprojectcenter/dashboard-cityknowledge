@@ -10604,7 +10604,7 @@ $.fn.extend({
 
 (function() {
 
-// based on easing equations from Robert Penner (https://www.robertpenner.com/easing)
+// based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
 
 var baseEasings = {};
 

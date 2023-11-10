@@ -79,7 +79,7 @@ If library x works for you, you should keep using it. We're not aiming to be com
 
 ## License
 
-The __MetricsGraphics.js__ code is shared under the terms of the [Mozilla Public License v2.0](https://www.mozilla.org/MPL/2.0/). See the `LICENSE` file at the root of the repository. The current logo is courtesy of [Font Awesome](http://fortawesome.github.io/Font-Awesome/).
+The __MetricsGraphics.js__ code is shared under the terms of the [Mozilla Public License v2.0](http://www.mozilla.org/MPL/2.0/). See the `LICENSE` file at the root of the repository. The current logo is courtesy of [Font Awesome](http://fortawesome.github.io/Font-Awesome/).
 
 
 [travis-badge]: https://travis-ci.org/mozilla/metrics-graphics.svg?branch=master

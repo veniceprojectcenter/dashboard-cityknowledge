@@ -166,7 +166,7 @@
           "log" : true,
           "log_key" : "venice_tide",
           "title" : "Tides",
-          "url" : "https://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/1748",
+          "url" : "http://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/1748",
           "urlTitle" : "Centro Maree",
           "width" : "1"
         },
@@ -194,7 +194,7 @@
           "id" : "venice_events",
           "log" : false,
           "title" : "Events",
-          "url" : "https://www.veneziatoday.it/eventi/",
+          "url" : "http://www.veneziatoday.it/eventi/",
           "urlTitle" : "Venezia Today",
           "width" : "2"
         },
@@ -238,7 +238,7 @@
           "id" : "realestate",
           "log" : false,
           "title" : "Homes",
-          "url" : "https://www.immobiliare.it/",
+          "url" : "http://www.immobiliare.it/",
           "urlTitle" : "Immobiliare",
           "width" : "2"
         },
@@ -262,7 +262,7 @@
           "id" : "venice_train",
           "log" : false,
           "title" : "Trains",
-          "url" : "https://www.trenitalia.com/",
+          "url" : "http://www.trenitalia.com/",
           "urlTitle" : "Trenitalia",
           "width" : "2"
         },

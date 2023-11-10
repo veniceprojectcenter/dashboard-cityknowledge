@@ -8,7 +8,7 @@ angular.module('app').factory('dashSrv', function($rootScope, $http, fireSrv) {
   };
   
   // PER COMUNICARE LE MODIFICHE AI CONTROLLLERS
-  // https://www.codelord.net/2015/05/04/angularjs-notifying-about-changes-from-services-to-controllers/
+  // http://www.codelord.net/2015/05/04/angularjs-notifying-about-changes-from-services-to-controllers/
   dashSrv.subscribe = function(scope, callback) {
     var handler = $rootScope.$on('notifying-service-event', callback);
     scope.$on('$destroy', handler);

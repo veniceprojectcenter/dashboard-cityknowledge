@@ -448,9 +448,9 @@ TopUp = (function() {
         break;
       case "quicktime":
         classid     = "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B";
-        codebase    = "https://www.apple.com/qtactivex/qtplugin.cab";
+        codebase    = "http://www.apple.com/qtactivex/qtplugin.cab";
         mimetype    = "video/quicktime";
-        pluginspage = "https://www.apple.com/quicktime/download/";
+        pluginspage = "http://www.apple.com/quicktime/download/";
         params.scale    = "aspect";
         params.bgcolor  = "black";
         params.showlogo = "false"; 
@@ -459,7 +459,7 @@ TopUp = (function() {
       case "realplayer":
         classid     = "clsid:CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA";
         mimetype    = "audio/x-pn-realaudio-plugin";
-        pluginspage = "https://www.real.com/freeplayer/?rppr=rnwk";
+        pluginspage = "http://www.real.com/freeplayer/?rppr=rnwk";
         params.controls  = "imagewindow";
         params.console   = "one";
         params.autostart = "true";
@@ -469,7 +469,7 @@ TopUp = (function() {
         classid     = "clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6";
         codebase    = "http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701";
         mimetype    = "application/x-oleobject";
-        pluginspage = "https://www.microsoft.com/Windows/MediaPlayer/";
+        pluginspage = "http://www.microsoft.com/Windows/MediaPlayer/";
         params.filename           = src;
         params.animationatstart   = "true";
         params.transparentatstart = "true";
@@ -560,7 +560,7 @@ TopUp = (function() {
     var object = jQuery("<object></object>").attr({width   : options.width, 
                                                    height  : options.height,
                                                    classid : "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B",
-                                                   codebase: "https://www.apple.com/qtactivex/qtplugin.cab",
+                                                   codebase: "http://www.apple.com/qtactivex/qtplugin.cab",
                                                    style   : "display: none"});
                                                    
     object.append(jQuery("<param></param>").attr({name: "src"     , value: options.reference}));
@@ -577,7 +577,7 @@ TopUp = (function() {
                                                   showlogo   : "false", 
                                                   autoplay   : "true",
                                                   type       : "video/quicktime",
-                                                  pluginspage: "https://www.apple.com/quicktime/download/"}));
+                                                  pluginspage: "http://www.apple.com/quicktime/download/"}));
     
     options.content = jQuery("<div></div>").attr({width: options.width, height: options.height, style: "background: black"});
     options.content.append(object);
@@ -602,7 +602,7 @@ TopUp = (function() {
                                                   autostart  : "true",
                                                   nojava     : "true",
                                                   type       : "audio/x-pn-realaudio-plugin",
-                                                  pluginspage: "https://www.real.com/freeplayer/?rppr=rnwk"}));
+                                                  pluginspage: "http://www.real.com/freeplayer/?rppr=rnwk"}));
     
     options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
     options.content.append(object);

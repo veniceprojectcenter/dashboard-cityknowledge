@@ -77,7 +77,7 @@ SASS
 http://sass-lang.com
 
 Also, this plugin makes use of the Ruby JavaScript Minifier created by Douglas Crockford.
-https://www.crockford.com/javascript/jsmin.html
+http://www.crockford.com/javascript/jsmin.html
 
 == License
 Copyright (c) 2009 Paul Engel, released under the MIT license

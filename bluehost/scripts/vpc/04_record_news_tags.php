@@ -7,7 +7,7 @@
   $key = 'gG1wZ2oyUxca6Rro3XYsXaKH9ODG7nrKEUqVujWm';
   $fb = new fireBase($url, $key);
 
-	$rss = simplexml_load_file('https://www.ilgazzettino.it/rss/nordest_venezia.xml');
+	$rss = simplexml_load_file('http://www.ilgazzettino.it/rss/nordest_venezia.xml');
 	$titles = "";
 	$tags = "";
 	foreach ($rss->channel->item as $item) {

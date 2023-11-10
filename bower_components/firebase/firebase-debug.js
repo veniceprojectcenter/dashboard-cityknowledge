@@ -750,7 +750,7 @@ goog.inherits = function(childCtor, parentCtor) {
 goog.base = function(me, opt_methodName, var_args) {
   var caller = arguments.callee.caller;
   if (goog.STRICT_MODE_COMPATIBLE || goog.DEBUG && !caller) {
-    throw Error("arguments.caller not defined.  goog.base() cannot be used " + "with strict mode code. See " + "https://www.ecma-international.org/ecma-262/5.1/#sec-C");
+    throw Error("arguments.caller not defined.  goog.base() cannot be used " + "with strict mode code. See " + "http://www.ecma-international.org/ecma-262/5.1/#sec-C");
   }
   if (caller.superClass_) {
     var ctorArgs = new Array(arguments.length - 1);

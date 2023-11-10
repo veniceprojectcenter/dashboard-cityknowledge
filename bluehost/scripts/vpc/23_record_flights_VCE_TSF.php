@@ -167,11 +167,11 @@
 	$i = 0;
 	$average_airplane_fillrate = 0.9;
 
-	$airports_arrival['IT_VCE'] = "https://www.veniceairport.it/en/flights/todays-flights/all-arrivals/ftype-A/ftframe-alldaylong/page-1.html?_=1438102494247";
-	$airports_arrival['IT_TSF'] = "https://www.trevisoairport.it/en/flights/todays-flights/all-arrivals/ftype-A/ftframe-alldaylong/page-1.html?_=1438160502137";
+	$airports_arrival['IT_VCE'] = "http://www.veniceairport.it/en/flights/todays-flights/all-arrivals/ftype-A/ftframe-alldaylong/page-1.html?_=1438102494247";
+	$airports_arrival['IT_TSF'] = "http://www.trevisoairport.it/en/flights/todays-flights/all-arrivals/ftype-A/ftframe-alldaylong/page-1.html?_=1438160502137";
 
-	$airports_departures['IT_VCE'] = "https://www.veniceairport.it/en/flights/todays-flights/all-departures/ftype-D/ftframe-alldaylong/page-1.html?_=1450274639414";
-	$airports_departures['IT_TSF'] = "https://www.trevisoairport.it/en/flights/todays-flights/all-departures/ftype-D/ftframe-alldaylong/page-1.html?_=1450274639414";
+	$airports_departures['IT_VCE'] = "http://www.veniceairport.it/en/flights/todays-flights/all-departures/ftype-D/ftframe-alldaylong/page-1.html?_=1450274639414";
+	$airports_departures['IT_TSF'] = "http://www.trevisoairport.it/en/flights/todays-flights/all-departures/ftype-D/ftframe-alldaylong/page-1.html?_=1450274639414";
 
 	/*
 	$airports['IT_VCE'] = "%28VCE%29+Venice+Marco+Polo+Airport%2C+Venice%2C+IT";

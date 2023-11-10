@@ -295,7 +295,7 @@ var isOldBrowser;
      */
     var url = window.URL;
     var svg = new Blob(
-        ['<svg xmlns=\'https://www.w3.org/2000/svg\'></svg>'],
+        ['<svg xmlns=\'http://www.w3.org/2000/svg\'></svg>'],
         { type: 'image/svg+xml;charset=utf-8' }
     );
     var objectUrl = url.createObjectURL(svg);

@@ -4,7 +4,7 @@
 	$url = 'https://vpc.firebaseio.com';
 	$fb = new fireBase($url);
 
-	$rss = simplexml_load_file('https://www.ilgazzettino.it/rss/nordest_venezia.xml');
+	$rss = simplexml_load_file('http://www.ilgazzettino.it/rss/nordest_venezia.xml');
 	$titles = "";
 	$tags = "";
 	foreach ($rss->channel->item as $item) {

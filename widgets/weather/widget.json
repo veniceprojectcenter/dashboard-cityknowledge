@@ -1,7 +1,7 @@
 {
   "id": "weather",
   "title": "Weather",
-  "url": "https://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:00000.1.16105&bannertypeclick=wu_clean2day",
+  "url": "http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:00000.1.16105&bannertypeclick=wu_clean2day",
   "urlTitle": "Weather Underground",
   "helpDocUrl": "https://docs.google.com/document/d/1aQtBZwsYiQO5ISH-VX1PT40tQ92czqY2wzRDqKuFLS8/pub?embedded=true",
   "log": false,

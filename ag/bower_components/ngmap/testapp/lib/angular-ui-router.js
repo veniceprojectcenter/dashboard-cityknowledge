@@ -2,7 +2,7 @@
  * State-based routing for AngularJS
  * @version v0.2.15
  * @link http://angular-ui.github.com/
- * @license MIT License, https://www.opensource.org/licenses/MIT
+ * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 
 /* commonjs package manager support (eg componentjs) */
@@ -2106,7 +2106,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
        * @param {object=} params An object of parameter values to fill the matcher's required parameters.
        * @param {object=} options Options object. The options are:
        *
-       * - **`absolute`** - {boolean=false},  If true will generate an absolute url, e.g. "https://www.example.com/fullurl".
+       * - **`absolute`** - {boolean=false},  If true will generate an absolute url, e.g. "http://www.example.com/fullurl".
        *
        * @returns {string} Returns the fully compiled URL, or `null` if `params` fail validation against `urlMatcher`
        */
@@ -3480,7 +3480,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      * - **`inherit`** - {boolean=true}, If `true` will inherit url parameters from current url.
      * - **`relative`** - {object=$state.$current}, When transitioning with relative path (e.g '^'), 
      *    defines which state to be relative from.
-     * - **`absolute`** - {boolean=false},  If true will generate an absolute url, e.g. "https://www.example.com/fullurl".
+     * - **`absolute`** - {boolean=false},  If true will generate an absolute url, e.g. "http://www.example.com/fullurl".
      * 
      * @returns {string} compiled state url
      */

@@ -9,7 +9,7 @@
 
 	function fetch_news($art_num){
 		/* first grab entire xml file */
-		$feed = file_get_contents('https://www.ilgazzettino.it/rss/nordest_venezia.xml');
+		$feed = file_get_contents('http://www.ilgazzettino.it/rss/nordest_venezia.xml');
 		
 		/* convert to SimpleXMLElement object */
 		$feed = simplexml_load_string($feed);
