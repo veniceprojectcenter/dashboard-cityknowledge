@@ -1,0 +1,35 @@
+<div id="<%= id %>" class="te_top_up<%= " te_transparent" if id == "temp_up" %>"<%= ' style="display: none"' if id == "top_up" %>>
+  <div class="te_wrapper">
+    <div class="te_title"></div>
+    <table class="te_frame">
+      <tr class="te_top">
+        <td class="te_left te_corner">
+          <div class="te_left_filler"></div>
+        </td>
+        <td class="te_middle te_rib"></td>
+        <td class="te_right te_corner">
+          <div class="te_right_filler"></div>
+        </td>
+      </tr>
+      <tr class="te_middle">
+        <td class="te_left te_rib"></td>
+        <td class="te_middle">
+            <div class="te_content">
+              <!-- Content -->
+            </div>
+        </td>
+        <td class="te_right te_rib"></td>
+      </tr>
+      <tr class="te_bottom">
+        <td class="te_left te_corner"></td>
+        <td class="te_middle te_rib"></td>
+        <td class="te_right te_corner"></td>
+      </tr>
+    </table>
+    <div class="te_controls" style="display: none">
+      <a class="te_previous_link" onclick="TopUp.previous()"></a>
+      <a class="te_next_link"     onclick="TopUp.next()"></a>
+    </div>
+    <a class="te_close_link" onclick="TopUp.close()" style="display: none"></a>
+  </div>
+</div>

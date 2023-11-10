@@ -1,0 +1,7 @@
+<ul id="page_menu">
+  <% menu_items.each do |item| %>
+    <% path = send("#{item == "home" ? "root" : item}_path") %>
+    <li class="<%= item %>"><%= link_to item, path, :class => ("selected" if request.path == path) %></li>
+  <% end %>
+</ul>
+<div class="clear"></div>

@@ -1,0 +1,8 @@
+tmp/*
+log/*
+log/*.log
+ruby_sess*
+.DS_Store
+config/database.yml
+config/environment.rb
+config/mongrel_cluster.yml

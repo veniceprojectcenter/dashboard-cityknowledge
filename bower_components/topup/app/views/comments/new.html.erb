@@ -1,0 +1,38 @@
+<% form_remote_for @comment do |f| %>
+  <%= h1 "Leave your comment" %>
+  <div id="error_messages">
+    <%= error_messages_for :comment, :class => "box", :header_tag => "h3", :header_message => "Oops... Your comment couldn't be saved", :message => nil %>
+  </div>
+  <fieldset>
+    <ol>
+      <li>
+        <label for="name">Name:*</label>
+        <%= f.text_field :name %>
+      </li>
+      <li>
+        <label for="email_address">E-mail address:*</label>
+        <%= f.text_field :email_address %><small>&nbsp; (will not be published)</small>
+      </li>
+      <li>
+        <label for="comment_sign_up_as_tracker_1">Sign up as tracker:*</label>
+        <%= f.radio_button :sign_up_as_tracker, 1 %>
+        Yes, please   &nbsp;&nbsp;
+        <%= f.radio_button :sign_up_as_tracker, 0 %>
+        No, thank you &nbsp;&nbsp;
+        <% if params[:action] == "index" %>
+          <small>(<%= link_to "more info", service_info_trackers_path, :toptions => "effect = appear, modal = 1" %>)</small>
+        <% end %>
+      </li>
+      <li>
+        <label for="message">Your comment:*</label>
+        <%= f.text_area :message %>
+        <small class="box">
+          Allowed tags: <code>a, abbr, acronym, blockquote, code, i, strike, strong, u</code><br>
+          Allowed attributes: <code>href, title</code>
+        </small>
+      </li>
+    </ol>
+  </fieldset>
+  <%= hidden_field_tag :using_top_up if request.xhr? %>
+  <%= submit_tag "Send comment", :class => "submit" %>
+<% end %>

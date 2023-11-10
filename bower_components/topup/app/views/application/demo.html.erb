@@ -1,0 +1,106 @@
+<%= h1 "Try it live!" %>
+<p>
+  Do you wanna experience the flexibility of TopUp live at the website? Well, here is your lucky day! You can try out the possibilities of TopUp by specifying the toptions below. Enjoy.
+</p>
+
+<%= h1 "Adjust the toptions and click!" %>
+<p>
+  For documentation about <span class="code">toptions</span> go to the <%= link_to "documentation page", "#{documentation_path}#available_toptions" %>.
+</p>
+<div id="demo" class="box">
+  <% form_remote_tag :url => demonstrate_path, :html => {:id => "toptions"} do %>
+    
+    <div>
+      <%= image_tag "thumbnails/5.jpg", :id => "link" %>
+      <%= submit_tag "Demonstrate", :class => "submit" %> &nbsp;<%= link_to_function "reset", "$('toptions').reset(); SeatHolder.rebind()" %>
+    </div>
+    
+    <fieldset class="margined">
+      <legend>
+        <%= span "Specify the reference" %>
+      </legend>
+      <ol>
+        <li>
+          <label for="reference">Reference:</label>
+          <%= text_field_tag "reference", nil, :seatholder => "&/images/photos/5.jpg" %>
+        </li>
+      </ol>
+    </fieldset>
+    
+    <% field_set_tag span("Specify the toptions") do %>
+      <ol>
+        <li>
+          <label for="toptions[topUp]">TopUp:</label>
+          <%= text_field_tag "toptions[topUp]", nil, :seatholder => "&#{"#" if [nil, "jquery"].include? session[:library]}link" %>
+        </li>
+        <li>
+          <label for="toptions[type]">Type:</label>
+          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image flash flashvideo quicktime realplayer windowsmedia iframe html dom ajax script)) %>
+        </li>
+        <li>
+          <label for="toptions[post]">Post:</label>
+          <%= check_box_tag "toptions[post]", 0 %>
+        </li>
+        <li>
+          <label for="toptions[parameters]">Parameters:</label>
+          <%= text_field_tag "toptions[parameters]" %>
+        </li>
+        <li>
+          <label for="toptions[title]">Title:</label>
+          <%= text_field_tag "toptions[title]", nil, :seatholder => "&TopUp demo" %>
+        </li>
+        <li>
+          <label for="toptions[layout]">Layout:</label>
+          <%= select_tag "toptions[layout]", options_for_select(%w(dashboard quicklook flatlook)) %>
+        </li>
+        <li>
+          <label for="toptions[width]">Width:</label>
+          <%= text_field_tag "toptions[width]", nil, :size => 4, :seatholder => "auto" %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[height]">Height:</label>
+          <%= text_field_tag "toptions[height]", nil, :size => 4, :seatholder => "auto" %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[x]">X:</label>
+          <%= text_field_tag "toptions[x]", nil, :size => 4, :seatholder => "auto" %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[y]">Y:</label>
+          <%= text_field_tag "toptions[y]", nil, :size => 4, :seatholder => "auto" %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[effect]">Effect:</label>
+          <%= select_tag "toptions[effect]", options_for_select(%w(transform appear switch)) %>
+        </li>
+        <li>
+          <label for="toptions[modal]">Modal:</label>
+          <%= check_box_tag "toptions[modal]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[shaded]">Shaded:</label>
+          <%= check_box_tag "toptions[shaded]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[overlayClose]">Overlay close:</label>
+          <%= check_box_tag "toptions[overlayClose]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[resizable]">Resizable:</label>
+          <%= check_box_tag "toptions[resizable]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[ondisplay]">On display:</label>
+          <%= text_area_tag "toptions[ondisplay]", "function() {\n  alert('Hello world!');\n}" %>
+        </li>
+        <li>
+          <label for="toptions[onclose]">On close:</label>
+          <%= text_area_tag "toptions[onclose]", "function() {\n  alert('Bye world!');\n}" %>
+        </li>
+      </ol>
+    <% end %>
+    
+  <% end %>
+  
+  <div class="clear"></div>
+</div>

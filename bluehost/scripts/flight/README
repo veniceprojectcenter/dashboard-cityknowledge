@@ -1,0 +1,36 @@
+Welcome to the Flight module of the Venice City Knowledge Console!
+
+In order to receive the critical information on the flights about to arrive in 
+Venice's Marco Polo Airport, enter "python test.py" to run the appropriate 
+Python script.
+The output of this script will be the useful information (city of origin, 
+airline, flight number, aircraft type, time of departure, and scheduled time 
+of arrival) on each flight which is immediately available from the website 
+flightradar24.com/airport/vce about arriving flights.  The script will then 
+exit immediately.
+
+In order to log and interpret information on the flights which have arrived in 
+Venice's Marco Polo Airport in the past 24 hours, enter "python background.py" 
+to run the appropriate Python script.
+The output of this script will be the number of flights which have arrived, 
+the number of flights for which the passenger capacity is known, and the total 
+passenger capacity of those flights.  The range of time for which the output 
+will be valid is either 24 hours or the time since the script was started, 
+whichever is shorter.
+The data on the passenger capacity of various aircraft type by airline is 
+stored in the file "types.dat" in the format "Airline/Aircraft: Capacity", 
+and is obtained from the website seatmaestro.com*.  This information must be 
+entered manually, however, once the script "background.py" encounters an 
+airline/aircraft combination not covered in "types.dat", it will automatically 
+add a line to types.dat which reads "Airline/Aircraft: UNKNOWN".  In this way, 
+the user can be aware if there are unknown aircraft types which the program 
+must deal with, and can add information easily.
+
+Future alterations will include functionality to make the background script 
+log to a file, which can then easily be read by a JavaScript interface to the 
+Venice City Knowledge Console.  Additionally, the file "types.dat" has yet to 
+be fully finished, so while the feature which allows one to determine capacity 
+is supported by the script, it is not supported with data at this time.
+
+*With additional information obtained from other sources, including but not 
+limited to seatguru.com, the websites of various airlines, and Wikipedia.

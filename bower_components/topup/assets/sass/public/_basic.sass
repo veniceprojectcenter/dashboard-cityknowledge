@@ -1,0 +1,174 @@
+
+*
+  margin: 0
+  padding: 0
+
+html
+  height: 100%
+
+body
+  height: 100%
+  color: white
+  line-height: 150%
+  +page_style
+
+a
+  color: white
+  outline-style: none
+  text-decoration: none
+  border-bottom: 1px dotted white
+
+  &:hover
+    border-bottom: 1px solid white
+
+h1, h2
+  text-indent: -9999px
+  background-repeat: no-repeat
+
+h3
+  margin-top: 5px
+  font-size: 12px
+
+h4
+  font-size: 11px
+
+blockquote
+  padding-top: 8px
+  padding-left: 15px
+  font-style: italic
+
+fieldset, img
+  border: 0
+
+ul
+  margin-top: 15px
+
+ol
+  margin-top: 10px
+  padding-bottom: 12px
+  li
+    margin-bottom: 3px
+
+li
+  margin-left: 30px
+
+small
+  font-size: 9px
+
+fieldset
+  legend span
+    width: 200px
+    display: block
+    text-indent: -9999px
+    background-repeat: no-repeat
+
+  ol
+    margin: 0
+    padding: 0
+    list-style: none
+
+    li
+      margin: 0
+      line-height: 24px
+
+      label
+        width: 107px
+        padding-right: 12px
+        float: left
+        clear: left
+        text-align: right
+
+      input
+        vertical-align: middle
+
+      textarea
+        width: 165px
+        height: 45px
+        margin-top: 2px
+        font-family: "Lucida Grande", "Arial"
+        font-size: 11px
+
+pre
+  overflow: auto
+  font-family: "Courier New", "Courier"
+  font-size: 10px
+
+.sprite
+  +sprite(!no, "-500px 0")
+
+.clear
+  clear: both !important
+  float: none !important
+
+.fieldWithErrors
+  display: inline !important
+
+.hidden
+  padding: 20px 15px 15px 15px
+  h1, h2
+    margin-bottom: 12px
+    text-indent: 0
+  h2
+    font-weight: normal
+
+.css_wrapper,
+.css_wrapper span, 
+.css_wrapper span span
+  +block
+  +left
+  background-image: url(/images/buttons/sprite-min.png)
+  background-repeat: no-repeat
+
+.css_wrapper
+  span
+    span
+      background-repeat: repeat-x
+  span
+    line-height: 21px
+
+.box
+  margin-top: 4px
+  padding: 8px
+  background-color: #002933 !important
+  border: 1px dashed #529796
+
+  h4
+    margin: 0 0 6px 0
+
+div.top_padded
+  padding-top: 3px
+  
+  ol.configure_top_up &
+    padding-top: 9px
+  
+ul, li
+  &.bottom_padded
+    padding-bottom: 8px
+
+.te_top_up
+  #tracker_service_info, form
+    width: 510px
+    padding: 18px
+    background-color: #003343 !important
+    border: 1px dashed #529796
+
+    h1
+      height: 21px
+      margin: 0 0 13px 0 !important
+
+    p
+      margin-bottom: 12px
+
+    textarea
+      width: 330px
+      height: 125px
+
+    .submit
+      margin-top: 8px
+      margin-left: 118px
+  
+  #tracker_service_info
+    padding-bottom: 3px
+
+  #errorExplanation
+    margin-bottom: 15px
