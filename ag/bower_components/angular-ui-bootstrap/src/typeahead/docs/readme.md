@@ -1,8 +1,8 @@
-Typeahead is a AngularJS version of [Bootstrap v2's typeahead plugin](http://getbootstrap.com/2.3.2/javascript.html#typeahead).
+Typeahead is a AngularJS version of [Bootstrap v2's typeahead plugin](https://getbootstrap.com/2.3.2/javascript.html#typeahead).
 This directive can be used to quickly create elegant typeaheads with any form text input.
 
 It is very well integrated into AngularJS as it uses a subset of the
-[select directive](http://docs.angularjs.org/api/ng.directive:select) syntax, which is very flexible. Supported expressions are:
+[select directive](https://docs.angularjs.org/api/ng.directive:select) syntax, which is very flexible. Supported expressions are:
 
 * _label_ for _value_ in _sourceArray_
 * _select_ as _label_ for _value_ in _sourceArray_
@@ -119,7 +119,7 @@ This directive works with promises, meaning you can retrieve matches using the `
 * `uib-typeahead`
   <small class="badge">$</small>
   <i class="glyphicon glyphicon-eye-open"></i> -
-  Comprehension Angular expression (see [select directive](http://docs.angularjs.org/api/ng.directive:select)).
+  Comprehension Angular expression (see [select directive](https://docs.angularjs.org/api/ng.directive:select)).
 
 **Notes**
 

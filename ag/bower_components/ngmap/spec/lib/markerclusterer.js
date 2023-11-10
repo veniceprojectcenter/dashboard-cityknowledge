@@ -6,9 +6,9 @@
  * The library creates and manages per-zoom-level clusters for large amounts of markers.
  * <p>
  * This is an enhanced V3 implementation of the
- * <a href="http://gmaps-utility-library-dev.googlecode.com/svn/tags/markerclusterer/"
+ * <a href="https://gmaps-utility-library-dev.googlecode.com/svn/tags/markerclusterer/"
  * >V2 MarkerClusterer</a> by Xiaoxi Wu. It is based on the
- * <a href="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/"
+ * <a href="https://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/"
  * >V3 MarkerClusterer</a> port by Luke Mahe. MarkerClustererPlus was created by Gary Little.
  * <p>
  * v2.0 release: MarkerClustererPlus v2.0 is backward compatible with MarkerClusterer v1.0. It
@@ -26,7 +26,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -1406,7 +1406,7 @@ MarkerClusterer.prototype.resetViewport_ = function (opt_hide) {
  * @param {google.maps.LatLng} p1 The first lat lng point.
  * @param {google.maps.LatLng} p2 The second lat lng point.
  * @return {number} The distance between the two points in km.
- * @see http://www.movable-type.co.uk/scripts/latlong.html
+ * @see https://www.movable-type.co.uk/scripts/latlong.html
 */
 MarkerClusterer.prototype.distanceBetweenPoints_ = function (p1, p2) {
   var R = 6371; // Radius of the Earth in km
@@ -1611,7 +1611,7 @@ MarkerClusterer.BATCH_SIZE_IE = 500;
  * @type {string}
  * @constant
  */
-MarkerClusterer.IMAGE_PATH = "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/images/m";
+MarkerClusterer.IMAGE_PATH = "https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/images/m";
 
 
 /**

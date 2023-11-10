@@ -1,7 +1,7 @@
-### UI Bootstrap - [AngularJS](http://angularjs.org/) directives specific to [Bootstrap](http://getbootstrap.com)
+### UI Bootstrap - [AngularJS](https://angularjs.org/) directives specific to [Bootstrap](https://getbootstrap.com)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-ui/bootstrap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://secure.travis-ci.org/angular-ui/bootstrap.svg)](http://travis-ci.org/angular-ui/bootstrap)
+[![Build Status](https://secure.travis-ci.org/angular-ui/bootstrap.svg)](https://travis-ci.org/angular-ui/bootstrap)
 [![devDependency Status](https://david-dm.org/angular-ui/bootstrap/dev-status.svg?branch=master)](https://david-dm.org/angular-ui/bootstrap#info=devDependencies)
 
 ### Quick links
@@ -136,7 +136,7 @@ angular.module('myModule', [accordion, datepicker]);
 
 # Versioning
 
-Pre-2.0.0 does not follow a particular versioning system. 2.0.0 and onwards follows [semantic versioning](http://semver.org/). All release changes can be viewed on our [changelog](CHANGELOG.md).
+Pre-2.0.0 does not follow a particular versioning system. 2.0.0 and onwards follows [semantic versioning](https://semver.org/). All release changes can be viewed on our [changelog](CHANGELOG.md).
 
 # Support
 
@@ -167,7 +167,7 @@ Modern mobile browsers should work without problems.
 Need help using UI Bootstrap?
 
 * Live help in the IRC (`#angularjs` channel at the `freenode` network). Use this [webchat](https://webchat.freenode.net/) or your own IRC client.
-* Ask a question in [StackOverflow](http://stackoverflow.com/) under the [angular-ui-bootstrap](http://stackoverflow.com/questions/tagged/angular-ui-bootstrap) tag.
+* Ask a question in [StackOverflow](https://stackoverflow.com/) under the [angular-ui-bootstrap](https://stackoverflow.com/questions/tagged/angular-ui-bootstrap) tag.
 
 **Please do not create new issues in this repository to ask questions about using UI Bootstrap**
 

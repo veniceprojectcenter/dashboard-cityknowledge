@@ -30,14 +30,14 @@
 ### `0.1.0` _2014-06-23_
 * *Breaking:* Changed data format from Zones+Rules to just Zones. [#82](https://github.com/moment/moment-timezone/pull/82)
 * *Breaking:* Removed `moment.tz.{addRule,addZone,zoneExists,zones}` as they are no longer relevant with the new data format.
-* Made library 20x faster. [JSPerf results](http://jsperf.com/moment-timezone-0-1-0/2)
+* Made library 20x faster. [JSPerf results](https://jsperf.com/moment-timezone-0-1-0/2)
 * Completely rewrote internals to support new data format.
-* Updated the data collection process to get data directly from http://www.iana.org/time-zones.
+* Updated the data collection process to get data directly from https://www.iana.org/time-zones.
 * Updated data to IANA TZDB `2014e`.
 * Updated `bower.json` to use a browser specific `main:` entry point.
 * Added built files with included data.
 * Added support for accurately parsing input around DST changes. [#93](https://github.com/moment/moment-timezone/pull/93)
-* Added comprehensive documentation at [momentjs.com/timezone/docs/](http://momentjs.com/timezone/docs/).
+* Added comprehensive documentation at [momentjs.com/timezone/docs/](https://momentjs.com/timezone/docs/).
 * Added `moment.tz.link` for linking two identical zones.
 * Added `moment.tz.zone` for getting a loaded zone.
 * Added `moment.tz.load` for loading a bundled version of data from the IANA TZDB.

@@ -28,7 +28,7 @@ typeunknown = "UNKNOWN"
 logdata = directory + "/log.txt"
 
 # the url of the web resource which provides flight data
-url = "http://flightradar24.com/data/airport/vce"
+url = "https://flightradar24.com/data/airport/vce"
 
 ## the unique string which indicates the start of a list of flights in the web resouce
 startstring = "<script>var initFlights = '["

@@ -27,7 +27,7 @@ if (!(typeof updateMultiInstaWidget !== 'undefined' && $.isFunction('updateMulti
 }
  
 //Wulticam array
-window["multiinsta_urls"][window["multiinsta_widget_count"]].push({ "name": "I-25@La_Bajada_Upper" , "url": "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-25@La_Bajada_Upper&t=1429535503156" });
+window["multiinsta_urls"][window["multiinsta_widget_count"]].push({ "name": "I-25@La_Bajada_Upper" , "url": "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-25@La_Bajada_Upper&t=1429535503156" });
  
 //Confgi vars
 var conf_multicam_image_rows    =3;
@@ -40,7 +40,7 @@ for(var ro=0;ro<conf_multicam_image_rows;ro++){
     htmlstr+='<tr>';
     for(var li=0;li<conf_multicam_images_per_row;li++){
         
-        htmlstr+='<td><a style="margin: 3px;" id="img_url_'+window["multicam_widget_count"]+'_'+img_num+'" rel="facebox" href="http://">';
+        htmlstr+='<td><a style="margin: 3px;" id="img_url_'+window["multicam_widget_count"]+'_'+img_num+'" rel="facebox" href="https://">';
         htmlstr+='<img style="border: 1px solid;" id="img_'+window["multicam_widget_count"]+'_'+img_num+'" height="115" width="122" src="" alt="" title=""/></a></td>';
         
         img_num++;

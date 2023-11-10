@@ -9,7 +9,7 @@ placeDash.controller('DashboardShowController', [
   $timeout(function(){ $('div.modal.loading').modal('show'); }, 250);
   
   // https://github.com/ManifestWebDesign/angular-gridster
-  // http://stackoverflow.com/questions/27429388/move-gridster-widgets-programmatically
+  // https://stackoverflow.com/questions/27429388/move-gridster-widgets-programmatically
   $scope.grid_size = 195;
   $scope.gridsterOpts = {
     columns: 6,

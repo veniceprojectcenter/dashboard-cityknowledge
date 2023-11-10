@@ -71,11 +71,11 @@ fb.child('weekly').once('value', function(data) {
   z = data.val();
    // console.log("iris->got var  z",z);
   _.forEach(data.val(), function(val, key){
-    icon = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + state_colors[val.state],
+    icon = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + state_colors[val.state],
       new google.maps.Size(21, 34),
       new google.maps.Point(0,0),
       new google.maps.Point(10, 34));
-    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+    var pinShadow = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_shadow",
       new google.maps.Size(40, 37),
       new google.maps.Point(0, 0),
       new google.maps.Point(12, 35));
@@ -87,7 +87,7 @@ fb.child('weekly').once('value', function(data) {
         title: val.title
     });
     google.maps.event.addListener(marker, 'click', function(){
-      var win = window.open('http://iris.comune.venezia.it/frmVediSegnalazioneNew.aspx?id=' + key , '_blank');
+      var win = window.open('https://iris.comune.venezia.it/frmVediSegnalazioneNew.aspx?id=' + key , '_blank');
     });
 
   });
@@ -109,7 +109,7 @@ fb.child('computed').on('value', function(data) {
   };
 
   _.each(replacements, function(val, id){
-    // http://stackoverflow.com/a/2901298
+    // https://stackoverflow.com/a/2901298
     $(id).text(val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
   });
 

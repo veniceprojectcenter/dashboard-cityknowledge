@@ -6,7 +6,7 @@
     "Dylan Kirby <djkirby@wpi.edu>"
   ],
   "license": "MIT",
-  "homepage": "http://dashboard.cityknowledge.net",
+  "homepage": "https://dashboard.cityknowledge.net",
   "private": true,
   "ignore": [
     "**/.*",

@@ -1066,7 +1066,7 @@ angular.module('openlayers-directive').factory('olHelpers', ["$q", "$log", "$htt
                     $log.error('[AngularJS - Openlayers] - MapBox layer requires the map id and the access token');
                     return;
                 }
-                var url = 'http://api.tiles.mapbox.com/v4/' + source.mapId + '/{z}/{x}/{y}.png?access_token=' +
+                var url = 'https://api.tiles.mapbox.com/v4/' + source.mapId + '/{z}/{x}/{y}.png?access_token=' +
                     source.accessToken;
 
                 var pixelRatio = window.devicePixelRatio;

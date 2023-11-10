@@ -9,7 +9,7 @@
 	$fb->set('/dashboard/currentPopulation', $population['population']);
 
 	function getPopulation() {
-		$feed_contents = file_get_contents('http://portale.comune.venezia.it/millefoglie/statistiche/scheda/QUARTIERE-POPOLA-2$1$------');
+		$feed_contents = file_get_contents('https://portale.comune.venezia.it/millefoglie/statistiche/scheda/QUARTIERE-POPOLA-2$1$------');
 		$DOM = new DOMDocument;
 		$DOM->loadHTML($feed_contents);
 

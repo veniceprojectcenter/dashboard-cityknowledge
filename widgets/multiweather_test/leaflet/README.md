@@ -1,20 +1,20 @@
 # OpenWeatherMap for Leaflet based maps
 
 ## Description
-[OpenWeatherMap](http://openweathermap.org/) (OWM) is a service providing weather related data, visualizing it using an OpenLayers based map. This is a Leaflet based script providing easy access to OWM's features for Leaflet based maps.
+[OpenWeatherMap](https://openweathermap.org/) (OWM) is a service providing weather related data, visualizing it using an OpenLayers based map. This is a Leaflet based script providing easy access to OWM's features for Leaflet based maps.
 
 In short: A JavaScript library for including OWM's layers and OWM's current city/station data in leaflet based maps without hassle.
 
-Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/1193685/)
+Feel free to flattr me if you like it: [![alttext](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/1193685/)
 
 ## Demo
 
-An example map using many features of this library can be seen here: http://map.comlu.com/openweathermap/
+An example map using many features of this library can be seen here: https://map.comlu.com/openweathermap/
 Its "Wind Rose" overlay is a complex example of a user defined marker to give you an idea what can be achieved by user defined functions for markers.
 
 ## License
 
-This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
+This code is licensed under [CC0](https://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
 
 ## Using TileLayers
 
@@ -82,13 +82,13 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *showTempMinMax*: **true** or false. Whether to show temperature min/max.
 * *useLocalTime*: **true** or false. Whether to use local time or UTC for the timestamp.
 * *clusterSize*: Number ( **150** ). If some stations are too close to each other, they are hidden. In an area of the size clusterSize pixels * clusterSize pixels only one city or one station is allowed.
-* *imageUrlCity*: URL ( **'http://openweathermap.org/img/w/{icon}.png'** ). URL template for weather condition images of cities. {icon} will be replaced by the icon property of city's data. See http://openweathermap.org/img/w/ for some standard images.
+* *imageUrlCity*: URL ( **'https://openweathermap.org/img/w/{icon}.png'** ). URL template for weather condition images of cities. {icon} will be replaced by the icon property of city's data. See https://openweathermap.org/img/w/ for some standard images.
 * *imageWidth*: Number ( **50** ). Width of city's weather condition image.
 * *imageHeight*: Number ( **50** ). Height of city's weather condition image.
-* *imageUrlPlane*: URL ( **'http://openweathermap.org/img/s/iplane.png'** ). Image URL for stations of type 1.
+* *imageUrlPlane*: URL ( **'https://openweathermap.org/img/s/iplane.png'** ). Image URL for stations of type 1.
 * *imageWidthPlane*: Number ( **25** ). Width of image for station type 1.
 * *imageHeightPlane*: Number ( **25** ). Height of image for station type 1.
-* *imageUrlStation*: URL ( **'http://openweathermap.org/img/s/istation.png'** ). Image URL for stations of type unequal to 1.
+* *imageUrlStation*: URL ( **'https://openweathermap.org/img/s/istation.png'** ). Image URL for stations of type unequal to 1.
 * *imageWidthStation*: Number ( **25** ). Width of image for station type unequal to 1.
 * *imageHeightStation*: Number ( **25** ). Height of image for station type unequal to 1.
 * *markerFunction*: Function ( **null** ). User defined function for marker creation. Needs one parameter for station data.
@@ -110,7 +110,7 @@ Here are the most important lines:
 ```
 
 ```js
-var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
@@ -150,7 +150,7 @@ function myOwmPopup(data) {
 	return L.popup().setContent(data.name);
 }
 
-var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});

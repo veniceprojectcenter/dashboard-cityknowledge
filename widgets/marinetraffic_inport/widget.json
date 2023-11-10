@@ -1,7 +1,7 @@
 {
   "id": "marinetraffic_inport",
   "title": "Marine traffic in port",
-  "url": "http://www.marinetraffic.com",
+  "url": "https://www.marinetraffic.com",
   "urlTitle": "Marine Traffic",
   "helpDocUrl": "https://docs.google.com/document/d/1C3s-WgjBk8AxHwFAZAZOeqR5cj6jnD0Um9y4iDhDdmo/pub?embedded=true",
   "log": false,

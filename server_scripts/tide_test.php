@@ -63,7 +63,7 @@ print_r(highestTideToday());
 	function getTideMeasurements() {
 		$tide_measurements = array();
 
-		$html = file_get_html('http://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/1748');
+		$html = file_get_html('https://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/1748');
 		$count = 0;
 		foreach($html->find('tr') as $row) {
     		$date_time = $row->find('th',0)->plaintext;
@@ -83,7 +83,7 @@ print_r(highestTideToday());
 	}
 
 	function getCurrentTideLevel() {
-		$feed_contents = file_get_contents('http://93.62.201.235/maree/ESPORTAZIONI/DATI/Punta_Salute.html');
+		$feed_contents = file_get_contents('https://93.62.201.235/maree/ESPORTAZIONI/DATI/Punta_Salute.html');
 		$DOM = new DOMDocument;
 		$DOM->loadHTML($feed_contents);
 

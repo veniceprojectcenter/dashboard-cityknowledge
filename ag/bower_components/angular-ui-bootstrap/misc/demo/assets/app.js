@@ -274,11 +274,11 @@ function DownloadCtrl($scope, $uibModalInstance) {
 /*
  * The following compatibility check is from:
  *
- * Bootstrap Customizer (http://getbootstrap.com/customize/)
+ * Bootstrap Customizer (https://getbootstrap.com/customize/)
  * Copyright 2011-2014 Twitter, Inc.
  *
  * Licensed under the Creative Commons Attribution 3.0 Unported License. For
- * details, see http://creativecommons.org/licenses/by/3.0/.
+ * details, see https://creativecommons.org/licenses/by/3.0/.
  */
 var isOldBrowser;
 (function () {
@@ -291,11 +291,11 @@ var isOldBrowser;
      * Based on:
      *   Blob Feature Check v1.1.0
      *   https://github.com/ssorallen/blob-feature-check/
-     *   License: Public domain (http://unlicense.org)
+     *   License: Public domain (https://unlicense.org)
      */
     var url = window.URL;
     var svg = new Blob(
-        ['<svg xmlns=\'http://www.w3.org/2000/svg\'></svg>'],
+        ['<svg xmlns=\'https://www.w3.org/2000/svg\'></svg>'],
         { type: 'image/svg+xml;charset=utf-8' }
     );
     var objectUrl = url.createObjectURL(svg);

@@ -1,7 +1,7 @@
 Angular Debounce [![Build Status](https://travis-ci.org/shahata/angular-debounce.svg?branch=master)](https://travis-ci.org/shahata/angular-debounce) [![Coverage Status](https://coveralls.io/repos/shahata/angular-debounce/badge.png?branch=master)](https://coveralls.io/r/shahata/angular-debounce?branch=master)
 ================
 
-[AngularJS](http://www.angularjs.org) debounce service and directive
+[AngularJS](https://www.angularjs.org) debounce service and directive
 
 ## What it does
 
@@ -64,7 +64,7 @@ etc.
 ## Reference
 
 The debounce service is based on the debounce implementation in uderscorejs
-* underscorejs: http://underscorejs.org/#debounce
+* underscorejs: https://underscorejs.org/#debounce
 
 ## License
 

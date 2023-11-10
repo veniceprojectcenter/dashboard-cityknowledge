@@ -20,7 +20,7 @@
         helpDocHeight: 300,
         pageTitle: dashboardName + ' Dashboard',
         logos: [
-          { url: 'http://wpi.edu', file: 'wpi.gif' }
+          { url: 'https://wpi.edu', file: 'wpi.gif' }
         ]
       });
 

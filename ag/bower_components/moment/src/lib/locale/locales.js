@@ -91,7 +91,7 @@ export function defineLocale (name, config) {
                     'use moment.updateLocale(localeName, config) to change ' +
                     'an existing locale. moment.defineLocale(localeName, ' +
                     'config) should only be used for creating a new locale ' +
-                    'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.');
+                    'See https://momentjs.com/guides/#/warnings/define-locale/ for more info.');
             parentConfig = locales[name]._config;
         } else if (config.parentLocale != null) {
             if (locales[config.parentLocale] != null) {
@@ -99,7 +99,7 @@ export function defineLocale (name, config) {
             } else {
                 // treat as if there is no base config
                 deprecateSimple('parentLocaleUndefined',
-                        'specified parentLocale is not defined yet. See http://momentjs.com/guides/#/warnings/parent-locale/');
+                        'specified parentLocale is not defined yet. See https://momentjs.com/guides/#/warnings/parent-locale/');
             }
         }
         locales[name] = new Locale(mergeConfigs(parentConfig, config));

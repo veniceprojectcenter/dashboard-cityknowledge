@@ -25,10 +25,10 @@
   ],
   "license": "MPL-2.0",
   "authors": [
-    "Ali Almossawi", "Ali Almossawi (http://twitter.com/alialmossawi)>",
-    "Hamilton Ulmer", "Hamilton Ulmer (http://twitter.com/hamiltonulmer)>"
+    "Ali Almossawi", "Ali Almossawi (https://twitter.com/alialmossawi)>",
+    "Hamilton Ulmer", "Hamilton Ulmer (https://twitter.com/hamiltonulmer)>"
   ],
-  "homepage": "http://metricsgraphicsjs.org",
+  "homepage": "https://metricsgraphicsjs.org",
   "repository": {
     "type": "git",
     "url": "git://github.com/mozilla/metrics-graphics.git"

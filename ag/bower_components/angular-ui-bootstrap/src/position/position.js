@@ -206,7 +206,7 @@ angular.module('ui.bootstrap.position', [])
 
       /**
        * Provides read-only equivalent of jQuery's position function:
-       * http://api.jquery.com/position/ - distance to closest positioned
+       * https://api.jquery.com/position/ - distance to closest positioned
        * ancestor.  Does not account for margins by default like jQuery position.
        *
        * @param {element} elem - The element to caclulate the position on.
@@ -249,7 +249,7 @@ angular.module('ui.bootstrap.position', [])
 
       /**
        * Provides read-only equivalent of jQuery's offset function:
-       * http://api.jquery.com/offset/ - distance to viewport.  Does
+       * https://api.jquery.com/offset/ - distance to viewport.  Does
        * not account for borders, margins, or padding on the body
        * element.
        *

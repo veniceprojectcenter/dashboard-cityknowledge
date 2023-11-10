@@ -1,6 +1,6 @@
 /*!
  * jQuery - Spectragram by Adrian Quevedo
- * http://adrianquevedo.com/  - http://lab.adrianquevedo.com/ - http://elnucleo.com.co/
+ * https://adrianquevedo.com/  - https://lab.adrianquevedo.com/ - https://elnucleo.com.co/
  *
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * You are free to use this plugin in commercial projects as long as the copyright header is left intact.

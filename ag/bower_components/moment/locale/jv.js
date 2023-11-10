@@ -1,7 +1,7 @@
 //! moment.js locale configuration
 //! locale : Japanese [jv]
 //! author : Rony Lantip : https://github.com/lantip
-//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
+//! reference: https://jv.wikipedia.org/wiki/Basa_Jawa
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'

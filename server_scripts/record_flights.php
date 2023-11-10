@@ -10,7 +10,7 @@
 	function getFlightsForHours($starting_hour, $ending_hour) {
 		$current_time = date('g:i A');
 		$current_date = date('Y-m-d');
-		$url = "http://www.flightstats.com/go/FlightStatus/flightStatusByAirport.do?airport=%28VCE%29+Venice+Marco+Polo+Airport%2C+Venice%2C+IT&airportQueryDate=" . $current_date . "&airlineToFilter=&airportQueryType=1&x=5&y=6&&airportQueryTime=" . $starting_hour;
+		$url = "https://www.flightstats.com/go/FlightStatus/flightStatusByAirport.do?airport=%28VCE%29+Venice+Marco+Polo+Airport%2C+Venice%2C+IT&airportQueryDate=" . $current_date . "&airlineToFilter=&airportQueryType=1&x=5&y=6&&airportQueryTime=" . $starting_hour;
 		$html = file_get_html($url);
 		$arrived_flights = 0;
 		$i = 0;

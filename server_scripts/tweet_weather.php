@@ -2,7 +2,7 @@
   require_once('../twitter-api-php/TwitterAPIExchange.php');
   require_once('./tide_functions.php');
 
-  $json_string = file_get_contents("http://api.wunderground.com/api/fa540e285d09b3f0/geolookup/forecast/q/VCE.json");
+  $json_string = file_get_contents("https://api.wunderground.com/api/fa540e285d09b3f0/geolookup/forecast/q/VCE.json");
   $parsed_json = json_decode($json_string);
   $current_weather = $parsed_json->{'forecast'}->{'txt_forecast'}->{'forecastday'}[0]->{'fcttext_metric'};
 

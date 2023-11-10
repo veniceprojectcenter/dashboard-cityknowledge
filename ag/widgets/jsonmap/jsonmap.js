@@ -14,7 +14,7 @@ angular.module('app').directive('jsonmap', function(NgMap, $http) {
       
     },
     link: function(scope, element, attrs, ctrl, transclude) {
-      // http://stackoverflow.com/questions/15881453/angularjs-accessing-dom-elements-inside-directive-template
+      // https://stackoverflow.com/questions/15881453/angularjs-accessing-dom-elements-inside-directive-template
       // var my_map = $(element.find('ng-map'));
       var my_map = $(element), my_ngmap;
       cl("ZOOME e CENTER", "--" + scope.zoom + "--", scope.center);

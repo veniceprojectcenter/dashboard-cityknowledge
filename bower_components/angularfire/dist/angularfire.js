@@ -1931,7 +1931,7 @@ if (!Object.keys) {
   }());
 }
 
-// http://ejohn.org/blog/objectgetprototypeof/
+// https://ejohn.org/blog/objectgetprototypeof/
 if ( typeof Object.getPrototypeOf !== "function" ) {
   if ( typeof "test".__proto__ === "object" ) {
     Object.getPrototypeOf = function(object){
@@ -2150,7 +2150,7 @@ if ( typeof Object.getPrototypeOf !== "function" ) {
             }
           },
 
-          // http://stackoverflow.com/questions/7509831/alternative-for-the-deprecated-proto
+          // https://stackoverflow.com/questions/7509831/alternative-for-the-deprecated-proto
           // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
           inherit: function(ChildClass, ParentClass, methods) {
             var childMethods = ChildClass.prototype;

@@ -2,7 +2,7 @@
  *  Plugin which uses the Google AJAX Feed API for creating feed content
  *  @author:  M. Alsup (malsup at gmail dot com)
  *  @version: 1.0.2 (5/11/2007)
- *  Documentation and examples at: http://www.malsup.com/jquery/gfeed/
+ *  Documentation and examples at: https://www.malsup.com/jquery/gfeed/
  *  Free beer and free speech. Enjoy!
  */
 (function($) {

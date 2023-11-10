@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // libraries
-      'http://maps.google.com/maps/api/js',
+      'https://maps.google.com/maps/api/js',
       'spec/lib/angular.js',
       'spec/lib/angular-mocks.js',
 

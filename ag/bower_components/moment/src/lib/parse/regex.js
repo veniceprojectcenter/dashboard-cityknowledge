@@ -42,7 +42,7 @@ export function getParseRegexForToken (token, config) {
     return regexes[token](config._strict, config._locale);
 }
 
-// Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
+// Code from https://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
 function unescapeFormat(s) {
     return regexEscape(s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
         return p1 || p2 || p3 || p4;

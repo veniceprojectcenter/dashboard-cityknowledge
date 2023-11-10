@@ -19,8 +19,8 @@ placeDash.directive('geojsonmapCard', function() {
       $(element).find('.geojsonmap').css('height', (scope.widget.height * 160) + 'px');
       
       var map = L.map(my_id);
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
       
       var geojsonLayer = L.geoJson.ajax(scope.geojson, {

@@ -750,7 +750,7 @@ goog.inherits = function(childCtor, parentCtor) {
 goog.base = function(me, opt_methodName, var_args) {
   var caller = arguments.callee.caller;
   if (goog.STRICT_MODE_COMPATIBLE || goog.DEBUG && !caller) {
-    throw Error("arguments.caller not defined.  goog.base() cannot be used " + "with strict mode code. See " + "http://www.ecma-international.org/ecma-262/5.1/#sec-C");
+    throw Error("arguments.caller not defined.  goog.base() cannot be used " + "with strict mode code. See " + "https://www.ecma-international.org/ecma-262/5.1/#sec-C");
   }
   if (caller.superClass_) {
     var ctorArgs = new Array(arguments.length - 1);
@@ -4450,7 +4450,7 @@ fb.core.RepoInfo.prototype.updateHost = function(newHost) {
   }
 };
 fb.core.RepoInfo.prototype.toString = function() {
-  var str = (this.secure ? "https://" : "http://") + this.host;
+  var str = (this.secure ? "https://" : "https://") + this.host;
   if (this.persistenceKey) {
     str += "<" + this.persistenceKey + ">";
   }
@@ -9771,7 +9771,7 @@ fb.realtime.BrowserPollConnection = function(connId, repoInfo, sessionId) {
         pairs.push(k + "=" + params[k]);
       }
     }
-    return(repoInfo.secure ? "https://" : "http://") + repoInfo.internalHost + "/.lp?" + pairs.join("&");
+    return(repoInfo.secure ? "https://" : "https://") + repoInfo.internalHost + "/.lp?" + pairs.join("&");
   };
 };
 fb.realtime.BrowserPollConnection.prototype.open = function(onMessage, onDisconnect) {
@@ -11399,7 +11399,7 @@ fb.core.Repo = function(repoInfo) {
   }});
 };
 fb.core.Repo.prototype.toString = function() {
-  return(this.repoInfo_.secure ? "https://" : "http://") + this.repoInfo_.host;
+  return(this.repoInfo_.secure ? "https://" : "https://") + this.repoInfo_.host;
 };
 fb.core.Repo.prototype.name = function() {
   return this.repoInfo_.namespace;

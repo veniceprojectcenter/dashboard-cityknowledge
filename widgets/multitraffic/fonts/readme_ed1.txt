@@ -21,7 +21,7 @@ LICENSE
 =======
 Erbos Draco is Creative Commons (by-sa) Attribution Share Alike. That means it's free to download and use. You can also upload it to another website but only as long as you give me credit for making it. You can even make changes to it as long as you give me credit for making the first version.
 For more information, go to:
-http://creativecommons.org/licenses/by-sa/3.0/
+https://creativecommons.org/licenses/by-sa/3.0/
 
 A REQUEST FROM NATE547
 ======================

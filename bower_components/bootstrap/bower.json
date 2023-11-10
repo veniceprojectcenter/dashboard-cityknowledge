@@ -12,7 +12,7 @@
     "framework",
     "web"
   ],
-  "homepage": "http://getbootstrap.com",
+  "homepage": "https://getbootstrap.com",
   "main": [
     "less/bootstrap.less",
     "dist/css/bootstrap.css",

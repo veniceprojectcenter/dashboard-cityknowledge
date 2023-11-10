@@ -8,7 +8,7 @@ angular.module('ui.bootstrap.demo').controller('CarouselDemoCtrl', function ($sc
   $scope.addSlide = function() {
     var newWidth = 600 + slides.length + 1;
     slides.push({
-      image: 'http://lorempixel.com/' + newWidth + '/300',
+      image: 'https://lorempixel.com/' + newWidth + '/300',
       text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
       id: currIndex++
     });
@@ -39,7 +39,7 @@ angular.module('ui.bootstrap.demo').controller('CarouselDemoCtrl', function ($sc
     return shuffle(indexes);
   }
 
-  // http://stackoverflow.com/questions/962802#962890
+  // https://stackoverflow.com/questions/962802#962890
   function shuffle(array) {
     var tmp, current, top = array.length;
 

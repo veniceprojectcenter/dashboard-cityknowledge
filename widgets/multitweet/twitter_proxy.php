@@ -44,7 +44,7 @@ if(count(@$obj["statuses"])>0){
         
         $HTML.= "<br>";
         $HTML.= "<img src=\"".$profile_image."\" width=\"30px\" height=\"30px\" />";
-        $HTML.= " <a target=\"_blank\" href=\"http://twitter.com/$user\">@$user</a>";
+        $HTML.= " <a target=\"_blank\" href=\"https://twitter.com/$user\">@$user</a>";
         $HTML.= "<br/>";
         $HTML.= " $tweet";
         $HTML.= "<br>";
