@@ -119,7 +119,7 @@ References
 
 Similar libraries (but they use timers)
 ---------------------------------------
-[jQuery-mutate](http://www.jqui.net/jquery-projects/jquery-mutate-official/)
+[jQuery-mutate](https://www.jqui.net/jquery-projects/jquery-mutate-official/)
 
 [jQuery-resize-plugin](http://benalman.com/projects/jquery-resize-plugin/)
 
@@ -131,9 +131,9 @@ External links
 [Back Alley Coder: Cross-Browser, Event-based, Element Resize Detection][1]  
 [Back Alley Coder: Overflow and Underflow Events][2]
 
-[1]: http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/
-[2]: http://www.backalleycoder.com/2013/03/14/oft-overlooked-overflow-and-underflow-events/
-[3]: http://www.backalleycoder.com/
-[4]: http://www.w3.org/TR/dom/#mutation-observers
+[1]: https://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/
+[2]: https://www.backalleycoder.com/2013/03/14/oft-overlooked-overflow-and-underflow-events/
+[3]: https://www.backalleycoder.com/
+[4]: https://www.w3.org/TR/dom/#mutation-observers
 [5]: http://msdn.microsoft.com/en-us/library/ie/ms536959
 

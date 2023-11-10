@@ -20,7 +20,7 @@
         config: [
           { label: 'Twitter Handle @', type: 'text', value: '' }
         ],
-        content: "<img src='http://www.emoticonswallpapers.com/avatar/cartoons/Daffy-Ducks-Head.gif' />"
+        content: "<img src='https://www.emoticonswallpapers.com/avatar/cartoons/Daffy-Ducks-Head.gif' />"
       },
       {
         name: 'Map',

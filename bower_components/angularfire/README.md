@@ -6,7 +6,7 @@
 [![Version](https://badge.fury.io/gh/firebase%2Fangularfire.svg)](http://badge.fury.io/gh/firebase%2Fangularfire)
 
 AngularFire is the officially supported [AngularJS](http://angularjs.org/) binding for
-[Firebase](http://www.firebase.com/?utm_medium=web&utm_source=angularfire). Firebase is a full
+[Firebase](https://www.firebase.com/?utm_medium=web&utm_source=angularfire). Firebase is a full
 backend so you don't need servers to build your Angular app. AngularFire provides you with the
 `$firebase` service which allows you to easily keep your `$scope` variables in sync with your
 Firebase backend.

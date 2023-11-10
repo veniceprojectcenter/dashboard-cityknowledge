@@ -36,7 +36,7 @@
 	$POLLUTION_VALUES["conc_pm10_max"]  ="0";
 	
 	//Fetch values from arpa
-	$search_url     ="http://www.arpa.veneto.it/arpavinforma/bollettini/aria/aria_dati_validati.php?provincia=Venezia";
+	$search_url     ="https://www.arpa.veneto.it/arpavinforma/bollettini/aria/aria_dati_validati.php?provincia=Venezia";
     $arpa_domdoc    = getByCurl($search_url,false,true); 
  
     $rows = $arpa_domdoc->getElementsByTagName("tr");

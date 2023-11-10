@@ -394,7 +394,7 @@
   "river_countess" : {
     "crew" : 44,
     "name" : "RIVER COUNTESS",
-    "passegner_url" : "http://www.rivercruiseadvisor.com/cruise-companies/uniworld-river-cruises/river-countess/",
+    "passegner_url" : "https://www.rivercruiseadvisor.com/cruise-companies/uniworld-river-cruises/river-countess/",
     "passengers" : 134,
     "simulated_crew" : true
   },

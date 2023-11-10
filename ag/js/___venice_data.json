@@ -25,7 +25,7 @@
       "url" : "venice",
       "widgetsInUse" : {
         "-JbE0F0uahcjzlan3Lp2" : {
-          "contentHTML" : "<script src=\"widgets/ship_arrivals/ship_arrivals.js\"></script>\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tShips In Port\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='ships_in_port'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tPassengers\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='ships_passengers'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tCrew\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"ships_crew\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\t<b>Total Tourists</b>\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"ships_tourists\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n\n<br />\n\n<iframe name=\"marinetraffic\" id=\"marinetraffic\" width='98%' height=\"250\" scrolling=\"no\" frameborder=\"1\" src=\"http://www.marinetraffic.com/ais/embed.aspx?zoom=13&centery=45.44&centerx=12.33&maptype=2&notation=false&shownames=false&mmsi=0&remember=false\"></iframe>\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t  \t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: center; font-size: 11px;\">\n      \t<b>Expected This Week</b>\n    \t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tShips\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"ships_expected\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tTourists\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"tourists_expected\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t  </tr>\n\t</tbody>\n</table>",
+          "contentHTML" : "<script src=\"widgets/ship_arrivals/ship_arrivals.js\"></script>\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tShips In Port\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='ships_in_port'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tPassengers\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='ships_passengers'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tCrew\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"ships_crew\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\t<b>Total Tourists</b>\n\t\t\t\t<div style=\"width: 80px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"ships_tourists\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n\n<br />\n\n<iframe name=\"marinetraffic\" id=\"marinetraffic\" width='98%' height=\"250\" scrolling=\"no\" frameborder=\"1\" src=\"https://www.marinetraffic.com/ais/embed.aspx?zoom=13&centery=45.44&centerx=12.33&maptype=2&notation=false&shownames=false&mmsi=0&remember=false\"></iframe>\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t  \t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: center; font-size: 11px;\">\n      \t<b>Expected This Week</b>\n    \t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tShips\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"ships_expected\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tTourists\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id=\"tourists_expected\">0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t  </tr>\n\t</tbody>\n</table>",
           "dashboardColumn" : 2,
           "dashboardRow" : 4,
           "height" : "2",
@@ -33,12 +33,12 @@
           "id" : "ship_arrivals",
           "log" : false,
           "title" : "Cruise Ships",
-          "url" : "http://www.marinetraffic.com/ais/datasheet.aspx?datasource=SHIPS_CURRENT&PORT_ID=530&PORT_NAME=VENEZIA",
+          "url" : "https://www.marinetraffic.com/ais/datasheet.aspx?datasource=SHIPS_CURRENT&PORT_ID=530&PORT_NAME=VENEZIA",
           "urlTitle" : "CruiseTT and Marine Traffic",
           "width" : "2"
         },
         "-JbE0GOQmjB79MlFxT-G" : {
-          "contentHTML" : "<script src='widgets/flight_arrivals/flight_arrivals.js'></script>\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tVenice Flights Today\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='flightsRef'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tPassengers\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='capacityRef'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\t<b>Tourists via VCE</b>\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #EE7C0E; padding: 5px 0;\">\n\t\t\t\t\t<div id='passengerRef'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n\n<br />\n\n<iframe scrolling=\"no\" src=\"http://www.flightradar24.com/simple_index.php?lat=45.44&lon=12.36&z=10&clean=1\" width=\"370px\" height=\"250px\"></iframe>\n\n<br />\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tTreviso Flights Today\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='treviso_flights'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tPassengers\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='treviso_passengers'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\t<b>Tourists via TSF</b>\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #EE7C0E; padding: 5px 0;\">\n\t\t\t\t\t<div id='treviso_tourists'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>",
+          "contentHTML" : "<script src='widgets/flight_arrivals/flight_arrivals.js'></script>\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tVenice Flights Today\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='flightsRef'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tPassengers\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='capacityRef'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\t<b>Tourists via VCE</b>\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #EE7C0E; padding: 5px 0;\">\n\t\t\t\t\t<div id='passengerRef'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n\n<br />\n\n<iframe scrolling=\"no\" src=\"https://www.flightradar24.com/simple_index.php?lat=45.44&lon=12.36&z=10&clean=1\" width=\"370px\" height=\"250px\"></iframe>\n\n<br />\n\n<table style=\"margin:0 auto;\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tTreviso Flights Today\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='treviso_flights'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\tPassengers\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;\">\n\t\t\t\t\t<div id='treviso_passengers'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t\t<td style=\"width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;\">\n\t\t\t\t<b>Tourists via TSF</b>\n\t\t\t\t<div style=\"width: 120px; color: #ffffff; font-weight: bold; background-color: #EE7C0E; padding: 5px 0;\">\n\t\t\t\t\t<div id='treviso_tourists'>0</div>\n\t\t\t\t</div>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>",
           "dashboardColumn" : 4,
           "dashboardRow" : 2,
           "data_bindings" : {
@@ -69,7 +69,7 @@
             }
           },
           "title" : "Airplanes",
-          "url" : "http://www.flightradar24.com/45.45,12.29/12",
+          "url" : "https://www.flightradar24.com/45.45,12.29/12",
           "urlTitle" : "FlightRadar24 + SeatGuru + FlightStats",
           "width" : "2"
         },
@@ -166,7 +166,7 @@
           "log" : true,
           "log_key" : "venice_tide",
           "title" : "Tides",
-          "url" : "http://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/1748",
+          "url" : "https://www.comune.venezia.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/1748",
           "urlTitle" : "Centro Maree",
           "width" : "1"
         },
@@ -194,7 +194,7 @@
           "id" : "venice_events",
           "log" : false,
           "title" : "Events",
-          "url" : "http://www.veneziatoday.it/eventi/",
+          "url" : "https://www.veneziatoday.it/eventi/",
           "urlTitle" : "Venezia Today",
           "width" : "2"
         },
@@ -238,7 +238,7 @@
           "id" : "realestate",
           "log" : false,
           "title" : "Homes",
-          "url" : "http://www.immobiliare.it/",
+          "url" : "https://www.immobiliare.it/",
           "urlTitle" : "Immobiliare",
           "width" : "2"
         },
@@ -250,7 +250,7 @@
           "id" : "airbnb",
           "log" : false,
           "title" : "Airbnb",
-          "url" : "http://www.airbnb.com",
+          "url" : "https://www.airbnb.com",
           "urlTitle" : "Airbnb",
           "width" : "2"
         },
@@ -262,7 +262,7 @@
           "id" : "venice_train",
           "log" : false,
           "title" : "Trains",
-          "url" : "http://www.trenitalia.com/",
+          "url" : "https://www.trenitalia.com/",
           "urlTitle" : "Trenitalia",
           "width" : "2"
         },

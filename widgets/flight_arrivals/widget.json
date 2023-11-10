@@ -1,7 +1,7 @@
 {
   "id": "flight_arrivals",
   "title": "Aircraft Movement",
-  "url": "http://www.flightradar24.com/45.45,12.29/12",
+  "url": "https://www.flightradar24.com/45.45,12.29/12",
   "urlTitle": "Venice Airport",
   "helpDocUrl": "https://docs.google.com/document/d/12JB4-m_vnDdZvk-Or1AP-jAz7WB85z55ODh1AXi3ug0/pub?embedded=true",
   "log": false,

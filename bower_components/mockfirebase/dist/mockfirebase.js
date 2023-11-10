@@ -3445,7 +3445,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
      * Note: This method is loosely based on the structured clone algorithm. Functions
      * and DOM nodes are **not** cloned. The enumerable properties of `arguments` objects and
      * objects created by constructors other than `Object` are cloned to plain `Object` objects.
-     * See http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm.
+     * See https://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm.
      *
      * @static
      * @memberOf _
@@ -7818,7 +7818,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
      * whitespace, and correctly escapes quotes within interpolated code.
      *
      * Note: In the development build, `_.template` utilizes sourceURLs for easier
-     * debugging. See http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
+     * debugging. See https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
      *
      * For more information on precompiling templates see:
      * http://lodash.com/custom-builds
@@ -7980,7 +7980,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
         'return __p\n}';
 
       // Use a sourceURL for easier debugging.
-      // http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
+      // https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
       var sourceURL = '\n/*\n//# sourceURL=' + (options.sourceURL || '/lodash/template/source[' + (templateCounter++) + ']') + '\n*/';
 
       try {

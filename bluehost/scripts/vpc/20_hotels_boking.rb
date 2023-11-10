@@ -26,7 +26,7 @@ $num = 5
 current_cycle=0;
 cycles=2;
 while current_cycle < cycles  do
-  page = @mechanize.get('http://www.booking.com/')
+  page = @mechanize.get('https://www.booking.com/')
   form = page.form_with(:id => 'frm')
   data_checkin  = Time.now.tomorrow
   data_checkout = data_checkin.tomorrow

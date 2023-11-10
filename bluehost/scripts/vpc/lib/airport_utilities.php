@@ -13,8 +13,8 @@ function getAirplaneCapacity($carrier_code, $flight_number, $date){
     	
     	
     	//scrape airplane information
-    	//$req = "http://www.seatguru.com/ajax/findseatmap.php?from=&to=&flightno=1483&carrier=AZ&date=06%2F03%2F2015";
-    	$req = "http://www.seatguru.com/ajax/findseatmap.php?from=&to=&flightno=".$flight_number."&carrier=".$carrier_code."&date=".$date;
+    	//$req = "https://www.seatguru.com/ajax/findseatmap.php?from=&to=&flightno=1483&carrier=AZ&date=06%2F03%2F2015";
+    	$req = "https://www.seatguru.com/ajax/findseatmap.php?from=&to=&flightno=".$flight_number."&carrier=".$carrier_code."&date=".$date;
     //	echo $req;
     //	echo "\n";
 
@@ -49,7 +49,7 @@ function getAirplaneCapacity($carrier_code, $flight_number, $date){
         }
         
         // scrape airline information
-        $plane_req = "http://www.seatguru.com".$url;
+        $plane_req = "https://www.seatguru.com".$url;
         $snoopy->fetch($plane_req);
         
         $DOM = new DOMDocument;

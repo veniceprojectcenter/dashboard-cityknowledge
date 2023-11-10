@@ -1,4 +1,4 @@
-- download calendar from http://www.vtp.it/calendario/
+- download calendar from https://www.vtp.it/calendario/
 - convert pdf with https://www.pdftoexcelonline.com/it/ (https://www.pdftoword.com/it/)
 - dall'xls ricevuto, salvare ogni foglio in CVS (mela+shift+s)
 - eseguire (adattandolo) lo script calendario2fb.rb

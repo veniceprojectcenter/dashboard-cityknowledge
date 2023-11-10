@@ -113,7 +113,7 @@ def lat_long_distance(lat1, long1, lat2, long2):
     long1 = float(long1)
     lat2 = float(lat2)
     long2 = float(long2)
-    # http://www.johndcook.com/blog/python_longitude_latitude/
+    # https://www.johndcook.com/blog/python_longitude_latitude/
     degrees_to_radians = math.pi / 180.0
     phi1 = (90.0 - lat1) * degrees_to_radians
     phi2 = (90.0 - lat2) * degrees_to_radians

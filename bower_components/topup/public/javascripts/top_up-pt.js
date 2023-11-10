@@ -459,7 +459,7 @@ TopUp = (function() {
     var object = new Element("object", {width   : options.get("width"), 
                                         height  : options.get("height"),
                                         classid : "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B",
-                                        codebase: "http://www.apple.com/qtactivex/qtplugin.cab",
+                                        codebase: "https://www.apple.com/qtactivex/qtplugin.cab",
                                         style   : "display: none"});
                                         
     object.appendChild(new Element("param", {name: "src"     , value: options.get("reference")}));
@@ -475,7 +475,7 @@ TopUp = (function() {
                                              showlogo   : "false", 
                                              autoplay   : "true",
                                              type       : "video/quicktime",
-                                             pluginspage: "http://www.apple.com/quicktime/download/"}));
+                                             pluginspage: "https://www.apple.com/quicktime/download/"}));
     
     options.set("content", new Element("div", {width: options.get("width"), height: options.get("height"), style: "background: black"}));
     options.get("content").appendChild(object);
@@ -499,7 +499,7 @@ TopUp = (function() {
                                              autostart  : "true",
                                              nojava     : "true",
                                              type       : "audio/x-pn-realaudio-plugin",
-                                             pluginspage: "http://www.real.com/freeplayer/?rppr=rnwk"}));
+                                             pluginspage: "https://www.real.com/freeplayer/?rppr=rnwk"}));
     
     options.set("content", new Element("div", {width: options.get("width"), height: options.get("height")}));
     options.get("content").appendChild(object);

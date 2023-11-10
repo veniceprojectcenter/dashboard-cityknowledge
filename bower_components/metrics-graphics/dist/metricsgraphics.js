@@ -245,7 +245,7 @@
 
         +function ($) {
           'use strict';
-          
+
           if(typeof $().tooltip == 'function')
             return true;
 
@@ -729,7 +729,7 @@
 
           if(typeof $().popover == 'function')
             return true;
-              
+
           // POPOVER PUBLIC CLASS DEFINITION
           // ===============================
 
@@ -879,7 +879,7 @@
     function y_rug(args) {
         'use strict';
         var svg = mg_get_svg_child_of(args.target);
-        
+
         var buffer_size = args.chart_type === 'point'
             ? args.buffer / 2
             : args.buffer * 2 / 3;
@@ -2471,14 +2471,14 @@
                     }
                 }
 
-                var the_line = svg.select('.mg-line' + (line_id) + '-color');        
+                var the_line = svg.select('.mg-line' + (line_id) + '-color');
                 if (args.missing_is_hidden && the_line.attr('d') !== null) {
                     var bits = the_line.attr('d').split('L');
                     var zero = args.scales.Y(0) + 42.1234;
                     var dasharray = [];
                     var singleton_point_length = 2;
 
-                    var x_y, 
+                    var x_y,
                         x_y_plus_1,
                         x,
                         y,
@@ -2834,8 +2834,8 @@
                             .style('opacity', 1);
                       }
                     });
-                } else if (args.missing_is_hidden 
-                        && d[args.y_accessor] == 0 
+                } else if (args.missing_is_hidden
+                        && d[args.y_accessor] == 0
                         && d['missing']
                     ) {
                     //disable rollovers for hidden parts of the line
@@ -3559,7 +3559,7 @@
                 // move the barplot after the axes so it doesn't overlap
                 //$(svg.node()).find('.mg-y-axis').after($(barplot.node()).detach());
                 svg.select('.mg-y-axis').node().parentNode.appendChild(barplot.node());
-                
+
                 console.log('waylee');
                 bars = barplot.selectAll('rect.mg-bar');
 
@@ -4242,7 +4242,7 @@
         }
 
         //are we replacing missing y values with zeros?
-        if ((args.missing_is_zero || args.missing_is_hidden) 
+        if ((args.missing_is_zero || args.missing_is_hidden)
                 && args.chart_type === 'line'
                 && is_time_series
             ) {
@@ -4476,7 +4476,7 @@
     }
 
     function lowess_robust(x, y, alpha, inc) {
-        // Used http://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Oct27.html
+        // Used https://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Oct27.html
         // for the clear explanation of robust lowess.
 
         // calculate the the first pass.

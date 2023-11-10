@@ -72,7 +72,7 @@
               	echo "<br>Load marinetraffic venice ship arrivals events from: $date_from to: $date_to timstamp $start_d to $stop_d ";
             
                    
-                $url ="http://www.marinetraffic.com/ais/index/port_moves/all/sort:TIMESTAMP_UTC/direction:asc/port:".$port_num."/portname:".$port_name."/time_interval:".$start_d."_".$stop_d."/per_page:50"; 
+                $url ="https://www.marinetraffic.com/ais/index/port_moves/all/sort:TIMESTAMP_UTC/direction:asc/port:".$port_num."/portname:".$port_name."/time_interval:".$start_d."_".$stop_d."/per_page:50";
             	echo "<br>Url:".$url ;
                 		
                 $response = get_web_page_by_post($url,$fields);
@@ -123,7 +123,7 @@
                               $SHIP_DATA['ship_name'] = $ship_name;
                                
                               $ship_href = @trim(@$cols->item($j)->getElementsByTagName('a')->item(0)->getAttribute('href')); 
-                              $SHIP_DATA['ship_href'] = "http://www.marinetraffic.com".$ship_href;
+                              $SHIP_DATA['ship_href'] = "https://www.marinetraffic.com".$ship_href;
                                
                                //Split parts
                                ///HREF:eis/details/ships/shipid:1040406/imo:0/mmsi:912470806/vessel:ciccio
@@ -179,7 +179,7 @@
                     'offset' => '0', 
                 );
             
-                $url ="http://www.marinetraffic.com/ais/index/eta/all/port:".$port_num."/portname:".$port_name."/per_page:50/page:1/sort:ARR_TIME/direction:asc"; 
+                $url ="https://www.marinetraffic.com/ais/index/eta/all/port:".$port_num."/portname:".$port_name."/per_page:50/page:1/sort:ARR_TIME/direction:asc";
             	echo "<br>Url:".$url ;
                 		
                 $response = get_web_page_by_post($url,array());
@@ -265,7 +265,7 @@
                               $ship_position_href = @trim(@$cols->item($j)->getElementsByTagName('a')->item(0)->getAttribute('href')); 
                               
                               //Split parts    
-                              //http://www.marinetraffic.com/eis/home/zoom:15/mmsi:273455500/centerx:45.3449/centery:12.36131
+                              //https://www.marinetraffic.com/eis/home/zoom:15/mmsi:273455500/centerx:45.3449/centery:12.36131
                               $out=null;
                               @preg_match('~centerx:(.*?)/centery~', $ship_position_href, $out);
                               $SHIP_DATA['pos_long']=@$out[1]; 
@@ -295,7 +295,7 @@
         	  foreach($PORT_CALLS AS $SHIP_ID=>$SHIP_DATA){
         	    
         	  echo "<br>GRAB SHIP DATA"; 
-        	  $url="http://www.marinetraffic.com".$SHIP_DATA["ship_href"];
+        	  $url="https://www.marinetraffic.com".$SHIP_DATA["ship_href"];
               echo "<br>HREF:".$url;
               
               $response = get_web_page_by_post($url,array());

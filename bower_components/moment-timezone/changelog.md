@@ -32,7 +32,7 @@
 * *Breaking:* Removed `moment.tz.{addRule,addZone,zoneExists,zones}` as they are no longer relevant with the new data format.
 * Made library 20x faster. [JSPerf results](http://jsperf.com/moment-timezone-0-1-0/2)
 * Completely rewrote internals to support new data format.
-* Updated the data collection process to get data directly from http://www.iana.org/time-zones.
+* Updated the data collection process to get data directly from https://www.iana.org/time-zones.
 * Updated data to IANA TZDB `2014e`.
 * Updated `bower.json` to use a browser specific `main:` entry point.
 * Added built files with included data.

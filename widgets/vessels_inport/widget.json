@@ -1,7 +1,7 @@
 {
   "id": "vessels_inport",
   "title": "Vessels in port",
-  "url": "http://www.marinetraffic.com",
+  "url": "https://www.marinetraffic.com",
   "helpDocUrl": "https://docs.google.com/document/d/1wIGJTKl_f7GFKa-n0GdAbS0sYaElVnQsiYNNnFXO1Hk/pub?embedded=true",
   "helpDocUrl": "",
   "log": false,

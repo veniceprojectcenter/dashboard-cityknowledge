@@ -74,6 +74,6 @@ File.open('treni.csv', 'w'){|f|
 
 # INFROMAZIONI ULTERIORI SU VIAGGIATRENO
 # S02593 = VENEZIA
-# http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/tratteCanvas/S02593/20801
-# http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/andamentoTreno/S02593/20801
+# https://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/tratteCanvas/S02593/20801
+# https://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/andamentoTreno/S02593/20801
 

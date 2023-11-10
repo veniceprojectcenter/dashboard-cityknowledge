@@ -472,7 +472,7 @@ TopUp = (function() {
     var object = jQuery("<object></object>").attr({width   : options.width, 
                                                    height  : options.height,
                                                    classid : "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B",
-                                                   codebase: "http://www.apple.com/qtactivex/qtplugin.cab",
+                                                   codebase: "https://www.apple.com/qtactivex/qtplugin.cab",
                                                    style   : "display: none"});
                                                    
     object.append(jQuery("<param></param>").attr({name: "src"     , value: options.reference}));
@@ -489,7 +489,7 @@ TopUp = (function() {
                                                   showlogo   : "false", 
                                                   autoplay   : "true",
                                                   type       : "video/quicktime",
-                                                  pluginspage: "http://www.apple.com/quicktime/download/"}));
+                                                  pluginspage: "https://www.apple.com/quicktime/download/"}));
     
     options.content = jQuery("<div></div>").attr({width: options.width, height: options.height, style: "background: black"});
     options.content.append(object);
@@ -514,7 +514,7 @@ TopUp = (function() {
                                                   autostart  : "true",
                                                   nojava     : "true",
                                                   type       : "audio/x-pn-realaudio-plugin",
-                                                  pluginspage: "http://www.real.com/freeplayer/?rppr=rnwk"}));
+                                                  pluginspage: "https://www.real.com/freeplayer/?rppr=rnwk"}));
     
     options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
     options.content.append(object);

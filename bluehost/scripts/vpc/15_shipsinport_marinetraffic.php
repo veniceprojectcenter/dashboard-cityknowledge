@@ -205,9 +205,9 @@
                 );
                 
                 $COL_START_INDEX_OFFSET=0;
-                $url ="http://www.marinetraffic.com/ais/index/ships/range/port_id:".$port_id."/port_name:".$port_name."/per_page:50/page:".$page_num."/sort:SHIPNAME/direction:asc"; 
+                $url ="https://www.marinetraffic.com/ais/index/ships/range/port_id:".$port_id."/port_name:".$port_name."/per_page:50/page:".$page_num."/sort:SHIPNAME/direction:asc";
                 if($pa_lat>0 && $pa_long>0 || $pa_lat<0 || $pa_long){//IN RANGE
-                    $url="http://www.marinetraffic.com/ais/index/ships/nearme/nearlon:".$pa_long."/nearlat:".$pa_lat."/per_page:50/page:".$page_num."sort:DISTANCE/direction:asc";
+                    $url="https://www.marinetraffic.com/ais/index/ships/nearme/nearlon:".$pa_long."/nearlat:".$pa_lat."/per_page:50/page:".$page_num."sort:DISTANCE/direction:asc";
                     $COL_START_INDEX_OFFSET=2;
                 } 
                 
@@ -279,7 +279,7 @@
                                
                               $ship_href = @trim(@$cols->item($j)->getElementsByTagName('a')->item(0)->getAttribute('href')); 
                               //echo "<br>HREF:$ship_href";
-                              $SHIP_DATA['ship_href'] ="http://www.marinetraffic.com". $ship_href;
+                              $SHIP_DATA['ship_href'] ="https://www.marinetraffic.com". $ship_href;
                                
                                //Split parts
                                ///HREF:en/ais/details/ships/shipid:1040406/imo:0/mmsi:912470806/vessel:ciccio
