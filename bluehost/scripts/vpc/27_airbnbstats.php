@@ -5,7 +5,7 @@
               Daily 
            
            Notes:
-           https://insideairbnb.com/venice/
+           http://insideairbnb.com/venice/
          
            
           */

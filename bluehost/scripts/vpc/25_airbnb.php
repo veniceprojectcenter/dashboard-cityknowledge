@@ -4,7 +4,7 @@
            CRON: 
               Daily 
            
-           https://insideairbnb.com/venice/
+           http://insideairbnb.com/venice/
          
            
           */

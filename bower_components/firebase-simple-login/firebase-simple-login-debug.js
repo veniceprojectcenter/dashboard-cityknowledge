@@ -497,7 +497,7 @@ goog.base = function(me, opt_methodName, var_args) {
   var caller = arguments.callee.caller;
   if (goog.DEBUG) {
     if (!caller) {
-      throw Error("arguments.caller not defined.  goog.base() expects not " + "to be running in strict mode. See " + "https://www.ecma-international.org/ecma-262/5.1/#sec-C");
+      throw Error("arguments.caller not defined.  goog.base() expects not " + "to be running in strict mode. See " + "http://www.ecma-international.org/ecma-262/5.1/#sec-C");
     }
   }
   if (caller.superClass_) {
