@@ -1,0 +1,22 @@
+ 
+<link rel="stylesheet" href="widgets/venice_events/openlayers/ol.css" type="text/css">
+
+<style>
+    .map {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
+ 
+  
+<script src="widgets/venice_events/events.js" type="text/javascript"></script>
+
+<div id="widget_{{widget.fb_id}}" > 
+     <div style="height: 340px; width:371px; overflow-y: scroll;" >  
+           <div ng-controller="VeniceEventsController"  ng-init="initController(widget)" >
+              <div   style="height: 320px;"  id="map_canvas_{{widget.fb_id}}"></div>
+          </div> 
+     </div>  
+</div>
+  

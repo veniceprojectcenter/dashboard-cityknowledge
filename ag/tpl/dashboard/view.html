@@ -1,0 +1,123 @@
+<div gridster="dc.dash.gridsterOptions">
+	<ul>
+    <li gridster-item="widget">
+      <div class="box" ng-controller="CustomWidgetCtrl">
+        <div class="box-header">
+          <h3 style="width: 100%">Posizioni</h3>
+          <div class="box-header-btns pull-right" style="top: 6px;">
+            <div class="btn-group" uib-dropdown>
+              <button id="single-button" type="button"
+                class="btn btn-primary"
+                uib-dropdown-toggle>
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+              </button>
+              <ul class="dropdown-menu"
+                uib-dropdown-menu
+                role="menu"
+                aria-labelledby="single-button">
+                <li role="menuitem">
+                  <a href="" ng-click="openSettings(widget)">
+                    <span class="glyphicon glyphicon-cog glyphicon-small"></span>
+                    Configure
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="" ng-click="openSettings(widget)">
+                    <span class="glyphicon glyphicon-remove glyphicon-small"></span>
+                    Delete
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="" ng-click="openSettings(widget)">
+                    <span class="glyphicon glyphicon-info-sign glyphicon-small"></span>
+                    About
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="" ng-click="openSettings(widget)">
+                    <span class="glyphicon glyphicon-signal glyphicon-small"></span>
+                    Logs
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i></a -->
+            <!-- a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a -->
+          </div>
+        </div>
+        <div class="box-content">
+          <jsonmap zoom='10' center="[45.7248703,12.7034954]"
+            json='https://admin.daaab.it/utils/map/realtime.json'
+            refresh="750">
+          </jsonmap>
+        </div>
+      </div>
+    </li>
+    <li gridster-item="widget">
+      <div class="box" ng-controller="CustomWidgetCtrl">
+        <div class="box-header">
+          <h3 style="width: 100%">Posizioni 2</h3>
+        </div>
+        <div class="box-content">
+          <jsonmap zoom='10'
+            center="[45.7248703,12.7034954]"
+            json="http://admin.daaab.it/utils/map/pos.json"
+            zrefresh="750">
+          </jsonmap>
+        </div>
+      </div>
+    </li>
+    
+		<li gridster-item="widget" ng-repeat="widget in dc.widgets" style="z-index: 1;">
+			<div class="box" ng-controller="CustomWidgetCtrl">
+				<div class="box-header">
+					<h3 style="width: 100%">{{ widget.title }}</h3>
+					<div class="box-header-btns pull-right" style="top: 6px;">
+						<div class="btn-group" uib-dropdown>
+      				<button id="single-button" type="button"
+      					class="btn btn-primary"
+      					uib-dropdown-toggle>
+        				<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+      				</button>
+      				<ul class="dropdown-menu"
+      					uib-dropdown-menu
+      					role="menu"
+      					aria-labelledby="single-button">
+				        <li role="menuitem">
+				        	<a href="" ng-click="openSettings(widget)">
+                  	<span class="glyphicon glyphicon-cog glyphicon-small"></span>
+                  	Configure
+                	</a>
+				        </li>
+				        <li role="menuitem">
+				        	<a href="" ng-click="openSettings(widget)">
+                  	<span class="glyphicon glyphicon-remove glyphicon-small"></span>
+                  	Delete
+                	</a>
+				        </li>
+				        <li role="menuitem">
+				        	<a href="" ng-click="openSettings(widget)">
+                  	<span class="glyphicon glyphicon-info-sign glyphicon-small"></span>
+                  	About
+                	</a>
+				        </li>
+				        <li role="menuitem">
+				        	<a href="" ng-click="openSettings(widget)">
+                  	<span class="glyphicon glyphicon-signal glyphicon-small"></span>
+                  	Logs
+                	</a>
+				        </li>
+				      </ul>
+				    </div>
+						
+						<!-- a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i></a -->
+						<!-- a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a -->
+					</div>
+				</div>
+				<div class="box-content">
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,17 @@
+{
+  "id": "image",
+  "title": "Image",
+  "url": "",
+  "urlTitle": "",
+  "helpDocUrl": "",
+  "log": false,
+  "width": 2,
+  "heigh": null,
+  "height": 2,
+  "settings": {
+    "imageUrl": {
+      "label": "Image Url",
+      "value": "https://www.google.com/maps/about/behind-the-scenes/streetview/treks/venice/img/hero.jpg"
+    }
+  }
+}

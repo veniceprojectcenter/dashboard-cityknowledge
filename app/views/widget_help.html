@@ -1,0 +1,15 @@
+<div class='widget-helps'>
+  <div class="modal fade widget-help-{{widget.id}}" ng-repeat='widget in widgetsInUse' ng-if='widget.id'>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title">{{widget.title}} Help</h4>
+        </div>
+        <div class="modal-body">
+          <iframe ng-src="{{trustSrc(widget.helpDocUrl)}}" scrolling="yes" width="850" height="470"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

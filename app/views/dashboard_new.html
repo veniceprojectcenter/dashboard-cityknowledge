@@ -1,0 +1,28 @@
+<div class="modal fade dashboard_new">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Your Own Dashboard</h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-message"></div>
+        <form class="form-horizontal" role="form">
+          <div class="col-sm-1"></div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Dashboard Name</label>
+            <div class="col-sm-7">
+              <input type='text' ng-model='dashboardName' class="form-control" placeholder="new dashboard name" />
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-7">
+              <button ng-click='createDashboard()' type='button' class="btn btn-primary create-btn">Create Dashboard</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

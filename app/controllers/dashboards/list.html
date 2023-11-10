@@ -1,0 +1,48 @@
+<link rel='stylesheet' type='text/css' href='css/dashboard.css'>
+
+<div class="container">
+  <div class='header-bar jumbotron' style="height: 72px; margin-bottom: 5px; margin-top: 5px;">
+    <ng-include src="'app/views/navbar.html'"></ng-include>
+  </div>
+  
+  <div class='modals'>
+    <ng-include src="'app/views/login.html'"></ng-include>
+    <ng-include src="'app/views/register.html'"></ng-include>
+    <ng-include src="'app/views/dashboard_new.html'"></ng-include>
+  </div>
+  
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-5">
+        <h3>Avaible Dashboards</h3>
+        <div ng-show='loadingDsb'>Loading...</div>
+        <ul ng-hide='loadingDsb'>
+          <li ng-repeat="dashboard in dashboards | orderBy:'name'">
+            <a ng-href="{{window.location.pathname}}#/{{dashboard.url}}" target="_blank">{{dashboard.name}}</a>
+          </li>
+        </ul>
+
+        <br />
+        
+        <div ng-show='loggedIn'>
+          <a data-toggle='modal' data-target='.dashboard_new'>Create Dashboard</a>
+        </div>
+        <div ng-hide='loggedIn'>
+          Login for create your own dasboard
+        </div>
+      </div>
+
+      <div class="col-md-1" />
+
+      <div class="col-md-6">
+        <h3>Avaible Widgets</h3>
+        <div ng-show='loadingWdg'>Loading...</div>
+        <ul ng-hide='loadingWdg'>
+          <li ng-repeat="widget in widgets | orderBy: 'title'">
+            <b>{{widget.title}}</b>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+ 
+<link rel="stylesheet" href="widgets/vessels_inport/openlayers/ol.css" type="text/css">
+
+<style>
+    .map {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
+<script src="widgets/vessels_inport/vessels_inport.js"></script>
+ 
+<div ng-controller="VesselsInPortController"  ng-init="initController(widget)" >
+   <div id="widget_{{widget.fb_id}}" > 
+     <div style="height: 280px; width:371px; overflow-y: hidden; float:left;" >  
+           
+                 
+                <table style="margin: 5px; " align="right">
+                	<tbody>
+                		<tr> 
+                			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+                			   <br>
+                			  <div style="width: 80px; color: black; font-weight: bold;   padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5) ;">
+                			  	<div id='ships_passengers'>Port of call</div>
+                			  </div>
+                			  <div style="width: 80px; color: black; font-weight: bold;   padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5) ;">
+                			  	<div id='ships_passengers'>Home port</div>
+                			  </div>
+                			  <div style="width: 80px; color: black; font-weight: bold;   padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5) ;">
+                			  	<div id='ships_passengers'>Totals</div>
+                			  </div>		  
+                			</td>              			
+                			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+                			  Cruise Vessels 
+                			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id='ships_in_port'>{{  (ctt_values.count) | number }}</div>
+                			  </div>    
+                			   <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id='ships_in_port'>{{  ctt_values.overnight_ships | number }}</div>
+                			  </div>
+                			   <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id='ships_in_port'>{{  ctt_values.overnight_ships+ctt_values.count | number }}</div>
+                			  </div>
+            			  
+                			</td>
+                			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+                			  Passengers
+                			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id='ships_passengers'>{{  ctt_values.port_load | number }}</div>
+                			  </div>
+                			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id='ships_passengers'>{{  ctt_values.overnight_load_pass | number }}</div>
+                			  </div>
+                			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id='ships_passengers'>{{  ctt_values.overnight_load_pass+ ctt_values.port_load | number }}</div>
+                			  </div>
+                			  
+                			</td>
+                			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+                			  Crew
+                			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id="ships_crew">{{  ctt_values.crews | number }}</div>
+                			  </div> 
+                			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id="ships_crew">{{  ctt_values.overnight_load_crews | number }}</div>
+                			  </div>	
+                			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px; border-bottom: thick solid  rgba(255,255,255,.5);">
+                			  	<div id="ships_crew">{{  ctt_values.overnight_load_crews +ctt_values.crews| number }}</div>
+                			  </div>	
+                			</td> 
+                		</tr>
+                	</tbody>
+                </table>  
+                <div   style="float:right; padding-right:4%; " >&nbsp;&nbsp;&nbsp;&nbsp;Total passenger vessels in port:<b>{{  passenger_vessels_total | number }}</b></div>
+    
+                <div   style="height: 200px; "  id="map_canvas_{{widget.fb_id}}"></div>  
+          
+       </div>  
+       <table style="margin:0 auto;vertical-align: text-top;" align="left">
+                	<tbody>
+                		<tr>
+                	  	<td style="width: 120px; text-align: center; padding: 3px; vertical-align: center; font-size: 11px;">
+                      	<b>Expected <br>THIS WEEK</b>
+                    	</td>
+                			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+                				Cruise Vessels
+                				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+                					<div id="ships_expected">{{  ctt_values.next_week_ships | number }}</div>
+                				</div>
+                			</td>
+                			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+                				Passengers
+                				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+                					<div id="tourists_expected">{{  ctt_values.next_week_totals | number }}</div>
+                				</div>
+                			</td>
+                	  </tr>
+                	</tbody>
+      </table>
+  </div>
+</div>   

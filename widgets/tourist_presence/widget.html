@@ -1,0 +1,42 @@
+<script src="widgets/tourist_presence/tourist_presence.js"></script>
+
+<style>
+.line {
+    stroke-width: 2;
+    fill: none;
+}
+
+.line.-green {
+    stroke: #73b158;
+}
+
+.fill.-red {
+    fill: #b00;
+}
+
+.axis path
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+</style>
+
+<div ng-controller="TouristPresenceController" ng-init="initController(widget)" class="tourism-presence-widget">
+    <div class="widget-container"></div>
+    <div class="text-center">
+        <div class="datum-box -red -lg" style="    text-align: center;
+    height: 40px;
+    color: #ffffff;
+    background-color: #b00;
+    padding: 5px 0;
+    margin-top: 2px;
+    font: 10px sans-serif;
+    font-weight: bold;
+    padding-top: 8px;">
+            <span class="-xl" style="font-size: 22px;">{{tourists | number}}</span>
+            TOURISTS
+        </div>
+    </div>
+</div>

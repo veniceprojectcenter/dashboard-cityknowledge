@@ -1,0 +1,11 @@
+{
+  "id": "iris",
+  "title": "Citizen Complaints",
+  "url": "http://iris.comune.venezia.it/",
+  "urlTitle": "City of Venice: IRIS",
+  "helpDocUrl": "https://docs.google.com/document/d/1qabFPxNMV24VDApItefBCMCrTqwPLgIpr0u8r5yq2dc/pub?embedded=true",
+  "log": false,
+  "width": 2,
+  "heigh": null,
+  "height": "2"
+}

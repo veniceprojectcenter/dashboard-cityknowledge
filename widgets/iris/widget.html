@@ -1,0 +1,190 @@
+<style type="text/css">
+  #map-canvas {
+    height: 233px;
+    width: 374px;
+    margin: 0 8;
+    padding: 0;
+  }
+  table {
+    margin: 0;
+    auto;
+  }
+  td {
+    width: 120px;
+    text-align: center;
+    padding: 3px;
+    vertical-align: top;
+    font-size: 11px;
+  }
+  .text_box {
+    width: 120px;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 0;
+  }
+  .text_box.received {
+    background-color: #FF2828;
+  }
+  .text_box.pending {
+    background-color: #FF8928;
+  }
+  .text_box.resolved {
+    background-color: #20CC20;
+  }
+</style>
+<script type="text/javascript">
+var map;
+
+  // console.log(" iris widget");
+  function initialize() {
+    // console.log("initializing iris");
+    var mapOptions = {
+      zoom: 14,
+      center: { lat: 45.437885, lng: 12.337626},
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+  // console.log("iris->map ok");
+  }
+var script = document.createElement('script');
+script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'callback=initialize';
+document.body.appendChild(script);
+</script>
+
+
+<script type="text/javascript">
+
+var fb = new Firebase('https://cityknowledge.firebaseio.com').child('iris');
+// console.log("iris->firebase ok");
+var state_colors = {
+  'Conclusa': '20CC20',
+  'Sospesa': 'FF2828',
+  'Ricevuta': 'FF2828',
+  'In carico': 'FF8928'
+};
+
+
+fb.child('weekly').once('value', function(data) {
+  z = data.val();
+   // console.log("iris->got var  z",z);
+  _.forEach(data.val(), function(val, key){
+    icon = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + state_colors[val.state],
+      new google.maps.Size(21, 34),
+      new google.maps.Point(0,0),
+      new google.maps.Point(10, 34));
+    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+      new google.maps.Size(40, 37),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(12, 35));
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(val.lat.replace(',','.'), val.long.replace(',','.')),
+        map: map,
+        icon: icon,
+        shadow: pinShadow,
+        title: val.title
+    });
+    google.maps.event.addListener(marker, 'click', function(){
+      var win = window.open('http://iris.comune.venezia.it/frmVediSegnalazioneNew.aspx?id=' + key , '_blank');
+    });
+
+  });
+});
+
+fb.child('computed').on('value', function(data) {
+  d = data.val();
+  // window.console.log(d);
+  replacements = {
+    "#total_received": d.total_received,
+    "#total_pending": d.total_pending,
+    "#total_resolved": d.total_resolved,
+    "#week_received": d.week_received,
+    "#week_pending": d.week_pending,
+    "#week_resolved": d.week_resolved,
+    "#year_received": d.year_received,
+    "#year_pending": d.year_pending,
+    "#year_resolved": d.year_resolved
+  };
+
+  _.each(replacements, function(val, id){
+    // http://stackoverflow.com/a/2901298
+    $(id).text(val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+  });
+
+});
+</script>
+<br style="clear: both"/>
+<table>
+	<tbody>
+		<tr>
+			<td>
+				Received Last 7 Days
+				<div class="text_box received">
+					<div id='week_received'>0</div>
+				</div>
+			</td>
+			<td>
+				Pending Last 7 Days
+				<div class="text_box pending">
+					<div id='week_pending'>0</div>
+				</div>
+			</td>
+			<td>
+				Resolved Last 7 Days
+				<div class="text_box resolved">
+					<div id='week_resolved'>0</div>
+				</div>
+			</td>
+		</tr>
+
+	</tbody>
+</table>
+
+<div id="map-canvas"></div>
+
+<table>
+	<tbody>
+		<tr>
+			<td>
+				Received Last Year
+				<div class="text_box received">
+					<div id='year_received'>0</div>
+				</div>
+			</td>
+			<td>
+				  Pending Last Year
+				<div class="text_box pending">
+					<div id='year_pending'>0</div>
+				</div>
+			</td>
+			<td>
+				Resolved Last Year
+				<div class="text_box resolved">
+					<div id='year_resolved'>0</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Total Received
+				<div class="text_box received">
+					<div id="total_received">0</div>
+				</div>
+			</td>
+			<td>
+				Total Pending
+				<div class="text_box pending">
+					<div id='total_pending'>0</div>
+				</div>
+			</td>
+			<td>
+				Total Resolved
+				<div class="text_box resolved">
+					<div id='total_resolved'>0</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

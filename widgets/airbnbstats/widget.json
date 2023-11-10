@@ -1,0 +1,10 @@
+{
+  "id": "airbnbstats",
+  "title": "Venice Airbnb Stats",
+  "url": "http://www.airbnb.com",
+  "urlTitle": "Venice Airbnb Stats",
+  "helpDocUrl": "http://www.airbnb.com",
+  "log": false,
+  "width": 2, 
+  "height": 2
+}

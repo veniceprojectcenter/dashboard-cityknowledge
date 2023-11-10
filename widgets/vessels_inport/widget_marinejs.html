@@ -1,0 +1,79 @@
+
+<script src="widgets/vessels_inport/vessels_inport.js"></script>
+ 
+ 
+ <div ng-controller="VesselsInPortController"  ng-init="initController(widget)" >
+         
+         
+        <table style="margin:0 auto;" align="right">
+        	<tbody>
+        		<tr> 
+        			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+        			   <br>
+        			  <div style="width: 80px; color: black; font-weight: bold;   padding: 5px; border-bottom: thick solid #FFF;">
+        			  	<div id='ships_passengers'>Arrivals</div>
+        			  </div>
+        			  <div style="width: 80px; color: black; font-weight: bold;  padding: 5px 0;">
+        			  	<div id='ships_passengers'>Departures</div>
+        			  </div>			  
+        			</td>
+        			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+        			  Ships
+        			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid #FFF;">
+        			  	<div id='ships_in_port'></div>
+        			  </div>
+        			   <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+        			  	<div id='ships_in_port'></div>
+        			  </div>
+        			</td>
+        			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+        			  Passengers
+        			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid #FFF;">
+        			  	<div id='ships_passengers'></div>
+        			  </div>
+        			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+        			  	<div id='ships_passengers'></div>
+        			  </div>			  
+        			</td>
+        			<td style="width: 80px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+        			  Crew
+        			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px; border-bottom: thick solid #FFF;">
+        			  	<div id="ships_crew"></div>
+        			  </div>
+        			  <div style="width: 80px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+        			  	<div id="ships_crew"></div>
+        			  </div>			  
+        			</td> 
+        		</tr>
+        	</tbody>
+        </table>
+        
+        <br />
+   
+        <iframe name="marinetraffic" id="marinetraffic" width='98%' height="230" scrolling="no" frameborder="1" src="https://www.marinetraffic.com/ais/embed.aspx?zoom=13&centery=45.44&centerx=12.33&maptype=2&notation=false&shownames=false&mmsi=0&remember=false&showmenu=false"></iframe>
+  
+        <br style="clear: both"/>
+        <table style="margin:0 auto;">
+        	<tbody>
+        		<tr>
+        	  	<td style="width: 120px; text-align: center; padding: 3px; vertical-align: center; font-size: 11px;">
+              	<b>Expected (7DAYS)</b>
+            	</td>
+        			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+        				Ships
+        				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+        					<div id="ships_expected"></div>
+        				</div>
+        			</td>
+        			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+        				Passengers
+        				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+        					<div id="tourists_expected"></div>
+        				</div>
+        			</td>
+        	  </tr>
+        	</tbody>
+        </table>
+        
+         
+</div>

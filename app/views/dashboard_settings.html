@@ -1,0 +1,90 @@
+<div class="modal fade dashboard-settings">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dashboard Settings</h4>
+      </div>
+      <div class="modal-body">
+        <tabset>
+          <tab heading="General Settings">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Page Title</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Page Title" ng-model='dashboardSettings.pageTitle' />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Help Doc URL</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Help Doc URL" ng-model='dashboardSettings.helpDocUrl' />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Help Doc Width (px)</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Help Doc Width (px)" ng-model='dashboardSettings.helpDocWidth' />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Help Doc Height (px)</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Help Doc Height (px)" ng-model='dashboardSettings.helpDocHeight' />
+                </div>
+              </div>
+            </form>
+          </tab>
+          <tab heading="Header Settings">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Main Title</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Main Title" ng-model='dashboardSettings.name' />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Subtitle</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Subtitle" ng-model='dashboardSettings.subtitle' />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Hours From UTC</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Hours From UTC" ng-model='dashboardSettings.timeZone' />
+                </div>
+              </div>
+            </form>
+          </tab>
+          <tab heading="Footer Settings">
+            <form name="logosForm" class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Footer Message (HTML)</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Footer Message (HTML)" ng-model='dashboardSettings.footerMessage' />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Logos<br /><span style='font-weight:normal;'>Drag to reorder</span></label>
+                <div class="col-sm-8">
+                  <ul class="sortable">
+                    <li class="ui-state-default {{logo.file}}" ng-repeat='logo in dashboardSettings.logos' data-file='{{logo.file}}' data-url='{{logo.url}}' data-position='{{logo.position}}'>
+                      <img class='logo' src='img/{{logo.file}}' height="30" style='cursor: ns-resize;' />
+                      <a href='{{logo.url}}' target='_new'><span class="glyphicon glyphicon-small glyphicon-share-alt"></span></a>
+                      <a ng-click='removeLogo(logo)'><span class="glyphicon glyphicon-small glyphicon-remove"></span></a>
+                    </li>
+                  </ul>
+                  <br />
+                  <input type="file" class='logoInput' />
+                </div>
+              </div>
+            </form>
+          </tab>
+        </tabset>
+        <button class="btn btn-primary save-btn" ng-click='saveDasboardSettings()'>Save Settings</button>
+        <br /><br />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div>
+  <br style="clear: both;"/>
+  <br />
+  <table style="width: 100%;">
+    <tr>
+      <th colspan="3">Listing Availability in Venice<br /><br /><br /></th>
+    </tr><tr style="border-bottom: 2px solid gray;">
+      <th>Listings Available</th>
+      <th style="text-align: right">Today</th>
+      <th style="text-align: right">Tomorrow</th>
+      <th style="text-align: right">Day-After-Tomorrow</th>
+    </tr><tr style="border-bottom: 1px solid gray;">
+      <td>Cannaregio:</td>
+      <td style="text-align: right">{{today['Cannaregio']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['Cannaregio']['numListings']}}</td>
+      <td style="text-align: right">{{tt['Cannaregio']['numListings']}}</td>
+    </tr><tr style="border-bottom: 1px solid gray;">
+      <td>Castello:</td>
+      <td style="text-align: right">{{today['Castello']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['Castello']['numListings']}}</td>
+      <td style="text-align: right">{{tt['Castello']['numListings']}}</td>
+    </tr><tr style="border-bottom: 1px solid gray;">
+      <td>Dorsoduro Accademia:</td>
+      <td style="text-align: right">{{today['Dorsoduro Accademia']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['Dorsoduro Accademia']['numListings']}}</td>
+      <td style="text-align: right">{{tt['Dorsoduro Accademia']['numListings']}}</td>
+    </tr><tr style="border-bottom: 1px solid gray;">
+      <td>Giudecca:</td>
+      <td style="text-align: right">{{today['Giudecca']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['Giudecca']['numListings']}}</td>
+      <td style="text-align: right">{{tt['Giudecca']['numListings']}}</td>
+    </tr><tr style="border-bottom: 1px solid gray;">
+      <td>Lido:</td>
+      <td style="text-align: right">{{today['Lido']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['Lido']['numListings']}}</td>
+      <td style="text-align: right">{{tt['Lido']['numListings']}}</td>
+    </tr><tr style="border-bottom: 1px solid gray;">
+    <td>Murano:</td>
+      <td style="text-align: right">{{today['Murano']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['Murano']['numListings']}}</td>
+      <td style="text-align: right">{{tt['Murano']['numListings']}}</td>
+    </tr><tr style="border-bottom: 1px solid gray;">
+    <td>San Marco:</td>
+      <td style="text-align: right">{{today['San Marco']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['San Marco']['numListings']}}</td>
+      <td style="text-align: right">{{tt['San Marco']['numListings']}}</td>
+    </tr><tr style="border-bottom: 1px solid gray;">
+    <td>San Polo:</td>
+      <td style="text-align: right">{{today['San Polo']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['San Polo']['numListings']}}</td>
+      <td style="text-align: right">{{tt['San Polo']['numListings']}}</td>
+    </tr><tr style="border-bottom: 2px solid gray;">
+    <td>Santa Croce:</td>
+      <td style="text-align: right">{{today['Santa Croce']['numListings']}}</td>
+      <td style="text-align: right">{{tomorrow['Santa Croce']['numListings']}}</td>
+      <td style="text-align: right">{{tt['Santa Croce']['numListings']}}</td>
+    </tr><tr style="border-bottom: 2px solid gray;">
+      <th>Total</td>
+      <th style="text-align: right">{{(
+       today['Cannaregio']['numListings']
+      +today['Castello']['numListings']
+      +today['Dorsoduro Accademia']['numListings']
+      +today['Giudecca']['numListings']
+      +today['Lido']['numListings']
+      +today['Murano']['numListings']
+      +today['San Marco']['numListings']
+      +today['San Polo']['numListings']
+      +today['Santa Croce']['numListings'])}}</td>
+      <th style="text-align: right">{{(
+       tomorrow['Cannaregio']['numListings']
+      +tomorrow['Castello']['numListings']
+      +tomorrow['Dorsoduro Accademia']['numListings']
+      +tomorrow['Giudecca']['numListings']
+      +tomorrow['Lido']['numListings']
+      +tomorrow['Murano']['numListings']
+      +tomorrow['San Marco']['numListings']
+      +tomorrow['San Polo']['numListings']
+      +tomorrow['Santa Croce']['numListings'])}}</td>
+      <th style="text-align: right">{{(
+       tt['Cannaregio']['numListings']
+      +tt['Castello']['numListings']
+      +tt['Dorsoduro Accademia']['numListings']
+      +tt['Giudecca']['numListings']
+      +tt['Lido']['numListings']
+      +tt['Murano']['numListings']
+      +tt['San Marco']['numListings']
+      +tt['San Polo']['numListings']
+      +tt['Santa Croce']['numListings'])}}</td>
+    </tr>
+  </table>
+</div>

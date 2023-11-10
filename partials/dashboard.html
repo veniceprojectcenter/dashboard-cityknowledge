@@ -1,0 +1,430 @@
+<link rel='stylesheet' type='text/css' href='css/dashboard.css'>
+
+<div class='dashboard'>
+  <div class='modals'>
+    <div class="modal fade login">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Login to Your Dashboard</h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-message"></div>
+            <form class="form-horizontal" role="form">
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-7">
+                  <input type="email" class="form-control" placeholder="Email" ng-model='user.email' />
+                </div>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-7">
+                  <input type="password" class="form-control" placeholder="Password" ng-model='user.password' />
+                </div>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-7">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" /> Remember me
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-7">
+                  <button type='button' class="btn btn-primary" ng-click='loginUser()'>Login</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade register">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Register Dashboard Account</h4>
+          </div>
+          <div class="modal-body">
+            <div class='modal-message'></div>
+            <form class="form-horizontal" role="form">
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-7">
+                  <input type="email" class="form-control" placeholder="Email" />
+                </div>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-7">
+                  <input type="password" class="form-control" placeholder="Password" />
+                </div>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Confirm Password</label>
+                <div class="col-sm-7">
+                  <input type="password" class="form-control" placeholder="Confirm Password" />
+                </div>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-7">
+                  <button type="button" class="btn btn-primary">Register Account</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade widget-config">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{settingsWidget.title}} Settings</h4>
+          </div>
+          <div class="modal-body">
+            <tabset>
+              <tab heading="General Settings">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Title</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Title" ng-model='settingsWidget.title' ng-change='saveWidgetTitle(settingsWidget)' debounce='500' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">URL Title</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="URL Title" ng-model='settingsWidget.urlTitle' ng-change='saveWidgetUrlTitle(settingsWidget)' debounce='500' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">URL</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="URL" ng-model='settingsWidget.url' ng-change='saveWidgetUrl(settingsWidget)' debounce='500' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Help Doc URL</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Help Doc URL" ng-model='settingsWidget.helpDocUrl' ng-change='saveWidgetHelpDocUrl(settingsWidget)' debounce='500' />
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Specific Settings">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group" ng-repeat='setting in settingsWidget.settings'>
+                    <label class="col-sm-4 control-label">{{setting.label}}</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="{{setting.label}}" ng-model='setting.value' ng-change='updateWidgetSetting(settingsWidget, setting)' debounce="500" />
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Layout">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <div class="col-sm-8">
+                      <textarea rows="30" cols="169" ng-model="settingsWidget.contentHTML" ng-change='saveWidgetContent(settingsWidget)' debounce='500'></textarea>
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Updates">
+
+              </tab>
+              <tab heading="Log">
+
+              </tab>
+            </tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade dashboard-help">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Dashboard Help</h4>
+          </div>
+          <div class="modal-body">
+            <iframe ng-src="{{trustSrc(dashboardConfiguration.helpDocUrl)}}" scrolling="no" width='{{dashboardConfiguration.helpDocWidth}}' height='{{dashboardConfiguration.helpDocHeight}}' frameBorder="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade dashboard-settings">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Dashboard Settings</h4>
+          </div>
+          <div class="modal-body">
+            <tabset>
+              <tab heading="General Settings">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Page Title</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Page Title" ng-model='dashboardConfiguration.pageTitle' ng-change='updatePageTitle()' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Help Doc URL</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Help Doc URL" ng-model='dashboardConfiguration.helpDocUrl' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Help Doc Width (px)</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Help Doc Width (px)" ng-model='dashboardConfiguration.helpDocWidth' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Help Doc Height (px)</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Help Doc Height (px)" ng-model='dashboardConfiguration.helpDocHeight' />
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Header Settings">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Main Title</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Main Title" ng-model='dashboardConfiguration.name' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Subtitle</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Subtitle" ng-model='dashboardConfiguration.subtitle' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Hours From UTC</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Hours From UTC" ng-model='dashboardConfiguration.timeZone' />
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Footer Settings">
+                <form name="logosForm" class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Footer Message (HTML)</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Footer Message (HTML)" ng-model='dashboardConfiguration.footerMessage' />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Logos<br /><span style='font-weight:normal;'>Drag to reorder</span></label>
+                    <div class="col-sm-8">
+                      <ul class="sortable">
+                        <li class="ui-state-default {{logo.file}}" ng-repeat='logo in dashboardConfiguration.logos' data-file='{{logo.file}}' data-url='{{logo.url}}' data-position='{{logo.position}}'>
+                          <img class='logo' src='img/{{logo.file}}' height="30" style='cursor: ns-resize;' />
+                          <a href='{{logo.url}}' target='_new'><span class="glyphicon glyphicon-small glyphicon-share-alt"></span></a>
+                          <a ng-click='removeLogo(logo)'><span class="glyphicon glyphicon-small glyphicon-remove"></span></a>
+                        </li>
+                      </ul>
+                      <br />
+                      <input type="file" class='logoInput' />
+                    </div>
+                  </div>
+                </form>
+              </tab>
+            </tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade add-widget">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add Widget to Dashboard</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label htm class="col-sm-4 control-label">Choose Widget</label>
+                <div class="col-sm-8">
+                  <select class="form-control" ng-model='widgetToAdd' ng-options="widget.title for widget in widgets | orderBy: 'title'"></select>
+                </div>
+              </div>
+            </form>
+            <button class="btn btn-primary" ng-click='addSelectedWidget()'>Add Widget</button>
+            <br /><br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='widget-helps'>
+      <div class="modal fade widget-help-{{widget.id}}" ng-repeat='widget in widgetsInUse' ng-if='widget.id'>
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+              <h4 class="modal-title">{{widget.title}} Help</h4>
+            </div>
+            <div class="modal-body">
+              <iframe ng-src="{{trustSrc(widget.helpDocUrl)}}" scrolling="yes" width="850" height="470"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='widget-logs'>
+      <div class="modal fade widget-logs-{{widget.id}}" ng-repeat='widget in widgetsInUse' ng-show='widget.id'>
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" style='height: 500px;'>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+              <h4 class="modal-title">{{widget.title}} Logs</h4>
+            </div>
+            <div class="modal-body">
+              <div class='widget-log-chart-{{widget.id}}'></div>
+              <br /><br />
+              <b>Download Data:</b> &nbsp;
+              <a href='http://dashboard.veniceprojectcenter.org/logs/{{widget.id}}.csv'>CSV</a> &nbsp; | &nbsp; <a href='http://dashboard.veniceprojectcenter.org/logs/{{widget.id}}.json'>JSON</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='header-bar'>
+    <div class='left-section'>
+      <div class='main-title'>{{dashboardConfiguration.name}}</div>
+      <div class='subtitle'>{{dashboardConfiguration.subtitle}}</div>
+    </div>
+    <div class='right-section'>
+      <div class='account-links'>
+        <span ng-show='isAdmin'>
+          <span class="glyphicon glyphicon-user glyphicon-small"></span>
+          <a href='#'>admin@cityknowledge.net</a> |
+          <a href='#'>logout</a>
+        </span>
+        <span ng-show='!isAdmin'>
+          <a data-toggle='modal' data-target='.login'>login</a> |
+          <a data-toggle='modal' data-target='.register'>register account</a>
+        </span>
+      </div>
+      <div class='clock'>
+        {{clock}}
+      </div>
+      <div class='header-buttons'>
+        <div class="btn-group">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".add-widget" ng-show='isAdmin'>
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".dashboard-settings" ng-show='isAdmin'>
+              <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".dashboard-help">
+              <span class="glyphicon glyphicon-question-sign"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='announcements'>
+    <div ng-show="dashboardConfiguration.name == 'Venice' && highTide" class='announcement'>
+      Attention! &nbsp;Some Actv boat lines may be disrupted due to high tide levels. &nbsp;
+      <a style="text-decoration:underline;" href="http://www.actv.it/sites/default/files/acquaalta%202(1).jpg" target="_new" class="ui-link">
+        View Details...
+      </a>
+    </div>
+  </div>
+
+  <div class='widgets'>
+    <div gridster="gridsterOpts" style='height: auto;'>
+      <ul>
+        <li gridster-item row="{{widget.dashboardRow}}" col="{{widget.dashboardColumn}}" size-x="{{widget.width}}" size-y="{{widget.height}}" ng-repeat="widget in widgetsInUse" ng-if="widget.id" data-id='{{widget.id}}'>
+          <div class="widget-heading">
+            {{widget.title}} <span ng-show='widget.urlTitle'>(<a href='{{widget.url}}' target='_new'>{{widget.urlTitle}}</a>)</span>
+          </div>
+          <div class="btn-group" style="float:right;">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style='border:none; background:transparent; padding:0;'>
+              <span class="glyphicon glyphicon-chevron-down" style='font-size: 12px;'></span>
+            </button>
+            <ul class="dropdown-menu" style='left:-142px;'>
+              <li ng-show='isAdmin'>
+                <a href="" ng-click="showSettings(widget)">
+                  <span class="glyphicon glyphicon-cog glyphicon-small"></span> Configure
+                </a>
+              </li>
+              <li ng-show='isAdmin'>
+                <a href="" ng-click='deleteWidget(widget.dashboardRow, widget.dashboardColumn)'>
+                  <span class="glyphicon glyphicon-remove glyphicon-small"></span> Delete
+                </a>
+              </li>
+              <li>
+                <a ng-click="showWidgetAbout(widget)">
+                  <span class="glyphicon glyphicon-info-sign glyphicon-small"></span> About
+                </a>
+              </li>
+              <li>
+                <a ng-click="showWidgetLogs(widget)" ng-show='widget.log'>
+                  <span class="glyphicon glyphicon-signal glyphicon-small"></span> View Logs
+                </a>
+              </li>
+            </ul>
+          </div>
+          <br /><br />
+          <div>
+            <div ng-bind-html='htmlSafe(widgetContent(widget))'></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='footer-spacer'></div>
+
+  <div class='footer-bar'>
+    <div class='left-section'>
+      <div class='message' ng-bind-html='htmlSafe(dashboardConfiguration.footerMessage)'></div>
+    </div>
+    <div class='right-section'>
+      <div class='logos'>
+        <span class='logo'>
+          <a ng-repeat='logo in dashboardConfiguration.logos' href='{{logo.url}}' target='_new'>
+            <img class='logo' src='img/{{logo.file}}' height="30" />
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

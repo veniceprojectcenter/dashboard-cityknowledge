@@ -1,0 +1,75 @@
+<style type="text/css">
+@font-face {
+ font-family: ErbosDracoNBP;
+ src: url("widgets/multitraffic/fonts/erbos_draco_1st_open_nbp.ttf"),
+      url("widgets/multitraffic/fonts/erbos_draco_1st_open_nbp.eot");
+}
+@font-face {
+ font-family: LcdPhone;
+ src: url("widgets/multitraffic/fonts/lcd_phone.ttf"),
+      url("widgets/multitraffic/fonts/lcd_phone.eot");
+}
+div.nmroads_container {
+  height: 340px;
+  overflow-y: scroll;
+  width: 371px;
+}
+ul.nmroads {
+  padding: 0em;
+  list-style: none;
+  margin-top: 8px;
+}
+ul.nmroads li {
+  background-color: #2A2A2A;
+  list-style: none;
+}
+ul.nmroads li div.text {
+  /* font-family: ErbosDracoNBP; */
+  font-family: LcdPhone;
+  font-size:   15pt;
+  color: #FFEF00;
+  
+  position: relative;
+  border:   1px solid black;
+  padding:  0.2em;
+  /*height:100px;*/
+}
+ul.nmroads li .separator {
+  height: 20px;
+}
+ul.nmroads li .grouping {
+  font-size:  8pt;
+  text-align: left;
+  color: white;
+  
+  position: absolute;
+  left:     5px;
+  bottom:   5px;
+}
+ul.nmroads li .where {
+  font-size:  8pt;
+  text-align: right;
+  color: white;
+  
+  position: absolute;
+  right:    5px;
+  bottom:   5px;
+}
+</style>
+<div class="nmroads_container">
+  <ul class="nmroads">
+    <li ng-hide="data_nm_signals.signals">
+      <div class="text" style="text-align: center">
+        NO ACTIVE MESSAGES
+      </div>
+    </li>
+    <li ng-repeat="signal in data_nm_signals.signals | orderBy:'description'">
+      <div class="text"    >
+        {{signal.signText   }}
+        <div class="separator"></div>
+        <div class="grouping">{{signal.grouping   }}</div>
+        <div class="where"   >{{signal.description}}</div>
+      </div>
+    </li>
+  </ul>
+</div>

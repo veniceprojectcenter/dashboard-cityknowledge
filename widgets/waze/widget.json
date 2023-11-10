@@ -1,0 +1,9 @@
+{
+  "id": "waze",
+  "title": "Waze",
+  "width": 2,
+  "height": 2,
+  "log": false ,
+  "latitude" : 35.68421,
+  "longitude" : -105.93121
+}

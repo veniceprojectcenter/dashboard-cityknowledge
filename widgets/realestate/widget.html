@@ -1,0 +1,176 @@
+<script src="widgets/realestate/realestate.js"></script>
+<style>
+.tdClass{
+	width: 33%; 
+	text-align: center; 
+	padding: 3px; 
+	vertical-align: top; 
+	font-size: 11px;
+}
+</style>
+<div ng-controller="RealestateController"  ng-init="initController(widget)">
+<table style="clear:both" width="100%">
+	<tbody>
+		<tr>
+			<td class="tdClass">
+				<b>Sestiere</b>
+			</td>
+			<td class="tdClass">
+				<b>Total</b>
+			</td>
+			<td class="tdClass">
+				<b>Avg. €/mq</b>
+			</td>
+		</tr>
+ 
+ 
+		
+		<tr>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='sestriere'>Cannaregio</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #330099; padding: 5px 0;">
+					<div id='sestriere'>{{immobiliare_todays.Cannaregio.total | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{ immobiliare_todays.Cannaregio.average_meter_cost | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+
+		
+		<tr>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='sestriere'>Castello</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #330099; padding: 5px 0;">
+					<div id='sestriere'>{{immobiliare_todays.Castello.total | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{ immobiliare_todays.Castello.average_meter_cost | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+
+		
+		<tr>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='sestriere'>Dorsoduro</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #330099; padding: 5px 0;">
+					<div id='sestriere'>{{immobiliare_todays.Dorsoduro.total | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{ immobiliare_todays.Dorsoduro.average_meter_cost | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+
+		
+		<tr>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='sestriere'>San Marco</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #330099; padding: 5px 0;">
+					<div id='sestriere'>{{immobiliare_todays.SanMarco.total | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{ immobiliare_todays.SanMarco.average_meter_cost | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+
+		
+		<tr>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='sestriere'>San Polo</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #330099; padding: 5px 0;">
+					<div id='sestriere'>{{immobiliare_todays.SanPolo.total | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{ immobiliare_todays.SanPolo.average_meter_cost | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+		
+
+		
+		<tr>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='sestriere'>Santa Croce</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #330099; padding: 5px 0;">
+					<div id='sestriere'>{{immobiliare_todays.SantaCroce.total | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{ immobiliare_todays.SantaCroce.average_meter_cost | number}}</div>
+				</div>
+			</td>
+		</tr>		
+		
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: black; font-weight: bold; background-color: transparent; padding: 5px 0;">
+					<div id='totals'>Units for Sale</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='totals'>{{totals_available | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='totals'>{{totals_average_meter_cost | number:0}} €/mq</div>
+				</div>
+			</td>
+		</tr>		
+		
+</table>
+<br />
+ 
+<div style="text-align:center; width: 100%; color: #ffffff; font-weight: bold; background-color: #330099;   margin-top: 5px;">
+	<span > &nbsp;&nbsp;LISTED TODAY :</span> <span> {{totals_available | number}}</span>
+</div>
+		 
+<div style="text-align:center; width: 100%; color: #ffffff; font-weight: bold; background-color: #330099;   margin-top: 5px;">
+	<span > &nbsp;&nbsp;UNLISTED TODAY :</span> <span> {{totals_selled | number}} </span>
+</div>
+		 		 

@@ -1,0 +1,20 @@
+<div class='widget-logs'>
+  <div class="modal fade widget-logs-{{widget.id}}" ng-repeat='widget in widgetsInUse' ng-show='widget.id'>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style='height: 500px;'>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title">{{widget.title}} Logs</h4>
+        </div>
+        <div class="modal-body">
+          <div class='widget-log-chart-{{widget.id}}'>
+            Loading data, please Wait...
+          </div>
+          <br /><br />
+          <!-- b>Download Data:</b> &nbsp;
+          <a href='http://dashboard.veniceprojectcenter.org/logs/{{widget.id}}.csv'>CSV</a> &nbsp; | &nbsp; <a href='http://dashboard.veniceprojectcenter.org/logs/{{widget.id}}.json'>JSON</a -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

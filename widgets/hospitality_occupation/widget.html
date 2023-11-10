@@ -1,0 +1,359 @@
+<script src="widgets/hospitality_occupation/hospitality_occupation.js"></script>
+<style>
+.tdClass{
+	width: 33%; 
+	text-align: center; 
+	padding: 3px; 
+	vertical-align: top; 
+	font-size: 11px;
+}
+</style>
+<div ng-controller="HospitalityOccupation"  ng-init="initController(widget)">
+<table style="clear:both" width="100%">
+	<tbody>
+		<tr>
+			<td class="tdClass">
+				<b>Category</b>
+			</td>
+			<td class="tdClass">
+				<b>Free beds today</b>
+			</td>
+			<td class="tdClass">
+				<b>Free beds tomorrow</b>
+			</td>
+		</tr>
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_one_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_one_tomorrow | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_two_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_two_tomorrow | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_three_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_three_tomorrow | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_four_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_four_tomorrow | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_five_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_five_tomorrow | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'>Unclassified</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_zero_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_zero_tomorrow | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'>Hostels</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_hostels_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #6b6b95; padding: 5px 0;">
+					<div id='air_daytrips'>{{free_hostels_tomorrow | number}}</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: black; font-weight: bold; background-color: transparent; padding: 5px 0; font-size: 18px;">
+					<div id='air_overnights'>TOTAL</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0; font-size: 18px;">
+					<div id='air_daytrips'>{{free_zero_today + free_one_today + free_three_today + free_four_today + free_five_tomorrow + free_hostels_today | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0; font-size: 18px;">
+					<div id='air_daytrips'>{{free_zero_tomorrow + free_one_tomorrow + free_two_tomorrow + free_three_tomorrow + free_four_tomorrow + free_five_tomorrow + free_hostels_tomorrow  | number}}</div>
+				</div>
+			</td>
+		</tr>		
+		
+</table>
+
+<!-- div style="text-align:center; width: 100%; color: #ffffff; font-weight: bold; background-color: #EE7C0E;">
+	<span>  &nbsp;&nbsp; Occ. Beds Today: </span><span id='tourists_today' style="font-size:25px;">{{occupied_beds_today | number}}</span></span><span id='tourists_today' style="font-size:25px;">&nbsp;&nbsp;{{occupied_beds_today_percentage | number}}%</span><span>&nbsp;&nbsp;Occupancy</span>
+</div>
+</div -->
+
+<div style="margin-top: 8px; text-align:center; width: 100%; height:40px; color: #ffffff; font-weight: bold; background-color: #6b6b95; padding-top: 5px;">
+	<span id='tourists_today' style="font-size:25px;">{{occupied_beds_today | number}}</span><span> &nbsp;&nbsp; OVERNIGHTS</span>
+	&nbsp;&nbsp;
+	<span id='tourists_today' style="font-size:25px;">{{occupied_beds_today_percentage | number : 0}}%</span>
+	<span> &nbsp;&nbsp; FULL</span>
+</div>
+
+
+<div  style="font-size:150%;text-align:center; width: 100%; color: #ffffff; font-weight: bold; background-color: #FF2828;   margin-top: 5px;">
+	<span > &nbsp;&nbsp;Max Available Beds :</span> <span> 33,000 </span>
+
+</div>
+		
+<!--
+<table style="clear:both" width="100%">
+	<tbody>
+		<tr>
+			<td class="tdClass">
+				<b>Category</b>
+			</td>
+			<td class="tdClass">
+				<b>Free rooms today</b>
+			</td>
+			<td class="tdClass">
+				<b>Free rooms tomorrow</b>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #0098D4; padding: 5px 0;">
+					<div id='air_daytrips'>{{tourists.air_day | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #0098D4; padding: 5px 0;">
+					<div id='air_daytrips'>{{tourists.air_day | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="width: 95px; color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='train_daytrips'>{{tourists.train_day | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="width: 95px; color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='train_daytrips'>{{tourists.train_day | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='car_daytrips'>{{tourists.auto_day | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="width: 95px; color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='train_daytrips'>{{tourists.train_day | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='coach_daytrips'>{{tourists.coach_day | number}}</div>
+				</div>
+			</td
+			<td class="tdClass">
+				<div style="width: 95px; color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='train_daytrips'>{{tourists.train_day | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='air_overnights'><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"><img width="13px" src="widgets/hospitality_occupation/star.png"></div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='bus_daytrips'>{{tourists.bus_day | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="width: 95px; color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='train_daytrips'>{{tourists.train_day | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #73b158; padding: 5px 0;">
+					<div id='cruise_overnights'>{{tourists.cruise_ove | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="olor: #ffffff; font-weight: bold; background-color: #0098D4; padding: 5px 0;">
+					<div id='cruise_daytrips'>{{tourists.cruise_day | number}}</div>
+				</div>
+			</td>
+	
+		</tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='boat_overnights'>{{tourists.boat_ove | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='boat_daytrips'>{{tourists.boat_day | number}}</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr><td colspan="4" style="font-size: 18px;">&nbsp;</td></tr>
+
+		<tr>
+
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='overnights_total'>{{tourists.tot_ove | number}}</div>
+				</div>
+			</td>
+			<td class="tdClass">
+				<div style="color: #ffffff; font-weight: bold; background-color: #777777; padding: 5px 0;">
+					<div id='daytrips_total'>{{tourists.tot_day | number}}</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div style="text-align:center; width: 100%; height:26px; color: #ffffff; font-weight: bold; background-color: #6b6b95;">
+	<span id='tourists_today' style="font-size:25px;">{{tourists.tot_tot | number}}</span><span> &nbsp;&nbsp; TOURIST ARRIVALS TODAY</span>
+</div>
+-->

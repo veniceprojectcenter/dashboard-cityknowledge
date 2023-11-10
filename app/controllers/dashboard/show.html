@@ -1,0 +1,92 @@
+<link rel='stylesheet' type='text/css' href='css/dashboard.css'>
+
+<div class='dashboard'>
+  <div class='modals'>
+    <ng-include src="'app/views/loading.html'"></ng-include>
+    
+    <ng-include src="'app/views/login.html'"></ng-include>
+    <ng-include src="'app/views/register.html'"></ng-include>
+    
+    <ng-include src="'app/views/dashboard_help.html'"></ng-include>
+    <ng-include src="'app/views/dashboard_settings.html'"></ng-include>
+    
+    <ng-include src="'app/views/widget_add.html'"></ng-include>
+    <ng-include src="'app/views/widget_config.html'"></ng-include>
+    <ng-include src="'app/views/widget_help.html'"></ng-include>
+    <ng-include src="'app/views/widget_logs.html'"></ng-include>
+  </div>
+
+  <div class='showheader-bar panel-collapse collapse' id='preheader-bar' style="   margin-left: 5px;background-color: #e6e6e6;height: 10px;padding: 5px;border-bottom: 1px solid #bbb;	" >
+    <div><a href="javascript:;" data-toggle="collapse"  data-target=".showheader-bar">Show header/footer</a></div>
+  </div>
+  <div class='header-bar showheader-bar panel-collapse collapse in' id="header-bar">
+    <div class="header-inner">
+      <ng-include src="'app/views/dashboard_header.html'"></ng-include>
+    </div>
+  </div>
+
+  <div class='announcements'>
+    <ng-include src="'app/views/dashboard_announcements.html'"></ng-include>
+  </div>
+
+  <div class='widgets'>
+    <div gridster="gridsterOpts" style='height: auto;'>
+      <ul>
+        <li gridster-item
+          data-row="{{widget.dashboardRow}}" data-col="{{widget.dashboardColumn}}"
+          size-x="{{widget.width}}"          size-y="{{widget.height}}"
+          ng-if="widget.id" ng-repeat="widget in widgetsInUse track by $index  "
+          data-id='{{widget.id}}' data-fb_id='{{widget.fb_id}}'>
+          
+          <div class="widget-heading">
+            {{widget.title}}
+            <span ng-show='widget.urlTitle'>
+              (<a href='{{widget.url}}' target='_new'>{{widget.urlTitle}}</a>)
+            </span>
+          </div>
+          <!--glyphicons-show-lines-->
+
+          <div class="btn-group" style="float:right;">
+            <button type="button" class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown" style='border:none; background:transparent; padding:0;'>
+              <span class="glyphicon glyphicon-menu-hamburger" style='font-size: 12px;'></span>
+            </button>
+            <ul class="dropdown-menu" style='left:-142px;'>
+              <li ng-show='isOwner'>
+                <a href="" ng-click="showSettings(widget)">
+                  <span class="glyphicon glyphicon-cog glyphicon-small"></span> Configure
+                </a>
+              </li>
+              <li ng-show='isOwner'>
+                <a href="" ng-click='deleteWidget(widget)'>
+                  <span class="glyphicon glyphicon-remove glyphicon-small"></span> Delete
+                </a>
+              </li>
+              <li>
+                <a ng-click="showWidgetAbout(widget)">
+                  <span class="glyphicon glyphicon-info-sign glyphicon-small"></span> About
+                </a>
+              </li>
+              <li>
+                <a ng-click="showWidgetLogs(widget)" ng-show='widget.log'>
+                  <span class="glyphicon glyphicon-signal glyphicon-small"></span> View Logs
+                </a>
+              </li>
+            </ul>
+          </div>
+        
+          
+          <div> 
+            <ng-include src="widgetPartial(widget)"></ng-include>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='footer-spacer'></div>
+
+  <div class='footer-bar showheader-bar panel-collapse collapse in' id='footer-bar' >
+    <ng-include src="'app/views/dashboard_footer.html'"></ng-include>
+  </div>
+</div>

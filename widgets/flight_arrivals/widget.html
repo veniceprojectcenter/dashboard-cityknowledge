@@ -1,0 +1,59 @@
+<script src='widgets/flight_arrivals/flight_arrivals.js'></script>
+<br style="clear: both"/>
+<div ng-controller="FlightArrivals"  ng-init="initController(widget)">
+<table style="margin:0 auto;">
+	<tbody>
+		<tr>
+			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+				Venice Flights Today
+				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+					<div id='flightsRef'>{{airports.IT_VCE.flights_ref | number}}</div>
+				</div>
+			</td>
+			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+				Passengers
+				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+					<div id='capacityRef'>{{airports.IT_VCE.capacity_ref | number}}</div>
+				</div>
+			</td>
+			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+				<b>to VENICE</b>
+				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #EE7C0E; padding: 5px 0;">
+					<div id='passengerRef'>{{airports.IT_VCE.passenger_ref | number}}</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<br />
+
+<iframe scrolling="no" src="http://www.flightradar24.com/simple_index.php?lat=45.44&lon=12.36&z=10&clean=1" width="370px" height="230px"></iframe>
+
+<br />
+
+<table style="margin:0 auto;">
+	<tbody>
+		<tr>
+			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+				Treviso Flights Today
+				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+					<div id='treviso_flights'>{{airports.IT_TSF.flights_ref | number}}</div>
+				</div>
+			</td>
+			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+				Passengers
+				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #4f4fb0; padding: 5px 0;">
+					<div id='treviso_passengers'>{{airports.IT_TSF.capacity_ref | number}}</div>
+				</div>
+			</td>
+			<td style="width: 120px; text-align: center; padding: 3px; vertical-align: top; font-size: 11px;">
+				<b>to TREVISO</b>
+				<div style="width: 120px; color: #ffffff; font-weight: bold; background-color: #EE7C0E; padding: 5px 0;">
+					<div id='treviso_tourists'>{{airports.IT_TSF.passenger_ref | number}}</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>

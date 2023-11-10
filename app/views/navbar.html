@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid" style="background-color: #e6e6e6;">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">PlaceKnowledge Dashboards</span>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse right-section right-section" style="margin-top: 14px;">
+      <div class='account-links'>
+        <span ng-show='loggedIn'>
+          <span class="glyphicon glyphicon-user glyphicon-small"></span>
+          <a >{{user.email}}</a> |
+          <a ng-click='logoutUser()'>Sign Out</a>
+        </span>
+        <span ng-hide='loggedIn'>
+          <a data-toggle='modal' data-target='.login'>log-in</a> |
+          <a data-toggle='modal' data-target='.register'>sign-up</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</nav>

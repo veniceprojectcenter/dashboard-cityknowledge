@@ -1,0 +1,86 @@
+
+
+
+
+    <html>
+
+        <head> 
+        </head>
+        <body>
+            
+            <script>
+                
+                var getIFrameDocument = function(iframe) {
+    var doc;
+    try {
+        if ((typeof InstallTrigger !== 'undefined') && (iframe.contentDocument)) { // Firefox, Opera
+            doc = iframe.contentDocument;
+        } else if (iframe.contentWindow) { // Internet Explorer
+            doc = iframe.contentWindow.document;
+        } else if (iframe.document) { // Others?
+            doc = iframe.document;
+        }
+    } catch(e) {
+    }
+
+    return doc;
+};
+
+var findElementRecursively = function(selector, doc) {
+    try { /* Helps prevent errors like "Permission denied to access property 'jquery'" */
+        var element = jQuery(selector, doc);
+    } catch (e) {
+        return null;
+    }
+
+    if (element.length !== 0) {
+        return element;
+    }
+
+    try {
+        if (doc && doc.location === 'about:blank') {
+            return null;
+        }
+    } catch (e) {
+    }
+
+    try { /* Helps prevent errors like "Permission denied to access property 'jquery'" */
+        var iframes = jQuery("iframe", doc);
+    } catch (e) {
+        return null;
+    }
+
+    var result = [];
+    for (var i = 0; i < iframes.length; i++) {
+        var iframeDoc = getIFrameDocument(iframes[i]);
+
+        if (!(typeof(iframeDoc) === 'undefined')) {
+            element = findElementRecursively(selector, iframeDoc);
+            if (!(element === null)) {
+                for (var j = 0; j < element.length; j++) {
+                    result.push(element[j]);
+                }
+            }
+        }
+    }
+
+    if (result.length > 0) {
+        return jQuery(result);
+    } else {
+        return null;
+    }
+};
+
+var element = findElementRecursively('.class-name', document);
+if ((!(element === null)) && (element.length > 0)) {
+    // element.remove(); // I'm not sure if this works.
+    element.each(function() {
+        jQuery(this).remove();
+    });
+}
+                
+            </script>
+            
+        </body>
+    </html>
+

@@ -1,0 +1,22 @@
+{
+  "id": "hotelsmap",
+  "title": "Venice Hotels Map",
+  "url": "",
+  "urlTitle": "Hotels map",
+  "helpDocUrl": "",
+  "log": false,
+  "width": 2,
+  "heigh": null,
+  "height": "2",
+  "settings": {  
+    "center_lat": {
+      "label": "Latitude",
+      "value": "45.4306805"
+    } 
+    ,
+    "center_long": {
+      "label": "Longitude",
+      "value": "12.3229158"
+    }       
+  }  
+}

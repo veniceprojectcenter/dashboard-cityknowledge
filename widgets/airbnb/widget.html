@@ -1,0 +1,114 @@
+ 
+ 
+<script src="widgets/airbnb/airbnb.js" type="text/javascript"></script>
+ 
+<style>
+.arc-row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.arc-row > div {
+    padding: 0 10px;
+}
+
+.arc-row .title {
+    font-size: 1em;
+    margin: 0 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.arc-row text {
+    font-size: 1.2em;
+}
+</style>
+
+ <div ng-controller="VeniceAirbnbController"  ng-init="initController(widget)" class="airbnb-widget">
+    <br/><br/>
+
+    <div class="row text-center">
+        <div class="col-xs-4" style="font-size: 1.2em; font-weight: bold;">
+            Total Rooms
+        </div>
+        <div class="col-xs-4" style="font-size: 1.2em; font-weight: bold;">
+            Booked Rooms
+        </div>
+        <div class="col-xs-4" style="font-size: 1.2em; font-weight: bold;">
+            Booked Beds
+        </div>
+    </div>
+    <div class="row space-top-sm">
+        <div class="col-xs-4">
+            <div class="datum-box -lg" style="background-color: #FF2828; font-size: 18px;">
+                {{airbnb_stats_values.totalRooms | number}} 
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="datum-box -green -lg" style="font-size: 18px; background-color: #777777;">
+                {{airbnb_stats_values.bookedRooms | number}}
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="datum-box -green -lg" style="font-size: 18px;">
+                {{airbnb_stats_values.bookedBeds | number : 0 }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="row arc-row space-top-lg" style="margin-top: 10px;">
+        <div class="col-xs-3">
+            <h4 class="title">Cannaregio</h4>
+            <div class="arc" data-name="Cannaregio"></div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="title">Castello</h4>
+            <div class="arc" data-name="Castello"></div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="title">Dorsoduro</h4>
+            <div class="arc" data-name="DorsoduroAccademia"></div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="title">San Marco</h4>
+            <div class="arc" data-name="SanMarco"></div>
+        </div>
+    </div>
+    <div class="row arc-row space-top-lg" style="margin-top: 6px;">
+        <div class="col-xs-3">
+            <h4 class="title">San Polo</h4>
+            <div class="arc" data-name="SanPolo"></div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="title">Santa Croce</h4>
+            <div class="arc" data-name="SantaCroce"></div>
+        </div>
+        <div class="col-xs-3 col-xs-offset-3">
+            <h4 class="title" style="font-size: 1.3em; font-weight: bold;">Total</h4>
+            <div class="arc" data-name="total"></div>
+        </div>
+    </div>
+    
+    <div class="row text-center space-top-lg" style="margin-top: 10px;">
+        <div class="col-xs-6" style="font-size: 1.4em; font-weight: bold;">
+            Avg. Occupancy
+        </div>
+        <div class="col-xs-6" style="font-size: 1.4em; font-weight: bold;">
+            Avg. Price (&euro;/day)
+        </div>
+    </div>
+    <div class="row space-top-sm">
+        <div class="col-xs-6">
+            <div class="datum-box -lg" style="background-color: #6b6b95; font-size: 18px; font-weight: bold;">
+                {{ airbnb_stats_values.rooms_avg_occupancy_year  | number }}%
+                <span style="font: 10px sans-serif; font-weight: bold;">&nbsp;FULL</span>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="datum-box -lg" style="background-color: #6b6b95; font-size: 18px; font-weight: bold;">
+                {{airbnb_stats_values.rooms_price_per_night_avg | number}} euro
+            </div>
+        </div>
+    </div>
+</div>
+  

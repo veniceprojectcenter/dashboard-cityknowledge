@@ -1,0 +1,34 @@
+diff --git a/bluehost/scripts/vpc/20_hotels_boking.rb b/bluehost/scripts/vpc/20_hotels_boking.rb
+index 55e2fba..e59935b 100644
+--- a/bluehost/scripts/vpc/20_hotels_boking.rb
++++ b/bluehost/scripts/vpc/20_hotels_boking.rb
+@@ -2,7 +2,7 @@ require 'mechanize'
+ require 'active_support/all'
+ require 'firebase'
+ 
+-FB_URL = 'https://venicedata.firebaseio.com/hotels';
++FB_URL = 'https://venicedata.firebaseio.com/dashboard/hotels';
+ FB_KEY = 'gG1wZ2oyUxca6Rro3XYsXaKH9ODG7nrKEUqVujWm';
+ 
+ @mechanize = Mechanize.new { |agent|
+@@ -84,6 +84,7 @@ links_hotels.each_with_index{|l, i|
+     hotels << {
+       :nome          => l.text.strip,
+       :camere_libere => 0,
++      :prezzo_medio  => 0,
+       :stelle        => stelle
+     }
+     print "; ESAURITO!\n"
+diff --git a/bluehost/scripts/vpc/21_hotels_hostels.rb b/bluehost/scripts/vpc/21_hotels_hostels.rb
+index a0f44bf..a88a36f 100644
+--- a/bluehost/scripts/vpc/21_hotels_hostels.rb
++++ b/bluehost/scripts/vpc/21_hotels_hostels.rb
+@@ -4,7 +4,7 @@ require 'mechanize'
+ require 'active_support/all'
+ require 'firebase'
+ 
+-FB_URL = 'https://venicedata.firebaseio.com/hotels';
++FB_URL = 'https://venicedata.firebaseio.com/dashboard/hotels';
+ FB_KEY = 'gG1wZ2oyUxca6Rro3XYsXaKH9ODG7nrKEUqVujWm';
+ 
+ @mechanize = Mechanize.new { |agent|

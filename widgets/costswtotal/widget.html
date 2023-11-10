@@ -1,0 +1,271 @@
+<head>
+    <script src="https://cdn.firebase.com/js/client/2.0.5/firebase.js"></script>
+    <script type="text/javascript">
+	
+	var passengerRef = new Firebase('https://vpc.firebaseio.com').child('dashboard/flights/passenger_ref');
+		passengerRef.on('value', function(dataSnap) {
+			var venice_airport_arrivals = dataSnap.val();
+		var cruiseRef = new Firebase('https://vpc.firebaseio.com').child('dashboard/ships/tourists');
+		cruiseRef.on('value', function(dataSnap) {
+			var air_arrivals = Math.floor(venice_airport_arrivals + venice_airport_arrivals * 0.389);
+			var cruise_arrivals = dataSnap.val();
+			var max_occupancy = 23733;
+			var estimated_hotels = Math.floor(max_occupancy * month_multiplier(new Date().getMonth() + 1) * day_multiplier(new Date().getDay()));
+
+			var air_overnights = Math.floor((1262000/3450000) * air_arrivals);
+			var train_overnights = Math.floor((1347000/5879000) * estimated_hotels);
+			var auto_overnights = Math.floor((268000/5879000) * estimated_hotels);
+			var coach_overnights = Math.floor((365000/5879000) * estimated_hotels);
+			var bus_overnights = Math.floor((120000/5879000) * estimated_hotels);
+			var cruise_overnights = Math.floor(((514000+329000)/239000) * cruise_arrivals);
+			var boat_overnights = 0;
+
+			var air_daytrips = 0;
+			var train_daytrips = Math.floor(((450000+6670000)/1347000) * train_overnights);
+			var auto_daytrips = Math.floor((751000/268000) * auto_overnights);
+			var coach_daytrips = Math.floor(((547000+1787000)/365000) * coach_overnights);
+			var bus_daytrips = Math.floor(((1110000+600000)/120000) * bus_overnights);
+			var cruise_daytrips = 0;
+			var boat_daytrips = Math.floor((466000+160000+2235000)/(450000+6670000+751000+547000+1787000+1110000+600000+466000+160000+2235000) * (train_daytrips + auto_daytrips + coach_daytrips + bus_daytrips + cruise_daytrips));
+
+			var train_arrivals = Math.floor((509000/1347000) * train_overnights + train_overnights + train_daytrips);
+			var auto_arrivals = Math.floor((95000/268000) * auto_overnights + auto_overnights + auto_daytrips);
+			var coach_arrivals = Math.floor((131000/365000) * coach_overnights + coach_overnights + coach_daytrips);
+			var bus_arrivals = Math.floor((44000/120000) * bus_overnights + bus_overnights + bus_daytrips);
+			var boat_arrivals = boat_daytrips;
+
+			var total_arrivals = air_arrivals + cruise_arrivals + train_arrivals + auto_arrivals + bus_arrivals + coach_arrivals + boat_arrivals;
+			var total_overnights = air_overnights + cruise_overnights + train_overnights + auto_overnights + bus_overnights + coach_overnights + boat_overnights;
+			var total_daytrips = air_daytrips + cruise_daytrips + train_daytrips + auto_daytrips + bus_daytrips + coach_daytrips + boat_daytrips;
+		
+		var fb = new Firebase('https://fiery-heat-9640.firebaseio.com');
+		
+		fb.child('booking/occupancy').on('value', function(snapshot) {
+			var strOvernights = snapshot.val();
+			var myOvernights = parseFloat(strOvernights);
+		
+		
+		fb.child('TCD').on('value', function(snapshot) {
+		var json = snapshot.val();
+		
+	
+	
+	
+		var getGarbageO = parseFloat(json.garbage_overnight);
+		var mathGarbageO = Math.floor(getGarbageO * myOvernights);
+		var garbage_overnight = replaceNumberWithCommas(mathGarbageO);
+		document.getElementById("garbage_overnight").innerHTML = garbage_overnight;
+		
+		var getGarbageD = parseFloat(json.garbage_daytrip);
+		var mathGarbageD = Math.floor(getGarbageD * total_daytrips);
+		var garbage_daytrip = replaceNumberWithCommas(mathGarbageD);
+		document.getElementById("garbage_daytrip").innerHTML = garbage_daytrip;
+		
+		var garbage_revenue = replaceNumberWithCommas(mathGarbageO + mathGarbageD);
+		document.getElementById("garbage_revenue").innerHTML = garbage_revenue;
+		
+		
+		
+		
+		
+		var getSewageO = parseFloat(json.sewage_overnight); 
+		var mathSewageO = Math.floor(getSewageO * myOvernights);
+		var sewage_overnight = replaceNumberWithCommas(mathSewageO);
+		document.getElementById("sewage_overnight").innerHTML = sewage_overnight;
+		
+		var getSewageD = parseFloat(json.sewage_daytrip);
+		var mathSewageD = Math.floor(getSewageD * total_daytrips);
+		var sewage_daytrip = replaceNumberWithCommas(mathSewageD);
+		document.getElementById("sewage_daytrip").innerHTML = sewage_daytrip;
+		
+		var sewage_revenue = replaceNumberWithCommas(mathSewageO + mathSewageD);
+		document.getElementById("sewage_revenue").innerHTML = sewage_revenue;
+		
+		
+		
+		
+		
+		var getMotoO = parseFloat(json.mo_overnight);
+		var mathMotoO = Math.floor(getMotoO * myOvernights);
+		var mo_overnight = replaceNumberWithCommas(mathMotoO);
+		document.getElementById("mo_overnight").innerHTML = mo_overnight;
+		
+		var getMotoD = parseFloat(json.mo_daytrip);
+		var mathMotoD = Math.floor(getMotoD * total_daytrips);
+		var mo_daytrip = replaceNumberWithCommas(mathMotoD);
+		document.getElementById("mo_daytrip").innerHTML = mo_daytrip;
+		
+		var mo_revenue = replaceNumberWithCommas(mathMotoO + mathMotoD); 
+		document.getElementById("mo_revenue").innerHTML = mo_revenue;
+		
+		var o_costs = replaceNumberWithCommas((mathGarbageO + mathSewageO + mathMotoO));
+		document.getElementById("o_costs").innerHTML = o_costs;
+		var d_costs = replaceNumberWithCommas((mathGarbageD + mathSewageD + mathMotoD));
+		document.getElementById("d_costs").innerHTML = d_costs;
+		var r_costs = replaceNumberWithCommas((mathGarbageO + mathSewageO + mathMotoO + mathGarbageD + mathSewageD + mathMotoD));
+		document.getElementById("r_costs").innerHTML = r_costs;
+		
+		});
+		});
+		});
+		function month_multiplier(month) {
+			if (month == 1)
+				return 0.54;
+			if (month == 2)
+				return 0.69;
+			if (month == 3)
+				return 0.87;
+			if (month == 4)
+				return 0.90;
+			if (month == 5)
+				return 0.87;
+			if (month == 6)
+				return 0.90;
+			if (month == 7)
+				return 0.85;
+			if (month == 8)
+				return 0.80;
+			if (month == 9)
+				return 0.80;
+			if (month == 10)
+				return 0.69;
+			if (month == 11)
+				return 0.59;
+			if (month == 12)
+				return 0.44;
+			return 0.70;
+		}
+
+		function day_multiplier(day) {
+			if (day == 0 || day == 5 || day == 6) // weekend
+				return 1;
+			else // weekday
+				return 0.46;
+		}
+		
+		function replaceNumberWithCommas(yourNumber) {
+		    //Seperates the components of the number
+		    var n= yourNumber.toString().split(".");
+		    //Comma-fies the first part
+		    n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		    //Combines the two sections
+		    return n.join(".");
+		}	
+});	 
+		
+        </script>
+</head>
+<body>
+    <div class="widget">
+        <div class='ui-widget-content'>
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            &nbsp;
+                        </td>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            <b>Overnighters</b>
+                        </td>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            <b>Day Trippers</b>
+                        </td>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            <b>Total</b>
+                        </td>
+                    </tr>
+					
+
+					<tr>
+
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <b>Garbage&nbspRemoval</b>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #8E8E8E; padding: 5px 0;">
+                            <div id='garbage_overnight'>€</div>
+                        </div>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #8E8E8E; padding: 5px 0;">
+                            <div id='garbage_daytrip'>€</div>
+                        </div>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px 0;">
+                            <div id='garbage_revenue'>€</div>
+                        </div>
+                    </td>
+                </tr>
+				
+				
+				<tr>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <b>Sewage&nbspRemoval</b>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #8E8E8E; padding: 5px 0;">
+                            <div id='sewage_overnight'>€</div>
+                        </div>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #8E8E8E; padding: 5px 0;">
+                            <div id='sewage_daytrip'>€</div>
+                        </div>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px 0;">
+                            <div id='sewage_revenue'>0</div>
+                        </div>
+                    </td>
+                </tr>
+				
+
+                <tr>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <b>Moto&nbspOndoso Repair</b>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #8E8E8E; padding: 5px 0;">
+                            <div id='mo_overnight'>€</div>
+                        </div>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #8E8E8E; padding: 5px 0;">
+                            <div id='mo_daytrip'>€</div>
+                        </div>
+                    </td>
+                    <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                        <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px 0;">
+                            <div id='mo_revenue'>€</div>
+                        </div>
+                    </td>
+                </tr>
+                 <tr><td>&nbsp;</td></tr>
+                <tr>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            <b>Total</b>
+                        </td>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #FF8566; padding: 5px 0;">
+                                <div id='o_costs'>0</div>
+                            </div>
+                        </td>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #FF8566; padding: 5px 0;">
+                                <div id='d_costs'>0</div>
+                            </div>
+                        </td>
+                        <td style="width: 75px; text-align: center; padding: 3px; vertical-align: top; font-size: 12px;">
+                            <div style="width: 75px; color: #ffffff; font-weight: bold; background-color: #ac3e1f; padding: 5px 0;">
+                                <div id='r_costs'>0</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+    </div>
+</body>
+</html>

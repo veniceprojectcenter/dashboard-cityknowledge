@@ -1,0 +1,21 @@
+{
+  "id": "price_graph",
+  "title": "Avarage Price Graph",
+  "url": "",
+  "urlTitle": "Avarage Price Graph",
+  "helpDocUrl": "",
+  "log": false,
+  "width": 2,
+  "height": "2",
+  "has_directive": true,
+  "settings": {  
+    "city": {
+      "label": "Citta'",
+      "value": "Venice,VE"
+    },
+    "days": {
+      "label": "Giorni'",
+      "value": "10"
+    }
+  }  
+}

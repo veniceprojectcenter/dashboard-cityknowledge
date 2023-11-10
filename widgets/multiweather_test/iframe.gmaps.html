@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather layer</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.7.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.7.min.js" ></script>
+    <script src="http://code.jquery.com/ui/1.7.0/jquery-ui.js" ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=weather"></script>
+    <script>
+				    
+	 	function initializeMap() {
+	 	
+					  var mapOptions = {
+					    zoom: 4,
+					    center: new google.maps.LatLng(49.265984,-123.127491)
+					  };
+					
+					  var map = new google.maps.Map(document.getElementById('map-canvas'),
+					      mapOptions);
+					
+					  var weatherLayer = new google.maps.weather.WeatherLayer({
+					    temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+					  });
+					  weatherLayer.setMap(map);
+					
+					  var cloudLayer = new google.maps.weather.CloudLayer();
+					  cloudLayer.setMap(map);
+		 	}
+		 
+		 	
+		 $(function(){   
+ 	  
+ 	  
+		        
+		         
+		        $("#myTabs").tabs();
+		        
+		        initializeMap();
+		         
+	    });
+				 
+
+    </script>
+  </head>
+  <body>
+ 
+   
+    <div id="map-canvas"></div>
+
+   
+  </body>
+</html>

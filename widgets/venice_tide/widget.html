@@ -1,0 +1,21 @@
+<script src="widgets/venice_tide/venice_tide.js"></script>
+
+<a rel='facebox' href='http://www.comune.venezia.it/flex/AppData/Local/bollettino_grafico.jpg'>
+	<img src="http://www.comune.venezia.it/flex/AppData/Local/bollettino_grafico.jpg" width="100%" height=75 />
+</a>
+
+<div id='current_tide_box' style="{{styleForTide(data_tide.tide_level)}}">
+	<b style='font-size:23px;'>
+	  <span id="current_tide_height">{{data_tide.tide_level}}</span> m
+	  <span>{{upDirection(data_tide.direction)}}</span>
+	</b><br>
+	<span style="font-size:8px; font-weight:normal; text-align:center; color:#555555;"><b>Tide Level @ Punta Salute</b></span>
+</div>
+
+<div id='next_tide_box' style="{{styleForTide(data_next_tide.tide_level)}}">
+	<b style='font-size:23px;'>
+	  <span id='next_tide_height'>{{data_next_tide.tide_level}}</span> m @ 
+	  <span id='next_tide_time'>{{data_next_tide.time}}</span>
+	</b><br>
+	<span style="color: #555555; font-size:8px; font-weight:normal;"><b>Next High Tide</b></span>
+</div>

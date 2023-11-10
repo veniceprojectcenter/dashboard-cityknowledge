@@ -1,0 +1,27 @@
+{
+  "id": "marinetraffic_inport",
+  "title": "Marine traffic in port",
+  "url": "http://www.marinetraffic.com",
+  "urlTitle": "Marine Traffic",
+  "helpDocUrl": "https://docs.google.com/document/d/1C3s-WgjBk8AxHwFAZAZOeqR5cj6jnD0Um9y4iDhDdmo/pub?embedded=true",
+  "log": false,
+  "width": 2,
+  "heigh": null,
+  "height": "2",
+  "settings": { 
+    "marinetraffic_port": {
+      "label": "Marinetraffic Port Code",
+      "value": "530-VENEZIA"
+    }    
+    ,
+    "marinetraffic_lat": {
+      "label": "Marinetraffic Latitude",
+      "value": "45.4306805"
+    } 
+    ,
+    "marinetraffic_long": {
+      "label": "Marinetraffic Longitude",
+      "value": "12.3229158"
+    }       
+  }  
+}
