@@ -53057,7 +53057,7 @@
         assert.equal(moment('1999-W37-4 3:30', 'GGGG-[W]WW-E HH:mm').format('YYYY MM DD HH:mm'), '1999 09 16 03:30', 'parsing weeks and hours');
 
         // In safari, all years before 1300 are shifted back with one day.
-        // https://stackoverflow.com/questions/20768975/safari-subtracts-1-day-from-dates-before-1300
+        // http://stackoverflow.com/questions/20768975/safari-subtracts-1-day-from-dates-before-1300
         if (new Date('1300-01-01').getUTCFullYear() === 1300) {
             // Years less than 100
             ver('0098-06', 'GGGG-WW', '0098 02 03', 'small years work', true);
@@ -56363,7 +56363,7 @@
     });
 
     test('iso week formats', function (assert) {
-        // https://en.wikipedia.org/wiki/ISO_week_date
+        // http://en.wikipedia.org/wiki/ISO_week_date
         var cases = {
             '2005-01-02': '2004-53',
             '2005-12-31': '2005-52',
@@ -56395,7 +56395,7 @@
     });
 
     test('iso week year formats', function (assert) {
-        // https://en.wikipedia.org/wiki/ISO_week_date
+        // http://en.wikipedia.org/wiki/ISO_week_date
         var cases = {
             '2005-01-02': '2004-53',
             '2005-12-31': '2005-52',
@@ -56428,7 +56428,7 @@
     });
 
     test('week year formats', function (assert) {
-        // https://en.wikipedia.org/wiki/ISO_week_date
+        // http://en.wikipedia.org/wiki/ISO_week_date
         var cases = {
             '2005-01-02': '2004-53',
             '2005-12-31': '2005-52',
@@ -70612,7 +70612,7 @@
     module('week year');
 
     test('iso week year', function (assert) {
-        // Some examples taken from https://en.wikipedia.org/wiki/ISO_week
+        // Some examples taken from http://en.wikipedia.org/wiki/ISO_week
         assert.equal(moment([2005, 0, 1]).isoWeekYear(), 2004);
         assert.equal(moment([2005, 0, 2]).isoWeekYear(), 2004);
         assert.equal(moment([2005, 0, 3]).isoWeekYear(), 2005);
@@ -70635,7 +70635,7 @@
     });
 
     test('week year', function (assert) {
-        // Some examples taken from https://en.wikipedia.org/wiki/ISO_week
+        // Some examples taken from http://en.wikipedia.org/wiki/ISO_week
         moment.locale('dow: 1,doy: 4', {week: {dow: 1, doy: 4}}); // like iso
         assert.equal(moment([2005, 0, 1]).weekYear(), 2004);
         assert.equal(moment([2005, 0, 2]).weekYear(), 2004);
@@ -71753,7 +71753,7 @@
     });
 
     test('years with iso week 53', function (assert) {
-        // Based on a table taken from https://en.wikipedia.org/wiki/ISO_week_date
+        // Based on a table taken from http://en.wikipedia.org/wiki/ISO_week_date
         // (as downloaded on 2014-01-06) listing the 71 years in a 400-year cycle
         // that have 53 weeks; in this case reflecting the 2000 based cycle
         assert.equal(moment([2004, 11, 31]).isoWeek(), 53, 'Dec 31 2004 should be iso week 53');
@@ -71830,7 +71830,7 @@
     });
 
     test('count years with iso week 53', function (assert) {
-        // Based on https://en.wikipedia.org/wiki/ISO_week_date (as seen on 2014-01-06)
+        // Based on http://en.wikipedia.org/wiki/ISO_week_date (as seen on 2014-01-06)
         // stating that there are 71 years in a 400-year cycle that have 53 weeks;
         // in this case reflecting the 2000 based cycle
         var count = 0, i;
@@ -72504,8 +72504,8 @@
             z;
 
         // Apparently there is -12:00 and +14:00
-        // https://en.wikipedia.org/wiki/UTC+14:00
-        // https://en.wikipedia.org/wiki/UTC-12:00
+        // http://en.wikipedia.org/wiki/UTC+14:00
+        // http://en.wikipedia.org/wiki/UTC-12:00
         for (z = -12; z <= 14; ++z) {
             assert.equal(m.clone().zone(z * 60, true).format(fmt), m.format(fmt),
                     'local to zone(' + z + ':00) failed to keep local time');
@@ -72518,8 +72518,8 @@
             z;
 
         // Apparently there is -12:00 and +14:00
-        // https://en.wikipedia.org/wiki/UTC+14:00
-        // https://en.wikipedia.org/wiki/UTC-12:00
+        // http://en.wikipedia.org/wiki/UTC+14:00
+        // http://en.wikipedia.org/wiki/UTC-12:00
         for (z = -12; z <= 14; ++z) {
             assert.equal(m.clone().zone(z * 60).valueOf(), m.valueOf(),
                     'local to zone(' + z + ':00) failed to keep utc time (implicit)');
@@ -72560,8 +72560,8 @@
             z;
 
         // Apparently there is -12:00 and +14:00
-        // https://en.wikipedia.org/wiki/UTC+14:00
-        // https://en.wikipedia.org/wiki/UTC-12:00
+        // http://en.wikipedia.org/wiki/UTC+14:00
+        // http://en.wikipedia.org/wiki/UTC-12:00
         for (z = -12; z <= 14; ++z) {
             m.zone(z * 60);
 
@@ -72576,8 +72576,8 @@
             z;
 
         // Apparently there is -12:00 and +14:00
-        // https://en.wikipedia.org/wiki/UTC+14:00
-        // https://en.wikipedia.org/wiki/UTC-12:00
+        // http://en.wikipedia.org/wiki/UTC+14:00
+        // http://en.wikipedia.org/wiki/UTC-12:00
         for (z = -12; z <= 14; ++z) {
             m.zone(z * 60);
 

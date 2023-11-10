@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package xmlns="https://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Moment.js</id>
         <version>2.8.4</version>
@@ -14,8 +14,8 @@
             - Use native toISOString when we can
             - Some bugfixes and language improvements
         </releaseNotes>
-        <projectUrl>https://momentjs.com/</projectUrl>
-        <iconUrl>https://pbs.twimg.com/profile_images/482670411402858496/Xrtdc94q_normal.png</iconUrl>
+        <projectUrl>http://momentjs.com/</projectUrl>
+        <iconUrl>http://pbs.twimg.com/profile_images/482670411402858496/Xrtdc94q_normal.png</iconUrl>
         <licenseUrl>https://raw.github.com/timrwood/moment/master/LICENSE</licenseUrl>
         <tags>JavaScript date time browser node.js</tags>
   </metadata>

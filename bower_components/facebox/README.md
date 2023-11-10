@@ -2,11 +2,11 @@
 
 Facebox is a jQuery-based, Facebook-style lightbox which can display images, divs, or entire remote pages.
 
-[See it in action](https://defunkt.github.com/facebox/).
+[See it in action](http://defunkt.github.com/facebox/).
 
-![Sample Image](https://share.kyleneath.com/captures/Facebox_1.2-20100417-190352.jpg)
+![Sample Image](http://share.kyleneath.com/captures/Facebox_1.2-20100417-190352.jpg)
 
-[Download the latest release](https://github.com/defunkt/facebox/zipball/master)
+[Download the latest release](http://github.com/defunkt/facebox/zipball/master)
 
 ## Compatibility
 
@@ -94,4 +94,4 @@ You can give the facebox container an extra class (to fine-tune the display of t
 
 ## Contact & Help
 
-If you have questions, feel free to ask on the [Google Groups Mailing List](https://groups.google.com/group/facebox/). Alternatively if you find a bug, you can [open an issue](https://github.com/defunkt/facebox/issues).
+If you have questions, feel free to ask on the [Google Groups Mailing List](http://groups.google.com/group/facebox/). Alternatively if you find a bug, you can [open an issue](http://github.com/defunkt/facebox/issues).

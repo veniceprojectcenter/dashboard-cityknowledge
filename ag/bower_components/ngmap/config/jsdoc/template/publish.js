@@ -406,7 +406,7 @@ function buildNav(members) {
 }
 
 /**
-    @param {TAFFY} taffyData See <https://taffydb.com/>.
+    @param {TAFFY} taffyData See <http://taffydb.com/>.
     @param {object} opts
     @param {Tutorial} tutorials
  */

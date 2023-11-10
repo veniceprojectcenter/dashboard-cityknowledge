@@ -1,6 +1,6 @@
 /* ========================================================================
  * Bootstrap: button.js v3.3.2
- * https://getbootstrap.com/javascript/#buttons
+ * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)

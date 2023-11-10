@@ -26,7 +26,7 @@ There is already [one](https://github.com/nlaplante/angular-google-maps) for thi
    By doing so, programmers don't need to learn how to use this module.
    You only need to know Google Maps V3 API.
 
-There is a blog that introduces this module. The title of it is '[Google Map As The Simplest Way](https://allenhwkim.tumblr.com/post/70986888283/google-map-as-the-simplest-way)'
+There is a blog that introduces this module. The title of it is '[Google Map As The Simplest Way](http://allenhwkim.tumblr.com/post/70986888283/google-map-as-the-simplest-way)'
 
 To Get Started
 --------------
@@ -38,7 +38,7 @@ For Bower users,
    `<script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>`
 
 2. Include Google maps:  
-    `<script src="https://maps.google.com/maps/api/js"></script>`  
+    `<script src="http://maps.google.com/maps/api/js"></script>`  
 
 2. Name your angular app ngMap, or add it as a dependency
 
@@ -120,7 +120,7 @@ Contributing
 - **gulp clean** to cleanup the repository by removing files and folders from previous build.
 - **gulp test** to run the Karma unit test suite.
 - **gulp test:e2e** to run the Protractor test suite. For the first test run, you may need to update the protractor webdriver manager. It will show the command on screen if this is required (node_modules/gulp-protractor/node_modules/protractor/bin/webdriver-manager update).
-- **gulp test:server** will start a web server for the testapp on https://localhost:8888
+- **gulp test:server** will start a web server for the testapp on http://localhost:8888
 
 license
 =======

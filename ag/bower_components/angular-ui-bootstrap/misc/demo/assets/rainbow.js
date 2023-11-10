@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * https://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -91,7 +91,7 @@ window['Rainbow'] = (function() {
     /**
      * cross browser get attribute for an element
      *
-     * @see https://stackoverflow.com/questions/3755227/cross-browser-javascript-getattribute-method
+     * @see http://stackoverflow.com/questions/3755227/cross-browser-javascript-getattribute-method
      *
      * @param {Node} el
      * @param {string} attr     attribute you are trying to get
@@ -252,7 +252,7 @@ window['Rainbow'] = (function() {
     /**
      * finds out the position of group match for a regular expression
      *
-     * @see https://stackoverflow.com/questions/1985594/how-to-find-index-of-groups-in-match
+     * @see http://stackoverflow.com/questions/1985594/how-to-find-index-of-groups-in-match
      *
      * @param {Object} match
      * @param {number} group_number
@@ -669,7 +669,7 @@ window['Rainbow'] = (function() {
             i,
             final_blocks = [];
 
-        // @see https://stackoverflow.com/questions/2735067/how-to-convert-a-dom-node-list-to-an-array-in-javascript
+        // @see http://stackoverflow.com/questions/2735067/how-to-convert-a-dom-node-list-to-an-array-in-javascript
         // we are going to process all <code> blocks
         for (i = 0; i < code_blocks.length; ++i) {
             final_blocks.push(code_blocks[i]);

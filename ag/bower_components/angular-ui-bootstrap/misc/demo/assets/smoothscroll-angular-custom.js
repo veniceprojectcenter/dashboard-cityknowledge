@@ -15,7 +15,7 @@ var getTop = function(element) {
     return element.getBoundingClientRect().top + window.pageYOffset;
 }
 // ease in out function thanks to:
-// https://blog.greweb.fr/2012/02/bezier-curve-based-easing-functions-from-concept-to-implementation/
+// http://blog.greweb.fr/2012/02/bezier-curve-based-easing-functions-from-concept-to-implementation/
 var easeInOutCubic = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 }
 
 // calculate the scroll position we should be in

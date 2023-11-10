@@ -49,15 +49,15 @@ if (!(typeof $root_scope.MulticamController == 'function') ){
               $('[id=container_'+$scope.widget.fb_id+']').height());
              
              $scope.multicam_photos_db =   [];
-             $scope.multicam_photos_db.push({ "name": "I-25@La_Bajada_Upper" , "url": "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-25@La_Bajada_Upper&t=1429535503156" });
-             $scope.multicam_photos_db.push({ "name": "ClinesCornersOnI-40" , "url": "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=ClinesCornersOnI-40&t=1429535503156" });
-             $scope.multicam_photos_db.push({ "name": "I-40@Pennsylvania" , "url": "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-40@Pennsylvania&t=1429551520982" });
-             $scope.multicam_photos_db.push({ "name": "Coors@Atrisco" ,"url":  "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=Coors@Atrisco&t=1429551520982" });
-             $scope.multicam_photos_db.push({ "name": "US550@ContinentalDivide" ,"url":  "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=US550@ContinentalDivide&t=1429551520982" });
-             $scope.multicam_photos_db.push({ "name": "ClinesCornersOnI-40" ,"url":  "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=ClinesCornersOnI-40&t=1429535503156" });
-             $scope.multicam_photos_db.push({ "name": "Coors@Atrisco" ,"url":  "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=Coors@Atrisco&t=1429551722523" });
-             $scope.multicam_photos_db.push({ "name": "I-40@University" ,"url": "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-40@University&t=1429551722523" });
-             $scope.multicam_photos_db.push({ "name": "I-40@University" ,"url": "https://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-40@University&t=1429551722523" });
+             $scope.multicam_photos_db.push({ "name": "I-25@La_Bajada_Upper" , "url": "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-25@La_Bajada_Upper&t=1429535503156" });
+             $scope.multicam_photos_db.push({ "name": "ClinesCornersOnI-40" , "url": "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=ClinesCornersOnI-40&t=1429535503156" });
+             $scope.multicam_photos_db.push({ "name": "I-40@Pennsylvania" , "url": "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-40@Pennsylvania&t=1429551520982" });
+             $scope.multicam_photos_db.push({ "name": "Coors@Atrisco" ,"url":  "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=Coors@Atrisco&t=1429551520982" });
+             $scope.multicam_photos_db.push({ "name": "US550@ContinentalDivide" ,"url":  "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=US550@ContinentalDivide&t=1429551520982" });
+             $scope.multicam_photos_db.push({ "name": "ClinesCornersOnI-40" ,"url":  "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=ClinesCornersOnI-40&t=1429535503156" });
+             $scope.multicam_photos_db.push({ "name": "Coors@Atrisco" ,"url":  "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=Coors@Atrisco&t=1429551722523" });
+             $scope.multicam_photos_db.push({ "name": "I-40@University" ,"url": "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-40@University&t=1429551722523" });
+             $scope.multicam_photos_db.push({ "name": "I-40@University" ,"url": "http://servicev3.nmroads.com/RealMapWAR/GetCameraImage?cameraName=I-40@University&t=1429551722523" });
             
               
               

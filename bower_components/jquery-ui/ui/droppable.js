@@ -1,12 +1,12 @@
 /*!
  * jQuery UI Droppable 1.11.3
- * https://jqueryui.com
+ * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
- * https://jquery.org/license
+ * http://jquery.org/license
  *
- * https://api.jqueryui.com/droppable/
+ * http://api.jqueryui.com/droppable/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {

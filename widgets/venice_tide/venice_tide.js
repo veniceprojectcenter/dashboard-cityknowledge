@@ -53,7 +53,7 @@ $.venice_tide_extensions = function($scope) {
 };
 
 // THANKS TO:
-// https://stackoverflow.com/questions/22570357/angularjs-access-controller-scope-from-outside
+// http://stackoverflow.com/questions/22570357/angularjs-access-controller-scope-from-outside
 $.venice_tide_extensions(
   angular.element(
     document.querySelector('[ng-app=placeDash]')

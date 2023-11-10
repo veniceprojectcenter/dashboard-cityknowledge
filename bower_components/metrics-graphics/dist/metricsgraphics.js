@@ -223,19 +223,19 @@
 
     if (typeof jQuery !== 'undefined') {
         /*!
-         * Bootstrap v3.3.1 (https://getbootstrap.com)
+         * Bootstrap v3.3.1 (http://getbootstrap.com)
          * Copyright 2011-2014 Twitter, Inc.
          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
          */
 
         /*!
-         * Generated using the Bootstrap Customizer (https://getbootstrap.com/customize/?id=698666b23215c58f23d4)
+         * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=698666b23215c58f23d4)
          * Config saved to config.json and https://gist.github.com/698666b23215c58f23d4
          */
 
         /* ========================================================================
          * Bootstrap: tooltip.js v3.3.1
-         * https://getbootstrap.com/javascript/#tooltip
+         * http://getbootstrap.com/javascript/#tooltip
          * Inspired by the original jQuery.tipsy by Jason Frame
          * ========================================================================
          * Copyright 2011-2014 Twitter, Inc.
@@ -245,7 +245,7 @@
 
         +function ($) {
           'use strict';
-
+          
           if(typeof $().tooltip == 'function')
             return true;
 
@@ -717,7 +717,7 @@
 
         /* ========================================================================
          * Bootstrap: popover.js v3.3.1
-         * https://getbootstrap.com/javascript/#popovers
+         * http://getbootstrap.com/javascript/#popovers
          * ========================================================================
          * Copyright 2011-2014 Twitter, Inc.
          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -729,7 +729,7 @@
 
           if(typeof $().popover == 'function')
             return true;
-
+              
           // POPOVER PUBLIC CLASS DEFINITION
           // ===============================
 
@@ -879,7 +879,7 @@
     function y_rug(args) {
         'use strict';
         var svg = mg_get_svg_child_of(args.target);
-
+        
         var buffer_size = args.chart_type === 'point'
             ? args.buffer / 2
             : args.buffer * 2 / 3;
@@ -2012,19 +2012,19 @@
     }
     if (typeof jQuery !== 'undefined') {
         /*!
-         * Bootstrap v3.3.1 (https://getbootstrap.com)
+         * Bootstrap v3.3.1 (http://getbootstrap.com)
          * Copyright 2011-2014 Twitter, Inc.
          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
          */
 
         /*!
-         * Generated using the Bootstrap Customizer (https://getbootstrap.com/customize/?id=c3834cc5b59ef727da53)
+         * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=c3834cc5b59ef727da53)
          * Config saved to config.json and https://gist.github.com/c3834cc5b59ef727da53
          */
 
         /* ========================================================================
          * Bootstrap: dropdown.js v3.3.1
-         * https://getbootstrap.com/javascript/#dropdowns
+         * http://getbootstrap.com/javascript/#dropdowns
          * ========================================================================
          * Copyright 2011-2014 Twitter, Inc.
          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -2471,14 +2471,14 @@
                     }
                 }
 
-                var the_line = svg.select('.mg-line' + (line_id) + '-color');
+                var the_line = svg.select('.mg-line' + (line_id) + '-color');        
                 if (args.missing_is_hidden && the_line.attr('d') !== null) {
                     var bits = the_line.attr('d').split('L');
                     var zero = args.scales.Y(0) + 42.1234;
                     var dasharray = [];
                     var singleton_point_length = 2;
 
-                    var x_y,
+                    var x_y, 
                         x_y_plus_1,
                         x,
                         y,
@@ -2834,8 +2834,8 @@
                             .style('opacity', 1);
                       }
                     });
-                } else if (args.missing_is_hidden
-                        && d[args.y_accessor] == 0
+                } else if (args.missing_is_hidden 
+                        && d[args.y_accessor] == 0 
                         && d['missing']
                     ) {
                     //disable rollovers for hidden parts of the line
@@ -3559,7 +3559,7 @@
                 // move the barplot after the axes so it doesn't overlap
                 //$(svg.node()).find('.mg-y-axis').after($(barplot.node()).detach());
                 svg.select('.mg-y-axis').node().parentNode.appendChild(barplot.node());
-
+                
                 console.log('waylee');
                 bars = barplot.selectAll('rect.mg-bar');
 
@@ -4242,7 +4242,7 @@
         }
 
         //are we replacing missing y values with zeros?
-        if ((args.missing_is_zero || args.missing_is_hidden)
+        if ((args.missing_is_zero || args.missing_is_hidden) 
                 && args.chart_type === 'line'
                 && is_time_series
             ) {
@@ -4476,7 +4476,7 @@
     }
 
     function lowess_robust(x, y, alpha, inc) {
-        // Used https://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Oct27.html
+        // Used http://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Oct27.html
         // for the clear explanation of robust lowess.
 
         // calculate the the first pass.
@@ -4727,7 +4727,7 @@
         return num;
     }
 
-    // https://bl.ocks.org/mbostock/3916621
+    // http://bl.ocks.org/mbostock/3916621
     function pathTween(d1, precision) {
       return function() {
         var path0 = this,
@@ -4855,7 +4855,7 @@
     }
 
     //deep copy
-    //https://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
+    //http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
     MG.clone = function(obj) {
         var copy;
 
@@ -4891,7 +4891,7 @@
     };
 
     //give us the difference of two int arrays
-    //https://radu.cotescu.com/javascript-diff-function/
+    //http://radu.cotescu.com/javascript-diff-function/
     function arrDiff(a,b) {
         var seen = [],
             diff = [],

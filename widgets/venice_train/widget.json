@@ -1,7 +1,7 @@
 {
   "id": "venice_train",
   "title": "Train Arrivals",
-  "url": "https://www.trenitalia.com/",
+  "url": "http://www.trenitalia.com/",
   "urlTitle": "Venice Trains",
   "log": false,
   "width": 2,

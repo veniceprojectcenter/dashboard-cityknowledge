@@ -1,6 +1,6 @@
 export function createDate (y, m, d, h, M, s, ms) {
     //can't just apply() to create a date:
-    //https://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
+    //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
     var date = new Date(y, m, d, h, M, s, ms);
 
     //the date constructor remaps years 0-99 to 1900-1999

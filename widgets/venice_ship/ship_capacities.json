@@ -394,7 +394,7 @@
   "river_countess" : {
     "crew" : 44,
     "name" : "RIVER COUNTESS",
-    "passegner_url" : "https://www.rivercruiseadvisor.com/cruise-companies/uniworld-river-cruises/river-countess/",
+    "passegner_url" : "http://www.rivercruiseadvisor.com/cruise-companies/uniworld-river-cruises/river-countess/",
     "passengers" : 134,
     "simulated_crew" : true
   },
@@ -437,7 +437,7 @@
   "san_frangisk" : {
     "crew" : 105,
     "name" : "SAN FRANGISK",
-    "passenger_url" : "https://en.wikipedia.org/wiki/Virtu_Ferries",
+    "passenger_url" : "http://en.wikipedia.org/wiki/Virtu_Ferries",
     "passengers" : 317,
     "simulated_crew" : true
   },

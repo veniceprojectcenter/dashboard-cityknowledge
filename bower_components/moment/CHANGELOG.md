@@ -263,7 +263,7 @@ Added `moment.fn.endOf()` and `moment.fn.startOf()`.
 
 Added validation via `moment.fn.isValid()`.
 
-Made formatting method 3x faster. https://jsperf.com/momentjs-cached-format-functions
+Made formatting method 3x faster. http://jsperf.com/momentjs-cached-format-functions
 
 Add support for month/weekday callbacks in `moment.fn.format()`
 

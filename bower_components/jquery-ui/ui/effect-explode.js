@@ -1,12 +1,12 @@
 /*!
  * jQuery UI Effects Explode 1.11.3
- * https://jqueryui.com
+ * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
- * https://jquery.org/license
+ * http://jquery.org/license
  *
- * https://api.jqueryui.com/explode-effect/
+ * http://api.jqueryui.com/explode-effect/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {

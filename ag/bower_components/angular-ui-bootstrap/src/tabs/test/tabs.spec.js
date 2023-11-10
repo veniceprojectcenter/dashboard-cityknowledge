@@ -507,7 +507,7 @@ describe('tabs', function() {
 
   });
 
-  //Tests that https://git.io/lG6I9Q is fixed
+  //Tests that http://git.io/lG6I9Q is fixed
   describe('tab ordering', function() {
     beforeEach(inject(function($compile, $rootScope) {
       scope = $rootScope.$new();

@@ -140,7 +140,7 @@ Gets the closest scrollable ancestor.  Concept from the jQueryUI [scrollParent.j
 
 #### position(element, includeMargins)
 
-A read-only equivalent of jQuery's [position](https://api.jquery.com/position/) function, distance to closest positioned ancestor. Does not account for margins by default like jQuery's position.
+A read-only equivalent of jQuery's [position](http://api.jquery.com/position/) function, distance to closest positioned ancestor. Does not account for margins by default like jQuery's position.
 
 ##### parameters
 
@@ -172,7 +172,7 @@ An object with the following properties:
 
 #### offset(element)
 
-A read-only equivalent of jQuery's [offset](https://api.jquery.com/offset/) function, distance to viewport.
+A read-only equivalent of jQuery's [offset](http://api.jquery.com/offset/) function, distance to viewport.
 
 ##### parameters
 

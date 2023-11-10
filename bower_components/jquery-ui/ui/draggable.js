@@ -1,12 +1,12 @@
 /*!
  * jQuery UI Draggable 1.11.3
- * https://jqueryui.com
+ * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
- * https://jquery.org/license
+ * http://jquery.org/license
  *
- * https://api.jqueryui.com/draggable/
+ * http://api.jqueryui.com/draggable/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -367,7 +367,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 			helper.appendTo((o.appendTo === "parent" ? this.element[0].parentNode : o.appendTo));
 		}
 
-		// https://bugs.jqueryui.com/ticket/9446
+		// http://bugs.jqueryui.com/ticket/9446
 		// a helper function can return the original element
 		// which wouldn't have been set to relative in _create
 		if ( helperIsFunction && helper[ 0 ] === this.element[ 0 ] ) {

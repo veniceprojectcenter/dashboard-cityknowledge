@@ -1,6 +1,6 @@
 /**
  * @license AngularJS v1.5.8
- * (c) 2010-2016 Google, Inc. https://angularjs.org
+ * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window, angular) {'use strict';
@@ -763,7 +763,7 @@ ngRouteModule.provider('$routeParams', $RouteParamsProvider);
  * @example
  * ```js
  *  // Given:
- *  // URL: https://server.com/index.html#/Chapter/1/Section/2?search=moby
+ *  // URL: http://server.com/index.html#/Chapter/1/Section/2?search=moby
  *  // Route: /Chapter/:chapterId/Section/:sectionId
  *  //
  *  // Then

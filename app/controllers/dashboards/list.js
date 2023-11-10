@@ -76,7 +76,7 @@ placeDash.controller('DashboardsListController', [
       helpDocHeight: 300,
       pageTitle: dashboardName + ' Dashboard',
       logos: [
-        { url: 'https://wpi.edu', file: 'wpi.gif' }
+        { url: 'http://wpi.edu', file: 'wpi.gif' }
       ]
     }, function(err){
       $('div.modal.dashboard_new button.create-btn').removeAttr("disabled");

@@ -479,7 +479,7 @@
     //! moment.js locale configuration
     //! locale : Belarusian [be]
     //! author : Dmitry Demidov : https://github.com/demidov91
-    //! author: Praleska: https://praleska.pro/
+    //! author: Praleska: http://praleska.pro/
     //! Author : Menelion Elensúle : https://github.com/Oire
 
     function be__plural(word, num) {
@@ -3541,7 +3541,7 @@
     //! moment.js locale configuration
     //! locale : Indonesian [id]
     //! author : Mohammad Satrio Utomo : https://github.com/tyok
-    //! reference: https://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
+    //! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
     var id = moment.defineLocale('id', {
         months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split('_'),
@@ -3853,7 +3853,7 @@
     //! moment.js locale configuration
     //! locale : Japanese [jv]
     //! author : Rony Lantip : https://github.com/lantip
-    //! reference: https://jv.wikipedia.org/wiki/Basa_Jawa
+    //! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 
     var jv = moment.defineLocale('jv', {
         months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_Nopember_Desember'.split('_'),
@@ -5932,9 +5932,9 @@
     }
     var monthsParse = [/^янв/i, /^фев/i, /^мар/i, /^апр/i, /^ма[йя]/i, /^июн/i, /^июл/i, /^авг/i, /^сен/i, /^окт/i, /^ноя/i, /^дек/i];
 
-    // https://new.gramota.ru/spravka/rules/139-prop : § 103
-    // Сокращения месяцев: https://new.gramota.ru/spravka/buro/search-answer?s=242637
-    // CLDR data:          https://www.unicode.org/cldr/charts/28/summary/ru.html#1753
+    // http://new.gramota.ru/spravka/rules/139-prop : § 103
+    // Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
+    // CLDR data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
     var ru = moment.defineLocale('ru', {
         months : {
             format: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split('_'),
@@ -6997,7 +6997,7 @@
                 return ta__symbolMap[match];
             });
         },
-        // refer https://ta.wikipedia.org/s/1er1
+        // refer http://ta.wikipedia.org/s/1er1
         meridiemParse: /யாமம்|வைகறை|காலை|நண்பகல்|எற்பாடு|மாலை/,
         meridiem : function (hour, minute, isLower) {
             if (hour < 2) {

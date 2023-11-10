@@ -5,7 +5,7 @@
     $scope.config = {
       identifier: '',
       title: 'Sample Widget',
-      url: 'https://google.com',
+      url: 'http://google.com',
       urlTitle: 'Google',
       helpDocUrl: 'https://docs.google.com/document/d/1xYIm4kcQbhzxl09Td9JE0Qa1dEdy46EOAvs2qn1zuWA/pub?embedded=true',
       width: 2,
@@ -20,7 +20,7 @@
         config: [
           { label: 'Twitter Handle @', type: 'text', value: '' }
         ],
-        content: "<img src='https://www.emoticonswallpapers.com/avatar/cartoons/Daffy-Ducks-Head.gif' />"
+        content: "<img src='http://www.emoticonswallpapers.com/avatar/cartoons/Daffy-Ducks-Head.gif' />"
       },
       {
         name: 'Map',

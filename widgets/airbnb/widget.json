@@ -1,9 +1,9 @@
 {
   "id": "airbnb",
   "title": "Venice Airbnb",
-  "url": "https://www.airbnb.com",
+  "url": "http://www.airbnb.com",
   "urlTitle": "Venice Airbnb",
-  "helpDocUrl": "https://www.airbnb.com",
+  "helpDocUrl": "http://www.airbnb.com",
   "log": false,
   "width": 2, 
   "height": 2

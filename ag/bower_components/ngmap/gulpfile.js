@@ -144,7 +144,7 @@ gulp.task('test:e2e', ['test:server'], function() {
     .pipe(gulpProtractor({
       configFile: __dirname + "/config/protractor.conf.js",
       args: [
-        '--baseUrl', 'https://localhost:8888',
+        '--baseUrl', 'http://localhost:8888',
         '--files', argv.files
       ]
     }))

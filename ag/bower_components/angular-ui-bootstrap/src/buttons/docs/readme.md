@@ -47,4 +47,4 @@ With the buttons directive, we can make a group of buttons behave like a set of 
 
 ### Known issues
 
-To use tooltips or popovers on elements within a `btn-group`, set the tooltip/popover `appendToBody` option to `true`. This is due to Bootstrap CSS styling. See [here](https://getbootstrap.com/components/#btn-groups) for more information.
+To use tooltips or popovers on elements within a `btn-group`, set the tooltip/popover `appendToBody` option to `true`. This is due to Bootstrap CSS styling. See [here](http://getbootstrap.com/components/#btn-groups) for more information.

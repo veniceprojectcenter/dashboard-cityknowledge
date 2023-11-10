@@ -1,13 +1,13 @@
 /*!
  * jQuery JavaScript Library v1.4.2
- * https://jquery.com/
+ * http://jquery.com/
  *
  * Copyright 2010, John Resig
  * Dual licensed under the MIT or GPL Version 2 licenses.
- * https://jquery.org/license
+ * http://jquery.org/license
  *
  * Includes Sizzle.js
- * https://sizzlejs.com/
+ * http://sizzlejs.com/
  * Copyright 2010, The Dojo Foundation
  * Released under the MIT, BSD, and GPL Licenses.
  *

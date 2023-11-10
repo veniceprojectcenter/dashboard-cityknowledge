@@ -1,12 +1,12 @@
 /*!
  * jQuery UI Spinner 1.11.3
- * https://jqueryui.com
+ * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
- * https://jquery.org/license
+ * http://jquery.org/license
  *
- * https://api.jqueryui.com/spinner/
+ * http://api.jqueryui.com/spinner/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {

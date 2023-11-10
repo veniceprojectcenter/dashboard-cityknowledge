@@ -1,13 +1,13 @@
-var webcams = [{ "name": "San Marco Cam 1" , "url": "https://93.62.201.235/maree/WEBCAM/smarcoweb1.jpg" },
-			   { "name": "San Marco Cam 2" , "url": "https://93.62.201.235/maree/WEBCAM/smarcoweb2.jpg" },
-			   { "name": "San Marco Cam 3" , "url": "https://93.62.201.235/maree/WEBCAM/smarcoweb3.jpg" },
-			   { "name": "Rialto Cam 1"    , "url": "https://93.62.201.235/maree/WEBCAM/rialtoweb1.jpg" },
-			   { "name": "Rialto Cam 2"    , "url": "https://93.62.201.235/maree/WEBCAM/rialtoweb2.jpg" },
-			   { "name": "Murano Cam 1"    , "url": "https://93.62.201.235/maree/WEBCAM/muranoweb1.jpg" },
-			   { "name": "Murano Cam 2"    , "url": "https://93.62.201.235/maree/WEBCAM/muranoweb2.jpg" },
-			   { "name": "Murano Cam 3"    , "url": "https://93.62.201.235/maree/WEBCAM/muranoweb3.jpg" },
-			   { "name": "Salute Cam 1"    , "url": "https://93.62.201.235/maree/WEBCAM/saluteweb1.jpg" },
-			   { "name": "Salute Cam 2"    , "url": "https://93.62.201.235/maree/WEBCAM/saluteweb2.jpg" }];
+var webcams = [{ "name": "San Marco Cam 1" , "url": "http://93.62.201.235/maree/WEBCAM/smarcoweb1.jpg" },
+			   { "name": "San Marco Cam 2" , "url": "http://93.62.201.235/maree/WEBCAM/smarcoweb2.jpg" },
+			   { "name": "San Marco Cam 3" , "url": "http://93.62.201.235/maree/WEBCAM/smarcoweb3.jpg" },
+			   { "name": "Rialto Cam 1"    , "url": "http://93.62.201.235/maree/WEBCAM/rialtoweb1.jpg" },
+			   { "name": "Rialto Cam 2"    , "url": "http://93.62.201.235/maree/WEBCAM/rialtoweb2.jpg" },
+			   { "name": "Murano Cam 1"    , "url": "http://93.62.201.235/maree/WEBCAM/muranoweb1.jpg" },
+			   { "name": "Murano Cam 2"    , "url": "http://93.62.201.235/maree/WEBCAM/muranoweb2.jpg" },
+			   { "name": "Murano Cam 3"    , "url": "http://93.62.201.235/maree/WEBCAM/muranoweb3.jpg" },
+			   { "name": "Salute Cam 1"    , "url": "http://93.62.201.235/maree/WEBCAM/saluteweb1.jpg" },
+			   { "name": "Salute Cam 2"    , "url": "http://93.62.201.235/maree/WEBCAM/saluteweb2.jpg" }];
 
 var cam_count = webcams.length;
 var start_index = Math.floor(Math.random() * cam_count) + 1;

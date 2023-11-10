@@ -1,12 +1,12 @@
 /*!
  * jQuery UI Dialog 1.11.3
- * https://jqueryui.com
+ * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
- * https://jquery.org/license
+ * http://jquery.org/license
  *
- * https://api.jqueryui.com/dialog/
+ * http://api.jqueryui.com/dialog/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {

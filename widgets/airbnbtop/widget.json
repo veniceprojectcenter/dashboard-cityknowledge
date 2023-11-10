@@ -1,9 +1,9 @@
 {
   "id": "airbnbtop",
   "title": "AIRBNB TOP LISTERS",
-  "url": "https://www.airbnb.com",
+  "url": "http://www.airbnb.com",
   "urlTitle": "AIRBNB TOP LISTERS",
-  "helpDocUrl": "https://www.airbnb.com",
+  "helpDocUrl": "http://www.airbnb.com",
   "log": false,
   "width": 2, 
   "height": 2

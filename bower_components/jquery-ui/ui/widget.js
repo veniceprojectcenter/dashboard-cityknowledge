@@ -1,12 +1,12 @@
 /*!
  * jQuery UI Widget 1.11.3
- * https://jqueryui.com
+ * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
- * https://jquery.org/license
+ * http://jquery.org/license
  *
- * https://api.jqueryui.com/jQuery.widget/
+ * http://api.jqueryui.com/jQuery.widget/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -35,7 +35,7 @@ $.cleanData = (function( orig ) {
 					$( elem ).triggerHandler( "remove" );
 				}
 
-			// https://bugs.jquery.com/ticket/8235
+			// http://bugs.jquery.com/ticket/8235
 			} catch ( e ) {}
 		}
 		orig( elems );
@@ -299,7 +299,7 @@ $.Widget.prototype = {
 			.unbind( this.eventNamespace )
 			.removeData( this.widgetFullName )
 			// support: jquery <1.6.3
-			// https://bugs.jquery.com/ticket/9413
+			// http://bugs.jquery.com/ticket/9413
 			.removeData( $.camelCase( this.widgetFullName ) );
 		this.widget()
 			.unbind( this.eventNamespace )

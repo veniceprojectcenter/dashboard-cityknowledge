@@ -1,9 +1,9 @@
 {
   "id": "airbnbstats",
   "title": "Venice Airbnb Stats",
-  "url": "https://www.airbnb.com",
+  "url": "http://www.airbnb.com",
   "urlTitle": "Venice Airbnb Stats",
-  "helpDocUrl": "https://www.airbnb.com",
+  "helpDocUrl": "http://www.airbnb.com",
   "log": false,
   "width": 2, 
   "height": 2

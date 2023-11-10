@@ -1428,13 +1428,13 @@ angular.module('ngMap', []);
  * @example
  * Example:
  *
- *   <div map-lazy-load="https://maps.google.com/maps/api/js">
+ *   <div map-lazy-load="http://maps.google.com/maps/api/js">
  *     <map center="Brampton" zoom="10">
  *       <marker position="Brampton"></marker>
  *     </map>
  *   </div>
  *
- *   <div map-lazy-load="https://maps.google.com/maps/api/js"
+ *   <div map-lazy-load="http://maps.google.com/maps/api/js"
  *        map-lazy-load-params="{{googleMapsUrl}}">
  *     <map center="Brampton" zoom="10">
  *       <marker position="Brampton"></marker>

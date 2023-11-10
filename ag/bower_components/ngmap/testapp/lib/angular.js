@@ -1,6 +1,6 @@
 /**
  * @license AngularJS v1.3.15
- * (c) 2010-2014 Google, Inc. https://angularjs.org
+ * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window, document, undefined) {'use strict';
@@ -54,7 +54,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message = message + '\nhttps://errors.angularjs.org/1.3.15/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.15/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i - 2) + '=' +
@@ -244,7 +244,7 @@ var
 
 /**
  * documentMode is an IE-only property
- * https://msdn.microsoft.com/en-us/library/ie/cc196988(v=vs.85).aspx
+ * http://msdn.microsoft.com/en-us/library/ie/cc196988(v=vs.85).aspx
  */
 msie = document.documentMode;
 
@@ -286,7 +286,7 @@ function isArrayLike(obj) {
  * using the `hasOwnProperty` method.
  *
  * Unlike ES262's
- * [Array.prototype.forEach](https://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.18),
+ * [Array.prototype.forEach](http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.18),
  * Providing 'undefined' or 'null' values for `obj` will not throw a TypeError, but rather just
  * return the value provided.
  *
@@ -517,7 +517,7 @@ function isDefined(value) {return typeof value !== 'undefined';}
  * @returns {boolean} True if `value` is an `Object` but not `null`.
  */
 function isObject(value) {
-  // https://jsperf.com/isobject4
+  // http://jsperf.com/isobject4
   return value !== null && typeof value === 'object';
 }
 
@@ -663,7 +663,7 @@ var trim = function(value) {
 };
 
 // Copied from:
-// https://docs.closure-library.googlecode.com/git/local_closure_goog_string_string.js.source.html#line1021
+// http://docs.closure-library.googlecode.com/git/local_closure_goog_string_string.js.source.html#line1021
 // Prereq: s is a string.
 var escapeForRegexp = function(s) {
   return s.replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').
@@ -984,8 +984,8 @@ function sliceArgs(args, startIndex) {
  * @description
  * Returns a function which calls function `fn` bound to `self` (`self` becomes the `this` for
  * `fn`). You can supply optional `args` that are prebound to the function. This feature is also
- * known as [partial application](https://en.wikipedia.org/wiki/Partial_application), as
- * distinguished from [function currying](https://en.wikipedia.org/wiki/Currying#Contrast_with_partial_function_application).
+ * known as [partial application](http://en.wikipedia.org/wiki/Partial_application), as
+ * distinguished from [function currying](http://en.wikipedia.org/wiki/Currying#Contrast_with_partial_function_application).
  *
  * @param {Object} self Context which `fn` should be evaluated in.
  * @param {function()} fn Function to be bound.
@@ -1160,7 +1160,7 @@ function toKeyValue(obj) {
 
 /**
  * We need our custom method because encodeURIComponent is too aggressive and doesn't follow
- * https://www.ietf.org/rfc/rfc3986.txt with regards to the character set (pchar) allowed in path
+ * http://www.ietf.org/rfc/rfc3986.txt with regards to the character set (pchar) allowed in path
  * segments:
  *    segment       = *pchar
  *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
@@ -1180,7 +1180,7 @@ function encodeUriSegment(val) {
 /**
  * This method is intended for encoding *key* or *value* parts of query component. We need a custom
  * method because encodeURIComponent is too aggressive and encodes stuff that doesn't have to be
- * encoded per https://tools.ietf.org/html/rfc3986:
+ * encoded per http://tools.ietf.org/html/rfc3986:
  *    query       = *( pchar / "/" / "?" )
  *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
  *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
@@ -1664,9 +1664,9 @@ function getBlockNodes(nodes) {
  * guard against prototypically inherited properties via hasOwnProperty.
  *
  * Related micro-benchmarks:
- * - https://jsperf.com/object-create2
- * - https://jsperf.com/proto-map-lookup/2
- * - https://jsperf.com/for-in-vs-object-keys2
+ * - http://jsperf.com/object-create2
+ * - http://jsperf.com/proto-map-lookup/2
+ * - http://jsperf.com/for-in-vs-object-keys2
  *
  * @returns {Object}
  */
@@ -2298,10 +2298,10 @@ function publishExternalAPI(angular) {
  * @kind function
  *
  * @description
- * Wraps a raw DOM element or HTML string as a [jQuery](https://jquery.com) element.
+ * Wraps a raw DOM element or HTML string as a [jQuery](http://jquery.com) element.
  *
  * If jQuery is available, `angular.element` is an alias for the
- * [jQuery](https://api.jquery.com/jQuery/) function. If jQuery is not available, `angular.element`
+ * [jQuery](http://api.jquery.com/jQuery/) function. If jQuery is not available, `angular.element`
  * delegates to Angular's built-in subset of jQuery, called "jQuery lite" or "jqLite."
  *
  * <div class="alert alert-success">jqLite is a tiny, API-compatible subset of jQuery that allows
@@ -2316,41 +2316,41 @@ function publishExternalAPI(angular) {
  * ## Angular's jqLite
  * jqLite provides only the following jQuery methods:
  *
- * - [`addClass()`](https://api.jquery.com/addClass/)
- * - [`after()`](https://api.jquery.com/after/)
- * - [`append()`](https://api.jquery.com/append/)
- * - [`attr()`](https://api.jquery.com/attr/) - Does not support functions as parameters
- * - [`bind()`](https://api.jquery.com/bind/) - Does not support namespaces, selectors or eventData
- * - [`children()`](https://api.jquery.com/children/) - Does not support selectors
- * - [`clone()`](https://api.jquery.com/clone/)
- * - [`contents()`](https://api.jquery.com/contents/)
- * - [`css()`](https://api.jquery.com/css/) - Only retrieves inline-styles, does not call `getComputedStyle()`
- * - [`data()`](https://api.jquery.com/data/)
- * - [`detach()`](https://api.jquery.com/detach/)
- * - [`empty()`](https://api.jquery.com/empty/)
- * - [`eq()`](https://api.jquery.com/eq/)
- * - [`find()`](https://api.jquery.com/find/) - Limited to lookups by tag name
- * - [`hasClass()`](https://api.jquery.com/hasClass/)
- * - [`html()`](https://api.jquery.com/html/)
- * - [`next()`](https://api.jquery.com/next/) - Does not support selectors
- * - [`on()`](https://api.jquery.com/on/) - Does not support namespaces, selectors or eventData
- * - [`off()`](https://api.jquery.com/off/) - Does not support namespaces or selectors
- * - [`one()`](https://api.jquery.com/one/) - Does not support namespaces or selectors
- * - [`parent()`](https://api.jquery.com/parent/) - Does not support selectors
- * - [`prepend()`](https://api.jquery.com/prepend/)
- * - [`prop()`](https://api.jquery.com/prop/)
- * - [`ready()`](https://api.jquery.com/ready/)
- * - [`remove()`](https://api.jquery.com/remove/)
- * - [`removeAttr()`](https://api.jquery.com/removeAttr/)
- * - [`removeClass()`](https://api.jquery.com/removeClass/)
- * - [`removeData()`](https://api.jquery.com/removeData/)
- * - [`replaceWith()`](https://api.jquery.com/replaceWith/)
- * - [`text()`](https://api.jquery.com/text/)
- * - [`toggleClass()`](https://api.jquery.com/toggleClass/)
- * - [`triggerHandler()`](https://api.jquery.com/triggerHandler/) - Passes a dummy event object to handlers.
- * - [`unbind()`](https://api.jquery.com/unbind/) - Does not support namespaces
- * - [`val()`](https://api.jquery.com/val/)
- * - [`wrap()`](https://api.jquery.com/wrap/)
+ * - [`addClass()`](http://api.jquery.com/addClass/)
+ * - [`after()`](http://api.jquery.com/after/)
+ * - [`append()`](http://api.jquery.com/append/)
+ * - [`attr()`](http://api.jquery.com/attr/) - Does not support functions as parameters
+ * - [`bind()`](http://api.jquery.com/bind/) - Does not support namespaces, selectors or eventData
+ * - [`children()`](http://api.jquery.com/children/) - Does not support selectors
+ * - [`clone()`](http://api.jquery.com/clone/)
+ * - [`contents()`](http://api.jquery.com/contents/)
+ * - [`css()`](http://api.jquery.com/css/) - Only retrieves inline-styles, does not call `getComputedStyle()`
+ * - [`data()`](http://api.jquery.com/data/)
+ * - [`detach()`](http://api.jquery.com/detach/)
+ * - [`empty()`](http://api.jquery.com/empty/)
+ * - [`eq()`](http://api.jquery.com/eq/)
+ * - [`find()`](http://api.jquery.com/find/) - Limited to lookups by tag name
+ * - [`hasClass()`](http://api.jquery.com/hasClass/)
+ * - [`html()`](http://api.jquery.com/html/)
+ * - [`next()`](http://api.jquery.com/next/) - Does not support selectors
+ * - [`on()`](http://api.jquery.com/on/) - Does not support namespaces, selectors or eventData
+ * - [`off()`](http://api.jquery.com/off/) - Does not support namespaces or selectors
+ * - [`one()`](http://api.jquery.com/one/) - Does not support namespaces or selectors
+ * - [`parent()`](http://api.jquery.com/parent/) - Does not support selectors
+ * - [`prepend()`](http://api.jquery.com/prepend/)
+ * - [`prop()`](http://api.jquery.com/prop/)
+ * - [`ready()`](http://api.jquery.com/ready/)
+ * - [`remove()`](http://api.jquery.com/remove/)
+ * - [`removeAttr()`](http://api.jquery.com/removeAttr/)
+ * - [`removeClass()`](http://api.jquery.com/removeClass/)
+ * - [`removeData()`](http://api.jquery.com/removeData/)
+ * - [`replaceWith()`](http://api.jquery.com/replaceWith/)
+ * - [`text()`](http://api.jquery.com/text/)
+ * - [`toggleClass()`](http://api.jquery.com/toggleClass/)
+ * - [`triggerHandler()`](http://api.jquery.com/triggerHandler/) - Passes a dummy event object to handlers.
+ * - [`unbind()`](http://api.jquery.com/unbind/) - Does not support namespaces
+ * - [`val()`](http://api.jquery.com/val/)
+ * - [`wrap()`](http://api.jquery.com/wrap/)
  *
  * ## jQuery/jqLite Extras
  * Angular also provides the following additional methods and events to both jQuery and jqLite:
@@ -2517,7 +2517,7 @@ function JQLite(element) {
   }
   if (!(this instanceof JQLite)) {
     if (argIsString && element.charAt(0) != '<') {
-      throw jqLiteMinErr('nosel', 'Looking up elements via selectors is not supported by jqLite! See: https://docs.angularjs.org/api/angular.element');
+      throw jqLiteMinErr('nosel', 'Looking up elements via selectors is not supported by jqLite! See: http://docs.angularjs.org/api/angular.element');
     }
     return new JQLite(element);
   }
@@ -3064,7 +3064,7 @@ forEach({
       handle = expandoStore.handle = createEventHandler(element, events);
     }
 
-    // https://jsperf.com/string-indexof-vs-split
+    // http://jsperf.com/string-indexof-vs-split
     var types = type.indexOf(' ') >= 0 ? type.split(' ') : [type];
     var i = types.length;
 
@@ -3078,7 +3078,7 @@ forEach({
         if (type === 'mouseenter' || type === 'mouseleave') {
           // Refer to jQuery's implementation of mouseenter & mouseleave
           // Read about mouseenter and mouseleave:
-          // https://www.quirksmode.org/js/events_mouse.html#link8
+          // http://www.quirksmode.org/js/events_mouse.html#link8
 
           jqLiteOn(element, MOUSE_EVENT_MAP[type], function(event) {
             var target = this, related = event.relatedTarget;
@@ -4198,7 +4198,7 @@ function createInjector(modulesToLoad, strictDi) {
         fn = fn[length];
       }
 
-      // https://jsperf.com/angularjs-invoke-apply-vs-switch
+      // http://jsperf.com/angularjs-invoke-apply-vs-switch
       // #5388
       return fn.apply(self, args);
     }
@@ -4206,7 +4206,7 @@ function createInjector(modulesToLoad, strictDi) {
     function instantiate(Type, locals, serviceName) {
       // Check if Type is annotated and use just the given function at n-1 as parameter
       // e.g. someModule.factory('greeter', ['$window', function(renamed$window) {}]);
-      // Object creation: https://jsperf.com/create-constructor/2
+      // Object creation: http://jsperf.com/create-constructor/2
       var instance = Object.create((isArray(Type) ? Type[Type.length - 1] : Type).prototype || null);
       var returnedValue = invoke(Type, instance, locals, serviceName);
 
@@ -4267,7 +4267,7 @@ function $AnchorScrollProvider() {
    * @description
    * When called, it checks the current value of {@link ng.$location#hash $location.hash()} and
    * scrolls to the related element, according to the rules specified in the
-   * [Html5 spec](https://dev.w3.org/html5/spec/Overview.html#the-indicated-part-of-the-document).
+   * [Html5 spec](http://dev.w3.org/html5/spec/Overview.html#the-indicated-part-of-the-document).
    *
    * It also watches the {@link ng.$location#hash $location.hash()} and automatically scrolls to
    * match any anchor whenever it changes. This can be disabled by calling
@@ -5254,7 +5254,7 @@ function Browser(window, document, $log, $sniffer) {
           cookieLength = (rawDocument.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) +
                                 ';path=' + cookiePath).length + 1;
 
-          // per https://www.ietf.org/rfc/rfc2109.txt browser must allow at minimum:
+          // per http://www.ietf.org/rfc/rfc2109.txt browser must allow at minimum:
           // - 300 cookies
           // - 20 cookies per unique domain
           // - 4096 bytes per cookie
@@ -6464,7 +6464,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       ALL_OR_NOTHING_ATTRS = makeMap('ngSrc,ngSrcset,src,srcset'),
       REQUIRE_PREFIX_REGEXP = /^(?:(\^\^?)?(\?)?(\^\^?)?)?/;
 
-  // Ref: https://developers.whatwg.org/webappapis.html#event-handler-idl-attributes
+  // Ref: http://developers.whatwg.org/webappapis.html#event-handler-idl-attributes
   // The assumption is that future DOM event attribute names will begin with
   // 'on' and be composed of only English letters.
   var EVENT_HANDLER_ATTR_REGEXP = /^(on[a-z]+|formaction)$/;
@@ -7639,7 +7639,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
             // For directives with element transclusion the element is a comment,
             // but jQuery .data doesn't support attaching data to comment nodes as it's hard to
-            // clean up (https://bugs.jquery.com/ticket/8335).
+            // clean up (http://bugs.jquery.com/ticket/8335).
             // Instead, we save the controllers for the element in a local hash and attach to .data
             // later, once we have the actual element.
             elementControllers[directive.name] = controllerInstance;
@@ -8197,7 +8197,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
             // If the replaced element is also the jQuery .context then replace it
             // .context is a deprecated jQuery api, so we should set it only when jQuery set it
-            // https://api.jquery.com/context/
+            // http://api.jquery.com/context/
             if ($rootElement.context === firstElementToRemove) {
               $rootElement.context = newNode;
             }
@@ -8480,7 +8480,7 @@ function $ControllerProvider() {
         //
         // This feature is not intended for use by applications, and is thus not documented
         // publicly.
-        // Object creation: https://jsperf.com/create-constructor/2
+        // Object creation: http://jsperf.com/create-constructor/2
         var controllerPrototype = (isArray(expression) ?
           expression[expression.length - 1] : expression).prototype;
         instance = Object.create(controllerPrototype || null);
@@ -8842,7 +8842,7 @@ function $HttpProvider() {
      * @description
      * The `$http` service is a core Angular service that facilitates communication with the remote
      * HTTP servers via the browser's [XMLHttpRequest](https://developer.mozilla.org/en/xmlhttprequest)
-     * object or via [JSONP](https://en.wikipedia.org/wiki/JSONP).
+     * object or via [JSONP](http://en.wikipedia.org/wiki/JSONP).
      *
      * For unit testing applications that use `$http` service, see
      * {@link ngMock.$httpBackend $httpBackend mock}.
@@ -8965,7 +8965,7 @@ function $HttpProvider() {
      * ```js
      * var req = {
      *  method: 'POST',
-     *  url: 'https://example.com',
+     *  url: 'http://example.com',
      *  headers: {
      *    'Content-Type': undefined
      *  },
@@ -9149,8 +9149,8 @@ function $HttpProvider() {
      *
      * When designing web applications, consider security threats from:
      *
-     * - [JSON vulnerability](https://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx)
-     * - [XSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
+     * - [JSON vulnerability](http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx)
+     * - [XSRF](http://en.wikipedia.org/wiki/Cross-site_request_forgery)
      *
      * Both server and the client must cooperate in order to eliminate these threats. Angular comes
      * pre-configured with strategies that address these issues, but for this to work backend server
@@ -9158,9 +9158,9 @@ function $HttpProvider() {
      *
      * ### JSON Vulnerability Protection
      *
-     * A [JSON vulnerability](https://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx)
+     * A [JSON vulnerability](http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx)
      * allows third party website to turn your JSON resource URL into
-     * [JSONP](https://en.wikipedia.org/wiki/JSONP) request under some conditions. To
+     * [JSONP](http://en.wikipedia.org/wiki/JSONP) request under some conditions. To
      * counter this your server can prefix all JSON requests with following string `")]}',\n"`.
      * Angular will automatically strip the prefix before processing it as JSON.
      *
@@ -9180,7 +9180,7 @@ function $HttpProvider() {
      *
      * ### Cross Site Request Forgery (XSRF) Protection
      *
-     * [XSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) is a technique by which
+     * [XSRF](http://en.wikipedia.org/wiki/Cross-site_request_forgery) is a technique by which
      * an unauthorized site can gain your user's private data. Angular provides a mechanism
      * to counter XSRF. When performing XHR requests, the $http service reads a token from a cookie
      * (by default, `XSRF-TOKEN`) and sets it as an HTTP header (`X-XSRF-TOKEN`). Since only
@@ -9816,7 +9816,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
         // response/responseType properties were introduced in XHR Level2 spec (supported by IE10)
         var response = ('response' in xhr) ? xhr.response : xhr.responseText;
 
-        // normalize IE9 bug (https://bugs.jquery.com/ticket/1450)
+        // normalize IE9 bug (http://bugs.jquery.com/ticket/1450)
         var status = xhr.status === 1223 ? 204 : xhr.status;
 
         // fix status code when it is 0 (0 status is undocumented).
@@ -10152,7 +10152,7 @@ function $InterpolateProvider() {
           throw $interpolateMinErr('noconcat',
               "Error while interpolating: {0}\nStrict Contextual Escaping disallows " +
               "interpolations that concatenate multiple expressions when a trusted value is " +
-              "required.  See https://docs.angularjs.org/api/ng.$sce", text);
+              "required.  See http://docs.angularjs.org/api/ng.$sce", text);
       }
 
       if (!mustHaveExpression || expressions.length) {
@@ -10877,13 +10877,13 @@ var locationPrototype = {
    * This method is getter only.
    *
    * Return full url representation with all segments encoded according to rules specified in
-   * [RFC 3986](https://www.ietf.org/rfc/rfc3986.txt).
+   * [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt).
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var absUrl = $location.absUrl();
-   * // => "https://example.com/#/some/path?foo=bar&baz=xoxo"
+   * // => "http://example.com/#/some/path?foo=bar&baz=xoxo"
    * ```
    *
    * @return {string} full url
@@ -10903,7 +10903,7 @@ var locationPrototype = {
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var url = $location.url();
    * // => "/some/path?foo=bar&baz=xoxo"
    * ```
@@ -10934,7 +10934,7 @@ var locationPrototype = {
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var protocol = $location.protocol();
    * // => "http"
    * ```
@@ -10954,7 +10954,7 @@ var locationPrototype = {
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var host = $location.host();
    * // => "example.com"
    * ```
@@ -10974,7 +10974,7 @@ var locationPrototype = {
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var port = $location.port();
    * // => 80
    * ```
@@ -10999,7 +10999,7 @@ var locationPrototype = {
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var path = $location.path();
    * // => "/some/path"
    * ```
@@ -11025,7 +11025,7 @@ var locationPrototype = {
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var searchObject = $location.search();
    * // => {foo: 'bar', baz: 'xoxo'}
    *
@@ -11103,7 +11103,7 @@ var locationPrototype = {
    *
    *
    * ```js
-   * // given url https://example.com/#/some/path?foo=bar&baz=xoxo#hashValue
+   * // given url http://example.com/#/some/path?foo=bar&baz=xoxo#hashValue
    * var hash = $location.hash();
    * // => "hashValue"
    * ```
@@ -11388,7 +11388,7 @@ function $LocationProvider() {
 
       var absHref = elm.prop('href');
       // get the actual href attribute - see
-      // https://msdn.microsoft.com/en-us/library/ie/dd347148(v=vs.85).aspx
+      // http://msdn.microsoft.com/en-us/library/ie/dd347148(v=vs.85).aspx
       var relHref = elm.attr('href') || elm.attr('xlink:href');
 
       if (isObject(absHref) && absHref.toString() === '[object SVGAnimatedString]') {
@@ -12510,8 +12510,8 @@ function isPossiblyDangerousMemberName(name) {
 
 /**
  * Implementation of the "Black Hole" variant from:
- * - https://jsperf.com/angularjs-parse-getter/4
- * - https://jsperf.com/path-evaluation-simplified/7
+ * - http://jsperf.com/angularjs-parse-getter/4
+ * - http://jsperf.com/path-evaluation-simplified/7
  */
 function cspSafeGetterFn(key0, key1, key2, key3, key4, fullExp, expensiveChecks) {
   ensureSafeMemberName(key0, fullExp);
@@ -12570,7 +12570,7 @@ function getterFn(path, options, fullExp) {
   var pathKeys = path.split('.'),
       pathKeysLength = pathKeys.length;
 
-  // https://jsperf.com/angularjs-parse-getter/6
+  // http://jsperf.com/angularjs-parse-getter/6
   if (options.csp) {
     if (pathKeysLength < 6) {
       fn = cspSafeGetterFn(pathKeys[0], pathKeys[1], pathKeys[2], pathKeys[3], pathKeys[4], fullExp, expensiveChecks);
@@ -12988,7 +12988,7 @@ function $ParseProvider() {
  *
  * However, the more traditional CommonJS-style usage is still available, and documented below.
  *
- * [The CommonJS Promise proposal](https://wiki.commonjs.org/wiki/Promises) describes a promise as an
+ * [The CommonJS Promise proposal](http://wiki.commonjs.org/wiki/Promises) describes a promise as an
  * interface for interacting with an object that represents the result of an action that is
  * performed asynchronously, and may or may not be finished at any given point in time.
  *
@@ -13030,7 +13030,7 @@ function $ParseProvider() {
  * https://github.com/kriskowal/uncommonjs/blob/master/promises/specification.md.
  *
  * Additionally the promise api allows for composition that is very hard to do with the
- * traditional callback ([CPS](https://en.wikipedia.org/wiki/Continuation-passing_style)) approach.
+ * traditional callback ([CPS](http://en.wikipedia.org/wiki/Continuation-passing_style)) approach.
  * For more on this please see the [Q documentation](https://github.com/kriskowal/q) especially the
  * section on serial or parallel joining of promises.
  *
@@ -13227,7 +13227,7 @@ function qFactory(nextTick, exceptionHandler) {
     }
   };
 
-  //Faster, more basic than angular.bind https://jsperf.com/angular-bind-vs-custom-vs-native
+  //Faster, more basic than angular.bind http://jsperf.com/angular-bind-vs-custom-vs-native
   function simpleBind(context, fn) {
     return function(value) {
       fn.call(context, value);
@@ -15042,10 +15042,10 @@ function adjustMatchers(matchers) {
  *
  * **Example**:  Consider the following case. <a name="example"></a>
  *
- * - your app is hosted at url `https://myapp.example.com/`
+ * - your app is hosted at url `http://myapp.example.com/`
  * - but some of your templates are hosted on other domains you control such as
- *   `https://srv01.assets.example.com/`,  `https://srv02.assets.example.com/`, etc.
- * - and you have an open redirect at `https://myapp.example.com/clickThru?...`.
+ *   `http://srv01.assets.example.com/`,  `http://srv02.assets.example.com/`, etc.
+ * - and you have an open redirect at `http://myapp.example.com/clickThru?...`.
  *
  * Here is what a secure configuration for this scenario might look like:
  *
@@ -15055,12 +15055,12 @@ function adjustMatchers(matchers) {
  *      // Allow same origin resource loads.
  *      'self',
  *      // Allow loading from our assets domain.  Notice the difference between * and **.
- *      'https://srv*.assets.example.com/**'
+ *      'http://srv*.assets.example.com/**'
  *    ]);
  *
  *    // The blacklist overrides the whitelist so the open redirect here is blocked.
  *    $sceDelegateProvider.resourceUrlBlacklist([
- *      'https://myapp.example.com/clickThru**'
+ *      'http://myapp.example.com/clickThru**'
  *    ]);
  *  });
  * ```
@@ -15115,7 +15115,7 @@ function $SceDelegateProvider() {
    *     allowed in this array.
    *
    *     The typical usage for the blacklist is to **block
-   *     [open redirects](https://cwe.mitre.org/data/definitions/601.html)** served by your domain as
+   *     [open redirects](http://cwe.mitre.org/data/definitions/601.html)** served by your domain as
    *     these would otherwise be trusted but actually return content from the redirected domain.
    *
    *     Finally, **the blacklist overrides the whitelist** and has the final say.
@@ -15349,7 +15349,7 @@ function $SceDelegateProvider() {
  *
  * Note:  When enabled (the default), IE<11 in quirks mode is not supported.  In this mode, IE<11 allow
  * one to execute arbitrary javascript by the use of the expression() syntax.  Refer
- * <https://blogs.msdn.com/b/ie/archive/2008/10/16/ending-expressions.aspx> to learn more about them.
+ * <http://blogs.msdn.com/b/ie/archive/2008/10/16/ending-expressions.aspx> to learn more about them.
  * You can ensure your document is in standards mode and not quirks mode by adding `<!doctype html>`
  * to the top of your HTML document.
  *
@@ -15425,7 +15425,7 @@ function $SceDelegateProvider() {
  * *Please note*:
  * The browser's
  * [Same Origin Policy](https://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest)
- * and [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/)
+ * and [Cross-Origin Resource Sharing (CORS)](http://www.w3.org/TR/cors/)
  * policy apply in addition to this and may further restrict whether the template is successfully
  * loaded.  This means that without the right CORS policy, loading templates from a different domain
  * won't work on all browsers.  Also, loading templates from `file://` URL does not work on some
@@ -15481,9 +15481,9 @@ function $SceDelegateProvider() {
  *      in a whitelist.
  *    - `**`: matches zero or more occurrences of *any* character.  As such, it's not
  *      not appropriate to use in for a scheme, domain, etc. as it would match too much.  (e.g.
- *      https://**.example.com/ would match https://evil.com/?ignore=.example.com/ and that might
+ *      http://**.example.com/ would match http://evil.com/?ignore=.example.com/ and that might
  *      not have been the intention.)  Its usage at the very end of the path is ok.  (e.g.
- *      https://foo.example.com/templates/**).
+ *      http://foo.example.com/templates/**).
  *  - **RegExp** (*see caveat below*)
  *    - *Caveat*:  While regular expressions are powerful and offer great flexibility,  their syntax
  *      (and all the inevitable escaping) makes them *harder to maintain*.  It's easy to
@@ -15503,11 +15503,11 @@ function $SceDelegateProvider() {
  *      one level of escaping depending on your templating engine and the way you interpolated
  *      the value.)  Do make use of your platform's escaping mechanism as it might be good
  *      enough before coding your own.  e.g. Ruby has
- *      [Regexp.escape(str)](https://www.ruby-doc.org/core-2.0.0/Regexp.html#method-c-escape)
- *      and Python has [re.escape](https://docs.python.org/library/re.html#re.escape).
+ *      [Regexp.escape(str)](http://www.ruby-doc.org/core-2.0.0/Regexp.html#method-c-escape)
+ *      and Python has [re.escape](http://docs.python.org/library/re.html#re.escape).
  *      Javascript lacks a similar built in function for escaping.  Take a look at Google
  *      Closure library's [goog.string.regExpEscape(s)](
- *      https://docs.closure-library.googlecode.com/git/closure_goog_string_string.js.source.html#line962).
+ *      http://docs.closure-library.googlecode.com/git/closure_goog_string_string.js.source.html#line962).
  *
  * Refer {@link ng.$sceDelegateProvider $sceDelegateProvider} for an example.
  *
@@ -15672,7 +15672,7 @@ function $SceProvider() {
       throw $sceMinErr('iequirks',
         'Strict Contextual Escaping does not support Internet Explorer version < 11 in quirks ' +
         'mode.  You can fix this by adding the text <!doctype html> to the top of your HTML ' +
-        'document.  See https://docs.angularjs.org/api/ng.$sce for more information.');
+        'document.  See http://docs.angularjs.org/api/ng.$sce for more information.');
     }
 
     var sce = shallowCopy(SCE_CONTEXTS);
@@ -16048,7 +16048,7 @@ function $SnifferProvider() {
     return {
       // Android has history.pushState, but it does not update location correctly
       // so let's not use the history API at all.
-      // https://code.google.com/p/android/issues/detail?id=17471
+      // http://code.google.com/p/android/issues/detail?id=17471
       // https://github.com/angular/angular.js/issues/904
 
       // older webkit browser (533.9) on Boxee box has exactly the same problem as Android has
@@ -16361,7 +16361,7 @@ var originUrl = urlResolve(window.location.href);
  * Parsing means that the anchor node's host, hostname, protocol, port, pathname and related
  * properties are all populated to reflect the normalized URL.  This approach has wide
  * compatibility - Safari 1+, Mozilla 1+, Opera 7+,e etc.  See
- * https://www.aptana.com/reference/html/api/HTMLAnchorElement.html
+ * http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
  *
  * Implementation Notes for IE
  * ---------------------------
@@ -16374,17 +16374,17 @@ var originUrl = urlResolve(window.location.href);
  *
  * IE7 does not normalize the URL when assigned to an anchor node.  (Apparently, it does, if one
  * uses the inner HTML approach to assign the URL as part of an HTML snippet -
- * https://stackoverflow.com/a/472729)  However, setting img[src] does normalize the URL.
+ * http://stackoverflow.com/a/472729)  However, setting img[src] does normalize the URL.
  * Unfortunately, setting img[src] to something like "javascript:foo" on IE throws an exception.
  * Since the primary usage for normalizing URLs is to sanitize such URLs, we can't use that
  * method and IE < 8 is unsupported.
  *
  * References:
- *   https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement
- *   https://www.aptana.com/reference/html/api/HTMLAnchorElement.html
- *   https://url.spec.whatwg.org/#urlutils
+ *   http://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement
+ *   http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
+ *   http://url.spec.whatwg.org/#urlutils
  *   https://github.com/angular/angular.js/pull/2902
- *   https://james.padolsey.com/javascript/parsing-urls-with-the-dom/
+ *   http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
  *
  * @kind function
  * @param {string} url The URL to be parsed.
@@ -16415,7 +16415,7 @@ function urlResolve(url) {
 
   urlParsingNode.setAttribute('href', href);
 
-  // urlParsingNode provides the UrlUtils interface - https://url.spec.whatwg.org/#urlutils
+  // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
   return {
     href: urlParsingNode.href,
     protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
@@ -17838,12 +17838,12 @@ var htmlAnchorDirective = valueFn({
  *
  * The wrong way to write it:
  * ```html
- * <a href="https://www.gravatar.com/avatar/{{hash}}">link1</a>
+ * <a href="http://www.gravatar.com/avatar/{{hash}}">link1</a>
  * ```
  *
  * The correct way to write it:
  * ```html
- * <a ng-href="https://www.gravatar.com/avatar/{{hash}}">link1</a>
+ * <a ng-href="http://www.gravatar.com/avatar/{{hash}}">link1</a>
  * ```
  *
  * @element A
@@ -17935,12 +17935,12 @@ var htmlAnchorDirective = valueFn({
  *
  * The buggy way to write it:
  * ```html
- * <img src="https://www.gravatar.com/avatar/{{hash}}"/>
+ * <img src="http://www.gravatar.com/avatar/{{hash}}"/>
  * ```
  *
  * The correct way to write it:
  * ```html
- * <img ng-src="https://www.gravatar.com/avatar/{{hash}}"/>
+ * <img ng-src="http://www.gravatar.com/avatar/{{hash}}"/>
  * ```
  *
  * @element IMG
@@ -17961,12 +17961,12 @@ var htmlAnchorDirective = valueFn({
  *
  * The buggy way to write it:
  * ```html
- * <img srcset="https://www.gravatar.com/avatar/{{hash}} 2x"/>
+ * <img srcset="http://www.gravatar.com/avatar/{{hash}} 2x"/>
  * ```
  *
  * The correct way to write it:
  * ```html
- * <img ng-srcset="https://www.gravatar.com/avatar/{{hash}} 2x"/>
+ * <img ng-srcset="http://www.gravatar.com/avatar/{{hash}} 2x"/>
  * ```
  *
  * @element IMG
@@ -19479,7 +19479,7 @@ var inputType = {
            angular.module('urlExample', [])
              .controller('ExampleController', ['$scope', function($scope) {
                $scope.url = {
-                 text: 'https://google.com'
+                 text: 'http://google.com'
                };
              }]);
          </script>
@@ -19503,7 +19503,7 @@ var inputType = {
           var input = element(by.model('url.text'));
 
           it('should initialize to model', function() {
-            expect(text.getText()).toContain('https://google.com');
+            expect(text.getText()).toContain('http://google.com');
             expect(valid.getText()).toContain('true');
           });
 
@@ -19991,7 +19991,7 @@ function badInputChecker(scope, element, attr, ctrl) {
       var validity = element.prop(VALIDITY_STATE_PROPERTY) || {};
       // Detect bug in FF35 for input[email] (https://bugzilla.mozilla.org/show_bug.cgi?id=1064430):
       // - also sets validity.badInput (should only be validity.typeMismatch).
-      // - see https://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#e-mail-state-(type=email)
+      // - see http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#e-mail-state-(type=email)
       // - can ignore this case as we can still read out the erroneous email...
       return validity.badInput && !validity.typeMismatch ? undefined : value;
     });
@@ -22127,7 +22127,7 @@ var ngIfDirective = ['$animate', function($animate) {
  *
  * In addition, the browser's
  * [Same Origin Policy](https://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest)
- * and [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/)
+ * and [Cross-Origin Resource Sharing (CORS)](http://www.w3.org/TR/cors/)
  * policy may further restrict whether the template is successfully loaded.
  * For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`
  * access on some browsers.
@@ -23974,12 +23974,12 @@ var ngNonBindableDirective = ngDirective({ terminal: true, priority: 1000 });
  * These rules are bundled with angular.js, but can be overridden
  * (see {@link guide/i18n Angular i18n} dev guide). You configure ngPluralize directive
  * by specifying the mappings between
- * [plural categories](https://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html)
+ * [plural categories](http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html)
  * and the strings to be displayed.
  *
  * # Plural categories and explicit number rules
  * There are two
- * [plural categories](https://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html)
+ * [plural categories](http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html)
  * in Angular's default en-US locale: "one" and "other".
  *
  * While a plural category may match many numbers (for example, in en-US locale, "other" can match
@@ -24230,7 +24230,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', function($locale, $interp
  *
  * If this is not desired, the recommended workaround is to convert your object into an array
  * that is sorted into the order that you prefer before providing it to `ngRepeat`.  You could
- * do this with a filter such as [toArrayFilter](https://ngmodules.org/modules/angular-toArrayFilter)
+ * do this with a filter such as [toArrayFilter](http://ngmodules.org/modules/angular-toArrayFilter)
  * or implement a `$watch` on the object yourself.
  *
  * In version 1.4 we will remove the sorting, since it seems that browsers generally follow the
@@ -24680,7 +24680,7 @@ var ngRepeatDirective = ['$parse', '$animate', function($parse, $animate) {
               // new item which we don't know about
               $transclude(function ngRepeatTransclude(clone, scope) {
                 block.scope = scope;
-                // https://jsperf.com/clone-vs-createcomment
+                // http://jsperf.com/clone-vs-createcomment
                 var endNode = ngRepeatEndComment.cloneNode(false);
                 clone[clone.length++] = endNode;
 
@@ -25451,7 +25451,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  *
  * <div class="alert alert-warning">
  * **Note:** `ngModel` compares by reference, not value. This is important when binding to an
- * array of objects. See an example [in this jsfiddle](https://jsfiddle.net/qWzTb/).
+ * array of objects. See an example [in this jsfiddle](http://jsfiddle.net/qWzTb/).
  * </div>
  *
  * ## `select` **`as`**

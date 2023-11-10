@@ -12,7 +12,7 @@
     "zone",
     "tz"
   ],
-  "homepage": "https://momentjs.com/timezone/",
+  "homepage": "http://momentjs.com/timezone/",
   "license": "MIT",
   "support": {
     "issues": "https://github.com/moment/moment-timezone/issues",
@@ -22,7 +22,7 @@
     {
       "name": "Tim Wood",
       "email": "washwithcare@gmail.com",
-      "homepage": "https://timwoodcreates.com/"
+      "homepage": "http://timwoodcreates.com/"
     }
   ],
   "type": "component",

@@ -35,7 +35,7 @@ function init() {
         return L.popup().setContent(data.name);
     }
     
-    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18, attribution: '[insert correct attribution here!]' });
     
     var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});

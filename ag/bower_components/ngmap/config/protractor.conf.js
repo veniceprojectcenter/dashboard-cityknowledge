@@ -13,5 +13,5 @@ exports.config = {
     defaultTimeoutInterval: 10000
   },
 
-  baseUrl: 'https://localhost:8888'
+  baseUrl: 'http://localhost:8888'
 };

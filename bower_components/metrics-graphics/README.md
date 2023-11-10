@@ -1,10 +1,10 @@
 [![Build Status][travis-badge]][travis-badge-url] [![Code Climate][code-climate-badge]][code-climate-url]
 
-<a href="https://metricsgraphicsjs.org/"><img src="https://metricsgraphicsjs.org/images/logo.svg" hspace="0" vspace="0" width="400" height="63"></a>
+<a href="http://metricsgraphicsjs.org/"><img src="http://metricsgraphicsjs.org/images/logo.svg" hspace="0" vspace="0" width="400" height="63"></a>
 
 _MetricsGraphics.js_ is a library optimized for visualizing and laying out time-series data. At under 60KB (minified), it provides a simple way to produce common types of graphics in a principled and consistent way. The library currently supports line charts, scatterplots, histograms, bar charts and data tables, as well as features like rug plots and basic linear regression.
 
-A sample set of examples may be found on [the examples page](https://metricsgraphicsjs.org). The example below demonstrates how easy it is to produce a graphic. Our graphics function provides a robust layer of indirection, allowing one to more efficiently build, say, a dashboard of interactive graphics, each of which may be pulling data from a different data source. For the complete list of options, and for download instructions, [take a look at the sections below](https://github.com/mozilla/metrics-graphics/wiki).
+A sample set of examples may be found on [the examples page](http://metricsgraphicsjs.org). The example below demonstrates how easy it is to produce a graphic. Our graphics function provides a robust layer of indirection, allowing one to more efficiently build, say, a dashboard of interactive graphics, each of which may be pulling data from a different data source. For the complete list of options, and for download instructions, [take a look at the sections below](https://github.com/mozilla/metrics-graphics/wiki).
 
 ```js
 MG.data_graphic({
@@ -25,7 +25,7 @@ The library is data-source agnostic. While it provides a number of convenience f
 
 Though originally envisioned for Mozilla Metrics dashboard projects, we are making this repository public for other to use, knowing full well that we are far from having this project in good-enough shape. Take a look at the issues to see the milestones and other upcoming work on this repository. We are currently using semantic versioning.
 
-<a href="https://metricsgraphicsjs.org">https://metricsgraphicsjs.org</a>
+<a href="http://metricsgraphicsjs.org">http://metricsgraphicsjs.org</a>
 
 ## Important changes in v2.0
 1. The library is now namespaced. ``data_graphic`` is now ``MG.data_graphic``, ``convert_dates`` is now ``MG.convert.date``, ``clone`` is now ``MG.clone``, ``button_layout`` is now ``MG.button_layout`` and ``data_table`` is now ``MG.data_table``. We added a new convenience function called ``MG.convert.number``.
@@ -37,10 +37,10 @@ Though originally envisioned for Mozilla Metrics dashboard projects, we are maki
 2. Follow the examples [here](https://github.com/mozilla/metrics-graphics/blob/master/examples/index.htm) and [here](https://github.com/mozilla/metrics-graphics/blob/master/examples/js/main.js) to see how graphics are laid out and built. The examples use json data from [examples/data](https://github.com/mozilla/metrics-graphics/blob/master/examples/data), though you may easily pull data from elsewhere.
 
 ## Dependencies
-The library depends on [D3](https://d3js.org) and [jQuery](https://jquery.com/). As of v2.2, if you do not wish to use jQuery, set [show_tooltips](https://github.com/mozilla/metrics-graphics/wiki/Graphic#show_tooltips) to false, either globally in ``metricsgraphics.js``, or within every ``MG.data_graphic`` call. Only tooltips and [buttons](https://github.com/mozilla/metrics-graphics/wiki/Button-Layout) depend on jQuery.
+The library depends on [D3](http://d3js.org) and [jQuery](http://jquery.com/). As of v2.2, if you do not wish to use jQuery, set [show_tooltips](https://github.com/mozilla/metrics-graphics/wiki/Graphic#show_tooltips) to false, either globally in ``metricsgraphics.js``, or within every ``MG.data_graphic`` call. Only tooltips and [buttons](https://github.com/mozilla/metrics-graphics/wiki/Button-Layout) depend on jQuery.
 
 ## Contributing
-If you would like to help extend MetricsGraphics.js or fix bugs, please [fork the library](https://github.com/mozilla/metrics-graphics) and install [Node.js](https://nodejs.org). Then, from the project's root directory install [gulp](https://gulpjs.com):
+If you would like to help extend MetricsGraphics.js or fix bugs, please [fork the library](https://github.com/mozilla/metrics-graphics) and install [Node.js](http://nodejs.org). Then, from the project's root directory install [gulp](http://gulpjs.com):
 
     install gulp
 
@@ -56,21 +56,21 @@ To run tests, type:
 
     gulp test
 
-To run the development server (accessible at https://localhost:4300):
+To run the development server (accessible at http://localhost:4300):
 
     gulp serve
 
 
 ## Resources
-* [Examples](https://metricsgraphicsjs.org/examples.htm)
-* [Interactive demo](https://metricsgraphicsjs.org/interactive-demo.htm)
+* [Examples](http://metricsgraphicsjs.org/examples.htm)
+* [Interactive demo](http://metricsgraphicsjs.org/interactive-demo.htm)
 * [List of options](https://github.com/mozilla/metrics-graphics/wiki/List-of-Options)
 * [Convenience functions](https://github.com/mozilla/metrics-graphics/wiki/Convenience-Functions)
 * [Chart types](https://github.com/mozilla/metrics-graphics/wiki/Chart-Types)
 * [Building a button layout](https://github.com/mozilla/metrics-graphics/wiki/Button-Layout)
 
 ## Download package
-The download package includes everything that you see on [metricsgraphicsjs.org](https://metricsgraphicsjs.org). In order to use the library in your own project, the only files that you'll need are the ones under ``dist``. Remember to load ``D3`` and ``jQuery``. If you don't care about tooltips or the button layout, you won't need the latter. If your project uses Bootstrap, make sure you load MetricsGraphics.js after it.
+The download package includes everything that you see on [metricsgraphicsjs.org](http://metricsgraphicsjs.org). In order to use the library in your own project, the only files that you'll need are the ones under ``dist``. Remember to load ``D3`` and ``jQuery``. If you don't care about tooltips or the button layout, you won't need the latter. If your project uses Bootstrap, make sure you load MetricsGraphics.js after it.
 
 ## Frequently asked question
 __What does MetricsGraphics.js do that library x doesn't do?__
@@ -79,7 +79,7 @@ If library x works for you, you should keep using it. We're not aiming to be com
 
 ## License
 
-The __MetricsGraphics.js__ code is shared under the terms of the [Mozilla Public License v2.0](https://www.mozilla.org/MPL/2.0/). See the `LICENSE` file at the root of the repository. The current logo is courtesy of [Font Awesome](https://fortawesome.github.io/Font-Awesome/).
+The __MetricsGraphics.js__ code is shared under the terms of the [Mozilla Public License v2.0](http://www.mozilla.org/MPL/2.0/). See the `LICENSE` file at the root of the repository. The current logo is courtesy of [Font Awesome](http://fortawesome.github.io/Font-Awesome/).
 
 
 [travis-badge]: https://travis-ci.org/mozilla/metrics-graphics.svg?branch=master

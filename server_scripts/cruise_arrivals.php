@@ -6,7 +6,7 @@
 
   $month = date('F');
   $year = date('Y');
-  $url = 'https://ports.cruisett.com/schedule/Italy/733-Venice/' . $month . '_' . $year;
+  $url = 'http://ports.cruisett.com/schedule/Italy/733-Venice/' . $month . '_' . $year;
   $html = file_get_html($url);
   $row_num = 0;
   foreach ($html->find('table', 2)->find('tr') as $row) {

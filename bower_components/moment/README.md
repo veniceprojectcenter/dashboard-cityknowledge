@@ -2,7 +2,7 @@
 
 A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
 
-## [Documentation](https://momentjs.com/docs/)
+## [Documentation](http://momentjs.com/docs/)
 
 ## Upgrading to 2.0.0
 
@@ -28,12 +28,12 @@ There are a number of small backwards incompatible changes with version 2.0.0. [
 
 Moment.js is freely distributable under the terms of the [MIT license](https://github.com/moment/moment/blob/develop/LICENSE).
 
-[license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
 
 [npm-url]: https://npmjs.org/package/moment
-[npm-version-image]: https://img.shields.io/npm/v/moment.svg?style=flat
-[npm-downloads-image]: https://img.shields.io/npm/dm/moment.svg?style=flat
+[npm-version-image]: http://img.shields.io/npm/v/moment.svg?style=flat
+[npm-downloads-image]: http://img.shields.io/npm/dm/moment.svg?style=flat
 
-[travis-url]: https://travis-ci.org/moment/moment
-[travis-image]: https://img.shields.io/travis/moment/moment/develop.svg?style=flat
+[travis-url]: http://travis-ci.org/moment/moment
+[travis-image]: http://img.shields.io/travis/moment/moment/develop.svg?style=flat

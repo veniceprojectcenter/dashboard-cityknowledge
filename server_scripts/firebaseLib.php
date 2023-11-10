@@ -53,7 +53,7 @@ class Firebase
     }
 
     /**
-     * Sets Base URI, ex: https://yourcompany.firebase.com/youruser
+     * Sets Base URI, ex: http://yourcompany.firebase.com/youruser
      *
      * @param String $baseURI Base URI
      *
