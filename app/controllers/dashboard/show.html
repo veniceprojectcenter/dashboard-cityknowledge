@@ -3,13 +3,13 @@
 <div class='dashboard'>
   <div class='modals'>
     <ng-include src="'app/views/loading.html'"></ng-include>
-    
+
     <ng-include src="'app/views/login.html'"></ng-include>
     <ng-include src="'app/views/register.html'"></ng-include>
-    
+
     <ng-include src="'app/views/dashboard_help.html'"></ng-include>
     <ng-include src="'app/views/dashboard_settings.html'"></ng-include>
-    
+
     <ng-include src="'app/views/widget_add.html'"></ng-include>
     <ng-include src="'app/views/widget_config.html'"></ng-include>
     <ng-include src="'app/views/widget_help.html'"></ng-include>
@@ -37,7 +37,7 @@
           size-x="{{widget.width}}"          size-y="{{widget.height}}"
           ng-if="widget.id" ng-repeat="widget in widgetsInUse track by $index  "
           data-id='{{widget.id}}' data-fb_id='{{widget.fb_id}}'>
-          
+
           <div class="widget-heading">
             {{widget.title}}
             <span ng-show='widget.urlTitle'>
@@ -74,9 +74,9 @@
               </li>
             </ul>
           </div>
-        
-          
-          <div> 
+
+
+          <div>
             <ng-include src="widgetPartial(widget)"></ng-include>
           </div>
         </li>

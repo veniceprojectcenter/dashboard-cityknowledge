@@ -1,12 +1,12 @@
 placeDash.factory('placeService', [
            '$firebase', '$firebaseAuth', '$sce', '$routeParams', '$location', '$timeout', '$interval',
   function ($firebase ,  $firebaseAuth ,  $sce ,  $routeParams ,  $location ,  $timeout ,  $interval) {
-    
+
   var result = {};
   result.checkUser = function(my_scope) {
     my_scope.loggedIn = false;
     my_scope.user = { email: '', password: '', passwordconfirm: '', uid: 99 };
-    $timeout(function(){ 
+    $timeout(function(){
       var authData = ckconfig.dbs_fb.getAuth();
       if (authData) {
         console.log("Auth Data:", authData);
@@ -21,7 +21,7 @@ placeDash.factory('placeService', [
   result.loginUser = function(my_scope) {
     if (('' + my_scope.user.email   ).length < 4) { alert('Specify an E-Mail' ); return false; }
     if (('' + my_scope.user.password).length < 6) { alert('Password too short'); return false; }
-    
+
     $('div.modal.login button.login-btn').attr("disabled", "disabled");
     ckconfig.dbs_fb.authWithPassword({
       email    : my_scope.user.email,

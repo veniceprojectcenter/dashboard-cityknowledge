@@ -3,11 +3,11 @@
 placeDash.controller('DashboardShowController', [
            '$scope', '$firebase', '$firebaseAuth', '$sce', '$routeParams', '$location', '$interval', '$timeout', 'placeService',
   function ($scope ,  $firebase ,  $firebaseAuth ,  $sce ,  $routeParams ,  $location ,  $interval ,  $timeout ,  placeService) {
-  
+
   // LOADING STATUS
   document.title = 'Loading Dashboard';
   $timeout(function(){ $('div.modal.loading').modal('show'); }, 250);
-  
+
   // https://github.com/ManifestWebDesign/angular-gridster
   // http://stackoverflow.com/questions/27429388/move-gridster-widgets-programmatically
   $scope.grid_size = 195;
@@ -32,7 +32,7 @@ placeDash.controller('DashboardShowController', [
         $timeout(function(){
           $scope.save_gridster_positions();
         }, 250);
-        
+
       }
     }
   };
@@ -41,7 +41,7 @@ placeDash.controller('DashboardShowController', [
     // console.log("vediamo...");
     $(".gridster ul li").each(function(i, item){
       // console.log("test su ", e);
-      var e = $(item), pos = e.position();      
+      var e = $(item), pos = e.position();
       pos.row = parseInt(pos.top  / $scope.grid_size);
       pos.col = parseInt(pos.left / $scope.grid_size);
       // console.log("posizione ", pos);
@@ -59,27 +59,27 @@ placeDash.controller('DashboardShowController', [
       }
     });
   }
-  
+
   // DEFAULT SETTINGS
   $scope.dashboardUrl = $routeParams.dashboard;
   var settingsRef = ckconfig.dbs_fb.child($scope.dashboardUrl);
   $scope.dashboardSettings = {timeZone: 0}
-  
+
   // USER STATUS
   $scope.isOwner  = false;
   placeService.checkUser($scope);
-  
+
   // CLOCK
   $interval(function() {
     $scope.clock = moment().utc().
       add($scope.dashboardSettings.timeZone, 'hours').
       format('ddd D MMM @ HH:mm:ss');
-      
+
      $scope.clockHourMinute = moment().utc().
       add($scope.dashboardSettings.timeZone, 'hours').
-      format('HHmm');    
-      
-      
+      format('HHmm');
+
+
   }, 1000);
 
 
@@ -87,7 +87,7 @@ placeDash.controller('DashboardShowController', [
   $scope.commonLog = function(log_string){
      console.log(log_string);
   };
-  
+
   // VENICE TIDE ANNOUCE
   ckconfig.dat_fb.child('current_tide_level/tide_level').on('value', function(myVal){
     if (myVal) {
@@ -95,7 +95,7 @@ placeDash.controller('DashboardShowController', [
       $scope.$apply();
     }
   });
-  
+
   // LOADING SETTINGS
   $scope.load_data_key = function(data_key, node_name){
     $scope["data_"+data_key] = $firebase(
@@ -108,24 +108,24 @@ placeDash.controller('DashboardShowController', [
       $scope.dashboardSettings = mySettings.val();
       $scope.widgetsInUse = [];
       for (var k in $scope.dashboardSettings.widgetsInUse) {
-        
+
          var w      = $scope.dashboardSettings.widgetsInUse[k];
          var w_cfg  = $scope.widgets_obj[$scope.dashboardSettings.widgetsInUse[k].id];
-        
+
         /*
         Questa funzione genera un errore di id duplicato
         var w = jQuery.extend(
-          $scope.widgets_obj[$scope.dashboardSettings.widgetsInUse[k].id], 
+          $scope.widgets_obj[$scope.dashboardSettings.widgetsInUse[k].id],
           $scope.dashboardSettings.widgetsInUse[k]
         );
         */
-   
+
         for(var i in w_cfg) {
             if (!w.hasOwnProperty(i))
                 w[i] = w_cfg[i];
         }
-         
-        
+
+
         if ($scope.dashboardSettings.widgetsInUse[k].data_bindings && !w.data_bindings) {
           w.data_bindings = $scope.dashboardSettings.widgetsInUse[k].data_bindings;
           for (var data_key in $scope.dashboardSettings.widgetsInUse[k].data_bindings) {
@@ -166,9 +166,9 @@ placeDash.controller('DashboardShowController', [
       return $location.path('/');
     }
     document.title = $scope.dashboardSettings.pageTitle;
-    
+
     $scope.checkOwner();
-    
+
     $('div.modal.loading').modal('hide');
     // ckconfig.wdg_fb.orderByChild('has_directive').equalTo(true).once('value', function(snap){
     //   var v = snap.val();
@@ -195,11 +195,11 @@ placeDash.controller('DashboardShowController', [
     // });
     $scope.reloadwidgets();
   });
-  
+
   // BIND FUNCTIONS
   $scope.htmlSafe = $sce.trustAsHtml;
   $scope.trustSrc = $sce.trustAsResourceUrl;
-  
+
   // GESTIONE LOGIN
   $scope.loginUser = function() {
     return placeService.loginUser($scope);
@@ -220,13 +220,13 @@ placeDash.controller('DashboardShowController', [
   $scope.$watch('loggedIn', function() {
     $scope.checkOwner();
   });
-  
+
   // FUNZIONI VARIE
   $scope.widgetContent = function(widget) {
     alert("unused?");
     // return widget.contentHTML;
   };
-  $scope.widgetPartial = function(widget) { 
+  $scope.widgetPartial = function(widget) {
     return ('widgets/'+widget.id+'/widget.html');
   };
   $scope.widgetSettingPartial = function(widget) {
@@ -272,7 +272,7 @@ placeDash.controller('DashboardShowController', [
   };
   $scope.addSelectedWidget = function() {
     var widget_id = $('div.modal.add-widget form select').val();
-    var widget = jQuery.extend({}, 
+    var widget = jQuery.extend({},
       $.grep($scope.widgets, function(e){ return e.id == widget_id; })[0]
     );
     delete widget['$id'];
@@ -360,7 +360,7 @@ placeDash.controller('DashboardShowController', [
   };
   $scope.showWidgetLogs = function(widget) {
     $('.widget-logs-' + widget.id).modal('show');
-    
+
     // alert('CARICO '+ ckconfig.log_url + '---' + widget.log_key);
     ckconfig.log_fb.child(widget.log_key).once('value', function(myData){
       // alert('CARICATI '+widget.log_key);
