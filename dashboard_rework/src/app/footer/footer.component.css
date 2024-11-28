@@ -1,0 +1,13 @@
+.footer-content {
+  position: fixed; /* Posiziona il footer in modo fisso */
+  bottom: 0; /* Attacca il footer al fondo della finestra */
+  left: 0; /* Allinea il footer a sinistra */
+  right: 0; /* Allinea il footer a destra */
+  background-color: #f8f9fa; /* Colore di sfondo del footer */
+  padding: 10px 0; /* Padding per il footer */
+  z-index: 1000; /* Assicura che il footer sia sopra altri contenuti */
+}
+
+.logos img {
+  margin: 0 10px; /* Margine orizzontale tra i loghi */
+}
