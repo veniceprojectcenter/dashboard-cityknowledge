@@ -77,4 +77,35 @@ placeDash.factory('placeService', [
   };
 
   return result;
+}]);placeDash.factory('placeService', ['$firebaseAuth', function($firebaseAuth) {
+    const auth = $firebaseAuth();
+
+    return {
+        check:User  function(my_scope) {
+            auth.$onAuthStateChanged(function(user) {
+                if (user) {
+                    my_scope.loggedIn = true;
+                    my_scope.user.uid = user.uid;
+                    my_scope.user.email = user.email;
+                } else {
+                    my_scope.loggedIn = false;
+                    my_scope.user.uid = null;
+                    my_scope.user.email = null;
+                }
+                my_scope.$apply();
+            });
+        },
+
+        login:User  function(my_scope) {
+            // Logica di login...
+        },
+
+        logout:User  function(my_scope) {
+            // Logica di logout...
+        },
+
+        register:User  function(my_scope) {
+            // Logica di registrazione...
+        }
+    };
 }]);

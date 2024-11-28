@@ -6,7 +6,7 @@
         <h4 class="modal-title">Login to Your Dashboard</h4>
       </div>
       <div class="modal-body">
-        <div class="modal-message"></div>
+        <div class="modal-message" ng-bind="errorMessage"></div> <!-- Error message display -->
         <form class="form-horizontal" role="form">
           <div class="col-sm-1"></div>
           <div class="form-group">
@@ -22,20 +22,10 @@
               <input type="password" class="form-control" placeholder="Password" ng-model='user.password' />
             </div>
           </div>
-          <!-- div class="col-sm-1"></div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-7">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" /> Remember me
-                </label>
-              </div>
-            </div>
-          </div -->
           <div class="col-sm-1"></div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-7">
-              <button type='button' class="btn btn-primary login-btn" ng-click='loginUser()'>Login</button>
+              <button type='button' class="btn btn-primary login-btn" ng-click='loginUser ()'>Login</button>
             </div>
           </div>
         </form>
