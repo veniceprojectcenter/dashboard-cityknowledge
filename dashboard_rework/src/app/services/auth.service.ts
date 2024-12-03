@@ -1,8 +1,9 @@
-import { Injectable, inject, signal } from '@angular/core';
-import { Auth, user } from '@angular/fire/auth';
-import { Observable, from, throwError } from 'rxjs';
+import { Injectable, inject, signal, Inject, PLATFORM_ID } from '@angular/core';
+import {Auth, user, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail} from '@angular/fire/auth';
+import { Observable, from, throwError, catchError } from 'rxjs';
 import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { UserInterface } from '../interfaces/user-interface';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +11,16 @@ import { UserInterface } from '../interfaces/user-interface';
 export class AuthService {
   private firebaseAuth = inject(Auth);
   user$ = user(this.firebaseAuth);
-  currentUserSig = signal<UserInterface | null>(null); // Inizializza come null
+  currentUserSig = signal<UserInterface | null>(null); // Initialize as null
 
-  constructor() {
-    // Controlla se l'utente è autenticato all'avvio
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    // Check if the user is authenticated on startup
     this.user$.subscribe((user: UserInterface) => {
       if (user) {
         this.currentUserSig.set({
           uid: user.uid,
           email: user.email || '',
-          username: user.username || ''
+          username: user.username|| '' // Use displayName instead of username
         });
       } else {
         this.currentUserSig.set(null);
@@ -28,7 +29,7 @@ export class AuthService {
   }
 
   register(email: string, username: string, password: string): Observable<void> {
-    // Controlli sulla lunghezza dell'email e della password
+    // Validate email and password length
     if (email.length < 4) {
       return throwError(() => new Error('Specify a valid E-Mail'));
     }
@@ -45,7 +46,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<void> {
-    // Controlli sulla lunghezza dell'email e della password
+    // Validate email and password length
     if (email.length < 4) {
       return throwError(() => new Error('Specify a valid E-Mail'));
     }
@@ -59,12 +60,63 @@ export class AuthService {
     return from(promise);
   }
 
+  loginWithGoogle(): Observable<void> {
+    if (isPlatformBrowser(this.platformId)) {
+      const provider = new GoogleAuthProvider();
+
+      // Restituisci un Observable dalla promessa
+      return from(signInWithPopup(this.firebaseAuth, provider).then((result) => {
+        const user = result.user;
+
+        // Aggiorna il profilo dell'utente
+        return updateProfile(user, {displayName: user.displayName || 'Utente'})
+          .then(() => {
+            // Imposta le informazioni dell'utente nel tuo sistema
+            this.currentUserSig.set({
+              uid: user.uid,
+              email: user.email || '',
+              username: user.displayName || ''
+            });
+          });
+      })).pipe(
+        catchError((error) => {
+          console.error('Error during Google login:', error);
+          return throwError(() => new Error('Error during Google login.'));
+        })
+      );
+    } else {
+      return throwError(() => new Error('Google login is not supported in this environment.'));
+    }
+  }
+
+
+  resetPassword(email: string): Observable<void> {
+    if (email.length < 4) {
+      return throwError(() => new Error('Specify a valid E-Mail'));
+    }
+
+    // Crea una promessa per inviare l'email di reset della password
+    const promise = sendPasswordResetEmail(this.firebaseAuth, email)
+      .then(() => {
+        console.log('Password reset email sent successfully.');
+      });
+
+    // Restituisci l'Observable dalla promessa
+    return from(promise).pipe(
+      // Gestisci gli errori qui
+      catchError((error) => {
+        console.error('Error sending password reset email:', error);
+        return throwError(() => new Error('Error sending password reset email.'));
+      })
+    );
+  }
+
   logout(): Observable<void> {
     const promise = signOut(this.firebaseAuth);
     return from(promise);
   }
 
-  // Metodo per controllare se l'utente è autenticato
+  // Method to check if the user is authenticated
   isLoggedIn(): boolean {
     return this.currentUserSig() != null;
   }

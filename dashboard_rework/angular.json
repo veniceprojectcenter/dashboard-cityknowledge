@@ -23,7 +23,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public/assets"
+                "input": "public"
               }
             ],
             "styles": [
@@ -55,7 +55,7 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -86,7 +86,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public/assets"
               }
             ],
             "styles": [

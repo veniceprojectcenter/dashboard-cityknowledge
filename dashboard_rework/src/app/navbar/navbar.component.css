@@ -18,3 +18,7 @@ navbar {
 .nav-link {
   padding: 1rem 1.5rem; /* Aumenta il padding delle voci di navigazione */
 }
+
+.email {
+  color:white;
+}
