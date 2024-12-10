@@ -2,7 +2,7 @@ import { Injectable, inject, signal, Inject, PLATFORM_ID } from '@angular/core';
 import {Auth, user, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail} from '@angular/fire/auth';
 import { Observable, from, throwError, catchError } from 'rxjs';
 import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { UserInterface } from '../interfaces/user-interface';
+import { UserInterface } from '../../interfaces/user-interface';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -60,35 +60,27 @@ export class AuthService {
     return from(promise);
   }
 
-  loginWithGoogle(): Observable<void> {
-    if (isPlatformBrowser(this.platformId)) {
-      const provider = new GoogleAuthProvider();
+  async loginWithGoogle(): Promise<void> {
+    if (!isPlatformBrowser(this.platformId)) {
+      throw new Error('Google login is not supported in this environment.');
+    }
 
-      // Restituisci un Observable dalla promessa
-      return from(signInWithPopup(this.firebaseAuth, provider).then((result) => {
-        const user = result.user;
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(this.firebaseAuth, provider);
+      const user = result.user;
 
-        // Aggiorna il profilo dell'utente
-        return updateProfile(user, {displayName: user.displayName || 'Utente'})
-          .then(() => {
-            // Imposta le informazioni dell'utente nel tuo sistema
-            this.currentUserSig.set({
-              uid: user.uid,
-              email: user.email || '',
-              username: user.displayName || ''
-            });
-          });
-      })).pipe(
-        catchError((error) => {
-          console.error('Error during Google login:', error);
-          return throwError(() => new Error('Error during Google login.'));
-        })
-      );
-    } else {
-      return throwError(() => new Error('Google login is not supported in this environment.'));
+      await updateProfile(user, { displayName: user.displayName || 'Utente' });
+      this.currentUserSig.set({
+        uid: user.uid,
+        email: user.email || '',
+        username: user.displayName || ''
+      });
+    } catch (error) {
+      console.error('Error during Google login:', error);
+      throw new Error('Error during Google login.');
     }
   }
-
 
   resetPassword(email: string): Observable<void> {
     if (email.length < 4) {

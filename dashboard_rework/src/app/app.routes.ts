@@ -1,25 +1,22 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component'; // Adjust the path as necessary
-import { RegisterComponent } from './register/register.component'; // Adjust the path as necessary
-import {HomeComponent} from './home/home.component';
-import {LoginComponent} from './login/login.component';
 
+// Use dynamic imports to enable lazy loading
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent // Directly reference the AppComponent (or you might want to redirect)
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent // Directly reference the DashboardComponent
+    path: 'dashboard/:name',
+    loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
   {
     path: 'register',
-    component: RegisterComponent // Directly reference the RegisterComponent
+    loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent)
   },
   {
     path: 'home',
-    component: HomeComponent // Directly reference the AppComponent (or you might want to redirect)
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

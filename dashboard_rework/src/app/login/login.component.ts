@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service'; // Assicurati di avere il tuo servizio di autenticazione
-import {Router, RouterLink} from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup;
   showModal: boolean = false; // Variabile per controllare la visualizzazione del modal
   confirmationMessage: string | null = null; // Messaggio di errore
@@ -29,11 +29,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // Qualsiasi logica di inizializzazione può andare qui
-  }
-
-  onLogin(): void {
+  async onLogin(): Promise<void> {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
 
@@ -50,17 +46,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onLoginWithGoogle(): void {
-    this.authService.loginWithGoogle().subscribe({
-      next: () => {
-        // Reindirizza l'utente dopo un login riuscito
-        this.router.navigate(['/home']); // Cambia il percorso in base alla tua applicazione
-      },
-      error: (err) => {
-        console.error('Google login failed', err);
-        this.handleError(err.code); // Gestisci l'errore
-      }
-    });
+  async onLoginWithGoogle(): Promise<void> {
+    try {
+      await this.authService.loginWithGoogle(); // No need for toPromise() if it returns a Promise
+      // Reindirizza l'utente dopo un login riuscito
+      this.router.navigate(['/home']); // Cambia il percorso in base alla tua applicazione
+    } catch (err: any) { // Explicitly typing err as any
+      console.error('Google login failed', err);
+      this.handleError(err.code); // Gestisci l'errore
+    }
   }
 
   handleError(errorCode: string) {

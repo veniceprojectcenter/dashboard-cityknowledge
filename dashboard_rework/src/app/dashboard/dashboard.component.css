@@ -1,0 +1,100 @@
+@import "gridstack/dist/gridstack.min.css";
+@import "gridstack/dist/gridstack-extra.min.css";
+.dashboard-container {
+  display: flex;
+  height: 100vh; /* Imposta l'altezza della dashboard */
+  font-family: 'Arial', sans-serif; /* Font generale */
+  padding-bottom: 20px; /* Aggiungi padding dal basso */
+}
+
+/* Navbar a sinistra */
+.navbarDashboard {
+  width: 250px; /* Larghezza della navbar */
+  background-color: #2c3e50; /* Colore di sfondo della navbar */
+  color: #ecf0f1; /* Colore del testo nella navbar */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Ombra per la navbar */
+  display: flex;
+  flex-direction: column; /* Disposizione verticale del contenuto */
+  justify-content: center; /* Centra verticalmente il contenuto */
+  align-items: center; /* Centra orizzontalmente il contenuto */
+  height: 94.5%; /* Assicurati che la navbar occupi tutta l'altezza disponibile */
+  font-size: 1.2em;
+  padding-bottom: 20px; /* Aggiungi padding dal basso */
+}
+
+.help-icon {
+  display: inline-block; /* Assicura che l'elemento sia trattato come un blocco inline */
+  width: 20px; /* Imposta la larghezza desiderata */
+  height: 20px; /* Imposta l'altezza desiderata */
+}
+
+.help-icon img {
+  width: 100%; /* Rende l'immagine responsiva all'interno del contenitore */
+  height: auto; /* Mantiene le proporzioni dell'immagine */
+}
+
+/* Contenuto della navbar */
+.navbar-content {
+  text-align: center; /* Centra il testo all'interno del contenuto della navbar */
+  width: 100%; /* Assicurati che il contenuto occupi tutta la larghezza */
+}
+
+.navbarDashboard h1 {
+  font-size: 2em; /* Aumenta la dimensione del carattere */
+  margin: 20px 0; /* Margine sopra e sotto */
+}
+
+.coords {
+  font-size: 1.2em;
+  margin: 10px 0; /* Margine per separare le coordinate */
+}
+
+/* Contenitore della Gridstack */
+.gridstack-container {
+  flex-grow: 1; /* Permette alla Gridstack di occupare lo spazio rimanente */
+  padding: 20px; /* Padding per separare i widget dai bordi */
+  overflow: auto; /* Permette lo scorrimento se necessario */
+  display: flex; /* Aggiungi display flex */
+  margin-bottom: 20px; /* Aggiungi margine dal basso */
+}
+
+
+
+/* Gridstack */
+.grid-stack {
+  flex-grow: 1; /* Permette alla Gridstack di occupare tutto lo spazio disponibile */
+  background: cadetblue ; /* Colore di sfondo del gridstack */
+}
+
+
+.grid-stack-item-content {
+  text-align: center;
+  background-color: darkslategrey; /* Colore di sfondo dei widget */
+  color: #ffffff; /* Colore del testo nei widget */
+  padding: 20px; /* Padding interno per il contenuto del widget */
+  border-radius: 8px; /* Angoli arrotondati per il contenuto del widget */
+}
+
+.help-doc-modal {
+  position: fixed; /* Posiziona il modal in modo fisso */
+  top: 0; /* Allinea in alto */
+  left: 0; /* Allinea a sinistra */
+  width: 100%; /* Larghezza completa per l'overlay */
+  height: 100%; /* Altezza completa per l'overlay */
+  display: flex; /* Usa flexbox per centrare il contenuto */
+  justify-content: center; /* Centra orizzontalmente */
+  align-items: center; /* Centra verticalmente */
+  z-index: 1000; /* Assicurati che sia sopra altri contenuti */
+}
+
+.modal-content {
+  position: relative; /* Posiziona il contenuto del modal */
+  background-color: white; /* Sfondo bianco per il contenuto */
+  width: 70%; /* Larghezza del modal al 70% dello schermo */
+  max-height: 80%; /* Altezza massima del modal */
+  overflow: auto; /* Permette lo scorrimento se il contenuto è troppo grande */
+  padding: 20px; /* Padding interno */
+  border-radius: 8px; /* Angoli arrotondati */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra per il contenuto */
+  z-index: 1001; /* Sopra l'overlay */
+}

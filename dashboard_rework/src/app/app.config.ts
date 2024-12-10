@@ -7,6 +7,9 @@ import { provideClientHydration } from '@angular/platform-browser';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { getDatabase } from "firebase/database";
+import {provideDatabase} from '@angular/fire/database';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyC6NAfPU1NV6QJcqL4sg4VJGa9S7nVXP4Q",
@@ -27,6 +30,6 @@ export const appConfig: ApplicationConfig = {
 
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
-
+    provideDatabase(() => getDatabase()),
   ]
 };

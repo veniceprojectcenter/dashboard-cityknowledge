@@ -1,0 +1,10 @@
+export interface WidgetInterface {
+  id: string;
+  title: string;//widget title
+  contentHTML: string;//html code
+  height: number;
+  width: number;
+  helpDocUrl: string;//google help doc url
+  url: string; //source url
+  urlTitle: string; //url text
+}

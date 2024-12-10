@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -46,7 +46,7 @@ export class RegisterComponent {
   }
 
   onContinue() {
-    if(this.confirmationMessage === 'Registered successfully!') {
+    if (this.confirmationMessage === 'Registered successfully!') {
       this.router.navigate(['/home']); // Reindirizza alla home page
     } else {
       this.showModal = false;
@@ -55,22 +55,21 @@ export class RegisterComponent {
 
   closeModal() {
     this.showModal = false; // Chiudi la finestra di dialogo
-    if(this.confirmationMessage === 'Registered successfully!') {
+    if (this.confirmationMessage === 'Registered successfully!') {
       this.router.navigate(['/home']);
     }
   }
-  onLoginWithGoogle() {
-    this.authService.loginWithGoogle().subscribe({
-      next: () => {
-        this.router.navigate(['/home']); // Reindirizza alla home page
-        console.log("registration successfully!");
-        console.log(this.authService.currentUserSig());
-      },
-      error: (err) => {
-        console.error('Error during Login with Google:', err);
-        this.confirmationMessage = 'Login with Google failed. Please try again.'; // Messaggio di errore
-        this.showModal = true; // Mostra la finestra di dialogo in caso di errore
-      }
-    });
+
+  async onLoginWithGoogle() {
+    try {
+      await this.authService.loginWithGoogle(); // Aspetta il completamento del login
+      this.router.navigate(['/home']); // Reindirizza alla home page
+      console.log("Registration successfully!");
+      console.log(this.authService.currentUserSig());
+    } catch (err: any) { // Gestisci l'errore
+      console.error('Error during Login with Google:', err);
+      this.confirmationMessage = 'Login with Google failed. Please try again.'; // Messaggio di errore
+      this.showModal = true; // Mostra la finestra di dialogo in caso di errore
+    }
   }
 }
