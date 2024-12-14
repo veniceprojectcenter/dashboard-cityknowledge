@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Database, ref, set, onValue, get, child, Unsubscribe } from '@angular/fire/database';
+import {Database, ref, set, onValue, get, Unsubscribe, remove} from '@angular/fire/database';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { DashboardInterface } from '../../interfaces/dashboard-interface';
+import { Dashboard_interface } from '../../interfaces/dashboard_interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class DashboardService implements OnDestroy {
   constructor(private db: Database) {}
 
   // Function to filter and map the data
-  private filterAndMapData(data: any[]): DashboardInterface[] {
+  private filterAndMapData(data: any[]): Dashboard_interface[] {
     return data.map(item => ({
       name: item.name || '', // Default value
       helpDocUrl: item.helpDocUrl || '',
@@ -28,16 +28,16 @@ export class DashboardService implements OnDestroy {
   }
 
   // Fetch dashboards from the database
-  getDashboards(): Observable<DashboardInterface[]> {
+  getDashboards(): Observable<Dashboard_interface[]> {
     console.log('Fetching dashboards...');
 
     const dashboardsRef = ref(this.db, 'dashboards'); // Directly use db
     console.log('Listening for changes in dashboards at:', dashboardsRef.toString());
 
-    return new Observable<DashboardInterface[]>((observer) => {
+    return new Observable<Dashboard_interface[]>((observer) => {
       this.subscription = onValue(dashboardsRef, (snapshot) => {
         const data = snapshot.val();
-        const dashboards: DashboardInterface[] = data ? this.filterAndMapData(Object.values(data)) : [];
+        const dashboards: Dashboard_interface[] = data ? this.filterAndMapData(Object.values(data)) : [];
 
         console.log('Dashboards fetched from database:', dashboards);
         console.log('Data source: Database');
@@ -54,8 +54,8 @@ export class DashboardService implements OnDestroy {
   }
 
   // Add a new dashboard
-  async addDashboard(dashboard: DashboardInterface): Promise<void> {
-    const newDashboardRef = ref(this.db, `dashboards/${dashboard.pageTitle}`); // Ensure dashboard.pageTitle exists
+  async addDashboard(dashboard: Dashboard_interface): Promise<void> {
+    const newDashboardRef = ref(this.db, `dashboards/${dashboard.name}`); // Ensure dashboard.pageTitle exists
     console.log('Adding new dashboard:', dashboard);
 
     // Ensure coords is a tuple of two numbers
@@ -73,7 +73,7 @@ export class DashboardService implements OnDestroy {
   }
 
   // Fetch a specific dashboard by name
-  async getDashboardByName(name: string): Promise<DashboardInterface | null> {
+  async getDashboardByName(name: string): Promise<Dashboard_interface | null> {
     console.log('Fetching dashboard by name:', name);
     const dashboardsRef = ref(this.db, 'dashboards');
 
@@ -81,7 +81,7 @@ export class DashboardService implements OnDestroy {
       const snapshot = await get(dashboardsRef);
       if (snapshot.exists()) {
         const data = snapshot.val();
-        const dashboards: DashboardInterface[] = this.filterAndMapData(Object.values(data));
+        const dashboards: Dashboard_interface[] = this.filterAndMapData(Object.values(data));
 
         // Find the dashboard with the matching name
         const foundDashboard = dashboards.find(dashboard => dashboard.name === name);
@@ -95,6 +95,18 @@ export class DashboardService implements OnDestroy {
       return null; // Return null in case of error
     }
   }
+
+
+  async deleteDashboardByName(name: string): Promise<void> {
+    const dashboardRef = ref(this.db, `dashboards/${name}`);
+    try {
+      await remove(dashboardRef);
+      console.log(`Dashboard "${name}" deleted successfully.`);
+    } catch (error) {
+      console.error(`Error deleting dashboard "${name}":`, error);
+    }
+  }
+
 
   ngOnDestroy(): void {
     // Clean up the subscription if it exists

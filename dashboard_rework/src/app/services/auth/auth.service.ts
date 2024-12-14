@@ -2,7 +2,7 @@ import { Injectable, inject, signal, Inject, PLATFORM_ID } from '@angular/core';
 import {Auth, user, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail} from '@angular/fire/auth';
 import { Observable, from, throwError, catchError } from 'rxjs';
 import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { UserInterface } from '../../interfaces/user-interface';
+import { User_interface } from '../../interfaces/user_interface';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -11,11 +11,11 @@ import { isPlatformBrowser } from '@angular/common';
 export class AuthService {
   private firebaseAuth = inject(Auth);
   user$ = user(this.firebaseAuth);
-  currentUserSig = signal<UserInterface | null>(null); // Initialize as null
+  currentUserSig = signal<User_interface | null>(null); // Initialize as null
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     // Check if the user is authenticated on startup
-    this.user$.subscribe((user: UserInterface) => {
+    this.user$.subscribe((user: User_interface) => {
       if (user) {
         this.currentUserSig.set({
           uid: user.uid,

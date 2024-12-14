@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Database, ref, set, onValue, get } from '@angular/fire/database';
 import { Observable, of, forkJoin } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { WidgetInterface } from '../../interfaces/widget-interface'; // Ensure you import the interface
+import { Widget_interface } from '../../interfaces/widget_interface'; // Ensure you import the interface
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class WidgetService {
   constructor(private db: Database) {}
 
   // Function to filter and map the data
-  private filterAndMapData(data: any[]): WidgetInterface[] {
+  private filterAndMapData(data: any[]): Widget_interface[] {
     return data.map(item => ({
       id: item.id || '', // Default value
       title: item.title || '',
@@ -25,11 +25,11 @@ export class WidgetService {
   }
 
   // Fetch widget from the database under the widget node
-  getWidgets(): Observable<WidgetInterface[]> {
+  getWidgets(): Observable<Widget_interface[]> {
     const widgetsRef = ref(this.db, 'widgets'); // Path to widget
     console.log('Fetching widget from database...');
 
-    return new Observable<WidgetInterface[]>((observer) => {
+    return new Observable<Widget_interface[]>((observer) => {
       onValue(widgetsRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
@@ -52,7 +52,7 @@ export class WidgetService {
   }
 
   // Add a new widget under the widget node
-  addWidget(widget: WidgetInterface): Promise<void> {
+  addWidget(widget: Widget_interface): Promise<void> {
     const newWidgetRef = ref(this.db, `widgets/${widget.id}`); // Modify based on your data structure
     console.log('Adding new widget:', widget);
 
@@ -64,7 +64,7 @@ export class WidgetService {
   }
 
   // Fetch widget by an array of IDs
-  getWidgetsByIdsArray(ids: string[]): Observable<WidgetInterface[]> {
+  getWidgetsByIdsArray(ids: string[]): Observable<Widget_interface[]> {
     const widgetPromises = ids.map(id => {
       const widgetRef = ref(this.db, `widgets/${id}`);
       return get(widgetRef).then(snapshot => {
@@ -80,10 +80,10 @@ export class WidgetService {
       });
     });
 
-    return new Observable<WidgetInterface[]>((observer) => {
+    return new Observable<Widget_interface[]>((observer) => {
       forkJoin(widgetPromises).subscribe(widgets => {
         // Filter out null values (widget that were not found)
-        const filteredWidgets = widgets.filter(widget => widget !== null) as WidgetInterface[];
+        const filteredWidgets = widgets.filter(widget => widget !== null) as Widget_interface[];
         observer.next(filteredWidgets);
         observer.complete();
       });
