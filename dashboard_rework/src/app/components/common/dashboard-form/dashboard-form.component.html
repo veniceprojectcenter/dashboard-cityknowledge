@@ -17,17 +17,17 @@
       <form [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="dashboardName">Dashboard Name:</label>
-          <input type="text" id="dashboardName" formControlName="name" required>
+          <input type="text" id="dashboardName" formControlName="name"  [disabled]="input !== null" autocomplete="off" required>
         </div>
 
         <div class="form-group">
           <label for="pageTitle">pageTitle:</label>
-          <input type="text" id="pageTitle" formControlName="pageTitle" required>
+          <input type="text" id="pageTitle" formControlName="pageTitle" autocomplete="off" required>
         </div>
 
         <div class="form-group">
           <label for="helpDocUrl">Help Document URL:</label>
-          <input type="url" id="helpDocUrl" formControlName="helpDocUrl" required>
+          <input type="url" id="helpDocUrl" formControlName="helpDocUrl" autocomplete="off" required>
         </div>
 
 
@@ -40,12 +40,12 @@
       <form [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="helpDocHeight">Help Document Height (Min. 1):</label>
-          <input type="number" id="helpDocHeight" formControlName="helpDocHeight" required>
+          <input type="number" id="helpDocHeight" formControlName="helpDocHeight" autocomplete="off"  required>
         </div>
 
         <div class="form-group">
           <label for="helpDocWidth">Help Document Width (Min. 1):</label>
-          <input type="number" id="helpDocWidth" formControlName="helpDocWidth" required>
+          <input type="number" id="helpDocWidth" formControlName="helpDocWidth" autocomplete="off" required>
         </div>
 
         <button type="button" (click)="prevStep()">Previous</button>
@@ -58,12 +58,12 @@
       <form [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>Coordinates X:</label>
-          <input type="number" formControlName="coordX" placeholder="X Coordinate" required>
+          <input type="number" formControlName="coordX" placeholder="X Coordinate" autocomplete="off" required>
         </div>
 
         <div class="form-group">
           <label>Coordinate Y:</label>
-          <input type="number" formControlName="coordY" placeholder="Y Coordinate" required>
+          <input type="number" formControlName="coordY" placeholder="Y Coordinate" autocomplete="off" required>
         </div>
 
         <button type="button" (click)="prevStep()">Previous</button>

@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<div class="dashboard-container" *ngIf="!loadingDashboard">
   <nav class="navbarDashboard">
     <div class="current-time">
       {{ currentTime }} <!-- Mostra l'orario corrente -->
@@ -7,7 +7,7 @@
       <h1>{{ dashboard?.pageTitle }}</h1>
       <div class="coords">
         <span class="coordinates-label">Coordinates:</span>
-        <span class="coordinates-value">N {{ dashboard!.coords[0] }}, E {{ dashboard!.coords[1] }}</span>
+        <span class="coordinates-value">N {{ dashboard!.coords[0]  }}, E {{ dashboard!.coords[1]}}</span>
       </div>
       <button (click)="openHelpDoc()">
         <img src="/assets/img/question.png" alt="Help Icon" style="width: 24px; height: 24px;">

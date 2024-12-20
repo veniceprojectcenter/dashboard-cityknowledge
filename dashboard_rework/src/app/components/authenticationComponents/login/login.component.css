@@ -6,6 +6,7 @@
   border-radius: 8px; /* Aumentato il raggio per un aspetto più arrotondato */
   box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2); /* Ombra più intensa */
   background-color: #f9f9f9; /* Cambiato il colore di sfondo per differenziare */
+  margin-bottom: 10vh;
 }
 
 h2 {

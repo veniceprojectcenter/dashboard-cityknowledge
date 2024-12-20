@@ -21,7 +21,7 @@
           <a class="nav-link" routerLink="/dashboardList">Dashboard</a>
         </li>
         <li class="nav-item" *ngIf="authService.isLoggedIn()">
-          <a class="nav-link" >Widget</a>
+          <a class="nav-link" routerLink="/widgetList">Widget</a>
         </li>
         <li class="nav-item" *ngIf="authService.isLoggedIn()">
           <a class="nav-link" (click)="onLogout()">LogOut</a>

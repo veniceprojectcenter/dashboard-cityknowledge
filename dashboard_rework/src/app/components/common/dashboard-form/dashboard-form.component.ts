@@ -39,12 +39,16 @@ export class DashboardFormComponent implements OnInit {
     this.dashboardForm = this.fb.group({
       name: ['', Validators.required],
       pageTitle: ['', Validators.required],
-      helpDocUrl: ['', [Validators.required, Validators.pattern('^(https?:\\/\\/)?' +
-        '((([a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\\.)+[a-z]{2,}|' +
-        'localhost|' +
-        '\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|' +
-        '\\[?[a-f0-9]*:[a-f0-9:%.~]*\\]?)' +
-        '(\\:\\d+)?(\\/[-a-z0-9+&@#/%=~_|$?!:.]*[a-z0-9+&@#/%=~_|$])?$')]],
+      helpDocUrl: ['', [Validators.required, Validators.pattern(
+        `^(https?:\\/\\/)?` + // Schema (opzionale)
+        `((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|` + // Nome dominio
+        `(localhost)|` + // Localhost
+        `((\\d{1,3}\\.){3}\\d{1,3})|` + // IPv4
+        `(\\[[a-fA-F0-9:.]+\\])` + // IPv6
+        `)(:\\d+)?(\\/[-a-zA-Z0-9@:%._\\+~#=]*)*` + // Porta e percorso (opzionali)
+        `(\\?[;&a-zA-Z0-9%._\\+~#=]*)?` + // Query string (opzionale)
+        `(\\#[-a-zA-Z0-9@:%._\\+~#=]*)?$` // Frammento (opzionale)
+      )]],
       helpDocHeight: [1, [Validators.required, Validators.min(1)]],
       helpDocWidth: [1, [Validators.required, Validators.min(1)]],
       coordX: [0, [Validators.required]],
@@ -57,6 +61,7 @@ export class DashboardFormComponent implements OnInit {
     console.log('DashboardFormComponent initialized with input:', this.input);
 
     if (this.input) {
+      this.dashboardForm.get('name')?.disable();
       this.loadDashboardData(this.input);
     }
   }
@@ -102,6 +107,7 @@ export class DashboardFormComponent implements OnInit {
   async onSubmit(): Promise<void> {
     if (this.dashboardForm.valid && this.selectedWidgetIds.length > 0) {
       const formValues = this.dashboardForm.value;
+      const dashrawname = this.dashboardForm.getRawValue().name;
 
       // Check if the dashboard already exists
       const existingDashboard = await this._dashboardService.getDashboardByName(formValues.name);
@@ -113,7 +119,7 @@ export class DashboardFormComponent implements OnInit {
       } else {
         // If the dashboard does not exist, create a new one
         this.dashboardData = {
-          name: formValues.name,
+          name: dashrawname,
           helpDocUrl: formValues.helpDocUrl,
           helpDocWidth: formValues.helpDocWidth,
           helpDocHeight: formValues.helpDocHeight,

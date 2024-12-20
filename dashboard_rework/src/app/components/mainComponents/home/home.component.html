@@ -19,7 +19,7 @@
     <div class="scrollable-list" *ngIf="!loadingWidgets && !errorWidgets">
       <ul>
         <li *ngFor="let widget of widgets$ | async">
-          <a [routerLink]="['/widget', widget.id]">{{ widget.title }}</a>
+          <a [routerLink]="['/widget', widget.id]" [queryParams]="{ isEditable: 'false' }">{{ widget.title }}</a>
         </li>
       </ul>
     </div>

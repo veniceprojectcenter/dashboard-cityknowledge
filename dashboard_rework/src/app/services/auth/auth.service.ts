@@ -70,7 +70,7 @@ export class AuthService {
       const result = await signInWithPopup(this.firebaseAuth, provider);
       const user = result.user;
 
-      await updateProfile(user, { displayName: user.displayName || 'Utente' });
+      await updateProfile(user, { displayName: user.displayName || 'User' });
       this.currentUserSig.set({
         uid: user.uid,
         email: user.email || '',
@@ -83,22 +83,19 @@ export class AuthService {
   }
 
   resetPassword(email: string): Observable<void> {
-    if (email.length < 4) {
+    if (email.trim().length < 4) {
       return throwError(() => new Error('Specify a valid E-Mail'));
     }
 
-    // Crea una promessa per inviare l'email di reset della password
     const promise = sendPasswordResetEmail(this.firebaseAuth, email)
       .then(() => {
         console.log('Password reset email sent successfully.');
       });
 
-    // Restituisci l'Observable dalla promessa
     return from(promise).pipe(
-      // Gestisci gli errori qui
       catchError((error) => {
         console.error('Error sending password reset email:', error);
-        return throwError(() => new Error('Error sending password reset email.'));
+        return throwError(() => error); // Propagate the error
       })
     );
   }

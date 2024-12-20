@@ -69,19 +69,23 @@
   background: cadetblue; /* Colore di sfondo del gridstack */
 }
 
-.grid-stack-item-content {
-  text-align: center;
-  background-color: darkslategrey; /* Colore di sfondo dei widget */
-  color: #ffffff; /* Colore del testo nei widget */
-  padding: 20px; /* Padding interno per il contenuto del widget */
-  border-radius: 8px; /* Angoli arrotondati per il contenuto del widget */
+/* dashboard.component.css */
+.grid-stack-item-content { /* Colore di sfondo personalizzato */
+  border: 1px solid #ccc; /* Bordo */
+  border-radius: 5px; /* Angoli arrotondati */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra */
 }
+
+
 
 .help-doc-modal {
   position: fixed; /* Posiziona il modal in modo fisso */
   top: 0; /* Allinea in alto */
   left: 0; /* Allinea a sinistra */
-  width: 100%; /* Larghezza completa per l'overlay */
+  width: 100%; /* Larghezza completaa per l'overlay */
   height: 100%; /* Altezza completa per l'overlay */
   display: flex; /* Usa flexbox per centrare il contenuto */
   justify-content: center; /* Centra orizzontalmente */

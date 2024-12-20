@@ -1,6 +1,6 @@
-import { Component, OnInit, NgZone, ViewEncapsulation, ViewChild } from '@angular/core';
+import {Component, OnInit, NgZone, ViewEncapsulation, ViewChild, OnDestroy,Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DashboardService } from '../../../services/dashboard/dashboard.service';
 import { WidgetService } from '../../../services/widget/widget.service';
 import { Dashboard_interface } from '../../../interfaces/dashboard_interface';
@@ -8,6 +8,7 @@ import { Widget_interface } from '../../../interfaces/widget_interface';
 import { GridstackModule, NgGridStackOptions, GridstackComponent } from 'gridstack/dist/angular';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MenuDashboardComponent } from '../../common/menu_dashboard/menu-dashboard.component';
+import { HtmlcontextService } from '../../../services/htmlcontent/htmlcontext.service'; // Importa il servizio
 
 @Component({
   selector: 'app-dashboard',
@@ -17,12 +18,18 @@ import { MenuDashboardComponent } from '../../common/menu_dashboard/menu-dashboa
   styleUrls: ['./dashboard.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   public gridOptions: NgGridStackOptions = {
-    margin: 30,
-    minRow: 1,
-    children: []
+    margin: 10, // Margine tra i widget
+    cellHeight: 'auto', // Altezza automatica delle celle
+    animate: true, // Abilita animazioni durante i movimenti
+    float: true, // Permetti il posizionamento automatico
+    minRow: 1, // Numero minimo di righe nella griglia
+    resizable: {
+      handles: 'all', // Abilita il ridimensionamento
+    },
   };
+
 
   @ViewChild(GridstackComponent) gridstackComponent!: GridstackComponent; // Reference to the grid
 
@@ -40,31 +47,45 @@ export class DashboardComponent implements OnInit {
   currentTime: string = '';
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private dashboardService: DashboardService,
     private widgetService: WidgetService,
     private route: ActivatedRoute,
     private ngZone: NgZone,
-    private sanitizer: DomSanitizer // Inietta DomSanitizer
+    private sanitizer: DomSanitizer, // Inietta DomSanitizer
+    private htmlcontextService: HtmlcontextService // Inietta il servizio di decrittazione
   ) {}
 
   ngOnInit(): void {
-    // Recupera il parametro isEditable dalla query string
     this.route.queryParams.subscribe(params => {
-      this.isEditable = params['isEditable'] === 'true'; // Converti la stringa in booleano
-      console.log('isEditable:', this.isEditable); // Log per verificare il valore
+      this.isEditable = params['isEditable'] === 'true';
+      console.log('isEditable:', this.isEditable);
     });
 
-    // Recupera il nome del dashboard dai parametri della route
     this.route.paramMap.subscribe(params => {
       const name = params.get('name');
       if (name) {
-        this.fetchDashboard(name);
-        console.log(name);
+        if (isPlatformBrowser(this.platformId)) {
+          this.fetchDashboard(name);
+        } else {
+          console.warn('Dashboard rendering is disabled on the server');
+        }
       }
     });
 
-    // Avvia l'orologio
-    this.startClock();
+    if (isPlatformBrowser(this.platformId)) {
+      this.startClock();
+    }
+  }
+
+
+  ngOnDestroy(): void {
+    this.widgetsInUse.forEach(widget => {
+      const iframe = document.getElementById(`item-${widget.id}`)?.querySelector('iframe');
+      if (iframe?.src) {
+        URL.revokeObjectURL(iframe.src);
+      }
+    });
   }
 
   private startClock(): void {
@@ -116,25 +137,74 @@ export class DashboardComponent implements OnInit {
 
   private addWidgetsToGrid(): void {
     this.widgetsInUse.forEach(widget => {
-      // Creazione di un elemento div per il widget
       const widgetElement = document.createElement('div');
-      widgetElement.id = `item-${widget.id}`; // Assicurati di avere un ID unico per ogni widget
-      widgetElement.setAttribute('gs-w', widget.width?.toString() || '1 '); // Larghezza del widget
-      widgetElement.setAttribute('gs-h', widget.height?.toString() || '1'); // Altezza del widget
-      widgetElement.className = 'grid-stack-item'; // Classe per il widget
+      widgetElement.className = 'grid-stack-item';
 
-      // Contenuto del widget
-      widgetElement.innerHTML = `
-      <div class="grid-stack-item-content">
-        <h3>${widget.title}</h3>
-        <a href="${widget.url}" target="_blank">Open</a>
-      </div>`;
+      // Decodifica il contenuto del widget
+      const decryptedData = this.htmlcontextService.decryptAndSplit(widget.contentHTML);
 
-      // Aggiungi il widget alla griglia usando makeWidget
-      this.gridstackComponent.grid?.makeWidget(widgetElement);
+      if (decryptedData) {
+        // Crea un contenitore interno per il widget
+        const contentDiv = document.createElement('div');
+        contentDiv.className = `grid-stack-item-content widget-${widget.id}`; // Classe univoca per widget
+        contentDiv.style.backgroundColor = '#f0f0f0'; // Colore di sfondo personalizzato
+
+        // Applica il CSS decodificato, scoping con classe univoca
+        const styleTag = document.createElement('style');
+        styleTag.textContent = this.scopeCSS(decryptedData.css, `.widget-${widget.id}`);
+        document.head.appendChild(styleTag);
+
+        // Inserisci l'HTML decriptato
+        contentDiv.innerHTML = decryptedData.html;
+
+        // Esegui il script JS in un contesto isolato
+        if (decryptedData.js) {
+          const scriptTag = document.createElement('script');
+          scriptTag.textContent = `(function() { ${decryptedData.js} })();`;
+          contentDiv.appendChild(scriptTag);
+        }
+
+        widgetElement.appendChild(contentDiv);
+
+        // Aggiungi il widget alla griglia con opzioni di auto-posizionamento
+        this.gridstackComponent.grid?.makeWidget(widgetElement, {
+          w: widget.width || 2,
+          h: widget.height || 2,
+          autoPosition: true,
+        });
+
+        console.log(`Widget ${widget.id} added to grid with scoped CSS and JS`);
+      } else {
+        console.error(`Failed to decrypt content for widget ${widget.id}`);
+      }
     });
-    console.log("Widgets added to grid");
   }
+
+  /**
+   * Scoping del CSS per renderlo univoco.
+   * @param css - Il CSS originale
+   * @param scope - La classe o selettore di scoping
+   * @returns Il CSS con scoping applicato
+   */
+  private scopeCSS(css: string, scope: string): string {
+    return css
+      .split('}')
+      .map(rule => {
+        const [selectors, declarations] = rule.split('{');
+        if (!selectors || !declarations) return '';
+        const scopedSelectors = selectors
+          .split(',')
+          .map(selector => `${scope} ${selector.trim()}`)
+          .join(',');
+        return `${scopedSelectors} {${declarations}`;
+      })
+      .join('}');
+  }
+
+
+
+
+
 
   openHelpDoc(): void {
     console.log("help Doc");

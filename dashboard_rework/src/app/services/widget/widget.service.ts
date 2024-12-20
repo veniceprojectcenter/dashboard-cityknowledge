@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Database, ref, set, onValue, get } from '@angular/fire/database';
-import { Observable, of, forkJoin } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Widget_interface } from '../../interfaces/widget_interface'; // Ensure you import the interface
+import {Injectable} from '@angular/core';
+import {Database, get, onValue, ref, remove, set, update} from '@angular/fire/database';
+import {forkJoin, Observable, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {Widget_interface} from '../../interfaces/widget_interface';
+import {Dashboard_interface} from '../../interfaces/dashboard_interface'; // Ensure you import the interface
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,6 @@ export class WidgetService {
         const data = snapshot.val();
         if (data) {
           const widgets = this.filterAndMapData(Object.values(data)); // Filter and map the widget
-          console.log('Widgets fetched from database:', widgets);
           observer.next(widgets);
         } else {
           console.log('No widget found in database.');
@@ -51,13 +51,35 @@ export class WidgetService {
     );
   }
 
+  // Fetch a specific dashboard by name
+  async getWidgetByName(id: string): Promise<Widget_interface | null> {
+    console.log('Fetching widget by name:', id);
+    const dashboardsRef = ref(this.db, 'widgets');
+
+    try {
+      const snapshot = await get(dashboardsRef);
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const widgets: Widget_interface[] = this.filterAndMapData(Object.values(data));
+
+        // Find the dashboard with the matching name
+        const foundDashboard = widgets.find(widget => widget.id=== id);
+        return foundDashboard || null; // Return the found dashboard or null if not found
+      } else {
+        console.log('No dashboards found.');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard by name:', error);
+      return null; // Return null in case of error
+    }
+  }
+
   // Add a new widget under the widget node
   addWidget(widget: Widget_interface): Promise<void> {
     const newWidgetRef = ref(this.db, `widgets/${widget.id}`); // Modify based on your data structure
-    console.log('Adding new widget:', widget);
 
     return set(newWidgetRef, widget).then(() => {
-      console.log('Widget added successfully:', widget);
     }).catch((error) => {
       console.error('Error adding widget:', error);
     });
@@ -94,4 +116,48 @@ export class WidgetService {
       })
     );
   }
+
+  // Delete a widget by ID
+  deleteWidgetById(widgetId: string): Promise<void> {
+    const widgetRef = ref(this.db, `widgets/${widgetId}`); // Path to the widget to delete
+    const dashboardsRef = ref(this.db, 'dashboards'); // Path to dashboards
+
+    console.log('Deleting widget with ID:', widgetId);
+
+    return remove(widgetRef) // Step 1: Delete the widget
+      .then(() => {
+        console.log('Widget deleted successfully:', widgetId);
+
+        // Step 2: Remove the widget from all dashboards
+        return get(dashboardsRef).then(snapshot => {
+          if (snapshot.exists()) {
+            const dashboards: { [key: string]: Dashboard_interface } = snapshot.val();
+
+            const updates: { [key: string]: any } = {};
+            Object.keys(dashboards).forEach(dashboardKey => {
+              const dashboard = dashboards[dashboardKey];
+
+              // Check if the widgetId exists in widgetsInUse
+              if (dashboard.widgetsInUse.includes(widgetId)) {
+                updates[`dashboards/${dashboardKey}/widgetsInUse`] = dashboard.widgetsInUse.filter(id => id !== widgetId);
+              }
+            });
+
+            // Update the dashboards to remove the widgetId
+            const updatesRef = ref(this.db);
+            return update(updatesRef, updates).then(() => {
+              console.log(`References to widget ${widgetId} removed from dashboards.`);
+            });
+          } else {
+            console.log('No dashboards found to update.');
+            return Promise.resolve(); // No dashboards to update
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error deleting widget or updating dashboards:', error);
+      });
+  }
+
+
 }

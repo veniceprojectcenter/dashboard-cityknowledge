@@ -1,10 +1,10 @@
-import { Component, OnInit, ApplicationRef, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { DashboardService } from '../../../services/dashboard/dashboard.service';
 import { WidgetService } from '../../../services/widget/widget.service';
 import { Observable, of } from 'rxjs';
-import { catchError, first } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { RouterLink} from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,22 +17,19 @@ export class HomeComponent implements OnInit {
   dashboards$: Observable<any[]> = of([]);
   widgets$: Observable<any[]> = of([]);
   errorDashboards: string | null = null; // Error message for dashboards
-  errorWidgets: string | null = null;   // Error message for widget
+  errorWidgets: string | null = null;   // Error message for widgets
   loadingDashboards: boolean = true;    // Loading indicator for dashboards
-  loadingWidgets: boolean = true;       // Loading indicator for widget
+  loadingWidgets: boolean = true;       // Loading indicator for widgets
 
   constructor(
     private dashboardService: DashboardService,
     private widgetService: WidgetService,
-    private applicationRef: ApplicationRef,
-    private ngZone: NgZone,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit(): void {
-    // Aspetta che Angular si stabilizzi prima di caricare i dati
-    this.applicationRef.isStable.pipe(first(isStable => isStable)).subscribe(() => {
-      this.loadData();
-    });
+    // Carica i dati direttamente durante l'inizializzazione
+    this.loadData();
   }
 
   private loadData(): void {

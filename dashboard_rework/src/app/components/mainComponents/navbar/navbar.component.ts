@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
             email: user.email || '',
             username: user.username || '',
           });
-          console.log("User  logged in:", this.authService.currentUserSig());
         } else {
           this.authService.currentUserSig.set(null);
         }
