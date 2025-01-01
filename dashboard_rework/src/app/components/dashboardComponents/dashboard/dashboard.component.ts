@@ -146,24 +146,43 @@ export class DashboardComponent implements OnInit, OnDestroy {
       if (decryptedData) {
         // Crea un contenitore interno per il widget
         const contentDiv = document.createElement('div');
-        contentDiv.className = `grid-stack-item-content widget-${widget.id}`; // Classe univoca per widget
-        contentDiv.style.backgroundColor = '#f0f0f0'; // Colore di sfondo personalizzato
+        contentDiv.className = `grid-stack-item-content widget-${widget.id}`;
+        contentDiv.style.backgroundColor = '#f0f0f0';
+        contentDiv.style.textAlign = 'center'; // Centra il testo
+
+        // Aggiungi il titolo e l'icona (usando Flexbox per l'allineamento)
+        const titleHTML = `
+          <div class="widget-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <a href="${widget.url}" target="_blank" class="widget-title" style="flex-grow: 1; text-align: left;">
+              ${widget.urlTitle}
+            </a>
+            <button class="widget-help-btn" data-help-doc-url="${widget.helpDocUrl}" style="cursor: pointer;">
+              <span class="widget-span" style="font-size: 18px;">?</span>
+            </button>
+          </div>`;
+
+        // Aggiungi il titolo nel corpo del widget
+        decryptedData.html = titleHTML + decryptedData.html; // Aggiungi il titolo prima del corpo del widget
 
         // Applica il CSS decodificato, scoping con classe univoca
         const styleTag = document.createElement('style');
         styleTag.textContent = this.scopeCSS(decryptedData.css, `.widget-${widget.id}`);
         document.head.appendChild(styleTag);
 
-        // Inserisci l'HTML decriptato
-        contentDiv.innerHTML = decryptedData.html;
+        // Inserisci l'HTML decriptato (con il titolo) nel contenitore
+        const widgetBody = document.createElement('div');
+        widgetBody.className = 'widget-body';
+        widgetBody.innerHTML = decryptedData.html;
+        contentDiv.appendChild(widgetBody);
 
-        // Esegui il script JS in un contesto isolato
+        // Esegui il codice JS del widget, se esiste
         if (decryptedData.js) {
           const scriptTag = document.createElement('script');
           scriptTag.textContent = `(function() { ${decryptedData.js} })();`;
           contentDiv.appendChild(scriptTag);
         }
 
+        // Aggiungi tutto al contenitore del widget
         widgetElement.appendChild(contentDiv);
 
         // Aggiungi il widget alla griglia con opzioni di auto-posizionamento
@@ -173,12 +192,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
           autoPosition: true,
         });
 
+        // Aggiungi l'evento per l'icona di aiuto
+        const helpButton = contentDiv.querySelector('.widget-help-btn');
+        if (helpButton) {
+          helpButton.addEventListener('click', () => this.openHelpModal(widget.helpDocUrl));
+        }
+
         console.log(`Widget ${widget.id} added to grid with scoped CSS and JS`);
       } else {
         console.error(`Failed to decrypt content for widget ${widget.id}`);
       }
     });
   }
+
 
   /**
    * Scoping del CSS per renderlo univoco.
@@ -202,7 +228,48 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
 
+  // Funzione per aprire il documento di aiuto nel modal
+  openHelpModal(helpDocUrl: string): void {
+    const modal = document.getElementById('helpModal');
+    const overlay = document.getElementById('helpModalOverlay') as HTMLElement;
+    const iframe = document.getElementById('helpDocIframe') as HTMLIFrameElement;
 
+    // Verifica che il modal, l'overlay e l'iframe esistano
+    if (modal && iframe && overlay) {
+      iframe.src = helpDocUrl; // Imposta l'URL nel iframe
+      modal.style.display = 'block'; // Mostra il modal
+      overlay.style.display = 'block'; // Mostra l'overlay
+    }
+
+    const closeModal = document.getElementById('closeModal');
+    if (closeModal) {
+      closeModal.onclick = () => {
+        this.closeHelpModal(); // Chiama la funzione per chiudere il modal
+      };
+    }
+
+    // Gestione della chiusura cliccando sull'overlay
+    window.onclick = (event: any) => {
+      if (modal && event.target === overlay) {
+        this.closeHelpModal(); // Chiama la funzione per chiudere il modal
+      }
+    };
+  }
+
+  // Funzione per chiudere il modal
+  closeHelpModal(): void {
+    const modal = document.getElementById('helpModal');
+    const overlay = document.getElementById('helpModalOverlay');
+    const iframe = document.getElementById('helpDocIframe') as HTMLIFrameElement;
+
+    if (modal && overlay) {
+      modal.style.display = 'none'; // Nasconde il modal
+      overlay.style.display = 'none'; // Nasconde l'overlay
+      if (iframe) {
+        iframe.src = ''; // Rimuove l'URL dall'iframe
+      }
+    }
+  }
 
 
 

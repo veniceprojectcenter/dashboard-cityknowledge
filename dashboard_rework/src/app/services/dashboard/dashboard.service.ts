@@ -32,7 +32,6 @@ export class DashboardService implements OnDestroy {
     console.log('Fetching dashboards...');
 
     const dashboardsRef = ref(this.db, 'dashboards'); // Directly use db
-    console.log('Listening for changes in dashboards at:', dashboardsRef.toString());
 
     return new Observable<Dashboard_interface[]>((observer) => {
       this.subscription = onValue(dashboardsRef, (snapshot) => {

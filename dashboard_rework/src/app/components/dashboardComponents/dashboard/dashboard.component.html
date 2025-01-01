@@ -47,4 +47,17 @@
   <div *ngIf="isEditable">
     <app-menu_dashboard [dashboardName]="dashboard?.name"></app-menu_dashboard>
   </div>
+
+
+  <!-- Modale per il documento di aiuto -->
+  <!-- Overlay che oscura lo sfondo -->
+  <div id="helpModalOverlay" onclick="closeHelpModal()"></div>
+
+  <!-- Modal -->
+  <div id="helpModal">
+    <button id="closeModal">X</button>
+    <iframe id="helpDocIframe"></iframe>
+  </div>
+
+
 </div>

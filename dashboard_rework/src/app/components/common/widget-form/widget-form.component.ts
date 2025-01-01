@@ -43,8 +43,8 @@ export class WidgetFormComponent implements OnInit {
     });
 
     this.dimensionsForm = this.formBuilder.group({
-      height: [2, [Validators.required, Validators.min(1)]],
-      width: [2, [Validators.required, Validators.min(1)]],
+      height: [5, [Validators.required, Validators.min(1)]],
+      width: [5, [Validators.required, Validators.min(1)]],
     });
 
     this.urlsForm = this.formBuilder.group({

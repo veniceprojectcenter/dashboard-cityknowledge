@@ -57,16 +57,15 @@
 /* Contenitore della Gridstack */
 .gridstack-container {
   flex-grow: 1; /* Permette alla Gridstack di occupare lo spazio rimanente */
-  padding: 20px; /* Padding per separare i widget dai bordi */
   overflow: auto; /* Permette lo scorrimento se necessario */
   display: flex; /* Aggiungi display flex */
-  margin-bottom: 20px; /* Aggiungi margine dal basso */
 }
 
 /* Gridstack */
 .grid-stack {
   flex-grow: 1; /* Permette alla Gridstack di occupare tutto lo spazio disponibile */
   background: cadetblue; /* Colore di sfondo del gridstack */
+  margin-bottom: 5vh;
 }
 
 /* dashboard.component.css */
@@ -154,3 +153,95 @@ button img {
 button:hover {
   background-color: #2980b9; /* Colore più scuro al passaggio del mouse */
 }
+
+.widget-header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px;
+  background-color: #007bff;
+  border-bottom: 2px solid #ccc;
+}
+
+.widget-body {
+  padding: 15px;
+  min-height: 150px;
+}
+
+.widget-title {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.widget-title:hover {
+  text-decoration: underline;
+}
+.widget-help-btn span {
+  font-size: 18px; /* Imposta la dimensione dell'icona */
+  color: black; /* Imposta il colore dell'icona */
+  display: inline-block; /* Assicura che l'icona venga visualizzata */
+}
+/* Modale principale */
+#helpModal {
+  display: none; /* Nasconde il modal per default */
+  position: fixed; /* Fisso in relazione alla finestra del browser */
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra orizzontalmente */
+  transform: translate(-50%, -50%); /* Corregge l'allineamento centrato */
+  width: 80%; /* Imposta una larghezza a tua scelta */
+  height: 80%; /* Imposta un'altezza a tua scelta */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Assicura che il modale sia sopra gli altri contenuti */
+  overflow: hidden; /* Nasconde gli eventuali overflow */
+}
+
+/* Overlay che oscura lo sfondo */
+#helpModalOverlay {
+  display: none; /* Nasconde l'overlay per default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Sfondo scuro trasparente */
+  z-index: 999; /* Deve essere sotto al modal */
+}
+
+/* Stile per l'iframe dentro il modal */
+#helpDocIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Pulsante di chiusura */
+#closeModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: black;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.widget-help-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem; /* Dimensione dell'icona */
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.widget-help-btn:hover {
+  color: #f39c12; /* Colore del testo durante il passaggio del mouse */
+  transform: scale(1.2); /* Aggiungi un'animazione di ingrandimento */
+}
+
+.widget-help-btn span {
+  font-size: 18px; /* Imposta la dimensione dell'icona */
+  color: inherit;
+}
+
+
