@@ -218,4 +218,11 @@ router.get('/fetch/air-quality-locations', async (req, res) => {
 
 
 // Esporta il router
-module.exports = router;
+module.exports = {
+    scrapePopulationData,
+    savePopulationDataToFirebase,
+    fetchTideData,
+    saveTideDataToFirebase,
+    deleteExistingData,
+    router
+};
