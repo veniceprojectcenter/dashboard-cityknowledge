@@ -1,9 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, NgZone, OnInit} from '@angular/core';
 import { DashboardService } from '../../../services/dashboard/dashboard.service';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Dashboard_interface } from '../../../interfaces/dashboard_interface';
 import { NgClass, NgIf } from '@angular/common';
+import {map, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {UrlCheckerService} from '../../../services/url_test/test_url';
 
 @Component({
   selector: 'app-dashboard-form',
@@ -34,26 +37,40 @@ export class DashboardFormComponent implements OnInit {
   message: string | null = null;
   messageType: 'success' | 'error' | null = null;
 
-  constructor(private _dashboardService: DashboardService, private fb: FormBuilder) {
+  constructor(private _dashboardService: DashboardService, private fb: FormBuilder, private _urlCheckerService: UrlCheckerService) {
     // Initialize the form group
     this.dashboardForm = this.fb.group({
       name: ['', Validators.required],
       pageTitle: ['', Validators.required],
-      helpDocUrl: ['', [Validators.required, Validators.pattern(
-        `^(https?:\\/\\/)?` + // Schema (opzionale)
-        `((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|` + // Nome dominio
-        `(localhost)|` + // Localhost
-        `((\\d{1,3}\\.){3}\\d{1,3})|` + // IPv4
-        `(\\[[a-fA-F0-9:.]+\\])` + // IPv6
-        `)(:\\d+)?(\\/[-a-zA-Z0-9@:%._\\+~#=]*)*` + // Porta e percorso (opzionali)
-        `(\\?[;&a-zA-Z0-9%._\\+~#=]*)?` + // Query string (opzionale)
-        `(\\#[-a-zA-Z0-9@:%._\\+~#=]*)?$` // Frammento (opzionale)
-      )]],
-      helpDocHeight: [1, [Validators.required, Validators.min(1)]],
-      helpDocWidth: [1, [Validators.required, Validators.min(1)]],
+      helpDocUrl: ['',
+        [Validators.required, Validators.pattern(
+          `^(https?:\\/\\/)?` + // Schema (opzionale)
+          `((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|` + // Nome dominio
+          `(localhost)|` + // Localhost
+          `((\\d{1,3}\\.){3}\\d{1,3})|` + // IPv4
+          `(\\[[a-fA-F0-9:.]+\\])` + // IPv6
+          `)(:\\d+)?(\\/[-a-zA-Z0-9@:%._\\+~#=]*)*` + // Porta e percorso (opzionali)
+          `(\\?[;&a-zA-Z0-9%._\\+~#=]*)?` + // Query string (opzionale)
+          `(\\#[-a-zA-Z0-9@:%._\\+~#=]*)?$` // Frammento (opzionale)
+        )],
+        [this.validateUrlAsync.bind(this)] // Aggiungi validazione asincrona
+      ],
+      helpDocHeight: [500, [Validators.required, Validators.min(1)]],
+      helpDocWidth: [500, [Validators.required, Validators.min(1)]],
       coordX: [0, [Validators.required]],
       coordY: [0, [Validators.required]],
     });
+  }
+
+  validateUrlAsync(control: AbstractControl) {
+    if (!control.value) {
+      return of(null); // Nessun errore se il campo è vuoto
+    }
+
+    return this._urlCheckerService.checkUrl(control.value).pipe(
+      map((isValid) => (isValid ? null : { invalidUrl: true })), // Ritorna null se valido, errore altrimenti
+      catchError(() => of({ invalidUrl: true })) // Gestione errori
+    );
   }
 
   ngOnInit(): void {

@@ -34,12 +34,21 @@
     <div class="modal-overlay" (click)="closeHelpDoc()"></div> <!-- Overlay per chiudere il modal -->
     <div class="modal-content">
       <span class="close" (click)="closeHelpDoc()">&times;</span>
-      <iframe
-        [src]="safeHelpDocUrl"
-        [style.height.px]="dashboard?.helpDocHeight"
-        [style.width.px]="dashboard?.helpDocWidth"
-      >
-      </iframe>
+      <div>
+        <iframe
+          *ngIf="safeHelpDocUrl"
+          [src]="safeHelpDocUrl"
+          (error)="handleIframeError()"
+          width="100%"
+          height="600px"
+        ></iframe>
+          <iframe *ngIf="!safeHelpDocUrl"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(defaultHelpDocUrl)"
+            width="100%"
+            height="600px"
+          ></iframe>
+      </div>
+
     </div>
   </div>
 

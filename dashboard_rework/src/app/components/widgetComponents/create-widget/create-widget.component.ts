@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import {MenuWidgetComponent} from '../../common/menu-widget/menu-widget.component';
-import {WidgetFormComponent} from '../../common/widget-form/widget-form.component';
+import { Component, OnInit } from '@angular/core';
+import { WidgetFormComponent } from '../../common/widget-form/widget-form.component';
+
 
 @Component({
   selector: 'app-create-widget',
@@ -10,5 +10,4 @@ import {WidgetFormComponent} from '../../common/widget-form/widget-form.componen
   imports: [WidgetFormComponent]
 })
 export class CreateWidgetComponent {
-
 }

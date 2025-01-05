@@ -196,6 +196,7 @@ button:hover {
   overflow: hidden; /* Nasconde gli eventuali overflow */
 }
 
+
 /* Overlay che oscura lo sfondo */
 #helpModalOverlay {
   display: none; /* Nasconde l'overlay per default */
@@ -213,6 +214,13 @@ button:hover {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+.iframe-loader {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  margin-top: 10px;
 }
 
 /* Pulsante di chiusura */

@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const puppeteer = require('puppeteer');
+require('dotenv').config();
 
 
 const router = express.Router();
@@ -83,7 +84,7 @@ async function fetchTideData(lat, lng) {
   try {
     const response = await axios.get(url, {
       headers: {
-        Authorization: '5cfcfbae-c6e4-11ef-ae24-0242ac130003-5cfcfc12-c6e4-11ef-ae24-0242ac130003', // Sostituisci con la tua chiave API
+        Authorization: process.env.TIDEAPI_KEY, // Sostituisci con la tua chiave API
       },
     });
 

@@ -5,7 +5,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 from datetime import datetime
 
-def read_config(config_file_path):
+onfig_file_path):
     """Reads configuration from a JSON file.
 
     Args:

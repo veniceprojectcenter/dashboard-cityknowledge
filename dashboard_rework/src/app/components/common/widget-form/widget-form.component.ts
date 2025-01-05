@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { HtmlcontextService } from '../../../services/htmlcontent/htmlcontext.service';
 import { WidgetService } from '../../../services/widget/widget.service';
 import { NgIf } from '@angular/common';
 import { WidgetPreviewComponent } from '../widget-preview/widget-preview.component';
 import {Widget_interface} from '../../../interfaces/widget_interface';
+import {map, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {UrlCheckerService} from '../../../services/url_test/test_url';
 
 @Component({
   selector: 'app-widget-form',
@@ -30,7 +33,8 @@ export class WidgetFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private htmlcontextService: HtmlcontextService,
-              private widgetService: WidgetService) {
+              private widgetService: WidgetService,
+              private _urlCheckerService: UrlCheckerService) {
 
     // Initialize the forms
     this.widgetDetailsForm = this.formBuilder.group({
@@ -48,7 +52,10 @@ export class WidgetFormComponent implements OnInit {
     });
 
     this.urlsForm = this.formBuilder.group({
-      helpDocUrl: ['', [Validators.required, Validators.pattern(this.getUrlPattern())]],
+      helpDocUrl: ['',
+        [Validators.required, Validators.pattern(this.getUrlPattern())],
+        [this.validateUrlAsync.bind(this)] // Aggiungi validazione asincrona
+      ],
       url: ['', [Validators.required, Validators.pattern(this.getUrlPattern())]],
       urlTitle: ['', Validators.required],
     });
@@ -94,6 +101,16 @@ export class WidgetFormComponent implements OnInit {
     }).catch(error => {
       console.error('Error loading widget data:', error);
     });
+  }
+  validateUrlAsync(control: AbstractControl) {
+    if (!control.value) {
+      return of(null); // Nessun errore se il campo è vuoto
+    }
+
+    return this._urlCheckerService.checkUrl(control.value).pipe(
+      map((isValid) => (isValid ? null : { invalidUrl: true })), // Ritorna null se valido, errore altrimenti
+      catchError(() => of({ invalidUrl: true })) // Gestione errori
+    );
   }
 
   nextStep() {

@@ -1,6 +1,6 @@
   import { Injectable } from '@angular/core';
   import * as CryptoJS from 'crypto-js';
-  import { environment } from '../../../environments/environment';
+  import {environment} from '../../../environments/environment';
 
   @Injectable({
     providedIn: 'root'
@@ -28,8 +28,6 @@
       try {
         const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, this.encryptionKey);
         const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
-        console.log("test");
-        console.log(JSON.parse(decryptedText));
         return JSON.parse(decryptedText); // Ritorna l'oggetto decriptato come { html, css, js }
       } catch (error) {
         console.error('Decryption failed:', error);

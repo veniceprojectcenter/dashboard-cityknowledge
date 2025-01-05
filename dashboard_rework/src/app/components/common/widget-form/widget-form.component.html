@@ -147,6 +147,9 @@
             placeholder="Enter help doc URL"
             autocomplete="off"
           />
+          <div *ngIf="this.urlsForm.get('helpDocUrl')?.hasError('invalidUrl')">
+            <p class="error-message">The provided URL is not valid or reachable.</p>
+          </div>
         </div>
         <div class="mb-3">
           <label for="sourceUrl" class="form-label">Source URL</label>

@@ -8,7 +8,9 @@ import { Widget_interface } from '../../../interfaces/widget_interface';
 import { GridstackModule, NgGridStackOptions, GridstackComponent } from 'gridstack/dist/angular';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MenuDashboardComponent } from '../../common/menu_dashboard/menu-dashboard.component';
-import { HtmlcontextService } from '../../../services/htmlcontent/htmlcontext.service'; // Importa il servizio
+import { HtmlcontextService } from '../../../services/htmlcontent/htmlcontext.service';
+import {UrlCheckerService} from '../../../services/url_test/test_url';
+import {CookieService} from '../../../services/cookies/cookie.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,6 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   widgetsInUse: Widget_interface[] = [];
   showHelpDoc = false;
   safeHelpDocUrl: SafeResourceUrl | null = null;
+  protected defaultHelpDocUrl: string = 'https://docs.google.com/document/d/1_qRBLN9ODPrUIp02V-IYfafgguxyrajIleviRXM0LH8/pub';
 
   // Variabile per isEditable
   isEditable: boolean = false;
@@ -52,14 +55,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private widgetService: WidgetService,
     private route: ActivatedRoute,
     private ngZone: NgZone,
-    private sanitizer: DomSanitizer, // Inietta DomSanitizer
-    private htmlcontextService: HtmlcontextService // Inietta il servizio di decrittazione
+    protected sanitizer: DomSanitizer, // Inietta DomSanitizer
+    private _htmlcontextService: HtmlcontextService,// Inietta il servizio di decrittazione
+    private _urlcheckservice: UrlCheckerService,
+    private _cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.isEditable = params['isEditable'] === 'true';
-      console.log('isEditable:', this.isEditable);
     });
 
     this.route.paramMap.subscribe(params => {
@@ -95,6 +99,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }, 1000); // Aggiorna ogni secondo
   }
 
+
   private fetchDashboard(name: string): void {
     this.loadingDashboard = true; // Inizio del caricamento
 
@@ -105,10 +110,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.loadingDashboard = false;
             if (dashboard) {
               this.dashboard = dashboard;
-              this.safeHelpDocUrl = this.sanitizer.bypassSecurityTrustResourceUrl(dashboard.helpDocUrl);
+              this.checkUrlAvailability(dashboard.helpDocUrl);
               this.fetchWidgets();
             } else {
               this.errorDashboard = 'Dashboard not found';
+              this.safeHelpDocUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.defaultHelpDocUrl);
             }
           });
         })
@@ -116,10 +122,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.ngZone.run(() => {
             this.loadingDashboard = false;
             this.errorDashboard = 'Error fetching dashboard: ' + error;
+            this.safeHelpDocUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.defaultHelpDocUrl);
           });
         });
     });
   }
+
+
+  private checkUrlAvailability(url: string): void {
+    this._urlcheckservice.checkUrl(url).subscribe((isValid) => {
+      if (isValid) {
+        // URL is valid and reachable
+        this.safeHelpDocUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      } else {
+        // URL is not valid; fallback to the default URL
+        console.error('URL not reachable, falling back to default URL');
+        this.safeHelpDocUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.defaultHelpDocUrl);
+      }
+    });
+  }
+
 
   private fetchWidgets(): void {
     const widgetIds = this.dashboard?.widgetsInUse || [];
@@ -127,7 +149,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (widgetIds.length > 0) {
       this.widgetService.getWidgetsByIdsArray(widgetIds).subscribe(widgets => {
         this.widgetsInUse = widgets;
-        console.log('Fetched widgets:', this.widgetsInUse);
         this.addWidgetsToGrid(); // Aggiungi i widget alla griglia
       });
     } else {
@@ -141,7 +162,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       widgetElement.className = 'grid-stack-item';
 
       // Decodifica il contenuto del widget
-      const decryptedData = this.htmlcontextService.decryptAndSplit(widget.contentHTML);
+      const decryptedData = this._htmlcontextService.decryptAndSplit(widget.contentHTML);
 
       if (decryptedData) {
         // Crea un contenitore interno per il widget
@@ -149,7 +170,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         contentDiv.className = `grid-stack-item-content widget-${widget.id}`;
         contentDiv.style.backgroundColor = '#f0f0f0';
         contentDiv.style.textAlign = 'center'; // Centra il testo
-
         // Aggiungi il titolo e l'icona (usando Flexbox per l'allineamento)
         const titleHTML = `
           <div class="widget-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -198,11 +218,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
           helpButton.addEventListener('click', () => this.openHelpModal(widget.helpDocUrl));
         }
 
-        console.log(`Widget ${widget.id} added to grid with scoped CSS and JS`);
       } else {
+
         console.error(`Failed to decrypt content for widget ${widget.id}`);
       }
     });
+    const gridItems = this.gridstackComponent.grid?.getGridItems()
   }
 
 
@@ -272,12 +293,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
 
+  handleIframeError(): void {
+    console.error('Failed to load the help document. Falling back to default URL.');
+    this.safeHelpDocUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.defaultHelpDocUrl);
+  }
 
   openHelpDoc(): void {
     console.log("help Doc");
     console.log(this.dashboard?.helpDocUrl);
     this.showHelpDoc = true;
   }
+
 
   closeHelpDoc(): void {
     this.showHelpDoc = false;

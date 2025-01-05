@@ -29,6 +29,10 @@
           <label for="helpDocUrl">Help Document URL:</label>
           <input type="url" id="helpDocUrl" formControlName="helpDocUrl" autocomplete="off" required>
         </div>
+        <div *ngIf="dashboardForm.get('helpDocUrl')?.hasError('invalidUrl')">
+          <p class="error-message">The provided URL is not valid or reachable.</p>
+        </div>
+
 
 
         <button type="button" (click)="nextStep()"

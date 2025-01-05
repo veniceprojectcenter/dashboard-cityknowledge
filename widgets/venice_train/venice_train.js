@@ -2,7 +2,7 @@ $root_scope = angular.element(document.querySelector('[ng-app=placeDash]')).scop
 
 var PERCENT_DAYTRIPPERS = 0.49623167;
 var PERCENT_OVERNIGHTERS = 0.05181931;
-var PERCENT_TOURISTS = PERCENT_DAYTRIPPERS + PERCENT_OVERNIGHTERS;
+vERCENT_DAYTRIPPERS + PERCENT_OVERNIGHTERS;
 var PERCENT_COMMUTERS = 1 - PERCENT_TOURISTS;
 
 //Single instance controller

@@ -38,7 +38,6 @@ export class DashboardService implements OnDestroy {
         const data = snapshot.val();
         const dashboards: Dashboard_interface[] = data ? this.filterAndMapData(Object.values(data)) : [];
 
-        console.log('Dashboards fetched from database:', dashboards);
         console.log('Data source: Database');
         observer.next(dashboards);
       }, {
