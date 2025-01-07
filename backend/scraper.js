@@ -21,13 +21,6 @@ async function deleteExistingData(path) {
   }
 }
 
-
-
-
-
-
-
-
 // Funzione per eseguire il web scraping dei dati di popolazione
 async function scrapePopulationData(url) {
   try {

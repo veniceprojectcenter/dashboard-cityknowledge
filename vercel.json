@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "api/*.js": { "memory": 128, "maxDuration": 10 }
+  },
+  "crons": [
+    {
+      "path": "/api/scrape-population",
+      "schedule": "0 0 * * *" // Run daily at midnight
+    },
+    {
+      "path": "/api/scrape-tides",
+      "schedule": "0 1 * * *" // Run daily at 1:00 AM
+    }
+  ]
+}
