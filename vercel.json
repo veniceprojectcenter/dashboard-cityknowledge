@@ -5,11 +5,11 @@
   "crons": [
     {
       "path": "/api/scrape-population",
-      "schedule": "0 0 * * *" // Run daily at midnight
+      "schedule": "0 0 * * *"
     },
     {
       "path": "/api/scrape-tides",
-      "schedule": "0 1 * * *" // Run daily at 1:00 AM
+      "schedule": "0 1 * * *"
     }
   ]
 }
