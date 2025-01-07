@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve --configuration=production\" \"node src/app/server.js\"",
-
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "build:angular": "ng build --configuration production",
+    "start:server": "node backend/server.js",
+    "start:angular": "ng serve --port 4200",
+    "start:both": "concurrently \"npm run start:server\" \"npm run start:angular\"",
+    "vercel-build": "npm run build:angular",
+    "build": "npm run build:angular"
   },
   "private": true,
   "dependencies": {

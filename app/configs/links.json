@@ -1,9 +1,0 @@
-{
-  "db_url": "https://dashboard-venice-test-default-rtdb.europe-west1.firebasedatabase.app",
-  "apikey_path": "../app/configs/db_apikey.json",
-  "news_link": "https://nuovavenezia.gelocal.it/regione/rss",
-  "actvnews_link": "https://avm.avmspa.it/it/rss-news.xml",
-  "depflights_link": "https://www.flightstats.com/v2/flight-tracker/departures/VCE",
-  "arrflights_link": "https://www.flightstats.com/v2/flight-tracker/arrivals/VCE/"
-}
-
