@@ -23,7 +23,6 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "cheerio": "^1.0.0",

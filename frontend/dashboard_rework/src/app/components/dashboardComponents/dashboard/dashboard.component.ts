@@ -72,7 +72,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (isPlatformBrowser(this.platformId)) {
           this.fetchDashboard(name);
         } else {
-          console.warn('Dashboard rendering is disabled on the server');
+          console.warn('Dashboard rendering is disabled on the api');
         }
       }
     });
