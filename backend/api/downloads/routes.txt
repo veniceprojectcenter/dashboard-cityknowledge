@@ -1,0 +1,740 @@
+route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
+1,ACTVs.p.a,11,Santa Maria Elisabetta - Pellestrina Cimitero,UL,3,,5B5B5B,FFFFFF
+2,ACTVs.p.a,11,Santa Maria Elisabetta - Pellestrina Cimitero,UL,3,,5B5B5B,FFFFFF
+3,ACTVs.p.a,11,Santa Maria Elisabetta - Pellestrina Cimitero,UL,3,,5B5B5B,FFFFFF
+4,ACTVs.p.a,11,Malamocco Centro - Pellestrina Cimitero,UL,3,,5B5B5B,FFFFFF
+5,ACTVs.p.a,11,Santa Maria Del Mare - Pellestrina Cimitero,UL,3,,5B5B5B,FFFFFF
+6,ACTVs.p.a,11,Santa Maria Elisabetta - Faro Rocchetta,UL,3,,5B5B5B,FFFFFF
+7,ACTVs.p.a,11,Pellestrina Cimitero - Santa Maria Elisabetta,UL,3,,5B5B5B,FFFFFF
+8,ACTVs.p.a,11,Pellestrina Cimitero - Santa Maria Elisabetta,UL,3,,5B5B5B,FFFFFF
+9,ACTVs.p.a,11,Pellestrina Cimitero - Santa Maria Elisabetta,UL,3,,5B5B5B,FFFFFF
+10,ACTVs.p.a,11,Pellestrina Cimitero - Santa Maria Elisabetta,UL,3,,5B5B5B,FFFFFF
+11,ACTVs.p.a,11,Pellestrina Cimitero - Santa Maria Del Mare,UL,3,,5B5B5B,FFFFFF
+12,ACTVs.p.a,11,Faro Rocchetta - Santa Maria Elisabetta,UL,3,,5B5B5B,FFFFFF
+13,ACTVs.p.a,A,Santa Maria Elisabetta - Faro Rocchetta,UL,3,,EF7F1A,FFFFFF
+14,ACTVs.p.a,A,Santa Maria Elisabetta - Santa Maria Elisabetta,UL,3,,EF7F1A,FFFFFF
+15,ACTVs.p.a,A,Santa Maria Elisabetta - Santa Maria Elisabetta,UL,3,,EF7F1A,FFFFFF
+16,ACTVs.p.a,A,Piazzale Rava' - Santa Maria Elisabetta,UL,3,,EF7F1A,FFFFFF
+17,ACTVs.p.a,A,Santa Maria Elisabetta - Piazzale Rava',UL,3,,EF7F1A,FFFFFF
+18,ACTVs.p.a,A,Santa Maria Elisabetta - San Nicolo',UL,3,,EF7F1A,FFFFFF
+19,ACTVs.p.a,A,Faro Rocchetta - Santa Maria Elisabetta,UL,3,,EF7F1A,FFFFFF
+20,ACTVs.p.a,B,Santa Maria Elisabetta - Malamocco Beato,UL,3,,393185,FFFFFF
+21,ACTVs.p.a,B,Gallo Bragadin - Malamocco Centro,UL,3,,393185,FFFFFF
+22,ACTVs.p.a,B,Malamocco Beato - Santa Maria Elisabetta,UL,3,,393185,FFFFFF
+23,ACTVs.p.a,C,Santa Maria Elisabetta - Santa Maria Elisabetta,UL,3,,00A0E3,FFFFFF
+24,ACTVs.p.a,C,Santa Maria Elisabetta - Malamocco Parri,UL,3,,00A0E3,FFFFFF
+25,ACTVs.p.a,C,Santa Maria Elisabetta - Ca' Bianca La Fontaine,UL,3,,00A0E3,FFFFFF
+26,ACTVs.p.a,C,Malamocco Parri - Santa Maria Elisabetta,UL,3,,00A0E3,FFFFFF
+27,ACTVs.p.a,C,Ca' Bianca La Fontaine - Santa Maria Elisabetta,UL,3,,00A0E3,FFFFFF
+28,ACTVs.p.a,N,Santa Maria Elisabetta - Pellestrina Cimitero,UL,3,,000000,FFFFFF
+29,ACTVs.p.a,N,Santa Maria Elisabetta - Faro Rocchetta,UL,3,,000000,FFFFFF
+30,ACTVs.p.a,N,Santa Maria Elisabetta - Malamocco Beato,UL,3,,000000,FFFFFF
+31,ACTVs.p.a,N,Santa Maria Elisabetta - Ca' Bianca La Fontaine,UL,3,,000000,FFFFFF
+32,ACTVs.p.a,N,Pellestrina Cimitero - Santa Maria Elisabetta,UL,3,,000000,FFFFFF
+33,ACTVs.p.a,N,Faro Rocchetta - Santa Maria Elisabetta,UL,3,,000000,FFFFFF
+34,ACTVs.p.a,N,Malamocco Beato - Santa Maria Elisabetta,UL,3,,000000,FFFFFF
+35,ACTVs.p.a,N,Pellestrina Cimitero - Santa Maria Del Mare,UL,3,,000000,FFFFFF
+36,ACTVs.p.a,N,Ca' Bianca La Fontaine - Santa Maria Elisabetta,UL,3,,000000,FFFFFF
+37,ACTVs.p.a,V,Santa Maria Elisabetta - Colombo,UL,3,,4D897C,FFFFFF
+38,ACTVs.p.a,V,Colombo - Santa Maria Elisabetta,UL,3,,4D897C,FFFFFF
+39,ACTVs.p.a,10E,Mirano Ospedale - Mirano Ospedale,EN,3,,393185,FFFFFF
+40,ACTVs.p.a,10E,Mirano Matteotti - Mirano Ospedale,EN,3,,393185,FFFFFF
+41,ACTVs.p.a,10E,Mirano Ospedale - Mirano Ospedale,EN,3,,393185,FFFFFF
+42,ACTVs.p.a,10E,Mirano Scuola Mazzini - Vetrego,EN,3,,393185,FFFFFF
+43,ACTVs.p.a,11E,Scorze' IV Novembre - Mirano Scuole,EN,3,,393185,FFFFFF
+44,ACTVs.p.a,11E,Olmo Vittorio Veneto - Mirano Scuole,EN,3,,393185,FFFFFF
+45,ACTVs.p.a,11E,Zelarino Munaretto - Mirano Scuole,EN,3,,393185,FFFFFF
+46,ACTVs.p.a,11E,Moniego Treviso Vecchia - Mirano Scuole,EN,3,,393185,FFFFFF
+47,ACTVs.p.a,11E,Scorze' IV Novembre - Ospedale Mirano,EN,3,,393185,FFFFFF
+48,ACTVs.p.a,11E,Martellago - Mirano Scuole,EN,3,,393185,FFFFFF
+49,ACTVs.p.a,11E,Scorze' IV Novembre - Mirano Scuole,EN,3,,393185,FFFFFF
+50,ACTVs.p.a,11E,Scorze' IV Novembre - Mirano Matteotti,EN,3,,393185,FFFFFF
+51,ACTVs.p.a,11E,Noale De Pol - Mirano Matteotti,EN,3,,393185,FFFFFF
+52,ACTVs.p.a,11E,Noale - Mirano Scuole,EN,3,,393185,FFFFFF
+53,ACTVs.p.a,11E,Mirano Luneo - Mirano Battisti,EN,3,,393185,FFFFFF
+54,ACTVs.p.a,11E,Mirano Scuole - Zelarino Munaretto,EN,3,,393185,FFFFFF
+55,ACTVs.p.a,11E,Mirano Scuole - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+56,ACTVs.p.a,11E,Ospedale Mirano - Noale,EN,3,,393185,FFFFFF
+57,ACTVs.p.a,11E,Mirano Scuole - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+58,ACTVs.p.a,11E,Mirano Scuole - Olmo Vittorio Veneto,EN,3,,393185,FFFFFF
+59,ACTVs.p.a,11E,Ospedale Mirano - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+60,ACTVs.p.a,11E,Mirano Scuole - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+61,ACTVs.p.a,11E,Mirano Matteotti - Noale,EN,3,,393185,FFFFFF
+62,ACTVs.p.a,11E,Mirano Scuole - MIrano Luneo,EN,3,,393185,FFFFFF
+63,ACTVs.p.a,12E,Scorze' IV Novembre - VENEZIA,EN,3,,393185,FFFFFF
+64,ACTVs.p.a,12E,Scorze' IV Novembre - Mogliano Liceo,EN,3,,393185,FFFFFF
+65,ACTVs.p.a,12E,Scorze' IV Novembre - Mogliano Centro,EN,3,,393185,FFFFFF
+66,ACTVs.p.a,12E,VENEZIA - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+67,ACTVs.p.a,12E,Mogliano Liceo - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+68,ACTVs.p.a,12E,Mogliano Centro - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+69,ACTVs.p.a,14E,Quarto d'Altino Augusta - Mogliano FS,EN,3,,393185,FFFFFF
+70,ACTVs.p.a,14E,Marcon Cooperazione - Mogliano FS,EN,3,,393185,FFFFFF
+71,ACTVs.p.a,14E,Quarto d'Altino Centro - Mogliano Liceo,EN,3,,393185,FFFFFF
+72,ACTVs.p.a,14E,Zerman - Mogliano FS,EN,3,,393185,FFFFFF
+73,ACTVs.p.a,14E,Mogliano FS - Casale sul Sile Chiesa,EN,3,,393185,FFFFFF
+74,ACTVs.p.a,14E,Mogliano FS - San Liberale,EN,3,,393185,FFFFFF
+75,ACTVs.p.a,14E,Mogliano Liceo - San Liberale,EN,3,,393185,FFFFFF
+76,ACTVs.p.a,14E,Mogliano Liceo - Le Crete,EN,3,,393185,FFFFFF
+77,ACTVs.p.a,14E,Mogliano FS - Zerman,EN,3,,393185,FFFFFF
+78,ACTVs.p.a,14E,Zerman - Casale sul Sile Chiesa,EN,3,,393185,FFFFFF
+79,ACTVs.p.a,16E,Trebaseleghe - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+80,ACTVs.p.a,16E,Scorze' IV Novembre - Trebaseleghe,EN,3,,393185,FFFFFF
+81,ACTVs.p.a,17E,Caltana Marinoni - Mirano Scuole,EN,3,,393185,FFFFFF
+82,ACTVs.p.a,17E,Caltana Marinoni - Mirano Matteotti,EN,3,,393185,FFFFFF
+83,ACTVs.p.a,17E,Mellaredo Cavinello - Mirano Matteotti,EN,3,,393185,FFFFFF
+84,ACTVs.p.a,17E,Mirano Battisti - Caltana Marinoni,EN,3,,393185,FFFFFF
+85,ACTVs.p.a,17E,Mirano Matteotti - Caltana Marinoni,EN,3,,393185,FFFFFF
+86,ACTVs.p.a,17E,Mirano Matteotti - Mellaredo Cavinello,EN,3,,393185,FFFFFF
+87,ACTVs.p.a,2E,Zero Branco Via Scandolar - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+88,ACTVs.p.a,2E,Rio San Martino - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+89,ACTVs.p.a,2E,Scorze' Venezia - Zero Branco Via Scandolar,EN,3,,393185,FFFFFF
+90,ACTVs.p.a,2E,Scorze' Venezia - Rio San Martino,EN,3,,393185,FFFFFF
+91,ACTVs.p.a,2E,Scorze' IV Novembre - Rio San Martino,EN,3,,393185,FFFFFF
+92,ACTVs.p.a,3E,San Michele delle Badesse - Mirano Matteotti,EN,3,,393185,FFFFFF
+93,ACTVs.p.a,3E,Borgoricco Industriale - Mirano Matteotti,EN,3,,393185,FFFFFF
+94,ACTVs.p.a,3E,Sant'Angelo Centro - Mirano Matteotti,EN,3,,393185,FFFFFF
+95,ACTVs.p.a,3E,Mirano Matteotti - San Michele delle Badesse,EN,3,,393185,FFFFFF
+96,ACTVs.p.a,3E,Mirano Matteotti - Borgoricco,EN,3,,393185,FFFFFF
+97,ACTVs.p.a,3E,Mirano Matteotti - Sant'Angelo Centro,EN,3,,393185,FFFFFF
+98,ACTVs.p.a,4E,Noale - Mirano Scuole,EN,3,,393185,FFFFFF
+99,ACTVs.p.a,4E,Noale - Mirano Matteotti,EN,3,,393185,FFFFFF
+100,ACTVs.p.a,4E,Mirano Sport - Noale,EN,3,,393185,FFFFFF
+101,ACTVs.p.a,5E,Noale - VENEZIA,EN,3,,393185,FFFFFF
+102,ACTVs.p.a,5E,Noale - VENEZIA,EN,3,,393185,FFFFFF
+103,ACTVs.p.a,5E,Noale - VENEZIA,EN,3,,393185,FFFFFF
+104,ACTVs.p.a,5E,Salzano Oddo Stocco - Camporese Gritti,EN,3,,393185,FFFFFF
+105,ACTVs.p.a,5E,Noale - MESTRE CENTRO B3,EN,3,,393185,FFFFFF
+106,ACTVs.p.a,5E,Noale - MESTRE CENTRO B3,EN,3,,393185,FFFFFF
+107,ACTVs.p.a,5E,Maerne FS - MESTRE CENTRO B3,EN,3,,393185,FFFFFF
+108,ACTVs.p.a,5E,VENEZIA - Noale,EN,3,,393185,FFFFFF
+109,ACTVs.p.a,5E,VENEZIA - Noale,EN,3,,393185,FFFFFF
+110,ACTVs.p.a,5E,MESTRE CENTRO B3 - Noale,EN,3,,393185,FFFFFF
+111,ACTVs.p.a,5E,Camporese Gritti - Salzano Oddo Stocco,EN,3,,393185,FFFFFF
+112,ACTVs.p.a,5E,MESTRE CENTRO B3 - Noale,EN,3,,393185,FFFFFF
+113,ACTVs.p.a,5E,MESTRE CENTRO B3 - Maerne FS,EN,3,,393185,FFFFFF
+114,ACTVs.p.a,6E,Scorze' IV Novembre - VENEZIA,EN,3,,393185,FFFFFF
+115,ACTVs.p.a,6E,Scorze' IV Novembre - MESTRE CENTRO B3,EN,3,,393185,FFFFFF
+116,ACTVs.p.a,6E,Martellago - MESTRE CENTRO B3,EN,3,,393185,FFFFFF
+117,ACTVs.p.a,6E,VENEZIA - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+118,ACTVs.p.a,6E,MESTRE CENTRO B3 - Scorze' IV Novembre,EN,3,,393185,FFFFFF
+119,ACTVs.p.a,6E,MESTRE CENTRO B3 - Martellago,EN,3,,393185,FFFFFF
+120,ACTVs.p.a,7E,Mirano Matteotti - VENEZIA,EN,3,,393185,FFFFFF
+121,ACTVs.p.a,7E,Mirano Matteotti - Camporese Gritti,EN,3,,393185,FFFFFF
+122,ACTVs.p.a,7E,Mirano Matteotti - Camporese Gritti,EN,3,,393185,FFFFFF
+123,ACTVs.p.a,7E,Mirano Matteotti - VENEZIA,EN,3,,393185,FFFFFF
+124,ACTVs.p.a,7E,Mirano Scuole - SFMR Spinea,EN,3,,393185,FFFFFF
+125,ACTVs.p.a,7E,Mirano Scuole - Mirano Treviso,EN,3,,393185,FFFFFF
+126,ACTVs.p.a,7E,Mirano Scuole - Fornase Perugia,EN,3,,393185,FFFFFF
+127,ACTVs.p.a,7E,Mirano Matteotti - Fornase Perugia,EN,3,,393185,FFFFFF
+128,ACTVs.p.a,7E,VENEZIA - Mirano Matteotti,EN,3,,393185,FFFFFF
+129,ACTVs.p.a,7E,VENEZIA - Mirano Matteotti,EN,3,,393185,FFFFFF
+130,ACTVs.p.a,7E,Pertini Foscari - Mirano Matteotti,EN,3,,393185,FFFFFF
+131,ACTVs.p.a,7E,Pertini Foscari - Mirano Matteotti,EN,3,,393185,FFFFFF
+132,ACTVs.p.a,7E,SFMR Spinea - Mirano Scuole,EN,3,,393185,FFFFFF
+133,ACTVs.p.a,7E,Fornase Perugia - Mirano Scuole,EN,3,,393185,FFFFFF
+134,ACTVs.p.a,7E,SFMR Spinea - Mirano Scuole,EN,3,,393185,FFFFFF
+135,ACTVs.p.a,7E,MIrano Treviso - Mirano Matteotti,EN,3,,393185,FFFFFF
+136,ACTVs.p.a,8E,Treviso - VENEZIA,EN,3,,393185,FFFFFF
+137,ACTVs.p.a,8E,Treviso - MESTRE CENTRO B2,EN,3,,393185,FFFFFF
+138,ACTVs.p.a,8E,Treviso - MESTRE CENTRO B2,EN,3,,393185,FFFFFF
+139,ACTVs.p.a,8E,Preganziol FS - VENEZIA,EN,3,,393185,FFFFFF
+140,ACTVs.p.a,8E,Treviso - Mogliano Liceo,EN,3,,393185,FFFFFF
+141,ACTVs.p.a,8E,Treviso - Mogliano Centro,EN,3,,393185,FFFFFF
+142,ACTVs.p.a,8E,Preganziol FS - MESTRE CENTRO B2,EN,3,,393185,FFFFFF
+143,ACTVs.p.a,8E,Mogliano FS - MESTRE CENTRO B2,EN,3,,393185,FFFFFF
+144,ACTVs.p.a,8E,VENEZIA - Treviso,EN,3,,393185,FFFFFF
+145,ACTVs.p.a,8E,MESTRE CENTRO B2 - Treviso,EN,3,,393185,FFFFFF
+146,ACTVs.p.a,8E,MESTRE CENTRO B2 - Treviso,EN,3,,393185,FFFFFF
+147,ACTVs.p.a,8E,Mogliano Liceo - Treviso,EN,3,,393185,FFFFFF
+148,ACTVs.p.a,8E,MESTRE CENTRO B2 - Preganziol FS,EN,3,,393185,FFFFFF
+149,ACTVs.p.a,8E,Mogliano Centro - Treviso,EN,3,,393185,FFFFFF
+150,ACTVs.p.a,8E,Preganziol FS - Treviso,EN,3,,393185,FFFFFF
+151,ACTVs.p.a,8E,MESTRE CENTRO B2 - Mogliano FS,EN,3,,393185,FFFFFF
+152,ACTVs.p.a,8E,Mogliano Centro - Preganziol FS,EN,3,,393185,FFFFFF
+153,ACTVs.p.a,8AE,Marcon Mattei - Stazione MESTRE FS C1,EN,3,,393185,FFFFFF
+154,ACTVs.p.a,8AE,Marcon Mattei - Stazione MESTRE FS C1,EN,3,,393185,FFFFFF
+155,ACTVs.p.a,8AE,Marcon Mattei - MESTRE CENTRO B2,EN,3,,393185,FFFFFF
+156,ACTVs.p.a,8AE,Mazzocco - MESTRE CENTRO B2,EN,3,,393185,FFFFFF
+157,ACTVs.p.a,8AE,Marcon Mattei - Mogliano Centro,EN,3,,393185,FFFFFF
+158,ACTVs.p.a,8AE,Stazione MESTRE FS C1 - Marcon Mattei,EN,3,,393185,FFFFFF
+159,ACTVs.p.a,8AE,MESTRE CENTRO B2 - Marcon Mattei,EN,3,,393185,FFFFFF
+160,ACTVs.p.a,8AE,Camporese Gritti - Mogliano Centro,EN,3,,393185,FFFFFF
+161,ACTVs.p.a,9E,Quarto d'Altino FS - 27 Ottobre D2,EN,3,,393185,FFFFFF
+162,ACTVs.p.a,9E,Quarto d'Altino FS - 27 Ottobre D2,EN,3,,393185,FFFFFF
+163,ACTVs.p.a,9E,San Liberale - 27 Ottobre D2,EN,3,,393185,FFFFFF
+164,ACTVs.p.a,9E,Marcon Cooperazione - Favretti MESTRE FS C2,EN,3,,393185,FFFFFF
+165,ACTVs.p.a,9E,San Liberale - 27 Ottobre D2,EN,3,,393185,FFFFFF
+166,ACTVs.p.a,9E,San Liberale - 27 Ottobre D2,EN,3,,393185,FFFFFF
+167,ACTVs.p.a,9E,Casale sul Sile Chiesa - 27 Ottobre D4,EN,3,,393185,FFFFFF
+168,ACTVs.p.a,9E,Marcon Cooperazione - 27 Ottobre D4,EN,3,,393185,FFFFFF
+169,ACTVs.p.a,9E,Casale sul Sile Chiesa - 27 Ottobre D4,EN,3,,393185,FFFFFF
+170,ACTVs.p.a,9E,Quarto d'Altino Zona Indu - San Dona' Pastrello,EN,3,,393185,FFFFFF
+171,ACTVs.p.a,9E,Altinia Ca' Rezzonico - 27 Ottobre D2,EN,3,,393185,FFFFFF
+172,ACTVs.p.a,9E,San Liberale - Triestina ulss 3,EN,3,,393185,FFFFFF
+173,ACTVs.p.a,9E,Triestina ulss 3 - Favretti MESTRE FS C2,EN,3,,393185,FFFFFF
+174,ACTVs.p.a,9E,San Liberale - Altinia Ca' Rezzonico,EN,3,,393185,FFFFFF
+175,ACTVs.p.a,9E,27 Ottobre D2 - Quarto d'Altino FS,EN,3,,393185,FFFFFF
+176,ACTVs.p.a,9E,Asseggiano Volta - Quarto d'Altino Zona Indu,EN,3,,393185,FFFFFF
+177,ACTVs.p.a,9E,Tevere Baglioni - San Liberale,EN,3,,393185,FFFFFF
+178,ACTVs.p.a,9E,27 Ottobre D2 - Quarto d'Altino FS,EN,3,,393185,FFFFFF
+179,ACTVs.p.a,9E,27 Ottobre D2 - San Liberale,EN,3,,393185,FFFFFF
+180,ACTVs.p.a,9E,Pertini Foscari - Quarto d'Altino Zona Indu,EN,3,,393185,FFFFFF
+181,ACTVs.p.a,9E,27 Ottobre D2 - San Liberale,EN,3,,393185,FFFFFF
+182,ACTVs.p.a,9E,27 Ottobre D2 - San Liberale,EN,3,,393185,FFFFFF
+183,ACTVs.p.a,9E,27 Ottobre D4 - Casale sul Sile Chiesa,EN,3,,393185,FFFFFF
+184,ACTVs.p.a,9E,27 Ottobre D2 - Altinia Ca' Rezzonico,EN,3,,393185,FFFFFF
+185,ACTVs.p.a,9E,Triestina ulss 3 - San Liberale,EN,3,,393185,FFFFFF
+186,ACTVs.p.a,9E,27 Ottobre D2 - Triestina ulss 3,EN,3,,393185,FFFFFF
+187,ACTVs.p.a,53E,Stazione Padova - VENEZIA,ES,3,,393185,FFFFFF
+188,ACTVs.p.a,53E,Stazione Padova - 27 Ottobre D5,ES,3,,393185,FFFFFF
+189,ACTVs.p.a,53E,Stazione Padova - VENEZIA,ES,3,,393185,FFFFFF
+190,ACTVs.p.a,53E,Stazione Padova - VENEZIA,ES,3,,393185,FFFFFF
+191,ACTVs.p.a,53E,Stazione Padova - 27 Ottobre D5,ES,3,,393185,FFFFFF
+192,ACTVs.p.a,53E,Stra Piazza Marconi - 27 Ottobre D5,ES,3,,393185,FFFFFF
+193,ACTVs.p.a,53E,Stra Piazza Marconi - 27 Ottobre D5,ES,3,,393185,FFFFFF
+194,ACTVs.p.a,53E,Dolo Centro - VENEZIA,ES,3,,393185,FFFFFF
+195,ACTVs.p.a,53E,Dolo Centro - 27 Ottobre D5,ES,3,,393185,FFFFFF
+196,ACTVs.p.a,53E,Dolo Centro - VENEZIA,ES,3,,393185,FFFFFF
+197,ACTVs.p.a,53E,Dolo Centro - VENEZIA,ES,3,,393185,FFFFFF
+198,ACTVs.p.a,53E,Dolo Scuole - VENEZIA,ES,3,,393185,FFFFFF
+199,ACTVs.p.a,53E,Dolo Centro - VENEZIA,ES,3,,393185,FFFFFF
+200,ACTVs.p.a,53E,Dolo Centro - 27 Ottobre D5,ES,3,,393185,FFFFFF
+201,ACTVs.p.a,53E,Dolo Scuole - 27 Ottobre D5,ES,3,,393185,FFFFFF
+202,ACTVs.p.a,53E,Dolo Centro - Camporese Gritti,ES,3,,393185,FFFFFF
+203,ACTVs.p.a,53E,Mira Riviera - VENEZIA,ES,3,,393185,FFFFFF
+204,ACTVs.p.a,53E,Stazione Padova - Dolo Centro,ES,3,,393185,FFFFFF
+205,ACTVs.p.a,53E,Dolo Centro - Malcontenta Chiesa,ES,3,,393185,FFFFFF
+206,ACTVs.p.a,53E,Oriago Sommo - VENEZIA,ES,3,,393185,FFFFFF
+207,ACTVs.p.a,53E,Dolo Centro - VENEZIA,ES,3,,393185,FFFFFF
+208,ACTVs.p.a,53E,Stazione Padova - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+209,ACTVs.p.a,53E,Dolo Centro - VENEZIA,ES,3,,393185,FFFFFF
+210,ACTVs.p.a,53E,Dolo Centro - Oriago Centro,ES,3,,393185,FFFFFF
+211,ACTVs.p.a,53E,27 Ottobre D5 - Stazione Padova,ES,3,,393185,FFFFFF
+212,ACTVs.p.a,53E,VENEZIA - Stazione Padova,ES,3,,393185,FFFFFF
+213,ACTVs.p.a,53E,VENEZIA - Stazione Padova,ES,3,,393185,FFFFFF
+214,ACTVs.p.a,53E,VENEZIA - Stazione Padova,ES,3,,393185,FFFFFF
+215,ACTVs.p.a,53E,VENEZIA - Stazione Padova,ES,3,,393185,FFFFFF
+216,ACTVs.p.a,53E,VENEZIA - Stazione Padova,ES,3,,393185,FFFFFF
+217,ACTVs.p.a,53E,27 Ottobre D5 - Stazione Padova,ES,3,,393185,FFFFFF
+218,ACTVs.p.a,53E,Malcontenta Chiesa - Stazione Padova,ES,3,,393185,FFFFFF
+219,ACTVs.p.a,53E,Malcontenta Chiesa - Stazione Padova,ES,3,,393185,FFFFFF
+220,ACTVs.p.a,53E,VENEZIA - Dolo Centro,ES,3,,393185,FFFFFF
+221,ACTVs.p.a,53E,VENEZIA - Dolo Centro,ES,3,,393185,FFFFFF
+222,ACTVs.p.a,53E,VENEZIA - Dolo Centro,ES,3,,393185,FFFFFF
+223,ACTVs.p.a,53E,27 Ottobre D5 - Dolo Centro,ES,3,,393185,FFFFFF
+224,ACTVs.p.a,53E,VENEZIA - Dolo Centro,ES,3,,393185,FFFFFF
+225,ACTVs.p.a,53E,Camporese Gritti - Dolo Centro,ES,3,,393185,FFFFFF
+226,ACTVs.p.a,53E,Liberta' Righi - Dolo Centro,ES,3,,393185,FFFFFF
+227,ACTVs.p.a,53E,Dolo Manzoni - Stazione Padova,ES,3,,393185,FFFFFF
+228,ACTVs.p.a,53E,Liberta' Righi - Dolo Scuole,ES,3,,393185,FFFFFF
+229,ACTVs.p.a,53E,Dolo Centro - Stazione Padova,ES,3,,393185,FFFFFF
+230,ACTVs.p.a,53E,Dolo Scuole - Stazione Padova,ES,3,,393185,FFFFFF
+231,ACTVs.p.a,53E,Dolo Centro - Stazione Padova,ES,3,,393185,FFFFFF
+232,ACTVs.p.a,53E,Stra Piazza Marconi - Stazione Padova,ES,3,,393185,FFFFFF
+233,ACTVs.p.a,53E,VENEZIA - Dolo Centro,ES,3,,393185,FFFFFF
+234,ACTVs.p.a,53E,VENEZIA - Dolo Centro,ES,3,,393185,FFFFFF
+235,ACTVs.p.a,53E,Dolo Centro - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+236,ACTVs.p.a,53E,Oriago Centro - Dolo Centro,ES,3,,393185,FFFFFF
+237,ACTVs.p.a,54E,Bojon Chiesa - Dolo Scuole,ES,3,,393185,FFFFFF
+238,ACTVs.p.a,54E,Bojon Chiesa - Dolo Centro,ES,3,,393185,FFFFFF
+239,ACTVs.p.a,54E,Fosso' - Dolo Centro,ES,3,,393185,FFFFFF
+240,ACTVs.p.a,54E,Camponogara Arzerini - Dolo Centro,ES,3,,393185,FFFFFF
+241,ACTVs.p.a,54E,Dolo Centro - Bojon Chiesa,ES,3,,393185,FFFFFF
+242,ACTVs.p.a,55E,Dolo Scuole - Matteotti Celeseo,ES,3,,393185,FFFFFF
+243,ACTVs.p.a,55E,Dolo Centro - Matteotti Celeseo,ES,3,,393185,FFFFFF
+244,ACTVs.p.a,55E,Calcroci Chiesa - Stazione Padova,ES,3,,393185,FFFFFF
+245,ACTVs.p.a,55E,Dolo Centro - Matteotti Celeseo,ES,3,,393185,FFFFFF
+246,ACTVs.p.a,55E,Dolo Centro - Stazione Padova,ES,3,,393185,FFFFFF
+247,ACTVs.p.a,55E,Dolo Scuole - Vigonovo 1 Maggio,ES,3,,393185,FFFFFF
+248,ACTVs.p.a,55E,Calcroci Cavour - Stazione Padova,ES,3,,393185,FFFFFF
+249,ACTVs.p.a,55E,Dolo Centro - Stra Fossolovara,ES,3,,393185,FFFFFF
+250,ACTVs.p.a,55E,Dolo Centro - Vigonovo 1 Maggio,ES,3,,393185,FFFFFF
+251,ACTVs.p.a,55E,Dolo Centro - Calcroci Chiesa,ES,3,,393185,FFFFFF
+252,ACTVs.p.a,55E,Dolo Centro - Fosso',ES,3,,393185,FFFFFF
+253,ACTVs.p.a,55E,Matteotti Celeseo - Dolo Centro,ES,3,,393185,FFFFFF
+254,ACTVs.p.a,55E,Stazione Padova - Calcroci Chiesa,ES,3,,393185,FFFFFF
+255,ACTVs.p.a,55E,Stazione Padova - Dolo Centro,ES,3,,393185,FFFFFF
+256,ACTVs.p.a,55E,Stra Fossolovara - Dolo Centro,ES,3,,393185,FFFFFF
+257,ACTVs.p.a,55E,Matteotti Celeseo - Dolo Centro,ES,3,,393185,FFFFFF
+258,ACTVs.p.a,55E,Vigonovo 1 Maggio - Dolo Centro,ES,3,,393185,FFFFFF
+259,ACTVs.p.a,55E,Vigonovo 1 Maggio - Dolo Centro,ES,3,,393185,FFFFFF
+260,ACTVs.p.a,55E,Stazione Padova - Calcroci Chiesa,ES,3,,393185,FFFFFF
+261,ACTVs.p.a,55E,Stazione Padova - Calcroci Chiesa,ES,3,,393185,FFFFFF
+262,ACTVs.p.a,55E,Fosso' Zona Industriale - Dolo Centro,ES,3,,393185,FFFFFF
+263,ACTVs.p.a,55E,Calcroci Chiesa - Dolo Centro,ES,3,,393185,FFFFFF
+264,ACTVs.p.a,55SE,Dolo Scuole - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+265,ACTVs.p.a,55SE,Dolo Centro - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+266,ACTVs.p.a,55SE,Fiesso d'Artico Padana - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+267,ACTVs.p.a,55SE,Stra Piazza Marconi - Dolo Centro,ES,3,,393185,FFFFFF
+268,ACTVs.p.a,56E,Dolo Centro - Mirano Matteotti,ES,3,,393185,FFFFFF
+269,ACTVs.p.a,56E,Dolo Centro - Mirano Matteotti,ES,3,,393185,FFFFFF
+270,ACTVs.p.a,56E,Sambruson - Mirano Sport,ES,3,,393185,FFFFFF
+271,ACTVs.p.a,56E,Dolo Centro - Dolo Centro,ES,3,,393185,FFFFFF
+272,ACTVs.p.a,56E,Dolo Centro - Dolo Centro,ES,3,,393185,FFFFFF
+273,ACTVs.p.a,56E,Dolo Centro - Mirano Sport,ES,3,,393185,FFFFFF
+274,ACTVs.p.a,56E,Dolo Centro - Mirano Matteotti,ES,3,,393185,FFFFFF
+275,ACTVs.p.a,56E,Dolo Scuole - Mira Riviera,ES,3,,393185,FFFFFF
+276,ACTVs.p.a,56E,Dolo Centro - Mira Riviera,ES,3,,393185,FFFFFF
+277,ACTVs.p.a,56E,Mira Piazza Vecchia - Mira Municipio,ES,3,,393185,FFFFFF
+278,ACTVs.p.a,56E,Dolo Centro - Mirano Sport,ES,3,,393185,FFFFFF
+279,ACTVs.p.a,56E,Mira Piazza Vecchia - Mirano Sport,ES,3,,393185,FFFFFF
+280,ACTVs.p.a,56E,Mirano Sport - Dolo Centro,ES,3,,393185,FFFFFF
+281,ACTVs.p.a,56E,Mirano Sport - Dolo Centro,ES,3,,393185,FFFFFF
+282,ACTVs.p.a,56E,Mirano Sport - Dolo Scuole,ES,3,,393185,FFFFFF
+283,ACTVs.p.a,56E,Mirano Matteotti - Dolo Centro,ES,3,,393185,FFFFFF
+284,ACTVs.p.a,56E,Mirano Sport - Dolo Centro,ES,3,,393185,FFFFFF
+285,ACTVs.p.a,56E,Dolo Centro - Dolo Centro,ES,3,,393185,FFFFFF
+286,ACTVs.p.a,56E,Mira Municipio - Dolo Centro,ES,3,,393185,FFFFFF
+287,ACTVs.p.a,56E,Mirano Sport - Dolo Centro,ES,3,,393185,FFFFFF
+288,ACTVs.p.a,56E,Mirano Matteotti - Dolo Centro,ES,3,,393185,FFFFFF
+289,ACTVs.p.a,57E,VENEZIA - Scaltenigo,ES,3,,393185,FFFFFF
+290,ACTVs.p.a,57E,Oriago Venezia - Mellaredo Cavinello,ES,3,,393185,FFFFFF
+291,ACTVs.p.a,57E,Oriago Venezia - Mirano Sport,ES,3,,393185,FFFFFF
+292,ACTVs.p.a,57E,Oriago Venezia - Dolo Scuole,ES,3,,393185,FFFFFF
+293,ACTVs.p.a,57E,Oriago Venezia - Scaltenigo,ES,3,,393185,FFFFFF
+294,ACTVs.p.a,57E,Mellaredo Cavinello - VENEZIA,ES,3,,393185,FFFFFF
+295,ACTVs.p.a,57E,Mellaredo Cavinello - Oriago Romagna,ES,3,,393185,FFFFFF
+296,ACTVs.p.a,57E,Mellaredo Cavinello - Oriago Venezia,ES,3,,393185,FFFFFF
+297,ACTVs.p.a,57E,Mirano Sport - Oriago Romagna,ES,3,,393185,FFFFFF
+298,ACTVs.p.a,57E,Mirano Matteotti - Oriago Romagna,ES,3,,393185,FFFFFF
+299,ACTVs.p.a,57E,Borbiago - Oriago Venezia,ES,3,,393185,FFFFFF
+300,ACTVs.p.a,57E,Borbiago - Oriago Venezia,ES,3,,393185,FFFFFF
+301,ACTVs.p.a,58E,Adria Ospedale - Dolo Centro,ES,3,,393185,FFFFFF
+302,ACTVs.p.a,58E,Adria Fs - Dolo Centro,ES,3,,393185,FFFFFF
+303,ACTVs.p.a,58E,Cavarzere - Dolo Scuole,ES,3,,393185,FFFFFF
+304,ACTVs.p.a,58E,Cavarzere - Dolo Centro,ES,3,,393185,FFFFFF
+305,ACTVs.p.a,58E,Piove di Sacco - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+306,ACTVs.p.a,58E,Piove di Sacco - Dolo Centro,ES,3,,393185,FFFFFF
+307,ACTVs.p.a,58E,Sandon - Dolo Scuole,ES,3,,393185,FFFFFF
+308,ACTVs.p.a,58E,Campolongo Liettoli - Dolo Centro,ES,3,,393185,FFFFFF
+309,ACTVs.p.a,58E,Cavarzere - Trieste Stazione FS,ES,3,,393185,FFFFFF
+310,ACTVs.p.a,58E,Cavarzere - Piove di Sacco,ES,3,,393185,FFFFFF
+311,ACTVs.p.a,58E,Sandon - Dolo Centro,ES,3,,393185,FFFFFF
+312,ACTVs.p.a,58E,Adria Ospedale - Cavarzere,ES,3,,393185,FFFFFF
+313,ACTVs.p.a,58E,Adria Errmont - Cavarzere,ES,3,,393185,FFFFFF
+314,ACTVs.p.a,58E,Adria Ospedale - Cavarzere,ES,3,,393185,FFFFFF
+315,ACTVs.p.a,58E,Adria Ospedale - Cavarzere,ES,3,,393185,FFFFFF
+316,ACTVs.p.a,58E,Adria Fs - Cavarzere,ES,3,,393185,FFFFFF
+317,ACTVs.p.a,58E,Cavarzere - Trieste Stazione FS,ES,3,,393185,FFFFFF
+318,ACTVs.p.a,58E,Cavarzere - Trieste Stazione FS,ES,3,,393185,FFFFFF
+319,ACTVs.p.a,58E,Dolo Centro - Adria Fs,ES,3,,393185,FFFFFF
+320,ACTVs.p.a,58E,Dolo Centro - Cavarzere,ES,3,,393185,FFFFFF
+321,ACTVs.p.a,58E,Dolo Scuole - Piove di Sacco,ES,3,,393185,FFFFFF
+322,ACTVs.p.a,58E,Stra Piazza Marconi - Piove di Sacco,ES,3,,393185,FFFFFF
+323,ACTVs.p.a,58E,Dolo Centro - Piove di Sacco,ES,3,,393185,FFFFFF
+324,ACTVs.p.a,58E,Dolo Centro - Piove di Sacco,ES,3,,393185,FFFFFF
+325,ACTVs.p.a,58E,Dolo Centro - Liettoli Trentino,ES,3,,393185,FFFFFF
+326,ACTVs.p.a,58E,Trieste Stazione FS - Cavarzere,ES,3,,393185,FFFFFF
+327,ACTVs.p.a,58E,Piove di Sacco - Cavarzere,ES,3,,393185,FFFFFF
+328,ACTVs.p.a,58E,Cavarzere - Adria Fs,ES,3,,393185,FFFFFF
+329,ACTVs.p.a,58E,Cavarzere - Adria Errmont,ES,3,,393185,FFFFFF
+330,ACTVs.p.a,58E,Cavarzere - Adria Ospedale,ES,3,,393185,FFFFFF
+331,ACTVs.p.a,58E,Cavarzere - Adria Ospedale,ES,3,,393185,FFFFFF
+332,ACTVs.p.a,58E,Cavarzere - Adria Fs,ES,3,,393185,FFFFFF
+333,ACTVs.p.a,58E,Cavarzere - Adria Fs,ES,3,,393185,FFFFFF
+334,ACTVs.p.a,58E,Trieste Stazione FS - Cavarzere,ES,3,,393185,FFFFFF
+335,ACTVs.p.a,58E,Adria Fs - Adria Ospedale,ES,3,,393185,FFFFFF
+336,ACTVs.p.a,58E,Trieste Stazione FS - Cavarzere,ES,3,,393185,FFFFFF
+337,ACTVs.p.a,58E,Trieste Stazione FS - Cavarzere,ES,3,,393185,FFFFFF
+338,ACTVs.p.a,58RE,Adria Fs - VENEZIA,ES,3,,393185,FFFFFF
+339,ACTVs.p.a,58RE,Grignella Strada Poli - VENEZIA,ES,3,,393185,FFFFFF
+340,ACTVs.p.a,58RE,Cavarzere - VENEZIA,ES,3,,393185,FFFFFF
+341,ACTVs.p.a,58RE,Cavarzere - VENEZIA,ES,3,,393185,FFFFFF
+342,ACTVs.p.a,58RE,San Pietro Chiesa - VENEZIA,ES,3,,393185,FFFFFF
+343,ACTVs.p.a,58RE,Adria Fs - Dei Cantieri Centrale,ES,3,,393185,FFFFFF
+344,ACTVs.p.a,58RE,Elettronica Centrale - Adria Fs,ES,3,,393185,FFFFFF
+345,ACTVs.p.a,58RE,VENEZIA - Adria Fs,ES,3,,393185,FFFFFF
+346,ACTVs.p.a,58RE,VENEZIA - Cavarzere,ES,3,,393185,FFFFFF
+347,ACTVs.p.a,58RE,Elettronica Centrale - Adria Fs,ES,3,,393185,FFFFFF
+348,ACTVs.p.a,58RE,VENEZIA - Cavarzere,ES,3,,393185,FFFFFF
+349,ACTVs.p.a,59E,Dolo Scuole - Mirano Matteotti,ES,3,,393185,FFFFFF
+350,ACTVs.p.a,59E,Mellaredo Cavinello - Mirano Matteotti,ES,3,,393185,FFFFFF
+351,ACTVs.p.a,59E,Mellaredo Cavinello - Mirano Matteotti,ES,3,,393185,FFFFFF
+352,ACTVs.p.a,59E,Dolo Centro - Mirano Scuole,ES,3,,393185,FFFFFF
+353,ACTVs.p.a,59E,Dolo Centro - Mirano Matteotti,ES,3,,393185,FFFFFF
+354,ACTVs.p.a,59E,Dolo Scuole - Mirano Matteotti,ES,3,,393185,FFFFFF
+355,ACTVs.p.a,59E,Dolo Centro - Mirano Matteotti,ES,3,,393185,FFFFFF
+356,ACTVs.p.a,59E,Mirano Matteotti - Dolo Scuole,ES,3,,393185,FFFFFF
+357,ACTVs.p.a,59E,Mirano Sport - Mellaredo Cavinello,ES,3,,393185,FFFFFF
+358,ACTVs.p.a,59E,Mirano Sport - Dolo Centro,ES,3,,393185,FFFFFF
+359,ACTVs.p.a,59E,Mirano Sport - Dolo Centro,ES,3,,393185,FFFFFF
+360,ACTVs.p.a,59E,Mirano Matteotti - Dolo Centro,ES,3,,393185,FFFFFF
+361,ACTVs.p.a,59E,Mirano Sport - Dolo Centro,ES,3,,393185,FFFFFF
+362,ACTVs.p.a,59E,Mirano Matteotti - Dolo Centro,ES,3,,393185,FFFFFF
+363,ACTVs.p.a,59E,Scaltenigo - Dolo Centro,ES,3,,393185,FFFFFF
+364,ACTVs.p.a,60E,Cavarzere - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+365,ACTVs.p.a,60E,Stra Piazza Marconi - Cavarzere,ES,3,,393185,FFFFFF
+366,ACTVs.p.a,66E,Dolo Scuole - Mellaredo Cavinello,ES,3,,393185,FFFFFF
+367,ACTVs.p.a,66E,Dolo Centro - Mellaredo Cavinello,ES,3,,393185,FFFFFF
+368,ACTVs.p.a,66E,Dolo Centro - Mellaredo Cavinello,ES,3,,393185,FFFFFF
+369,ACTVs.p.a,66E,Dolo Scuole - Cazzaghetto Arino,ES,3,,393185,FFFFFF
+370,ACTVs.p.a,66E,Mellaredo Cavinello - VENEZIA,ES,3,,393185,FFFFFF
+371,ACTVs.p.a,66E,Mellaredo Cavinello - Dolo Centro,ES,3,,393185,FFFFFF
+372,ACTVs.p.a,66E,Caltana Marinoni - Dolo Scuole,ES,3,,393185,FFFFFF
+373,ACTVs.p.a,67E,Stra Piazza Marconi - Piove di Sacco,ES,3,,393185,FFFFFF
+374,ACTVs.p.a,67E,Dolo Scuole - Piove di Sacco,ES,3,,393185,FFFFFF
+375,ACTVs.p.a,67E,Stra Piazza Marconi - Rosara,ES,3,,393185,FFFFFF
+376,ACTVs.p.a,67E,Dolo Scuole - Dolo Centro,ES,3,,393185,FFFFFF
+377,ACTVs.p.a,67E,Dolo Scuole - Piove di Sacco,ES,3,,393185,FFFFFF
+378,ACTVs.p.a,67E,Dolo Scuole - Camponogara Arzerini,ES,3,,393185,FFFFFF
+379,ACTVs.p.a,67E,Dolo Centro - Piove di Sacco,ES,3,,393185,FFFFFF
+380,ACTVs.p.a,67E,Sambruson - Piove di Sacco,ES,3,,393185,FFFFFF
+381,ACTVs.p.a,67E,Dolo Centro - Bojon,ES,3,,393185,FFFFFF
+382,ACTVs.p.a,67E,Dolo Centro - Lugo Zona Industriale,ES,3,,393185,FFFFFF
+383,ACTVs.p.a,67E,Dolo Centro - Bojon,ES,3,,393185,FFFFFF
+384,ACTVs.p.a,67E,Lova San Marco - Piove di Sacco,ES,3,,393185,FFFFFF
+385,ACTVs.p.a,67E,Calcroci Chiesa - Piove di Sacco,ES,3,,393185,FFFFFF
+386,ACTVs.p.a,67E,Calcroci Chiesa - Piove di Sacco,ES,3,,393185,FFFFFF
+387,ACTVs.p.a,67E,Bojon - Camporese Gritti,ES,3,,393185,FFFFFF
+388,ACTVs.p.a,67E,Bojon - Stra Piazza Marconi,ES,3,,393185,FFFFFF
+389,ACTVs.p.a,67E,Piove di Sacco - Dolo Centro,ES,3,,393185,FFFFFF
+390,ACTVs.p.a,67E,Piove di Sacco - Dolo Centro,ES,3,,393185,FFFFFF
+391,ACTVs.p.a,67E,Rosara - Dolo Centro,ES,3,,393185,FFFFFF
+392,ACTVs.p.a,67E,Camponogara Centro - Dolo Centro,ES,3,,393185,FFFFFF
+393,ACTVs.p.a,67E,Lugo Zona Industriale - Dolo Centro,ES,3,,393185,FFFFFF
+394,ACTVs.p.a,67E,Bojon - Dolo Scuole,ES,3,,393185,FFFFFF
+395,ACTVs.p.a,67E,Bojon - Dolo Centro,ES,3,,393185,FFFFFF
+396,ACTVs.p.a,67E,Piove di Sacco - Lova San Marco,ES,3,,393185,FFFFFF
+397,ACTVs.p.a,67E,Piove di Sacco - Dolo Centro,ES,3,,393185,FFFFFF
+398,ACTVs.p.a,67E,Bojon - Camponogara Arzerini,ES,3,,393185,FFFFFF
+399,ACTVs.p.a,67E,Bojon - Dolo Scuole,ES,3,,393185,FFFFFF
+400,ACTVs.p.a,67RE,Piove di Sacco - VENEZIA,ES,3,,393185,FFFFFF
+401,ACTVs.p.a,67RE,Piove di Sacco - VENEZIA,ES,3,,393185,FFFFFF
+402,ACTVs.p.a,67RE,Bojon - VENEZIA,ES,3,,393185,FFFFFF
+403,ACTVs.p.a,67RE,Piove di Sacco - VENEZIA,ES,3,,393185,FFFFFF
+404,ACTVs.p.a,67RE,Bojon - VENEZIA,ES,3,,393185,FFFFFF
+405,ACTVs.p.a,67RE,VENEZIA - Piove di Sacco,ES,3,,393185,FFFFFF
+406,ACTVs.p.a,67RE,VENEZIA - Piove di Sacco,ES,3,,393185,FFFFFF
+407,ACTVs.p.a,67RE,VENEZIA - Bojon,ES,3,,393185,FFFFFF
+408,ACTVs.p.a,72E,Cavarzere - Pettorazza Santuario,ES,3,,393185,FFFFFF
+409,ACTVs.p.a,72E,Cavarzere - Pettorazza Santuario,ES,3,,393185,FFFFFF
+410,ACTVs.p.a,72E,Pettorazza Santuario - Cavarzere,ES,3,,393185,FFFFFF
+411,ACTVs.p.a,73E,Cavarzere - Cavarzere,ES,3,,393185,FFFFFF
+412,ACTVs.p.a,73E,Cavarzere - Maddalena Rottanova,ES,3,,393185,FFFFFF
+413,ACTVs.p.a,73E,Cavarzere - Maddalena Rottanova,ES,3,,393185,FFFFFF
+414,ACTVs.p.a,73E,Cavarzere - Pegolotte Piera,ES,3,,393185,FFFFFF
+415,ACTVs.p.a,73E,Cona - Cavarzere,ES,3,,393185,FFFFFF
+416,ACTVs.p.a,73E,Pegolotte Piera - Cavarzere,ES,3,,393185,FFFFFF
+417,ACTVs.p.a,73E,Rottanova Maddalena - Cavarzere,ES,3,,393185,FFFFFF
+418,ACTVs.p.a,81E,Adria Ospedale - Sottomarina,ES,3,,393185,FFFFFF
+419,ACTVs.p.a,81E,Adria Fs - Sottomarina,ES,3,,393185,FFFFFF
+420,ACTVs.p.a,81E,Cavarzere - Sottomarina,ES,3,,393185,FFFFFF
+421,ACTVs.p.a,81E,Cavarzere - Sottomarina,ES,3,,393185,FFFFFF
+422,ACTVs.p.a,81E,Cavarzere - Sottomarina,ES,3,,393185,FFFFFF
+423,ACTVs.p.a,81E,Cavarzere - Sottomarina,ES,3,,393185,FFFFFF
+424,ACTVs.p.a,81E,Cavarzere - Sottomarina,ES,3,,393185,FFFFFF
+425,ACTVs.p.a,81E,Cavarzere - San Pietro Chiesa,ES,3,,393185,FFFFFF
+426,ACTVs.p.a,81E,Adria Molinterran - Cavarzere,ES,3,,393185,FFFFFF
+427,ACTVs.p.a,81E,Sottomarina - Adria Fs,ES,3,,393185,FFFFFF
+428,ACTVs.p.a,81E,Sottomarina - Adria Ospedale,ES,3,,393185,FFFFFF
+429,ACTVs.p.a,81E,Sottomarina - Adria Fs,ES,3,,393185,FFFFFF
+430,ACTVs.p.a,81E,Chioggia  DeGasperi - Adria Fs,ES,3,,393185,FFFFFF
+431,ACTVs.p.a,81E,Sottomarina - Cavarzere,ES,3,,393185,FFFFFF
+432,ACTVs.p.a,81E,Sottomarina - Cavarzere,ES,3,,393185,FFFFFF
+433,ACTVs.p.a,81E,Sottomarina - Cavarzere,ES,3,,393185,FFFFFF
+434,ACTVs.p.a,81E,Sottomarina - Cavarzere,ES,3,,393185,FFFFFF
+435,ACTVs.p.a,81E,Sottomarina - Cavarzere,ES,3,,393185,FFFFFF
+436,ACTVs.p.a,81E,San Pietro Chiesa - Cavarzere,ES,3,,393185,FFFFFF
+437,ACTVs.p.a,82E,Dolo Centro - Sottomarina,ES,3,,393185,FFFFFF
+438,ACTVs.p.a,82E,Sottomarina - Dolo Centro,ES,3,,393185,FFFFFF
+439,ACTVs.p.a,83E,Cavarzere - Adria Ospedale,ES,3,,393185,FFFFFF
+440,ACTVs.p.a,83E,Cavarzere - Grignella Strada Poli,ES,3,,393185,FFFFFF
+441,ACTVs.p.a,83E,Adria Ospedale - Cavarzere,ES,3,,393185,FFFFFF
+442,ACTVs.p.a,83E,Grignella Strada Poli - Cavarzere,ES,3,,393185,FFFFFF
+443,ACTVs.p.a,10,Asseggiano Chiesa - Asseggiano Chiesa,UM,3,,E31E24,FFFFFF
+444,ACTVs.p.a,10,Asseggiano Chiesa - Asseggiano Chiesa,UM,3,,E31E24,FFFFFF
+445,ACTVs.p.a,10,Stazione MESTRE FS C5 - Asseggiano Chiesa,UM,3,,E31E24,FFFFFF
+446,ACTVs.p.a,10,Asseggiano Chiesa - Stazione MESTRE FS C5,UM,3,,E31E24,FFFFFF
+447,ACTVs.p.a,10,27 Ottobre D4 - Asseggiano Chiesa,UM,3,,E31E24,FFFFFF
+448,ACTVs.p.a,10,Asseggiano Chiesa - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+449,ACTVs.p.a,12L,VENEZIA - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+450,ACTVs.p.a,12L,27 Ottobre D4 - VENEZIA,UM,3,,E31E24,FFFFFF
+451,ACTVs.p.a,13,Trieste Robinie - Camporese Gritti,UM,3,,E31E24,FFFFFF
+452,ACTVs.p.a,13,Bottenigo Capolinea - Camporese Gritti,UM,3,,E31E24,FFFFFF
+453,ACTVs.p.a,13,Bottenigo Capolinea - Camporese Gritti,UM,3,,E31E24,FFFFFF
+454,ACTVs.p.a,13,Stazione MESTRE FS C3 - Camporese Gritti,UM,3,,E31E24,FFFFFF
+455,ACTVs.p.a,13,27 Ottobre D4 - Cavergnago Taliercio,UM,3,,E31E24,FFFFFF
+456,ACTVs.p.a,13,27 Ottobre D4 - Pertini Chiesa,UM,3,,E31E24,FFFFFF
+457,ACTVs.p.a,13,Marghera Arduino - Zendrini Villaggio Laguna,UM,3,,E31E24,FFFFFF
+458,ACTVs.p.a,13,Cavergnago Taliercio - Bottenigo Capolinea,UM,3,,E31E24,FFFFFF
+459,ACTVs.p.a,13,Pertini Foscari - Bottenigo Capolinea,UM,3,,E31E24,FFFFFF
+460,ACTVs.p.a,13,Pertini Foscari - Trieste Robinie,UM,3,,E31E24,FFFFFF
+461,ACTVs.p.a,13,Camporese Gritti - Sant'Antonio Municipio,UM,3,,E31E24,FFFFFF
+462,ACTVs.p.a,13,Cavergnago Taliercio - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+463,ACTVs.p.a,13,Pertini Chiesa - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+464,ACTVs.p.a,13,Zendrini Villaggio Laguna - Marghera Arduino,UM,3,,E31E24,FFFFFF
+465,ACTVs.p.a,15,Aeroporto MARCO POLO - Stazione MESTRE FS C1,UM,3,,E31E24,FFFFFF
+466,ACTVs.p.a,15,Stazione MESTRE FS C1 - Aeroporto MARCO POLO,UM,3,,E31E24,FFFFFF
+467,ACTVs.p.a,19,VENEZIA - Marcon Cooperazione,UM,3,,E31E24,FFFFFF
+468,ACTVs.p.a,19,VENEZIA - Altinia Ca' Rezzonico,UM,3,,E31E24,FFFFFF
+469,ACTVs.p.a,19,Marcon Cooperazione - VENEZIA,UM,3,,E31E24,FFFFFF
+470,ACTVs.p.a,19,Altinia Ca' Rezzonico - VENEZIA,UM,3,,E31E24,FFFFFF
+471,ACTVs.p.a,2,VENEZIA - Don Sturzo Vallon,UM,3,,E31E24,FFFFFF
+472,ACTVs.p.a,2,VENEZIA - Mestre Centro B1,UM,3,,E31E24,FFFFFF
+473,ACTVs.p.a,2,VENEZIA - Circonvallazione Olimpia,UM,3,,E31E24,FFFFFF
+474,ACTVs.p.a,2,Don Sturzo Vallon - VENEZIA,UM,3,,E31E24,FFFFFF
+475,ACTVs.p.a,2,Mestre Centro B1 - VENEZIA,UM,3,,E31E24,FFFFFF
+476,ACTVs.p.a,2,Circonvallazione Olimpia - VENEZIA,UM,3,,E31E24,FFFFFF
+477,ACTVs.p.a,2,Piave Puccini - VENEZIA,UM,3,,E31E24,FFFFFF
+478,ACTVs.p.a,20,Martellago - Camporese Gritti,UM,3,,E31E24,FFFFFF
+479,ACTVs.p.a,20,Martellago - MESTRE CENTRO B5,UM,3,,E31E24,FFFFFF
+480,ACTVs.p.a,20,Martellago - Corso del Popolo Torino,UM,3,,E31E24,FFFFFF
+481,ACTVs.p.a,20,Martellago - MESTRE CENTRO B5,UM,3,,E31E24,FFFFFF
+482,ACTVs.p.a,20,Ca' Lin Eraclito - Pertini Foscari,UM,3,,E31E24,FFFFFF
+483,ACTVs.p.a,20,Tevere Baglioni - Martellago,UM,3,,E31E24,FFFFFF
+484,ACTVs.p.a,20,MESTRE CENTRO B7 - Martellago,UM,3,,E31E24,FFFFFF
+485,ACTVs.p.a,20,Pertini Foscari - Martellago,UM,3,,E31E24,FFFFFF
+486,ACTVs.p.a,20,Camporese Gritti - Martellago,UM,3,,E31E24,FFFFFF
+487,ACTVs.p.a,20,MESTRE CENTRO B7 - Martellago,UM,3,,E31E24,FFFFFF
+488,ACTVs.p.a,21,Martellago - Stazione MESTRE FS C1,UM,3,,E31E24,FFFFFF
+489,ACTVs.p.a,21,Martellago - Camporese Gritti,UM,3,,E31E24,FFFFFF
+490,ACTVs.p.a,21,Martellago - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+491,ACTVs.p.a,21,Martellago - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+492,ACTVs.p.a,21,Maerne FS - Stazione MESTRE FS C1,UM,3,,E31E24,FFFFFF
+493,ACTVs.p.a,21,Maerne FS - Salesiani Ferrarese,UM,3,,E31E24,FFFFFF
+494,ACTVs.p.a,21,Martellago - Salesiani Ferrarese,UM,3,,E31E24,FFFFFF
+495,ACTVs.p.a,21,Martellago - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+496,ACTVs.p.a,21,Stazione MESTRE FS C1 - Martellago,UM,3,,E31E24,FFFFFF
+497,ACTVs.p.a,21,Camporese Gritti - Martellago,UM,3,,E31E24,FFFFFF
+498,ACTVs.p.a,21,Salesiani Ferrarese - Martellago,UM,3,,E31E24,FFFFFF
+499,ACTVs.p.a,21,MESTRE CENTRO B7 - Martellago,UM,3,,E31E24,FFFFFF
+500,ACTVs.p.a,21,Salesiani Ferrarese - Martellago,UM,3,,E31E24,FFFFFF
+501,ACTVs.p.a,21,27 Ottobre D4 - Martellago,UM,3,,E31E24,FFFFFF
+502,ACTVs.p.a,21,27 Ottobre D4 - Maerne FS,UM,3,,E31E24,FFFFFF
+503,ACTVs.p.a,21,Asseggiano Volta - Maerne FS,UM,3,,E31E24,FFFFFF
+504,ACTVs.p.a,24,VENEZIA - VENEZIA,UM,3,,E31E24,FFFFFF
+505,ACTVs.p.a,24,San Dona' Pergola - VENEZIA,UM,3,,E31E24,FFFFFF
+506,ACTVs.p.a,24,VENEZIA - Rielta Parco Bissuola,UM,3,,E31E24,FFFFFF
+507,ACTVs.p.a,24,Camporese Gritti - VENEZIA,UM,3,,E31E24,FFFFFF
+508,ACTVs.p.a,24,Bissuola Esiodo - VENEZIA,UM,3,,E31E24,FFFFFF
+509,ACTVs.p.a,3,Ilaria Alpi SFMR ospedale - Salici Villabona,UM,3,,E31E24,FFFFFF
+510,ACTVs.p.a,3,Ilaria Alpi SFMR ospedale - Carducci Pascoli,UM,3,,E31E24,FFFFFF
+511,ACTVs.p.a,3,Salici Villabona - Ilaria Alpi SFMR ospedale,UM,3,,E31E24,FFFFFF
+512,ACTVs.p.a,31,Pertini Foscari - Stazione MESTRE FS C1,UM,3,,E31E24,FFFFFF
+513,ACTVs.p.a,31,Pertini Foscari - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+514,ACTVs.p.a,32,Stazione MESTRE FS C4 - Camporese Gritti,UM,3,,E31E24,FFFFFF
+515,ACTVs.p.a,4,VENEZIA - Altinia Ca' Rezzonico,UM,3,,E31E24,FFFFFF
+516,ACTVs.p.a,4,27 Ottobre D4 - Altinia Ca' Rezzonico,UM,3,,E31E24,FFFFFF
+517,ACTVs.p.a,4,Dese FS - VENEZIA,UM,3,,E31E24,FFFFFF
+518,ACTVs.p.a,4,Altinia Ca' Rezzonico - VENEZIA,UM,3,,E31E24,FFFFFF
+519,ACTVs.p.a,4,Altinia Ca' Rezzonico - MESTRE CENTRO B4,UM,3,,E31E24,FFFFFF
+520,ACTVs.p.a,4,San Dona' Rielta - VENEZIA,UM,3,,E31E24,FFFFFF
+521,ACTVs.p.a,4,Altinia Ca' Rezzonico - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+522,ACTVs.p.a,44,Triestina ulss 3 - Vallon Borgoforte,UM,3,,E31E24,FFFFFF
+523,ACTVs.p.a,44,Vallon Borgoforte - Triestina ulss 3,UM,3,,E31E24,FFFFFF
+524,ACTVs.p.a,5,VENEZIA - Aeroporto MARCO POLO,UM,3,,E31E24,FFFFFF
+525,ACTVs.p.a,5,Aeroporto MARCO POLO - VENEZIA,UM,3,,E31E24,FFFFFF
+526,ACTVs.p.a,53,27 Ottobre D4 - Malcontenta Chiesa,UM,3,,E31E24,FFFFFF
+527,ACTVs.p.a,53,27 Ottobre D4 - Chimica Ingresso 8,UM,3,,E31E24,FFFFFF
+528,ACTVs.p.a,53,27 Ottobre D4 - Chimica Ingresso 8,UM,3,,E31E24,FFFFFF
+529,ACTVs.p.a,53,Via dei Cantieri Cantiere - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+530,ACTVs.p.a,53,Chimica Ingresso 8 - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+531,ACTVs.p.a,53,Chimica Ingresso 8 - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+532,ACTVs.p.a,6,VENEZIA - SFMR Spinea,UM,3,,E31E24,FFFFFF
+533,ACTVs.p.a,6,VENEZIA - Risorgimento Miranese,UM,3,,E31E24,FFFFFF
+534,ACTVs.p.a,6,Risorgimento Miranese - VENEZIA,UM,3,,E31E24,FFFFFF
+535,ACTVs.p.a,6,SFMR Spinea - VENEZIA,UM,3,,E31E24,FFFFFF
+536,ACTVs.p.a,6,Risorgimento Miranese - VENEZIA,UM,3,,E31E24,FFFFFF
+537,ACTVs.p.a,6,Trieste Robinie - VENEZIA,UM,3,,E31E24,FFFFFF
+538,ACTVs.p.a,6,Paleocapa Parmesan - VENEZIA,UM,3,,E31E24,FFFFFF
+539,ACTVs.p.a,6,SFMR Spinea - VENEZIA,UM,3,,E31E24,FFFFFF
+540,ACTVs.p.a,66,VENEZIA - Risorgimento Miranese,UM,3,,E31E24,FFFFFF
+541,ACTVs.p.a,66,Risorgimento Miranese - VENEZIA,UM,3,,E31E24,FFFFFF
+542,ACTVs.p.a,7,Camporese Gritti - Fornase Perugia,UM,3,,E31E24,FFFFFF
+543,ACTVs.p.a,7,VENEZIA - Spinea Martiri,UM,3,,E31E24,FFFFFF
+544,ACTVs.p.a,7,Fornase Perugia - Camporese Gritti,UM,3,,E31E24,FFFFFF
+545,ACTVs.p.a,7,Fornase Perugia - VENEZIA,UM,3,,E31E24,FFFFFF
+546,ACTVs.p.a,7,Spinea Martiri - VENEZIA,UM,3,,E31E24,FFFFFF
+547,ACTVs.p.a,7L,VENEZIA - Brendole,UM,3,,E31E24,FFFFFF
+548,ACTVs.p.a,7L,VENEZIA - Brendole,UM,3,,E31E24,FFFFFF
+549,ACTVs.p.a,7L,Carducci Pascoli - Brendole,UM,3,,E31E24,FFFFFF
+550,ACTVs.p.a,7L,Asseggiano Chiesa - VENEZIA,UM,3,,E31E24,FFFFFF
+551,ACTVs.p.a,7L,Brendole - VENEZIA,UM,3,,E31E24,FFFFFF
+552,ACTVs.p.a,7L,Brendole - Carducci Pascoli,UM,3,,E31E24,FFFFFF
+553,ACTVs.p.a,7L,Miranese Avanti - VENEZIA,UM,3,,E31E24,FFFFFF
+554,ACTVs.p.a,8/,Gatta Pisacane - Risorgimento Miranese,UM,3,,E31E24,FFFFFF
+555,ACTVs.p.a,8/,Gatta Santa Lucia - Camporese Gritti,UM,3,,E31E24,FFFFFF
+556,ACTVs.p.a,8/,Mogliano Centro - Camporese Gritti,UM,3,,E31E24,FFFFFF
+557,ACTVs.p.a,8/,Mogliano Centro - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+558,ACTVs.p.a,8/,Zelarino Munaretto - Risorgimento Miranese,UM,3,,E31E24,FFFFFF
+559,ACTVs.p.a,8/,Gatta Santa Lucia - Zelarino Munaretto,UM,3,,E31E24,FFFFFF
+560,ACTVs.p.a,8/,Risorgimento Miranese - Gatta Pisacane,UM,3,,E31E24,FFFFFF
+561,ACTVs.p.a,8/,Pertini Foscari - Gatta Pisacane,UM,3,,E31E24,FFFFFF
+562,ACTVs.p.a,8/,Mattuglie Perlan - Martellago,UM,3,,E31E24,FFFFFF
+563,ACTVs.p.a,8/,Asseggiano Volta - Mogliano Centro,UM,3,,E31E24,FFFFFF
+564,ACTVs.p.a,8/,27 Ottobre D4 - Mogliano Centro,UM,3,,E31E24,FFFFFF
+565,ACTVs.p.a,8/,Pertini Foscari - Mogliano Centro,UM,3,,E31E24,FFFFFF
+566,ACTVs.p.a,8/,Risorgimento Miranese - Zelarino Munaretto,UM,3,,E31E24,FFFFFF
+567,ACTVs.p.a,80,VENEZIA - Martellago,UM,3,,E31E24,FFFFFF
+568,ACTVs.p.a,80,VENEZIA - Martellago,UM,3,,E31E24,FFFFFF
+569,ACTVs.p.a,80,VENEZIA - Martellago,UM,3,,E31E24,FFFFFF
+570,ACTVs.p.a,80,VENEZIA - Ca' Lin Eraclito,UM,3,,E31E24,FFFFFF
+571,ACTVs.p.a,80,Martellago - VENEZIA,UM,3,,E31E24,FFFFFF
+572,ACTVs.p.a,80,Maerne FS - VENEZIA,UM,3,,E31E24,FFFFFF
+573,ACTVs.p.a,80,Martellago - VENEZIA,UM,3,,E31E24,FFFFFF
+574,ACTVs.p.a,80,Maerne FS - VENEZIA,UM,3,,E31E24,FFFFFF
+575,ACTVs.p.a,80,Martellago - VENEZIA,UM,3,,E31E24,FFFFFF
+576,ACTVs.p.a,80,Ca' Lin Eraclito - VENEZIA,UM,3,,E31E24,FFFFFF
+577,ACTVs.p.a,81F,Rizzardi Carrer - Rizzardi Carrer,UM,3,,E31E24,FFFFFF
+578,ACTVs.p.a,81F,Rizzardi Carrer - Rizzardi Carrer,UM,3,,E31E24,FFFFFF
+579,ACTVs.p.a,81F,VENEZIA - Agenzia  Entrate,UM,3,,E31E24,FFFFFF
+580,ACTVs.p.a,81F,Rizzardi Carrer - VENEZIA,UM,3,,E31E24,FFFFFF
+581,ACTVs.p.a,81F,Agenzia  Entrate - Rizzardi Carrer,UM,3,,E31E24,FFFFFF
+582,ACTVs.p.a,84,VENEZIA - Marcon Cooperazione,UM,3,,E31E24,FFFFFF
+583,ACTVs.p.a,84,VENEZIA - Dese FS,UM,3,,E31E24,FFFFFF
+584,ACTVs.p.a,84,Altinia Favaro Municipio - Dese FS,UM,3,,E31E24,FFFFFF
+585,ACTVs.p.a,84,Dese FS - VENEZIA,UM,3,,E31E24,FFFFFF
+586,ACTVs.p.a,84,San Dona' Rielta - VENEZIA,UM,3,,E31E24,FFFFFF
+587,ACTVs.p.a,84,Dese FS - San Dona' Pastrello,UM,3,,E31E24,FFFFFF
+588,ACTVs.p.a,86,Stazione MESTRE FS C5 - Azoto Sottana,UM,3,,E31E24,FFFFFF
+589,ACTVs.p.a,86,Azoto Sottana - Stazione MESTRE FS C4,UM,3,,E31E24,FFFFFF
+590,ACTVs.p.a,N1,VENEZIA - VENEZIA,UM,3,,E31E24,FFFFFF
+591,ACTVs.p.a,N1,MESTRE CENTRO B2 - VENEZIA,UM,3,,E31E24,FFFFFF
+592,ACTVs.p.a,N2,VENEZIA - VENEZIA,UM,3,,E31E24,FFFFFF
+596,ACTVs.p.a,GSB,SFMR Spinea - SFMR Spinea,US,3,,E31E24,FFFFFF
+597,ACTVs.p.a,GSB,SFMR Spinea - SFMR Spinea,US,3,,E31E24,FFFFFF
+598,ACTVs.p.a,GSB,Crea - SFMR Spinea,US,3,,E31E24,FFFFFF
+599,ACTVs.p.a,GSB,Spinea Orgnano - Crea,US,3,,E31E24,FFFFFF
+600,ACTVs.p.a,GSG,SFMR Spinea - SFMR Spinea,US,3,,E31E24,FFFFFF
+601,ACTVs.p.a,GSG,SFMR Spinea - SFMR Spinea,US,3,,E31E24,FFFFFF
+602,ACTVs.p.a,GSG,SFMR Spinea - Crea,US,3,,E31E24,FFFFFF
+603,ACTVs.p.a,GSG,Crea - Spinea Orgnano,US,3,,E31E24,FFFFFF
+604,ACTVs.p.a,4L,VENEZIA - Mestre Centro B1,UM,3,,E31E24,FFFFFF
+605,ACTVs.p.a,4L,Mestre Centro B1 - VENEZIA,UM,3,,E31E24,FFFFFF
+606,ACTVs.p.a,4L,Corso del Popolo Mestrina - VENEZIA,UM,3,,E31E24,FFFFFF
+611,ACTVs.p.a,45,Tevere Baglioni - Paliaga Ca' Noghera,UM,3,,E31E24,FFFFFF
+612,ACTVs.p.a,45,Stazione MESTRE FS C4 - Paliaga Ca' Noghera,UM,3,,E31E24,FFFFFF
+613,ACTVs.p.a,45,Pertini Foscari - Paliaga Ca' Noghera,UM,3,,E31E24,FFFFFF
+614,ACTVs.p.a,45,Altinia Ca' Rezzonico - Paliaga Ca' Noghera,UM,3,,E31E24,FFFFFF
+615,ACTVs.p.a,45,Monte Cervino San Dona' - Paliaga Ca' Noghera,UM,3,,E31E24,FFFFFF
+616,ACTVs.p.a,45,Paliaga Ca' Noghera - Tevere Baglioni,UM,3,,E31E24,FFFFFF
+617,ACTVs.p.a,45,Paliaga Ca' Noghera - Stazione MESTRE FS C1,UM,3,,E31E24,FFFFFF
+618,ACTVs.p.a,45,Paliaga Ca' Noghera - Altinia Ca' Rezzonico,UM,3,,E31E24,FFFFFF
+619,ACTVs.p.a,45,Paliaga Ca' Noghera - Monte Cervino San Dona',UM,3,,E31E24,FFFFFF
+620,ACTVs.p.a,16,27 Ottobre D4 - Marghera Arduino,UM,3,,E31E24,FFFFFF
+621,ACTVs.p.a,16,Rizzardi Carrer - Capolinea Fusina,UM,3,,E31E24,FFFFFF
+622,ACTVs.p.a,16,27 Ottobre D4 - Bottenigo Capolinea,UM,3,,E31E24,FFFFFF
+623,ACTVs.p.a,16,27 Ottobre D4 - Bottenigo Capolinea,UM,3,,E31E24,FFFFFF
+624,ACTVs.p.a,16,MESTRE CENTRO B7 - Stazione MESTRE FS C3,UM,3,,E31E24,FFFFFF
+625,ACTVs.p.a,16,Capolinea Fusina - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+626,ACTVs.p.a,16,Marghera Arduino - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+627,ACTVs.p.a,16,Bottenigo Capolinea - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+628,ACTVs.p.a,16,Capolinea Fusina - Rizzardi Carrer,UM,3,,E31E24,FFFFFF
+629,ACTVs.p.a,16,Bottenigo Capolinea - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+630,ACTVs.p.a,45H,Ospedale dell'Angelo - Paliaga Ca' Noghera,UM,3,,E31E24,FFFFFF
+631,ACTVs.p.a,45H,Paliaga Ca' Noghera - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+632,ACTVs.p.a,6L,VENEZIA - Marghera Salamonio,UM,3,,E31E24,FFFFFF
+633,ACTVs.p.a,6L,VENEZIA - Correnti Capolinea,UM,3,,E31E24,FFFFFF
+634,ACTVs.p.a,6L,Marghera Salamonio - VENEZIA,UM,3,,E31E24,FFFFFF
+635,ACTVs.p.a,6L,Correnti Capolinea - VENEZIA,UM,3,,E31E24,FFFFFF
+636,ACTVs.p.a,24H,VENEZIA - Tosatto Impastato,UM,3,,E31E24,FFFFFF
+637,ACTVs.p.a,24H,Tosatto Impastato - VENEZIA,UM,3,,E31E24,FFFFFF
+638,ACTVs.p.a,34H,Ospedale dell'Angelo - Pertini Carrer,UM,3,,E31E24,FFFFFF
+639,ACTVs.p.a,34H,Ospedale dell'Angelo - Pertini Carrer,UM,3,,E31E24,FFFFFF
+640,ACTVs.p.a,34H,Pertini Carrer - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+641,ACTVs.p.a,34H,Pertini Carrer - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+642,ACTVs.p.a,33H,Ospedale dell'Angelo - Cavergnago Taliercio,UM,3,,E31E24,FFFFFF
+643,ACTVs.p.a,33H,Cavergnago Taliercio - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+644,ACTVs.p.a,33H,Stazione MESTRE FS C4 - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+645,ACTVs.p.a,4DE,Noale - VENEZIA,EN,3,,393185,FFFFFF
+646,ACTVs.p.a,4DE,Noale - VENEZIA,EN,3,,393185,FFFFFF
+647,ACTVs.p.a,4DE,VENEZIA - Noale,EN,3,,393185,FFFFFF
+648,ACTVs.p.a,4DE,VENEZIA - Noale,EN,3,,393185,FFFFFF
+649,ACTVs.p.a,7DE,Mirano Matteotti - VENEZIA,EN,3,,393185,FFFFFF
+650,ACTVs.p.a,7DE,VENEZIA - Mirano Matteotti,EN,3,,393185,FFFFFF
+651,ACTVs.p.a,7DE,VENEZIA - SFMR Spinea,EN,3,,393185,FFFFFF
+655,ACTVs.p.a,47H,Ospedale dell'Angelo - Cavanis Capolinea,UM,3,,E31E24,FFFFFF
+656,ACTVs.p.a,47H,Cavanis Capolinea - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+657,ACTVs.p.a,43,VENEZIA - Favretti MESTRE FS C2,UM,3,,E31E24,FFFFFF
+658,ACTVs.p.a,43,Favretti MESTRE FS C2 - VENEZIA,UM,3,,E31E24,FFFFFF
+659,ACTVs.p.a,54RE,Bojon Chiesa - VENEZIA,ES,3,,393185,FFFFFF
+660,ACTVs.p.a,54RE,Bojon Chiesa - 27 Ottobre D5,ES,3,,393185,FFFFFF
+661,ACTVs.p.a,54RE,27 Ottobre D5 - Corte Monumento,ES,3,,393185,FFFFFF
+662,ACTVs.p.a,54RE,VENEZIA - Bojon Chiesa,ES,3,,393185,FFFFFF
+663,ACTVs.p.a,31H,Ospedale dell'Angelo - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+664,ACTVs.p.a,31H,MESTRE CENTRO B7 - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+665,ACTVs.p.a,31H,Stazione MESTRE FS C3 - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+666,ACTVs.p.a,31H,Pertini Carrer - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+667,ACTVs.p.a,31H,Ospedale dell'Angelo - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+668,ACTVs.p.a,31H,MESTRE CENTRO B7 - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+669,ACTVs.p.a,32H,Ospedale dell'Angelo - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+670,ACTVs.p.a,32H,MESTRE CENTRO B7 - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+671,ACTVs.p.a,32H,Stazione MESTRE FS C4 - Ospedale dell'Angelo,UM,3,,E31E24,FFFFFF
+672,ACTVs.p.a,32H,Pertini Foscari - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+673,ACTVs.p.a,32H,Ospedale dell'Angelo - MESTRE CENTRO B7,UM,3,,E31E24,FFFFFF
+674,ACTVs.p.a,HE,Noale - Martellago,EN,3,,393185,FFFFFF
+675,ACTVs.p.a,HE,Martellago - Noale,EN,3,,393185,FFFFFF
+676,ACTVs.p.a,48H,Martellago - Mestre Centro B1,UM,3,,E31E24,FFFFFF
+677,ACTVs.p.a,48H,Mestre Centro B1 - Martellago,UM,3,,E31E24,FFFFFF
+678,ACTVs.p.a,10S,Altinia Ca' Rezzonico - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+679,ACTVs.p.a,10S,Pertini Foscari - Asseggiano Chiesa,UM,3,,E31E24,FFFFFF
+680,ACTVs.p.a,10S,Ca' Brentelle - Camporese Gritti,UM,3,,E31E24,FFFFFF
+681,ACTVs.p.a,10S,Fornase Perugia - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+682,ACTVs.p.a,10S,Rinascita Beccaria - Asseggiano Morin,UM,3,,E31E24,FFFFFF
+683,ACTVs.p.a,10S,San Marco Forte Marghera - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+684,ACTVs.p.a,10S,Favretti MESTRE FS C2 - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+685,ACTVs.p.a,10S,Stazione MESTRE FS C4 - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+686,ACTVs.p.a,10S,SFMR Spinea - Asseggiano Morin,UM,3,,E31E24,FFFFFF
+687,ACTVs.p.a,10S,Triestina Tessera - Asseggiano Volta,UM,3,,E31E24,FFFFFF
+688,ACTVs.p.a,10S,Asseggiano Chiesa - Camporese Gritti,UM,3,,E31E24,FFFFFF
+689,ACTVs.p.a,10S,Pertini Foscari - Ca' Brentelle,UM,3,,E31E24,FFFFFF
+690,ACTVs.p.a,10S,Camporese Gritti - Ca' Brentelle,UM,3,,E31E24,FFFFFF
+691,ACTVs.p.a,10S,Brendole - Rinascita Beccaria,UM,3,,E31E24,FFFFFF
+692,ACTVs.p.a,10S,Asseggiano Volta - San Dona' Rielta,UM,3,,E31E24,FFFFFF
+693,ACTVs.p.a,10S,Mattuglie Perlan - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+694,ACTVs.p.a,10S,Asseggiano Volta - Trieste Robinie,UM,3,,E31E24,FFFFFF
+695,ACTVs.p.a,10S,Asseggiano Volta - Pertini Foscari,UM,3,,E31E24,FFFFFF
+696,ACTVs.p.a,10S,Mattuglie Perlan - Rizzardi Carrer,UM,3,,E31E24,FFFFFF
+697,ACTVs.p.a,10S,Mattuglie Perlan - Fornase Perugia,UM,3,,E31E24,FFFFFF
+698,ACTVs.p.a,10S,Asseggiano Volta - Sant'Antonio Municipio,UM,3,,E31E24,FFFFFF
+699,ACTVs.p.a,10S,Mattuglie Perlan - 27 Ottobre D4,UM,3,,E31E24,FFFFFF
+700,ACTVs.p.a,10S,Mattuglie Perlan - SFMR Spinea,UM,3,,E31E24,FFFFFF
+701,ACTVs.p.a,10S,Asseggiano Volta - Stazione MESTRE FS C3,UM,3,,E31E24,FFFFFF
+702,ACTVs.p.a,18,Capolinea Ca' Sabbioni - Favretti MESTRE FS C2,UM,3,,E31E24,FFFFFF
+703,ACTVs.p.a,18,Capolinea Ca' Sabbioni - Favretti MESTRE FS C2,UM,3,,E31E24,FFFFFF
+704,ACTVs.p.a,18,Capolinea Ca' Sabbioni - Favretti MESTRE FS C2,UM,3,,E31E24,FFFFFF
+705,ACTVs.p.a,18,Favretti MESTRE FS C2 - Capolinea Ca' Sabbioni,UM,3,,E31E24,FFFFFF
+706,ACTVs.p.a,18,Favretti MESTRE FS C2 - Capolinea Ca' Sabbioni,UM,3,,E31E24,FFFFFF
+707,ACTVs.p.a,18,Favretti MESTRE FS C2 - Capolinea Ca' Sabbioni,UM,3,,E31E24,FFFFFF
+708,ACTVs.p.a,ST1,Monte Celo FAVARO - VENEZIA,UM,3,,FFFFFF,000000
+709,ACTVs.p.a,ST1,Monte Celo FAVARO - MESTRE CENTRO A2,UM,3,,FFFFFF,000000
+710,ACTVs.p.a,ST1,VENEZIA - Monte Celo FAVARO,UM,3,,FFFFFF,000000
+711,ACTVs.p.a,ST1,Mestre Centro B1 - Monte Celo FAVARO,UM,3,,FFFFFF,000000
+712,ACTVs.p.a,ST2,27 Ottobre D3 - Marghera Salamonio,UM,3,,FFFFFF,000000
+713,ACTVs.p.a,ST2,Marghera Salamonio - 27 Ottobre D3,UM,3,,FFFFFF,000000
+714,ACTVs.p.a,ST2,Marghera Salamonio - Mestre Centro B1,UM,3,,FFFFFF,000000
+715,ACTVs.p.a,OMN1,Dolo Centro - Ballo' FS,ES,3,,FFFFFF,000000
+716,ACTVs.p.a,OMN1,Dolo Centro - Ballo' FS,ES,3,,FFFFFF,000000
+717,ACTVs.p.a,OMN1,Ballo' FS - Dolo Centro,ES,3,,FFFFFF,000000
+718,ACTVs.p.a,OMN1,Ballo' FS - Dolo Centro,ES,3,,FFFFFF,000000
+719,ACTVs.p.a,OMN1,Ballo' FS - Dolo Centro,ES,3,,FFFFFF,000000
+720,ACTVs.p.a,OMN2,Mirano Ospedale - Miranese Marano FS,ES,3,,FFFFFF,000000
+721,ACTVs.p.a,OMN2,Mirano Ospedale - Miranese Marano FS,ES,3,,FFFFFF,000000
+722,ACTVs.p.a,OMN2,Miranese Marano FS - Mirano Ospedale,ES,3,,FFFFFF,000000
+723,ACTVs.p.a,OMN2,Miranese Marano FS - Ospedale Mirano,ES,3,,FFFFFF,000000
+724,ACTVs.p.a,OMN2,Miranese Marano FS - Mirano Ospedale,ES,3,,FFFFFF,000000
+725,ACTVs.p.a,OMN3,Mira Stazione FS - Miranese Marano FS,ES,3,,FFFFFF,000000
+726,ACTVs.p.a,OMN3,Mira Stazione FS - Miranese Marano FS,ES,3,,FFFFFF,000000
+727,ACTVs.p.a,OMN3,Miranese Marano FS - Mira Stazione FS,ES,3,,FFFFFF,000000
+728,ACTVs.p.a,OMN3,Miranese Marano FS - Mira Stazione FS,ES,3,,FFFFFF,000000
+729,ACTVs.p.a,PK1,Tronchetto Tronchetto Fer - Tronchetto Tronchetto Fer,UM,3,,E31E24,FFFFFF
+730,ACTVs.p.a,PK1,VENEZIA - VENEZIA,UM,3,,E31E24,FFFFFF
+731,ACTVs.p.a,PM,Piazzale Roma - Tronchetto,UM,3,,E31E24,FFFFFF
+732,ACTVs.p.a,PM,Tronchetto - Piazzale Roma,UM,3,,E31E24,FFFFFF
+733,ACTVs.p.a,9S,Asseggiano Volta - Marcon Cooperazione,UM,3,,FFFFFF,000000
+734,ACTVs.p.a,9S,Asseggiano Volta - Altinia Ca' Rezzonico,UM,3,,FFFFFF,000000
+735,ACTVs.p.a,9S,Camporese Gritti - Marcon Cooperazione,UM,3,,FFFFFF,000000
+736,ACTVs.p.a,9S,Corso del Popolo Torino - Marcon Cooperazione,UM,3,,FFFFFF,000000
+737,ACTVs.p.a,9S,Asseggiano Volta - Triestina Tessera,UM,3,,FFFFFF,000000
+738,ACTVs.p.a,9S,Pertini Foscari - Altinia Ca' Rezzonico,UM,3,,FFFFFF,000000
+739,ACTVs.p.a,9S,Marcon Cooperazione - Asseggiano Volta,UM,3,,FFFFFF,000000
+740,ACTVs.p.a,9S,San Liberale - Camporese Gritti,UM,3,,FFFFFF,000000
+741,ACTVs.p.a,9S,Marcon Cooperazione - Camporese Gritti,UM,3,,FFFFFF,000000
+742,ACTVs.p.a,9S,Marcon Cooperazione - Corso del Popolo Torino,UM,3,,FFFFFF,000000
+743,ACTVs.p.a,9S,Altinia Ca' Rezzonico - Pertini Foscari,UM,3,,FFFFFF,000000
+744,ACTVs.p.a,9S,Altinia Ca' Rezzonico - Camporese Gritti,UM,3,,FFFFFF,000000
+745,ACTVs.p.a,15E,Badoere - Mogliano Liceo,EN,3,,FFFFFF,000000
+746,ACTVs.p.a,15E,Zero Branco - Mogliano FS,EN,3,,FFFFFF,000000
+747,ACTVs.p.a,15E,Mogliano Liceo - Badoere,EN,3,,FFFFFF,000000
+748,ACTVs.p.a,15E,Mogliano FS - Badoere,EN,3,,FFFFFF,000000
+749,ACTVs.p.a,15E,Mogliano FS - Zero Branco,EN,3,,FFFFFF,000000
