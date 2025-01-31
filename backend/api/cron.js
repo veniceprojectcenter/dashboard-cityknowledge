@@ -13,7 +13,7 @@ const {
     savePopulationDataToFirebase,
     fetchTideData,
     saveTideDataToFirebase
-} = require('./scraper');
+} = require('./functions');
 
 export default async function handler(req, res) {
     try {

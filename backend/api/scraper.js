@@ -1,118 +1,19 @@
-
 const axios = require('axios');
 const cheerio = require('cheerio');
 const admin = require('firebase-admin');
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const puppeteer = require('puppeteer');
 require('dotenv').config();
-
+const {
+  scrapePopulationData,
+  savePopulationDataToFirebase,
+  fetchTideData,
+  saveTideDataToFirebase,
+  scrapeVeniceTrainsTimeData
+} = require('./functions')
 
 const router = express.Router();
 
-// Funzione per eliminare i dati esistenti in Firebase
-async function deleteExistingData(path) {
-  try {
-    await admin.database().ref(path).remove();
-    console.log(`Dati esistenti eliminati correttamente da: ${path}`);
-  } catch (error) {
-    console.error(`Errore durante l'eliminazione dei dati da ${path}:`, error.message);
-  }
-}
 
-
-
-
-
-
-
-
-// Funzione per eseguire il web scraping dei dati di popolazione
-async function scrapePopulationData(url) {
-  try {
-    const { data } = await axios.get(url);
-    const $ = cheerio.load(data);
-
-    // Trova l'ultima riga della tabella
-    const lastRow = $('table tr').last();
-    const rowData = [];
-
-    // Estrai i dati dalle celle della riga
-    lastRow.find('td').each((_, cell) => {
-      rowData.push($(cell).text().trim());
-    });
-
-    return rowData.length > 0 ? rowData : null;
-  } catch (error) {
-    console.error('Errore durante il web scraping dei dati di popolazione:', error);
-    return null;
-  }
-}
-
-// Funzione per salvare i dati di popolazione nel Firebase
-async function savePopulationDataToFirebase(data) {
-  const today = new Date();
-  const dateString = today.toISOString().split('T')[0];
-  const path = `dashboard/data/VenicePopulation/${dateString}`;
-
-  try {
-    await deleteExistingData("dashboard/data/VenicePopulation"); // Elimina i dati esistenti
-    await admin.database().ref(path).set({
-      col1: data[0] || null,
-      col2: data[1] || null,
-      col3: data[2] || null,
-      timestamp: today.toLocaleString(),
-    });
-    console.log(`Dati di popolazione salvati correttamente in Firebase: ${path}`);
-  } catch (error) {
-    console.error(`Errore durante il salvataggio dei dati di popolazione in Firebase: ${error}`);
-  }
-}
-
-
-// Funzione per recuperare i dati delle maree
-async function fetchTideData(lat, lng) {
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() + 1); // Incrementa la data di oggi per ottenere domani
-
-  const start = today.toISOString().split('T')[0];
-  const end = tomorrow.toISOString().split('T')[0]; // Data di domani
-
-  const url = `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${lng}&start=${start}&end=${end}`;
-
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: process.env.TIDEAPI_KEY, // Sostituisci con la tua chiave API
-      },
-    });
-
-    return response.data; // Restituisce i dati ricevuti dall'API
-  } catch (error) {
-    console.error('Errore durante la chiamata all\'API di Stormglass:', error.response?.data || error.message);
-    return null;
-  }
-}
-
-
-// Funzione per salvare i dati delle maree in Firebase
-async function saveTideDataToFirebase(data, startDate, endDate) {
-  const path = `dashboard/data/Tides/${startDate}_to_${endDate}`;
-
-  try {
-    await deleteExistingData("dashboard/data/Tides"); // Elimina i dati esistenti
-    await admin.database().ref(path).set({
-      tides: data.data,
-      meta: data.meta,
-      timestamp: new Date().toLocaleString(),
-    });
-    console.log(`Dati delle maree salvati correttamente in Firebase: ${path}`);
-  } catch (error) {
-    console.error('Errore durante il salvataggio dei dati delle maree in Firebase:', error.message);
-  }
-}
 
 
 
@@ -217,14 +118,27 @@ router.get('/api/fetch/air-quality-locations', async (req, res) => {
   }
 });
 
+router.get('/api/scrape/veniceTrainsArrivalTime', async (req, res) => {
+  try{
+    let path = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=True";
+    let data  = await scrapeVeniceTrainsTimeData(path);
+    res.json(data);
+  }catch(error){
+    res.status(500).json({ message:`Error on fetching TrainArrival data: ${error} `});
+  }
+})
 
+router.get('/api/scrape/veniceTrainsDestinationTime', async (req, res) => {
+  try{
+    let path = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
+    let data  = await scrapeVeniceTrainsTimeData(path);
+    res.json(data);
+  }catch(error){
+    res.status(500).json({ message:`Error on fetching TrainDestination data: ${error} `});
+  }
+})
 
 // Esporta il router
 module.exports = {
-  scrapePopulationData,
-  savePopulationDataToFirebase,
-  fetchTideData,
-  saveTideDataToFirebase,
-  deleteExistingData,
   router
 };
