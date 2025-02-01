@@ -4,11 +4,12 @@ const admin = require('firebase-admin');
 const express = require('express');
 require('dotenv').config();
 const {
-  scrapePopulationData,
   savePopulationDataToFirebase,
-  fetchTideData,
   saveTideDataToFirebase,
-  scrapeVeniceTrainsTimeData
+  saveBusDataToFirebase,
+  fetchTideData,
+  scrapeVeniceTrainsTimeData,
+  scrapePopulationData,
 } = require('./functions')
 
 const router = express.Router();
@@ -137,6 +138,15 @@ router.get('/api/scrape/veniceTrainsDestinationTime', async (req, res) => {
     res.status(500).json({ message:`Error on fetching TrainDestination data: ${error} `});
   }
 })
+
+router.get('/api/scrape/veniceBusData',async(req,res) => {
+    try{
+      await saveBusDataToFirebase();
+    }catch(error){
+      console.error('Errore nel fare scraping della pagina:', error);
+    }
+})
+
 
 // Esporta il router
 module.exports = {

@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "10 1 * * *"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/cron",
+      "dest": "api/cron.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "api/index.js",
+      "methods": ["GET","POST","OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "https://dashboard-rework.vercel.app"
+      }
+    }
+  ]
+}

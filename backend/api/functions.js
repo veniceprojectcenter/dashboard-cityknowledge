@@ -1,6 +1,90 @@
 const admin = require('firebase-admin');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const fs = require('fs');
+const unzipper = require('unzipper');
+const FILES_TO_EXTRACT = ["calendar.txt", "calendar_dates.txt", "routes.txt", "stop_times.txt", "trips.txt"];
+
+
+async function downloadFile(url, zipPathToStore) {
+    return new Promise((resolve, reject) => {
+        console.log("📥 Scaricamento ZIP...");
+
+        const zip = fs.createWriteStream(zipPathToStore);
+
+        axios.get(url, { responseType: 'stream' })
+            .then(response => {
+                response.data.pipe(zip);
+                zip.on('finish', () => {
+                    zip.close(() => {
+                        console.log("✅ Download completato!");
+                        resolve();
+                    });
+                });
+            })
+            .catch(error => {
+                fs.unlink(zipPathToStore, () => {}); // Elimina il file se il download fallisce
+                reject(new Error(`❌ Errore nel download: ${error.message}`));
+            });
+    });
+}
+
+async function extractFiles(zipPath, extractPath) {
+    return new Promise((resolve, reject) => {
+        console.log("📂 Estrazione file...");
+
+        fs.createReadStream(zipPath)
+            .pipe(unzipper.Extract({ path: extractPath }))
+            .on('close', () => {
+                console.log("✅ Estrazione completata!");
+                resolve();
+            })
+            .on('error', err => reject(new Error(`❌ Errore nell'estrazione: ${err.message}`)));
+    });
+}
+
+async function getBusData() {
+    try {
+        const url = "https://actv.avmspa.it/sites/default/files/attachments/opendata/automobilistico/actv_aut.zip";
+        const zipPath = "./api/downloads/data.zip";
+        const extractPath = "./api/downloads";
+
+        // 📂 Crea la cartella dentro `api/` se non esiste
+        if (!fs.existsSync(extractPath)) {
+            fs.mkdirSync(extractPath, { recursive: true });
+        }
+
+        await downloadFile(url, zipPath);
+        await extractFiles(zipPath, extractPath);
+
+        console.log("🚀 File GTFS scaricati ed estratti con successo!");
+    } catch (error) {
+        console.error(`❌ Errore: ${error.message}`);
+    }
+}
+
+function txtToJson(filePath, batchSize = 500) {
+    const data = fs.readFileSync(filePath, 'utf-8');
+    const lines = data.split('\n').filter(line => line.trim()); // Rimuove righe vuote
+    const headers = lines[0].trim().split(','); // Headers (prima riga)
+    const dataRows = lines.slice(1); // Tutti i dati, escludendo gli headers
+
+    let jsonData = {}; // Oggetto JSON finale
+
+    // Suddividere in batch più piccoli
+    for (let i = 0; i < dataRows.length; i += batchSize) {
+        const batch = dataRows.slice(i, i + batchSize);
+        const batchKey = `batch_${i / batchSize + 1}`; // Nome del nodo (batch_1, batch_2, ...)
+
+        jsonData[batchKey] = batch.map(line => {
+            const values = line.split(',');
+            return Object.fromEntries(headers.map((header, index) => [header, values[index] || ""]));
+        });
+    }
+
+    return JSON.stringify(jsonData, null, 4);
+}
+
 
 // Funzione per eliminare i dati esistenti in Firebase
 async function deleteExistingData(path) {
@@ -143,11 +227,110 @@ async function saveTideDataToFirebase(data, startDate, endDate) {
     }
 }
 
+function processFileToBatches(filePath, batchSize = 30, applyFilter = false) {
+    try {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const lines = content.split(/\r?\n/).filter(line => line.trim());
+
+        if (lines.length < 2) return [];
+
+        const headers = lines[0].split(',').map(h => h.trim());
+        const dataRows = lines.slice(1);
+
+        const batches = [];
+        let currentBatch = [];
+
+        dataRows.forEach(line => {
+            const values = line.split(',').map(v => v.trim());
+            const entry = headers.reduce((obj, header, idx) => {
+                obj[header] = values[idx] || null;
+                return obj;
+            }, {});
+
+            // Applica il filtro solo se richiesto (es. per stop_times)
+            if (applyFilter) {
+                const headsign = entry.stop_headsign?.toUpperCase();
+                if (headsign === "VENEZIA") {
+                    currentBatch.push(entry);
+                }
+            } else {
+                currentBatch.push(entry);
+            }
+
+            if (currentBatch.length >= batchSize) {
+                batches.push([...currentBatch]);
+                currentBatch = [];
+            }
+        });
+
+        if (currentBatch.length > 0) batches.push(currentBatch);
+        return batches;
+
+    } catch (error) {
+        console.error(`Errore durante l'elaborazione di ${filePath}:`, error);
+        return [];
+    }
+}
+
+/**
+ * Funzione principale per salvare i dati dei bus su Firebase con misurazione del tempo.
+ */
+async function saveBusDataToFirebase() {
+    try {
+        console.time("Tempo Totale di Elaborazione");
+
+        // Elimina i dati esistenti
+        await deleteExistingData("dashboard/data/Bus");
+
+        // Processa ogni file
+        for (const item of FILES_TO_EXTRACT) {
+            const startTimeFile = Date.now();
+            const itemName = item.split('.')[0];
+            const basePath = `dashboard/data/Bus/${itemName}`;
+
+            console.log(`Processing ${item}...`);
+
+            // Configurazione speciale per stop_times
+            const isStopTimes = item === "stop_times.txt";
+            const batchSize = isStopTimes ? 5000 : 100;
+
+            try {
+                const batches = processFileToBatches(
+                    `./api/downloads/${item}`,
+                    batchSize,
+                    isStopTimes // Passa il flag per il filtro
+                );
+
+                console.log(`Generated ${batches.length} batches per ${item}`);
+
+                for (let i = 0; i < batches.length; i++) {
+                    const batchPath = `${basePath}/batch_${i}`;
+                    await admin.database().ref(batchPath).set({
+                        data: batches[i],
+                    });
+                }
+
+                const elapsedTimeFile = Date.now() - startTimeFile;
+                console.log(`✅ Completed ${item} in ${elapsedTimeFile} ms`);
+
+            } catch (error) {
+                console.error(`❌ Error processing ${item}:`, error.message);
+            }
+        }
+        console.timeEnd("Tempo Totale di Elaborazione");
+    } catch (error) {
+        console.error('Global error:', error);
+    }
+}
+
+
+
 module.exports = {
-    scrapePopulationData,
-    savePopulationDataToFirebase,
-    fetchTideData,
-    saveTideDataToFirebase,
     deleteExistingData,
-    scrapeVeniceTrainsTimeData
+    savePopulationDataToFirebase,
+    saveTideDataToFirebase,
+    saveBusDataToFirebase,
+    fetchTideData,
+    scrapeVeniceTrainsTimeData,
+    scrapePopulationData,
 };
