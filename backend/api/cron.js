@@ -42,6 +42,5 @@ async function handler() {
     }
 }
 
-
-await handler();
+handler();
 
