@@ -39,6 +39,10 @@ async function handler() {
         console.log('Crono job completed...');
     } catch (error) {
         console.log(error.message);
+    } finally {
+        await admin.app().delete();
+        console.log("Firebase app deleted. Exiting...");
+        process.exit(0);
     }
 }
 
