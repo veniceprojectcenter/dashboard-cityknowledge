@@ -15,7 +15,7 @@ const {
     saveTideDataToFirebase
 } = require('./functions');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     try {
         console.log('Crono job started...');
 
