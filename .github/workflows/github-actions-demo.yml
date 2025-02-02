@@ -24,6 +24,6 @@ jobs:
 
       - name: Run script
         working-directory: backend/api/
-        run: index.js
+        run: node index.js
         
 
