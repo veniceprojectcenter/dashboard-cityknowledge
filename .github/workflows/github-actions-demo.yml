@@ -19,6 +19,7 @@ jobs:
           node-version: '23'
 
       - name: Install Dependencies
+        working-directory: ../../backend
         run: npm install
 
       - name: Run script
