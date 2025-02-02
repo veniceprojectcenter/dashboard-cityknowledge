@@ -23,5 +23,7 @@ jobs:
         run: npm install
 
       - name: Run script
-        run: node backend/api/index.js
+        working-directory: backend/api/
+        run: index.js
+        
 
