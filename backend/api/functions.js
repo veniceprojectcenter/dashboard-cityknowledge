@@ -1,89 +1,7 @@
 const admin = require('firebase-admin');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const fs = require('fs');
-const unzipper = require('unzipper');
-const FILES_TO_EXTRACT = ["calendar.txt", "calendar_dates.txt", "routes.txt", "stop_times.txt", "trips.txt"];
-
-
-async function downloadFile(url, zipPathToStore) {
-    return new Promise((resolve, reject) => {
-        console.log("📥 Scaricamento ZIP...");
-
-        const zip = fs.createWriteStream(zipPathToStore);
-
-        axios.get(url, { responseType: 'stream' })
-            .then(response => {
-                response.data.pipe(zip);
-                zip.on('finish', () => {
-                    zip.close(() => {
-                        console.log("✅ Download completato!");
-                        resolve();
-                    });
-                });
-            })
-            .catch(error => {
-                fs.unlink(zipPathToStore, () => {}); // Elimina il file se il download fallisce
-                reject(new Error(`❌ Errore nel download: ${error.message}`));
-            });
-    });
-}
-
-async function extractFiles(zipPath, extractPath) {
-    return new Promise((resolve, reject) => {
-        console.log("📂 Estrazione file...");
-
-        fs.createReadStream(zipPath)
-            .pipe(unzipper.Extract({ path: extractPath }))
-            .on('close', () => {
-                console.log("✅ Estrazione completata!");
-                resolve();
-            })
-            .on('error', err => reject(new Error(`❌ Errore nell'estrazione: ${err.message}`)));
-    });
-}
-
-async function getBusData() {
-    try {
-        const url = "https://actv.avmspa.it/sites/default/files/attachments/opendata/automobilistico/actv_aut.zip";
-        const zipPath = "./api/downloads/data.zip";
-        const extractPath = "./api/downloads";
-
-        // 📂 Crea la cartella dentro `api/` se non esiste
-        if (!fs.existsSync(extractPath)) {
-            fs.mkdirSync(extractPath, { recursive: true });
-        }
-
-        await downloadFile(url, zipPath);
-        await extractFiles(zipPath, extractPath);
-
-        console.log("🚀 File GTFS scaricati ed estratti con successo!");
-    } catch (error) {
-        console.error(`❌ Errore: ${error.message}`);
-    }
-}
-
-function txtToJson(filePath, batchSize = 500) {
-    const data = fs.readFileSync(filePath, 'utf-8');
-    const lines = data.split('\n').filter(line => line.trim()); // Rimuove righe vuote
-    const headers = lines[0].trim().split(','); // Headers (prima riga)
-    const dataRows = lines.slice(1); // Tutti i dati, escludendo gli headers
-
-    let jsonData = {}; // Oggetto JSON finale
-
-    // Suddividere in batch più piccoli
-    for (let i = 0; i < dataRows.length; i += batchSize) {
-        const batch = dataRows.slice(i, i + batchSize);
-        const batchKey = `batch_${i / batchSize + 1}`; // Nome del nodo (batch_1, batch_2, ...)
-
-        jsonData[batchKey] = batch.map(line => {
-            const values = line.split(',');
-            return Object.fromEntries(headers.map((header, index) => [header, values[index] || ""]));
-        });
-    }
-
-    return JSON.stringify(jsonData, null, 4);
-}
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 
 // Funzione per eliminare i dati esistenti in Firebase
@@ -98,11 +16,14 @@ async function deleteExistingData(path) {
 
 async function scrapeVeniceTrainsTimeData(url){
     try{
+        let allTrainsData = [];
+        const singleTitleRow = {};
+
         const {data} = await axios.get(url);
         const $ = cheerio.load(data);
-        let allTrainsData = [];
         let listTitleRow = $('thead[id=headerTabId] tr');
-        const singleTitleRow = {};
+
+
         listTitleRow.find('th').each((i,row)=>{
             const id = $(row).attr('id');
             singleTitleRow[id] = $(row).text().trim();
@@ -110,7 +31,7 @@ async function scrapeVeniceTrainsTimeData(url){
         allTrainsData.push(singleTitleRow);
 
         let listRows = $('tbody[id=bodyTabId] tr');
-        // Versione corretta:
+
         listRows.each((i, row) => {
             const $row = $(row);
             const singleTrainData = {};
@@ -126,7 +47,6 @@ async function scrapeVeniceTrainsTimeData(url){
                     singleTrainData[id] = $cell.find('div').text().trim() || $cell.text().trim();
                 }
             });
-
             allTrainsData.push(singleTrainData); // Spostato FUORI dal loop interno
         });
         return allTrainsData;
@@ -134,12 +54,6 @@ async function scrapeVeniceTrainsTimeData(url){
         console.error("Error fetching Venice Trains Time Data", error);
     }
 }
-
-
-
-
-
-
 
 // Funzione per eseguire il web scraping dei dati di popolazione
 async function scrapePopulationData(url) {
@@ -152,7 +66,7 @@ async function scrapePopulationData(url) {
         const rowData = [];
 
         // Estrai i dati dalle celle della riga
-        lastRow.find('td').each((_, cell) => {
+        lastRow.find('td').each((x, cell) => {
             rowData.push($(cell).text().trim());
         });
 
@@ -196,13 +110,13 @@ async function fetchTideData(lat, lng) {
     const url = `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${lng}&start=${start}&end=${end}`;
 
     try {
-        const response = await axios.get(url, {
+        const { data } = await axios.get(url, {
             headers: {
                 Authorization: process.env.TIDEAPI_KEY, // Sostituisci con la tua chiave API
             },
         });
 
-        return response.data; // Restituisce i dati ricevuti dall'API
+        return data; // Restituisce i dati ricevuti dall'API
     } catch (error) {
         console.error('Errore durante la chiamata all\'API di Stormglass:', error.response?.data || error.message);
         return null;
@@ -227,110 +141,134 @@ async function saveTideDataToFirebase(data, startDate, endDate) {
     }
 }
 
-function processFileToBatches(filePath, batchSize = 30, applyFilter = false) {
-    try {
-        const content = fs.readFileSync(filePath, 'utf-8');
-        const lines = content.split(/\r?\n/).filter(line => line.trim());
-
-        if (lines.length < 2) return [];
-
-        const headers = lines[0].split(',').map(h => h.trim());
-        const dataRows = lines.slice(1);
-
-        const batches = [];
-        let currentBatch = [];
-
-        dataRows.forEach(line => {
-            const values = line.split(',').map(v => v.trim());
-            const entry = headers.reduce((obj, header, idx) => {
-                obj[header] = values[idx] || null;
-                return obj;
-            }, {});
-
-            // Applica il filtro solo se richiesto (es. per stop_times)
-            if (applyFilter) {
-                const headsign = entry.stop_headsign?.toUpperCase();
-                if (headsign === "VENEZIA") {
-                    currentBatch.push(entry);
-                }
-            } else {
-                currentBatch.push(entry);
-            }
-
-            if (currentBatch.length >= batchSize) {
-                batches.push([...currentBatch]);
-                currentBatch = [];
-            }
-        });
-
-        if (currentBatch.length > 0) batches.push(currentBatch);
-        return batches;
-
-    } catch (error) {
-        console.error(`Errore durante l'elaborazione di ${filePath}:`, error);
-        return [];
+async function fetchbusData(){
+    try{
+        const date = new Date().toISOString().split('T')[0];
+        const listProxies = await getUpdatedListProxies();  // Usa la funzione con retry
+        await saveBusDataToFirebase(date, listProxies);
+    }catch (error) {
+        console.error('Errore fetching bus data:', error);
     }
 }
 
-/**
- * Funzione principale per salvare i dati dei bus su Firebase con misurazione del tempo.
- */
-async function saveBusDataToFirebase() {
+async function saveBusDataToFirebase(date, listProxies) {
     try {
-        console.time("Tempo Totale di Elaborazione");
+        const listBusStopsIds = ['503','501','505','506','507','508','509','510','511','512','6084','8044','514','515','516','517'];
+        const listUserAgents = [
+            'Mozilla/5.0 (Linux; Android 13; Pixel 6 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15',
+            'Mozilla/5.0 (Linux; Android 11; TC57 Build/11-35-05.00-RG-U00-C120-HEL-04; wv) AppleWebKit/537.36 (KHTML, like Gecko) ' +
+            'Version/4.0 Chrome/129.0.6668.102 Mobile Safari/537.36 (AirWatch Browser v24.08.1.437)',
+            'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070213 BonEcho/2.0.0.2pre',
+            'Callpod Keeper for Android 1.0 (app 16.10.0.132801/13280101) Dalvik/2.1.0 (Linux; U; Android 14; Pixel 7a Build/AP2A.240905.003)'
+        ];
 
-        // Elimina i dati esistenti
-        await deleteExistingData("dashboard/data/Bus");
+        for (const busStopId of listBusStopsIds) {
+            const url = `https://orari.actv.it/getStopSingle/${date}/AUT/${busStopId}`;
+            // Ottieni un proxy casuale e un user agent casuale
+            const proxyUrl = getRandomElement(listProxies);
+            const userAgent = getRandomElement(listUserAgents);
 
-        // Processa ogni file
-        for (const item of FILES_TO_EXTRACT) {
-            const startTimeFile = Date.now();
-            const itemName = item.split('.')[0];
-            const basePath = `dashboard/data/Bus/${itemName}`;
+            const headers = {
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept-Language': 'en-GB,en;q=0.9',
+                'Connection': 'keep-alive',
+                'Host': 'orari.actv.it',
+                'Referer': 'https://www.google.com/',
+                'Sec-Fetch-Dest': 'empty',
+                'Sec-Fetch-Mode': 'cors',
+                'Sec-Fetch-Site': 'same-origin',
+                'User-Agent': userAgent,
+            };
 
-            console.log(`Processing ${item}...`);
+            const agent = new HttpsProxyAgent(new URL(proxyUrl));
 
-            // Configurazione speciale per stop_times
-            const isStopTimes = item === "stop_times.txt";
-            const batchSize = isStopTimes ? 5000 : 100;
-
-            try {
-                const batches = processFileToBatches(
-                    `./api/downloads/${item}`,
-                    batchSize,
-                    isStopTimes // Passa il flag per il filtro
-                );
-
-                console.log(`Generated ${batches.length} batches per ${item}`);
-
-                for (let i = 0; i < batches.length; i++) {
-                    const batchPath = `${basePath}/batch_${i}`;
-                    await admin.database().ref(batchPath).set({
-                        data: batches[i],
-                    });
+            // Definisci la funzione che effettua la richiesta
+            const func = async () => {
+                try {
+                    const { data } = await axios.get(url, { httpAgent: agent, headers });
+                    console.log(`Dati ricevuti per busStop ${busStopId}:`, data);
+                    await admin.database().ref(`busData/stop_${busStopId}`).set(data);
+                } catch (error) {
+                    console.error(`Errore nella richiesta per busStop ${busStopId}:`, error.message);
                 }
+            };
 
-                const elapsedTimeFile = Date.now() - startTimeFile;
-                console.log(`✅ Completed ${item} in ${elapsedTimeFile} ms`);
+            // Attendi un ritardo casuale e poi esegui func, assicurandoti di risolvere la promise
+            await new Promise((resolve) => {
+                const delayTime = Math.floor(Math.random() * 5) * 1000;
+                setTimeout(async () => {
+                    await func();
+                    resolve();
+                    }, delayTime);
+            });
 
-            } catch (error) {
-                console.error(`❌ Error processing ${item}:`, error.message);
-            }
+            console.log(`${busStopId} inserted`);
         }
-        console.timeEnd("Tempo Totale di Elaborazione");
     } catch (error) {
-        console.error('Global error:', error);
+        console.error('Error saving Bus Data on firebase:', error);
     }
 }
 
+
+async function getUpdatedListProxies(maxRetries = 20, retryInterval = 15000) {
+    let attempts = 0;
+    let proxies;
+
+    while (attempts < maxRetries) {
+        proxies = await getListProxies();
+        if (proxies && proxies.length > 0) {
+            console.log(`Lista proxy ottenuta dopo ${attempts + 1} tentativo/i.`);
+            return proxies;
+        } else {
+            console.warn(`Tentativo ${attempts + 1} fallito: lista vuota. Riprovo fra ${retryInterval / 1000} secondi...`);
+            await delay(retryInterval);  // Attende retryInterval millisecondi prima di riprovare
+            attempts++;
+        }
+    }
+
+    throw new Error(`Non sono riuscito ad ottenere una lista aggiornata di proxy dopo ${maxRetries} tentativi.`);
+}
+
+async function delay(func = (() => {}),ms) {
+    return new Promise(resolve =>
+        setTimeout(async()=> {
+            await func();
+            resolve();
+        }, ms)
+    );
+}
+
+
+async function getListProxies(){
+    const url = 'https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/https/data.json';
+    let listProxies = [];
+
+    await axios.get(url,{ responseType:"json"}).then((response) => {
+        let data = Object.values(response.data);
+        data.forEach(element => {
+            listProxies.push(element.proxy);
+        });
+    }).catch((error) => console.error("Error fetching proxies list",error));
+    return listProxies;
+}
+
+function getRandomElement(list){
+    if(list.length <= 0){
+        throw new Error('No Element found');
+    }
+    let random = Math.floor(Math.random() * list.length);
+    return list[random];
+}
 
 
 module.exports = {
     deleteExistingData,
     savePopulationDataToFirebase,
     saveTideDataToFirebase,
-    saveBusDataToFirebase,
     fetchTideData,
     scrapeVeniceTrainsTimeData,
     scrapePopulationData,
+    fetchbusData
 };

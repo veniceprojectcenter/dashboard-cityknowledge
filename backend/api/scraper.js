@@ -1,15 +1,14 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const admin = require('firebase-admin');
 const express = require('express');
 require('dotenv').config();
 const {
   savePopulationDataToFirebase,
   saveTideDataToFirebase,
-  saveBusDataToFirebase,
   fetchTideData,
   scrapeVeniceTrainsTimeData,
   scrapePopulationData,
+  fetchbusData
 } = require('./functions')
 
 const router = express.Router();
@@ -85,7 +84,6 @@ router.get('/api/scrape/tourism', async (req, res) => {
         });
       }
     });
-
     // Invia i dati al frontend
     res.json(result);
   } catch (error) {
@@ -141,7 +139,8 @@ router.get('/api/scrape/veniceTrainsDestinationTime', async (req, res) => {
 
 router.get('/api/scrape/veniceBusData',async(req,res) => {
     try{
-      await saveBusDataToFirebase();
+      await fetchbusData();
+      res.json({success:'true'});
     }catch(error){
       console.error('Errore nel fare scraping della pagina:', error);
     }

@@ -15,10 +15,9 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "firebase-admin": "^13.0.2",
+    "https-proxy-agent": "^7.0.6",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",
-    "node-cron": "^3.0.3",
-    "unzipper": "^0.12.3",
     "vercel": "^28.18.5"
   }
 }
