@@ -2,16 +2,24 @@ const admin = require('firebase-admin');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const SecureScraping = require('./secure-scraping');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const secureScraping = new SecureScraping();
+const secureScrapingPromise = (async () => {
+    const proxies = await SecureScraping.getUpdatedListProxies();
+    const userAgents = SecureScraping.getListUserAgents();
+    return new SecureScraping(proxies, userAgents);
+})();
 
-async function scrapeVeniceTrainsTimeData(url,headers = {}){
+
+
+async function scrapeVeniceTrainsTimeData(url,headers= {}){
     try{
         let allTrainsData = [];
         const singleTitleRow = {};
 
-        const {data} = await secureScraping.secureGet(url,headers);
-        const $ = cheerio.load(data);
+        const response = await axios.get(url,headers);
+        const $ = cheerio.load(response.data);
         let listTitleRow = $('thead[id=headerTabId] tr');
 
         listTitleRow.find('th').each((i,row)=>{
@@ -61,7 +69,9 @@ async function scrapePopulationData() {
             'Sec-Fetch-Site': 'none',
             'User-Agent': '',
         };
-        const { data } = await secureScraping.secureGet(url,headers);
+        const secureScrapingInstance = await secureScrapingPromise;
+        const { data } = await secureScrapingInstance.secureGet(url,headers);
+
         const $ = cheerio.load(data);
 
         // Trova l'ultima riga della tabella
@@ -165,7 +175,8 @@ async function saveBusDataToFirebase() {
             // Definisci la funzione che effettua la richiesta
             const func = async () => {
                 try {
-                    const { data } = await secureScraping.secureGet(url,headers);
+                    const secureScrapingInstance = await secureScrapingPromise;
+                    const { data } = await secureScrapingInstance.secureGet(url,headers);
                     console.log(`Dati ricevuti per busStop ${busStopId}:`, data);
                     await admin.database().ref(`busData/stop_${busStopId}`).set(data);
                 } catch (error) {
@@ -175,7 +186,7 @@ async function saveBusDataToFirebase() {
 
             const delayTime = Math.floor(Math.random() * 5) * 1000;
             // Attendi un ritardo casuale e poi esegui func, assicurandoti di risolvere la promise
-            await secureScraping.delay(func,delayTime);
+            await SecureScraping.delay(func,delayTime);
 
             console.log(`${busStopId} inserted`);
         }

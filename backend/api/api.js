@@ -9,7 +9,11 @@ const {
 const SecureScraping = require('./secure-scraping');
 
 
-const secureScraping = new SecureScraping();
+const secureScrapingPromise = (async () =>{
+   const listProxies = await SecureScraping.getListProxies();
+   const listUserAgents = await SecureScraping.getListUserAgents();
+   return new SecureScraping(listProxies, listUserAgents);
+}) ();
 
 
 const router = express.Router();
@@ -81,8 +85,9 @@ router.get('/api/tourism', async (req, res) => {
     'User-Agent': ''
   };
   try {
+    const secureScrapingInstance = await secureScrapingPromise;
     // Fai la richiesta HTTP alla pagina
-    const { data } = await secureScraping.secureGet(url, headers);
+    const { data } = await secureScrapingInstance.secureGet(url, headers);
 
     // Carica la risposta HTML in Cheerio
     const $ = cheerio.load(data);
@@ -153,19 +158,25 @@ router.get('/api/air-quality-locations', async (req, res) => {
 
 router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
   try{
-    let url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=True";
+    const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=True";
     const headers = {
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Accept-Language': 'en-GB,en;q=0.9',
-      'Connection': 'keep-alive',
-      'Host': 'iechub.rfi.it',
-      'Sec-Fetch-Dest': 'document',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-Site': 'none',
-      'User-Agent': ''
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "Accept-Encoding": "gzip, deflate, br, zstd",
+      "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+      "Cache-Control": "max-age=0",
+      "Connection": "keep-alive",
+      "Host": "iechub.rfi.it",
+      "Sec-Fetch-Dest": "document",
+      "Sec-Fetch-Mode": "navigate",
+      "Sec-Fetch-Site": "none",
+      "Sec-Fetch-User": "?1",
+      "Upgrade-Insecure-Requests": "1",
+      "User-Agent": '',
+      "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"",
+      "sec-ch-ua-mobile": "?1",
+      "sec-ch-ua-platform": "\"Android\""
     };
-    let trainsArrivalData  = await secureScraping.secureGet(url, headers);
+    let trainsArrivalData  = await scrapeVeniceTrainsTimeData(url,headers);
     res.json({
       success:true,
       data:trainsArrivalData
@@ -180,19 +191,26 @@ router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
 
 router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   try{
-    let url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
+    const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
     const headers = {
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Accept-Language': 'en-GB,en;q=0.9',
-      'Connection': 'keep-alive',
-      'Host': 'iechub.rfi.it',
-      'Sec-Fetch-Dest': 'document',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-Site': 'none',
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15'
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "Accept-Encoding": "gzip, deflate, br, zstd",
+      "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+      "Cache-Control": "max-age=0",
+      "Connection": "keep-alive",
+      "Host": "iechub.rfi.it",
+      "Sec-Fetch-Dest": "document",
+      "Sec-Fetch-Mode": "navigate",
+      "Sec-Fetch-Site": "none",
+      "Sec-Fetch-User": "?1",
+      "Upgrade-Insecure-Requests": "1",
+      "User-Agent": '',
+      "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"",
+      "sec-ch-ua-mobile": "?1",
+      "sec-ch-ua-platform": "\"Android\""
     };
-    let trainsDepartureData  = await secureScraping.secureGet(url, headers);
+
+    let trainsDepartureData  = await scrapeVeniceTrainsTimeData(url,headers);
     res.json({
       success:true,
       data:trainsDepartureData
