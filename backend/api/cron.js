@@ -1,5 +1,7 @@
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json");
+const dotenv = require("dotenv");
+dotenv.config();
 
 if (!admin.apps.length) {
     admin.initializeApp({
@@ -9,21 +11,20 @@ if (!admin.apps.length) {
 }
 
 const {
-    deleteExistingData,
-    scrapePopulationData,
     savePopulationDataToFirebase,
+    saveTideDataToFirebase,
+    saveBusDataToFirebase,
     fetchTideData,
-    saveTideDataToFirebase
+    scrapePopulationData,
+    scrapeVeniceTrainsTimeData,
 } = require('./functions');
 
 async function handler() {
     try {
         console.log('Crono job started...');
 
-        await deleteExistingData("dashboard/data/VenicePopulation");
-        await deleteExistingData("dashboard/data/Tides");
 
-        const populationData = await scrapePopulationData('https://portale.comune.venezia.it/millefoglie/statistiche/scheda/QUARTIERE-POPOLA-2$1$--------');
+        const populationData = await scrapePopulationData();
         if (populationData) await savePopulationDataToFirebase(populationData);
 
         const tideData = await fetchTideData(45.4408, 12.3155);
@@ -35,6 +36,8 @@ async function handler() {
             const endDate = tomorrow.toISOString().split('T')[0];
             await saveTideDataToFirebase(tideData, startDate, endDate);
         }
+
+        await saveBusDataToFirebase() ;
 
         console.log('Crono job completed...');
     } catch (error) {
