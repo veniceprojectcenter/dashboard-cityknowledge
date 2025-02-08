@@ -57,7 +57,8 @@ class SecureScraping {
       // Perform the GET request
       return await axios.get(url, {
         headers,
-        httpAgent: agent,
+        httpsAgent: agent,  // Use httpsAgent for HTTPS URLs
+        proxy: false        // Disable Axios's default proxy handling
       });
     } catch (error) {
       console.error('Error during secure GET request:', error.message);

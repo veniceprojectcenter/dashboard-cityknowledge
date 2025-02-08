@@ -195,6 +195,49 @@ async function saveBusDataToFirebase() {
     }
 }
 
+async function saveBoatDataToFirebase() {
+    try {
+        const date = new Date().toISOString().split('T')[0];
+        const listBoatStopsIds = ['5029','5028','5027','5104','5112','5030','5031'];
+
+        for (const boatStopId of listBoatStopsIds) {
+            const url = `https://orari.actv.it/getStopSingle/${date}/NAV/${boatStopId}`;
+            const headers = {
+                "Accept": "application/json, text/plain, */*",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Accept-Language": "en-GB,en;q=0.9",
+                "Connection": "keep-alive",
+                "Host": "orari.actv.it",
+                "Referer": "https://orari.actv.it",
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "same-origin",
+                "User-Agent": ""
+            };
+
+            // Definisci la funzione che effettua la richiesta
+            const func = async () => {
+                try {
+                    const secureScrapingInstance = await secureScrapingPromise;
+                    const { data } = await secureScrapingInstance.secureGet(url,headers);
+                    console.log(`Dati ricevuti per boatStop ${boatStopId}:`, data);
+                    await admin.database().ref(`boatData/stop_${boatStopId}`).set(data);
+                } catch (error) {
+                    console.error(`Errore nella richiesta per boatStop ${boatStopId}:`, error.message);
+                }
+            };
+
+            const delayTime = Math.floor(Math.random() * 10) * 1000;
+            // Attendi un ritardo casuale e poi esegui func, assicurandoti di risolvere la promise
+            await SecureScraping.delay(func,delayTime);
+
+            console.log(`${boatStopId} inserted`);
+        }
+    } catch (error) {
+        console.error('Error saving Boat Data on firebase:', error);
+    }
+}
+
 
 
 
@@ -202,6 +245,7 @@ module.exports = {
     savePopulationDataToFirebase,
     saveTideDataToFirebase,
     saveBusDataToFirebase,
+    saveBoatDataToFirebase,
     fetchTideData,
     scrapePopulationData,
     scrapeVeniceTrainsTimeData,

@@ -5,6 +5,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const {
   scrapeVeniceTrainsTimeData,
+    /*to remove*/
+  saveBoatDataToFirebase,
 } = require('./functions')
 const SecureScraping = require('./secure-scraping');
 
@@ -227,14 +229,28 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
 /*Da eliminare , è per testing */
 router.get('/api/test',async(req,res) => {
   try{
-    const listProxies = await getUpdatedListProxies();
-    const data = await scrapePopulationData(listProxies,listUserAgents);
+      await admin.database().ref(`dashboard/data/Bus/stop_times`).remove();
+    const secureScrapingInstance = await secureScrapingPromise;
 
-    if (data) {
-      await savePopulationDataToFirebase(data);
-      res.json({ success: true, data:data });
+    // URL to check the IP address
+    const ipCheckUrl = 'https://api.ipify.org?format=json';
+
+    // Make a request using secureGet
+    const { data } = await secureScrapingInstance.secureGet(ipCheckUrl, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+
+    // Log the IP address used for the request
+    console.log('IP address used for the request:', data.ip);
+
+    // Check if the IP matches any of the proxies
+    const proxies = await SecureScraping.getUpdatedListProxies();
+    if (proxies.includes(data.ip)) {
+      console.log('The request is using a proxy.');
     } else {
-      res.status(500).json({ success: false, message: 'Errore recupero dati popolazione!' });
+      console.log('The request is NOT using a proxy.');
     }
   }catch(error){
     console.error('Errore nel fare scraping della pagina:', error);
