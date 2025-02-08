@@ -1,18 +1,14 @@
 const axios = require('axios');
-const { HttpsProxyAgent } = require('https-proxy-agent');
-
+const dotenv = require('dotenv');
+dotenv.config();
 /**
  * Create an Instance with create()
  */
 class SecureScraping {
   /**
    * Private constructor.
-   * @param {Array<string>} listProxies - List of proxy servers.
-   * @param {Array<string>} listUserAgents - List of user agents.
    */
-  constructor(listProxies, listUserAgents) {
-    this.listProxies = listProxies;
-    this.listUserAgents = listUserAgents;
+  constructor() {
   }
 
   /**
@@ -34,71 +30,36 @@ class SecureScraping {
    * Performs a secure GET request using random proxies and user agents.
    * Requires  an instance of the class.
    * @param {string} url - The URL for the GET request.
-   * @param {Object} [headers={}] - Optional headers for the request.
    * @returns {Promise<Object>} The axios response.
    * @throws {Error} If the request fails.
    */
-  async secureGet(url, headers = {}) {
+  async secureGet(url) {
     if (!url) {
       throw new Error('No URL provided for the GET request.');
     }
 
     try {
-      // Select a random proxy and user agent
-      const proxyUrl = this.getRandomElement(this.listProxies);
-      const userAgent = this.getRandomElement(this.listUserAgents);
-
-      // Create a proxy agent
-      const agent = new HttpsProxyAgent(new URL(proxyUrl));
-
-      // Set the User-Agent header
-      headers['User-Agent'] = userAgent;
-
-      // Perform the GET request
-      return await axios.get(url, {
-        headers,
-        httpsAgent: agent,  // Use httpsAgent for HTTPS URLs
-        proxy: false        // Disable Axios's default proxy handling
+      return axios.get(url, {
+        method: 'GET',
+        proxy: {
+          host: 'proxy-server.scraperapi.com',
+          port: 8001,
+          auth: {
+            username: 'scraperapi',
+            password: `${ process.env.SCRAPEAPY_KEY }`
+          },
+          protocol: 'http'
+        }
+      }).catch( (error) => {
+        console.log(error);
       });
+
     } catch (error) {
       console.error('Error during secure GET request:', error.message);
       throw error;
     }
   }
 
-  /**
-   * Fetches an updated list of proxies with retries.
-   *
-   * @param {number} maxRetries - Maximum number of retries.
-   * @param {number} retryInterval - Interval between retries in milliseconds.
-   * @returns {Promise<Array<string>>} A list of proxies.
-   * @throws {Error} If no proxies are found after max retries.
-   */
-  static async getUpdatedListProxies(maxRetries = 20, retryInterval = 20000) {
-    let attempts = 0;
-    let proxies;
-
-    while (attempts < maxRetries) {
-      try {
-        // Fetch the list of proxies
-        proxies = await this.getListProxies();
-        if (proxies && proxies.length > 0) {
-          console.log(`Proxy list obtained after ${attempts + 1} attempt(s).`);
-          return proxies;
-        }
-      } catch (error) {
-        console.error(`Attempt ${attempts + 1} failed:`, error.message);
-      }
-
-      // Wait before retrying
-      console.warn(`Attempt ${attempts + 1} failed: empty list. Retrying in ${retryInterval / 1000} seconds...`);
-      await this.delay(retryInterval);
-      attempts++;
-    }
-
-    // Throw an error if no proxies are found after max retries
-    throw new Error(`Failed to obtain an updated proxy list after ${maxRetries} attempts.`);
-  }
 
   /**
    * Delays execution for a specified time.
@@ -116,40 +77,6 @@ class SecureScraping {
     );
   }
 
-  /**
-   * Fetches a list of proxies from a remote source.
-   *
-   * @returns {Promise<Array<string>>} A list of proxies.
-   * @throws {Error} If the request fails.
-   */
-  static async getListProxies() {
-    const url = 'https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/https/data.json';
-    let listProxies = [];
-
-    try {
-      // Fetch the proxy list from the remote source
-      const response = await axios.get(url, { responseType: 'json' });
-      const data = Object.values(response.data);
-      data.forEach((element) => {
-        listProxies.push(element.proxy);
-      });
-      return listProxies;
-    } catch (error) {
-      console.error('Error fetching proxy list:', error.message);
-      throw error;
-    }
-  }
-
-  static async getListUserAgents() {
-    return [
-      'Mozilla/5.0 (Linux; Android 13; Pixel 6 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36',
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15',
-      'Mozilla/5.0 (Linux; Android 11; TC57 Build/11-35-05.00-RG-U00-C120-HEL-04; wv) AppleWebKit/537.36 (KHTML, like Gecko) ' +
-      'Version/4.0 Chrome/129.0.6668.102 Mobile Safari/537.36 (AirWatch Browser v24.08.1.437)',
-      'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070213 BonEcho/2.0.0.2pre',
-      'Callpod Keeper for Android 1.0 (app 16.10.0.132801/13280101) Dalvik/2.1.0 (Linux; U; Android 14; Pixel 7a Build/AP2A.240905.003)'
-    ];
-  }
 }
 
 module.exports = SecureScraping;

@@ -14,9 +14,9 @@ const {
     savePopulationDataToFirebase,
     saveTideDataToFirebase,
     saveBusDataToFirebase,
+    saveBoatDataToFirebase,
     fetchTideData,
     scrapePopulationData,
-    scrapeVeniceTrainsTimeData,
 } = require('./functions');
 
 async function handler() {
@@ -38,6 +38,7 @@ async function handler() {
         }
 
         await saveBusDataToFirebase() ;
+        await saveBoatDataToFirebase() ;
 
         console.log('Crono job completed...');
     } catch (error) {

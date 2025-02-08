@@ -2,23 +2,21 @@ const admin = require('firebase-admin');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const SecureScraping = require('./secure-scraping');
+const secureScraping = new SecureScraping();
 const dotenv = require('dotenv');
 dotenv.config();
 
-const secureScrapingPromise = (async () => {
-    const proxies = await SecureScraping.getUpdatedListProxies();
-    const userAgents = SecureScraping.getListUserAgents();
-    return new SecureScraping(proxies, userAgents);
-})();
 
 
 
-async function scrapeVeniceTrainsTimeData(url,headers= {}){
+
+
+async function scrapeVeniceTrainsTimeData(url){
     try{
         let allTrainsData = [];
         const singleTitleRow = {};
 
-        const response = await axios.get(url,headers);
+        const response = await secureScraping.secureGet(url)
         const $ = cheerio.load(response.data);
         let listTitleRow = $('thead[id=headerTabId] tr');
 
@@ -57,20 +55,7 @@ async function scrapeVeniceTrainsTimeData(url,headers= {}){
 async function scrapePopulationData() {
     try {
         const url = 'https://portale.comune.venezia.it/millefoglie/statistiche/scheda/QUARTIERE-POPOLA-2$1$--------'
-        const headers = {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-GB,en;q=0.9',
-            'Connection': 'keep-alive',
-            'Host': 'portale.comune.venezia.it',
-            'Referer': 'https://www.google.com/',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'none',
-            'User-Agent': '',
-        };
-        const secureScrapingInstance = await secureScrapingPromise;
-        const { data } = await secureScrapingInstance.secureGet(url,headers);
+        const { data } = await secureScraping.secureGet(url);
 
         const $ = cheerio.load(data);
 
@@ -159,24 +144,11 @@ async function saveBusDataToFirebase() {
 
         for (const busStopId of listBusStopsIds) {
             const url = `https://orari.actv.it/getStopSingle/${date}/AUT/${busStopId}`;
-            const headers = {
-                'Accept': 'application/json, text/plain, */*',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Accept-Language': 'en-GB,en;q=0.9',
-                'Connection': 'keep-alive',
-                'Host': 'orari.actv.it',
-                'Referer': 'https://www.google.com/',
-                'Sec-Fetch-Dest': 'empty',
-                'Sec-Fetch-Mode': 'cors',
-                'Sec-Fetch-Site': 'same-origin',
-                'User-Agent': '',
-            };
 
             // Definisci la funzione che effettua la richiesta
             const func = async () => {
                 try {
-                    const secureScrapingInstance = await secureScrapingPromise;
-                    const { data } = await secureScrapingInstance.secureGet(url,headers);
+                    const { data } = await secureScraping.secureGet(url);
                     console.log(`Dati ricevuti per busStop ${busStopId}:`, data);
                     await admin.database().ref(`busData/stop_${busStopId}`).set(data);
                 } catch (error) {
@@ -202,24 +174,10 @@ async function saveBoatDataToFirebase() {
 
         for (const boatStopId of listBoatStopsIds) {
             const url = `https://orari.actv.it/getStopSingle/${date}/NAV/${boatStopId}`;
-            const headers = {
-                "Accept": "application/json, text/plain, */*",
-                "Accept-Encoding": "gzip, deflate, br",
-                "Accept-Language": "en-GB,en;q=0.9",
-                "Connection": "keep-alive",
-                "Host": "orari.actv.it",
-                "Referer": "https://orari.actv.it",
-                "Sec-Fetch-Dest": "empty",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Site": "same-origin",
-                "User-Agent": ""
-            };
-
             // Definisci la funzione che effettua la richiesta
             const func = async () => {
                 try {
-                    const secureScrapingInstance = await secureScrapingPromise;
-                    const { data } = await secureScrapingInstance.secureGet(url,headers);
+                    const { data } = await secureScraping.secureGet(url);
                     console.log(`Dati ricevuti per boatStop ${boatStopId}:`, data);
                     await admin.database().ref(`boatData/stop_${boatStopId}`).set(data);
                 } catch (error) {

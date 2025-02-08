@@ -5,17 +5,9 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const {
   scrapeVeniceTrainsTimeData,
-    /*to remove*/
-  saveBoatDataToFirebase,
 } = require('./functions')
 const SecureScraping = require('./secure-scraping');
-
-
-const secureScrapingPromise = (async () =>{
-   const listProxies = await SecureScraping.getListProxies();
-   const listUserAgents = await SecureScraping.getListUserAgents();
-   return new SecureScraping(listProxies, listUserAgents);
-}) ();
+const secureScraping = new SecureScraping();
 
 
 const router = express.Router();
@@ -43,6 +35,8 @@ router.get('/api/population', async (req, res) => {
     });
   }
 });
+
+
 // Endpoint per recuperare i dati delle maree da Firebase
 router.get('/api/tides', async (req, res) => {
   try {
@@ -73,23 +67,11 @@ router.get('/api/tides', async (req, res) => {
 router.get('/api/tourism', async (req, res) => {
   const currentYear = new Date().getFullYear();
   const previousYear = currentYear - 1;
-  const url = `https://statistica.regione.veneto.it/jsp/turi1.jsp?D0=${previousYear}
-    &D1=REGIONE+VENETO&D2=00Totale+anno&D3=Movimento+annuale+per+tipo+di+esercizio&B1=Visualizza`;
-  const headers = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'en-GB,en;q=0.9',
-    'Connection': 'keep-alive',
-    'Host': 'statistica.regione.veneto.it',
-    'Sec-Fetch-Dest': 'document',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-Site': 'none',
-    'User-Agent': ''
-  };
+  const url = `https://statistica.regione.veneto.it/jsp/turi1.jsp?D0=2024&D1=REGIONE+VENETO&D2=00Totale+anno&`+
+      `D3=Movimento+annuale+per+tipo+di+esercizio&B1=Visualizza`;
   try {
-    const secureScrapingInstance = await secureScrapingPromise;
     // Fai la richiesta HTTP alla pagina
-    const { data } = await secureScrapingInstance.secureGet(url, headers);
+    const { data } = await secureScraping.secureGet(url);
 
     // Carica la risposta HTML in Cheerio
     const $ = cheerio.load(data);
@@ -136,11 +118,11 @@ router.get('/api/air-quality-locations', async (req, res) => {
   const lng = 12.334590; // Longitudine di Venezia
 
   // Nuovo URL per l'API Open-Meteo
-  const apiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lng}
-  &hourly=pm10,pm2_5,carbon_monoxide,carbon_dioxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index,ammonia,methane`;
+  const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lng}`
+  +`&hourly=pm10,pm2_5,carbon_monoxide,carbon_dioxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index,ammonia,methane`;
 
   try {
-    const response = await axios.get(apiUrl);
+    const response = await secureScraping.secureGet(url);
 
     const airQualityData = response.data; // Estrai i dati della qualità dell'aria
 
@@ -161,24 +143,7 @@ router.get('/api/air-quality-locations', async (req, res) => {
 router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
   try{
     const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=True";
-    const headers = {
-      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-      "Accept-Encoding": "gzip, deflate, br, zstd",
-      "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-      "Cache-Control": "max-age=0",
-      "Connection": "keep-alive",
-      "Host": "iechub.rfi.it",
-      "Sec-Fetch-Dest": "document",
-      "Sec-Fetch-Mode": "navigate",
-      "Sec-Fetch-Site": "none",
-      "Sec-Fetch-User": "?1",
-      "Upgrade-Insecure-Requests": "1",
-      "User-Agent": '',
-      "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"",
-      "sec-ch-ua-mobile": "?1",
-      "sec-ch-ua-platform": "\"Android\""
-    };
-    let trainsArrivalData  = await scrapeVeniceTrainsTimeData(url,headers);
+    let trainsArrivalData  = await scrapeVeniceTrainsTimeData(url)
     res.json({
       success:true,
       data:trainsArrivalData
@@ -194,25 +159,8 @@ router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
 router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   try{
     const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
-    const headers = {
-      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-      "Accept-Encoding": "gzip, deflate, br, zstd",
-      "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-      "Cache-Control": "max-age=0",
-      "Connection": "keep-alive",
-      "Host": "iechub.rfi.it",
-      "Sec-Fetch-Dest": "document",
-      "Sec-Fetch-Mode": "navigate",
-      "Sec-Fetch-Site": "none",
-      "Sec-Fetch-User": "?1",
-      "Upgrade-Insecure-Requests": "1",
-      "User-Agent": '',
-      "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"",
-      "sec-ch-ua-mobile": "?1",
-      "sec-ch-ua-platform": "\"Android\""
-    };
 
-    let trainsDepartureData  = await scrapeVeniceTrainsTimeData(url,headers);
+    let trainsDepartureData  = await scrapeVeniceTrainsTimeData(url)
     res.json({
       success:true,
       data:trainsDepartureData
@@ -229,29 +177,7 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
 /*Da eliminare , è per testing */
 router.get('/api/test',async(req,res) => {
   try{
-      await admin.database().ref(`dashboard/data/Bus/stop_times`).remove();
-    const secureScrapingInstance = await secureScrapingPromise;
 
-    // URL to check the IP address
-    const ipCheckUrl = 'https://api.ipify.org?format=json';
-
-    // Make a request using secureGet
-    const { data } = await secureScrapingInstance.secureGet(ipCheckUrl, {
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
-
-    // Log the IP address used for the request
-    console.log('IP address used for the request:', data.ip);
-
-    // Check if the IP matches any of the proxies
-    const proxies = await SecureScraping.getUpdatedListProxies();
-    if (proxies.includes(data.ip)) {
-      console.log('The request is using a proxy.');
-    } else {
-      console.log('The request is NOT using a proxy.');
-    }
   }catch(error){
     console.error('Errore nel fare scraping della pagina:', error);
   }
