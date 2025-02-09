@@ -6,10 +6,14 @@ const secureScraping = new SecureScraping();
 const dotenv = require('dotenv');
 dotenv.config();
 
-
-
-
-
+async function deleteExistingData(path) {
+    try {
+        await admin.database().ref(path).remove();
+        console.log(`Dati esistenti eliminati correttamente da: ${path}`);
+    } catch (error) {
+        console.error(`Errore durante l'eliminazione dei dati da ${path}:`, error.message);
+    }
+}
 
 async function scrapeVeniceTrainsTimeData(url){
     try{
@@ -82,6 +86,7 @@ async function savePopulationDataToFirebase(data) {
     const path = `dashboard/data/VenicePopulation/${dateString}`;
 
     try {
+        await deleteExistingData('dashboard/data/VenicePopulation/');
         await admin.database().ref(path).set({
             col1: data[0] || null,
             col2: data[1] || null,
@@ -126,6 +131,7 @@ async function saveTideDataToFirebase(data, startDate, endDate) {
     const path = `dashboard/data/Tides/${startDate}_to_${endDate}`;
 
     try {
+        await deleteExistingData('dashboard/data/Tides/');
         await admin.database().ref(path).set({
             tides: data.data,
             meta: data.meta,
@@ -142,6 +148,7 @@ async function saveBusDataToFirebase() {
         const date = new Date().toISOString().split('T')[0];
         const listBusStopsIds = ['503','501','505','506','507','508','509','510','511','512','6084','8044','514','515','516','517'];
 
+        await deleteExistingData('busData');
         for (const busStopId of listBusStopsIds) {
             const url = `https://orari.actv.it/getStopSingle/${date}/AUT/${busStopId}`;
 
@@ -172,6 +179,7 @@ async function saveBoatDataToFirebase() {
         const date = new Date().toISOString().split('T')[0];
         const listBoatStopsIds = ['5029','5028','5027','5104','5112','5030','5031'];
 
+        await deleteExistingData('boatData');
         for (const boatStopId of listBoatStopsIds) {
             const url = `https://orari.actv.it/getStopSingle/${date}/NAV/${boatStopId}`;
             // Definisci la funzione che effettua la richiesta
@@ -185,7 +193,7 @@ async function saveBoatDataToFirebase() {
                 }
             };
 
-            const delayTime = Math.floor(Math.random() * 10) * 1000;
+            const delayTime = (Math.floor(Math.random() * 10 ) + 5) * 1000;
             // Attendi un ritardo casuale e poi esegui func, assicurandoti di risolvere la promise
             await SecureScraping.delay(func,delayTime);
 
