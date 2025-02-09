@@ -1,4 +1,4 @@
-import {Component, Input, NgZone, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { DashboardService } from '../../../services/dashboard/dashboard.service';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import {AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';

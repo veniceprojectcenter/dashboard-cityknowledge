@@ -69,12 +69,10 @@ class SecureScraping {
    * @returns {Promise<void>}
    */
   static async delay(func = () => {}, ms) {
-    return new Promise((resolve) =>
-        setTimeout(async () => {
-          Promise.resolve(func()).then(resolve);
-        }, ms)
-    );
+    await new Promise(resolve => setTimeout(resolve, ms));
+    return await func();
   }
+
 
 }
 

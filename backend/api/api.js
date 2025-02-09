@@ -67,7 +67,7 @@ router.get('/api/tides', async (req, res) => {
 router.get('/api/tourism', async (req, res) => {
   const currentYear = new Date().getFullYear();
   const previousYear = currentYear - 1;
-  const url = `https://statistica.regione.veneto.it/jsp/turi1.jsp?D0=2024&D1=REGIONE+VENETO&D2=00Totale+anno&`+
+  const url = `https://statistica.regione.veneto.it/jsp/turi1.jsp?D0=${previousYear}&D1=REGIONE+VENETO&D2=00Totale+anno&`+
       `D3=Movimento+annuale+per+tipo+di+esercizio&B1=Visualizza`;
   try {
     // Fai la richiesta HTTP alla pagina
@@ -173,17 +173,29 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   }
 })
 
+router.get('/api/airplanes', async (req,res) => {
+    const url = 'https://www.veneziaairport.it/it/ajaxflighttoday';
+    await secureScraping.secureGet(url)
+    .then((response) => {
+      res.json({
+        success: true,
+        data: response.data
+      })
+    })
+    .catch((error) => {
+      res.status(500).json({
+        success:false,
+        message: `Error on fetching Airplanes data: ${error}`
+      });
+    });
+});
+
+
 
 /*Da eliminare , è per testing */
 router.get('/api/test',async(req,res) => {
-  try{
 
-  }catch(error){
-    console.error('Errore nel fare scraping della pagina:', error);
-  }
 })
-
-
 
 // Esporta il router
 module.exports = router;
