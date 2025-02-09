@@ -53,8 +53,7 @@ export class WidgetFormComponent implements OnInit {
 
     this.urlsForm = this.formBuilder.group({
       helpDocUrl: ['',
-        [Validators.required, Validators.pattern(this.getUrlPattern())],
-        [this.validateUrlAsync.bind(this)] // Aggiungi validazione asincrona
+        [Validators.required, Validators.pattern(this.getUrlPattern())] // Aggiungi validazione asincrona
       ],
       url: ['', [Validators.required, Validators.pattern(this.getUrlPattern())]],
       urlTitle: ['', Validators.required],
@@ -181,6 +180,7 @@ export class WidgetFormComponent implements OnInit {
             helpDocUrl: this.urlsForm.value.helpDocUrl,
             url: this.urlsForm.value.url,
             urlTitle: this.urlsForm.value.urlTitle,
+            lastModified: new Date().toISOString(),
           } as Widget_interface;
 
           this.widgetService.addWidget(this.createdWidget).then(() => {

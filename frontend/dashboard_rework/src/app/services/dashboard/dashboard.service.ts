@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import {Database, ref, set, onValue, get, Unsubscribe, remove} from '@angular/fire/database';
-import { Observable, of } from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Dashboard_interface } from '../../interfaces/dashboard_interface';
 
@@ -8,7 +8,7 @@ import { Dashboard_interface } from '../../interfaces/dashboard_interface';
   providedIn: 'root'
 })
 export class DashboardService implements OnDestroy {
-  private subscription: Unsubscribe | null = null;
+  private subscriptions = new Subscription();
 
   constructor(private db: Database) {}
 
@@ -23,39 +23,45 @@ export class DashboardService implements OnDestroy {
       coords: Array.isArray(item.coords) && item.coords.length === 2
         ? [Number(item.coords[0]), Number(item.coords[1])] // Ensure coords is a tuple of two numbers
         : [0, 0], // Default value if not valid
-      lastModified:item.lastModified || '',
       widgetsInUse: item.widgetsInUse || [],
+      lastModified: item.lastModified
     }));
   }
 
   // Fetch dashboards from the database
   getDashboards(): Observable<Dashboard_interface[]> {
     console.log('Fetching dashboards...');
+    const dashboardsRef = ref(this.db, 'dashboards');
 
-    const dashboardsRef = ref(this.db, 'dashboards'); // Directly use db
+    return new Observable<Dashboard_interface[]>(observer => {
+      const unsubscribe = onValue(
+        dashboardsRef,
+        snapshot => {
+          const data = snapshot.val();
+          const dashboards: Dashboard_interface[] = data ? this.filterAndMapData(Object.values(data)) : [];
+          console.log('Data source: Database');
+          observer.next(dashboards);
+        },
+        error => observer.error(error),
+        { onlyOnce: false }
+      );
 
-    return new Observable<Dashboard_interface[]>((observer) => {
-      this.subscription = onValue(dashboardsRef, (snapshot) => {
-        const data = snapshot.val();
-        const dashboards: Dashboard_interface[] = data ? this.filterAndMapData(Object.values(data)) : [];
-
-        console.log('Data source: Database');
-        observer.next(dashboards);
-      }, {
-        onlyOnce: false // Change to false if you want to listen for changes continuously
-      });
+      // Aggiungi la subscription alla raccolta
+      this.subscriptions.add(() => unsubscribe());
     }).pipe(
-      catchError((error) => {
+      catchError(error => {
         console.error('Error fetching dashboards:', error);
-        return of([]); // Return empty array in case of error
+        return of([]);
       })
     );
   }
 
   // Add a new dashboard
   async addDashboard(dashboard: Dashboard_interface): Promise<void> {
+    const dashboardsRef = ref(this.db, 'dashboards/last_modified');
+    const modifiedDate = new Date().toISOString();
     const newDashboardRef = ref(this.db, `dashboards/${dashboard.name}`); // Ensure dashboard.pageTitle exists
-    console.log('Adding new dashboard:', dashboard);
+    //console.log('Adding new dashboard:', dashboard);
 
     // Ensure coords is a tuple of two numbers
     if (!Array.isArray(dashboard.coords) || dashboard.coords.length !== 2) {
@@ -64,6 +70,7 @@ export class DashboardService implements OnDestroy {
     }
 
     try {
+      await  set(dashboardsRef,modifiedDate)
       await set(newDashboardRef, dashboard);
       console.log('Dashboard added successfully:', dashboard);
     } catch (error) {
@@ -108,9 +115,7 @@ export class DashboardService implements OnDestroy {
 
 
   ngOnDestroy(): void {
-    // Clean up the subscription if it exists
-    if (this.subscription) {
-      this.subscription(); // Call the unsubscribe function
-    }
+    // Pulisci tutte le subscriptions
+    this.subscriptions.unsubscribe();
   }
 }

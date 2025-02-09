@@ -1,14 +1,16 @@
-import {Injectable} from '@angular/core';
-import {Database, get, onValue, ref, remove, set, update} from '@angular/fire/database';
-import {forkJoin, Observable, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {Widget_interface} from '../../interfaces/widget_interface';
-import {Dashboard_interface} from '../../interfaces/dashboard_interface'; // Ensure you import the interface
+import { Injectable, OnDestroy } from '@angular/core';
+import { Database, get, onValue, ref, remove, set, update } from '@angular/fire/database';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
+import { catchError, takeUntil } from 'rxjs/operators';
+import { Widget_interface } from '../../interfaces/widget_interface';
+import { Dashboard_interface } from '../../interfaces/dashboard_interface'; // Ensure you import the interface
 
 @Injectable({
   providedIn: 'root'
 })
-export class WidgetService {
+export class WidgetService implements OnDestroy {
+  private onDestroy$: Subject<void> = new Subject<void>();
+
   constructor(private db: Database) {}
 
   // Function to filter and map the data
@@ -32,19 +34,29 @@ export class WidgetService {
     console.log('Fetching widget from database...');
 
     return new Observable<Widget_interface[]>((observer) => {
-      onValue(widgetsRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          const widgets = this.filterAndMapData(Object.values(data)); // Filter and map the widget
-          observer.next(widgets);
-        } else {
-          console.log('No widget found in database.');
-          observer.next([]); // Return empty array if no data
-        }
-      }, {
-        onlyOnce: false // Change to false if you want to listen for changes continuously
-      });
+      const unsubscribe = onValue(
+        widgetsRef,
+        (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+            const widgets = this.filterAndMapData(Object.values(data)); // Filter and map the widget
+            observer.next(widgets);
+          } else {
+            console.log('No widget found in database.');
+            observer.next([]); // Return empty array if no data
+          }
+        },
+        (error) => {
+          console.error('Error fetching widgets:', error);
+          observer.error(error);
+        },
+        { onlyOnce: false }
+      );
+
+      // Cleanup listener when subscription is disposed
+      return () => unsubscribe();
     }).pipe(
+      takeUntil(this.onDestroy$), // Automatically unsubscribes when onDestroy$ emits
       catchError((error) => {
         console.error('Error fetching widget:', error);
         return of([]); // Return empty array in case of error
@@ -52,41 +64,42 @@ export class WidgetService {
     );
   }
 
-  // Fetch a specific dashboard by name
+  // Fetch a specific widget by ID
   async getWidgetByName(id: string): Promise<Widget_interface | null> {
     console.log('Fetching widget by name:', id);
-    const dashboardsRef = ref(this.db, 'widgets');
+    const widgetsRef = ref(this.db, 'widgets');
 
     try {
-      const snapshot = await get(dashboardsRef);
+      const snapshot = await get(widgetsRef);
       if (snapshot.exists()) {
         const data = snapshot.val();
         const widgets: Widget_interface[] = this.filterAndMapData(Object.values(data));
 
-        // Find the dashboard with the matching name
-        const foundDashboard = widgets.find(widget => widget.id=== id);
-        return foundDashboard || null; // Return the found dashboard or null if not found
+        // Find the widget with the matching name
+        const foundWidget = widgets.find(widget => widget.id === id);
+        return foundWidget || null; // Return the found widget or null if not found
       } else {
-        console.log('No dashboards found.');
+        console.log('No widgets found.');
         return null;
       }
     } catch (error) {
-      console.error('Error fetching dashboard by name:', error);
+      console.error('Error fetching widget by name:', error);
       return null; // Return null in case of error
     }
   }
 
   // Add a new widget under the widget node
-  addWidget(widget: Widget_interface): Promise<void> {
+  async addWidget(widget: Widget_interface): Promise<void> {
     const newWidgetRef = ref(this.db, `widgets/${widget.id}`); // Modify based on your data structure
 
-    return set(newWidgetRef, widget).then(() => {
-    }).catch((error) => {
+    try {
+      await set(newWidgetRef, widget);
+    } catch (error) {
       console.error('Error adding widget:', error);
-    });
+    }
   }
 
-  // Fetch widget by an array of IDs
+  // Fetch widgets by an array of IDs
   getWidgetsByIdsArray(ids: string[]): Observable<Widget_interface[]> {
     const widgetPromises = ids.map(id => {
       const widgetRef = ref(this.db, `widgets/${id}`);
@@ -104,13 +117,21 @@ export class WidgetService {
     });
 
     return new Observable<Widget_interface[]>((observer) => {
-      forkJoin(widgetPromises).subscribe(widgets => {
-        // Filter out null values (widget that were not found)
-        const filteredWidgets = widgets.filter(widget => widget !== null) as Widget_interface[];
-        observer.next(filteredWidgets);
-        observer.complete();
+      forkJoin(widgetPromises).subscribe({
+        next: (widgets) => {
+          // Filter out null values (widget that were not found)
+          const filteredWidgets = widgets.filter(widget => widget !== null) as Widget_interface[];
+          observer.next(filteredWidgets);
+        },
+        error: (error) => {
+          observer.error(error);
+        },
+        complete: () => {
+          observer.complete(); // Ensure completion
+        }
       });
     }).pipe(
+      takeUntil(this.onDestroy$), // Automatically clean up
       catchError((error) => {
         console.error('Error fetching widget by IDs:', error);
         return of([]); // Return empty array in case of error
@@ -160,5 +181,9 @@ export class WidgetService {
       });
   }
 
-
+  // Cleanup the service when it's destroyed
+  ngOnDestroy() {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
 }

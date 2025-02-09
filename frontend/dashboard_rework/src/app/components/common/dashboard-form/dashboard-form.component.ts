@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, NgZone, OnInit} from '@angular/core';
 import { DashboardService } from '../../../services/dashboard/dashboard.service';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 import {AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -64,18 +64,26 @@ export class DashboardFormComponent implements OnInit {
 
   validateUrlAsync(control: AbstractControl) {
     if (!control.value) {
-      return of(null); // Nessun errore se il campo è vuoto
+      console.log('Campo vuoto, nessun errore.');
+      return of(null);
     }
 
+    console.log('Controllo URL:', control.value);
     return this._urlCheckerService.checkUrl(control.value).pipe(
-      map((isValid) => (isValid ? null : { invalidUrl: true })), // Ritorna null se valido, errore altrimenti
-      catchError(() => of({ invalidUrl: true })) // Gestione errori
+      map((isValid) => {
+        console.log('URL valido?', isValid);
+        return isValid ? null : { invalidUrl: true };
+      }),
+      catchError((error) => {
+        console.error('Errore durante la validazione dell\'URL:', error);
+        return of({ invalidUrl: true });
+      })
     );
   }
 
   ngOnInit(): void {
     // Initial log to debug
-    console.log('DashboardFormComponent initialized with input:', this.input);
+    //console.log('DashboardFormComponent initialized with input:', this.input);
 
     if (this.input) {
       this.dashboardForm.get('name')?.disable();
@@ -84,11 +92,11 @@ export class DashboardFormComponent implements OnInit {
   }
 
   private loadDashboardData(dashboardName: string): void {
-    console.log('Loading dashboard data for:', dashboardName);
+    // console.log('Loading dashboard data for:', dashboardName);
 
     this._dashboardService.getDashboardByName(dashboardName).then(dashboard => {
       if (dashboard) {
-        console.log('Dashboard found:', dashboard);
+        //console.log('Dashboard found:', dashboard);
         this.selectedWidgetIds = dashboard.widgetsInUse;
 
         // Populate the form with dashboard data
@@ -143,6 +151,7 @@ export class DashboardFormComponent implements OnInit {
           pageTitle: formValues.pageTitle,
           coords: [formValues.coordX, formValues.coordY], // Construct coords
           widgetsInUse: this.selectedWidgetIds, // Include selected widgets
+          lastModified: new Date().toISOString()
         } as Dashboard_interface;
 
         try {
