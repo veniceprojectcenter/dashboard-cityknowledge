@@ -19,10 +19,12 @@
     </div>
 
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <!--
     <button type="button" (click)="onLoginWithGoogle()" class="google-button">
       <img src="assets/img/google.png" alt="Google Logo" class="google-icon" />
       Login with Google
     </button>
+    -->
   </form>
 
   <div *ngIf="showModal" class="modal"> <!-- Finestra di dialogo -->
@@ -35,6 +37,8 @@
 
   <div class="links">
     <a routerLink="/recoverPassword">Forgot password?</a>
+    <!--
     <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    -->
   </div>
 </div>

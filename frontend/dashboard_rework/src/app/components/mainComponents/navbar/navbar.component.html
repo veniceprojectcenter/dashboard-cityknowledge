@@ -14,9 +14,11 @@
         <li class="nav-item" *ngIf="!authService.isLoggedIn()">
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
+        <!--
         <li class="nav-item" *ngIf="!authService.isLoggedIn()">
           <a class="nav-link" routerLink="/register">Register</a>
         </li>
+        -->
         <li class="nav-item" *ngIf="authService.isLoggedIn()">
           <a class="nav-link" routerLink="/dashboardList">Dashboard</a>
         </li>
