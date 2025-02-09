@@ -13,6 +13,14 @@
         <img src="/assets/img/question.png" alt="Help Icon" style="width: 24px; height: 24px;">
         Help
       </button>
+      <button
+        class="save-layout-btn"
+        [class.enabled]="saveLayoutEnabled"
+        [class.disabled]="!saveLayoutEnabled"
+        (click)="toggleSaveLayout()"
+      >
+        {{ saveLayoutEnabled ? 'Disable Save Layout' : 'Enable Save Layout' }}
+      </button>
     </div>
   </nav>
 
@@ -42,11 +50,11 @@
           width="100%"
           height="600px"
         ></iframe>
-          <iframe *ngIf="!safeHelpDocUrl"
-            [src]="sanitizer.bypassSecurityTrustResourceUrl(defaultHelpDocUrl)"
-            width="100%"
-            height="600px"
-          ></iframe>
+        <iframe *ngIf="!safeHelpDocUrl"
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(defaultHelpDocUrl)"
+                width="100%"
+                height="600px"
+        ></iframe>
       </div>
 
     </div>

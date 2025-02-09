@@ -21,7 +21,8 @@ export class WidgetService {
       width: item.width || 0,
       helpDocUrl: item.helpDocUrl || '',
       url: item.url || '',
-      urlTitle: item.urlTitle || ''
+      urlTitle: item.urlTitle || '',
+      lastModified: item.lastModified || '',
     }));
   }
 

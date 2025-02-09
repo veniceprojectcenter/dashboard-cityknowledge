@@ -23,7 +23,8 @@ export class DashboardService implements OnDestroy {
       coords: Array.isArray(item.coords) && item.coords.length === 2
         ? [Number(item.coords[0]), Number(item.coords[1])] // Ensure coords is a tuple of two numbers
         : [0, 0], // Default value if not valid
-      widgetsInUse: item.widgetsInUse || []
+      lastModified:item.lastModified || '',
+      widgetsInUse: item.widgetsInUse || [],
     }));
   }
 

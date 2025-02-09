@@ -251,5 +251,60 @@ button:hover {
   font-size: 18px; /* Imposta la dimensione dell'icona */
   color: inherit;
 }
+/* Stile per il bottone di salvataggio */
+.save-layout-btn {
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: scale(1);
+}
 
+.save-layout-btn.disabled {
+  background-color: #66BB6A;
+}
 
+.save-layout-btn.enabled {
+  background-color: #EF5350;
+}
+
+.save-layout-btn.disabled:hover {
+  background-color: #81C784;
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.save-layout-btn.enabled:hover {
+  background-color: #E57373;
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.save-layout-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.save-layout-btn span {
+  display: inline-block;
+  animation: fadeIn 0.3s ease;
+}

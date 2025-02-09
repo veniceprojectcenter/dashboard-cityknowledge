@@ -9,5 +9,6 @@ export interface Dashboard_interface {
   helpDocWidth: number;
   pageTitle: string;
   coords: coords;
+  lastModified: string;
   widgetsInUse: string[];
 }

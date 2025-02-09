@@ -10,7 +10,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MenuDashboardComponent } from '../../common/menu_dashboard/menu-dashboard.component';
 import { HtmlcontextService } from '../../../services/htmlcontent/htmlcontext.service';
 import {UrlCheckerService} from '../../../services/url_test/test_url';
-import {CookieService} from '../../../services/cookies/cookie.service';
+import {GridItemHTMLElement, GridStackNode} from 'gridstack';
 
 @Component({
   selector: 'app-dashboard',
@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   errorDashboard: string | null = null;
   widgetsInUse: Widget_interface[] = [];
   showHelpDoc = false;
+  saveLayoutEnabled: boolean = false
   safeHelpDocUrl: SafeResourceUrl | null = null;
   protected defaultHelpDocUrl: string = 'https://docs.google.com/document/d/1_qRBLN9ODPrUIp02V-IYfafgguxyrajIleviRXM0LH8/pub';
 
@@ -58,10 +59,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     protected sanitizer: DomSanitizer, // Inietta DomSanitizer
     private _htmlcontextService: HtmlcontextService,// Inietta il servizio di decrittazione
     private _urlcheckservice: UrlCheckerService,
-    private _cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
+
     this.route.queryParams.subscribe(params => {
       this.isEditable = params['isEditable'] === 'true';
     });
@@ -97,6 +98,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
       const now = new Date();
       this.currentTime = now.toLocaleTimeString(); // Formatta l'ora
     }, 1000); // Aggiorna ogni secondo
+  }
+
+  protected toggleSaveLayout(): void {
+    this.saveLayoutEnabled = !this.saveLayoutEnabled;
+    if (this.saveLayoutEnabled) {
+      console.log('Salvataggio layout abilitato');
+      this.saveGridStateToLocalStorage(this.gridstackComponent.grid?.getGridItems() || []);
+    } else {
+      console.log('Salvataggio layout disabilitato');
+      localStorage.removeItem(this.dashboard?.name!);
+    }
   }
 
 
@@ -144,8 +156,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   private fetchWidgets(): void {
-    const widgetIds = this.dashboard?.widgetsInUse || [];
-
+    const widgetIds = this.dashboard?.widgetsInUse || []
     if (widgetIds.length > 0) {
       this.widgetService.getWidgetsByIdsArray(widgetIds).subscribe(widgets => {
         this.widgetsInUse = widgets;
@@ -157,6 +168,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private addWidgetsToGrid(): void {
+    let storedDashboardData = JSON.parse(localStorage.getItem(this.dashboard?.name!)!)
+    //console.log("prova")
+    //console.log(storedDashboardData)
+    if(storedDashboardData) {
+      let queryDashDate = new Date(this.dashboard!.lastModified);
+      let cachedDashboardDate = new Date(storedDashboardData.date);
+      if(cachedDashboardDate.getTime() != queryDashDate.getTime()) {
+        localStorage.removeItem(this.dashboard?.name!);
+      }else {
+        this.saveLayoutEnabled = storedDashboardData.isEnabled
+      }
+    }
     this.widgetsInUse.forEach(widget => {
       const widgetElement = document.createElement('div');
       widgetElement.className = 'grid-stack-item';
@@ -205,12 +228,31 @@ export class DashboardComponent implements OnInit, OnDestroy {
         // Aggiungi tutto al contenitore del widget
         widgetElement.appendChild(contentDiv);
 
-        // Aggiungi il widget alla griglia con opzioni di auto-posizionamento
-        this.gridstackComponent.grid?.makeWidget(widgetElement, {
-          w: widget.width || 2,
-          h: widget.height || 2,
-          autoPosition: true,
-        });
+        //check if we have stored layout
+        let storedDashData = JSON.parse(localStorage.getItem(this.dashboard?.name!)!)
+        //console.log('storedDashboardData', storedDashData);
+        if(storedDashData){
+          //layout already saved
+          let widgetStored = storedDashData.gridItems.find((gridItem:any) => gridItem.id == widget.id);
+          //console.log(`widgetStored ${widgetStored.h}`);
+
+          this.gridstackComponent.grid?.makeWidget(widgetElement, {
+            w: widgetStored.w || 2,
+            h: widgetStored.h || 2,
+            id: widgetStored.id,
+            x: widgetStored.x,
+            y: widgetStored.y,
+          });
+        }else {
+          console.log("entro")
+          // Aggiungi il widget alla griglia con opzioni di auto-posizionamento
+          this.gridstackComponent.grid?.makeWidget(widgetElement, {
+            w: widget.width || 2,
+            h: widget.height || 2,
+            id: widget.id,
+            autoPosition: true,
+          });
+        }
 
         // Aggiungi l'evento per l'icona di aiuto
         const helpButton = contentDiv.querySelector('.widget-help-btn');
@@ -223,7 +265,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         console.error(`Failed to decrypt content for widget ${widget.id}`);
       }
     });
-    const gridItems = this.gridstackComponent.grid?.getGridItems()
+
+    this.gridstackComponent.grid?.on('change',() =>{
+      if(this.saveLayoutEnabled){
+        this.saveGridStateToLocalStorage(this.gridstackComponent.grid?.getGridItems() || [])
+      }
+    })
+
   }
 
 
@@ -299,13 +347,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openHelpDoc(): void {
-    console.log("help Doc");
-    console.log(this.dashboard?.helpDocUrl);
+    //console.log("help Doc");
+    //console.log(this.dashboard?.helpDocUrl);
     this.showHelpDoc = true;
   }
 
 
   closeHelpDoc(): void {
     this.showHelpDoc = false;
+  }
+
+  private saveGridStateToLocalStorage(gridItemHTMLElements: GridItemHTMLElement[]) {
+    const gridState = gridItemHTMLElements.map((gridItemHTMLElement) =>({
+      x: gridItemHTMLElement.gridstackNode?.x,
+      y:  gridItemHTMLElement.gridstackNode?.y,
+      w:  gridItemHTMLElement.gridstackNode?.w,
+      h:  gridItemHTMLElement.gridstackNode?.h,
+      id: gridItemHTMLElement.gridstackNode?.id,
+    }));
+    let data = {isEnabled: this.saveLayoutEnabled,date:this.dashboard?.lastModified,gridItems: gridState};
+    localStorage.setItem(this.dashboard?.name!, JSON.stringify(data));
+    //console.log(data);
   }
 }
