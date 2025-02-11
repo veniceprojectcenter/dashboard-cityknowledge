@@ -5,6 +5,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const {
   scrapeVeniceTrainsTimeData,
+  scrapeFlights
 } = require('./functions')
 const SecureScraping = require('./secure-scraping');
 const secureScraping = new SecureScraping();
@@ -71,7 +72,7 @@ router.get('/api/tourism', async (req, res) => {
       `D3=Movimento+annuale+per+tipo+di+esercizio&B1=Visualizza`;
   try {
     // Fai la richiesta HTTP alla pagina
-    const { data } = await secureScraping.secureGet(url);
+    const { data } = await axios.get(url);
 
     // Carica la risposta HTML in Cheerio
     const $ = cheerio.load(data);
@@ -83,7 +84,7 @@ router.get('/api/tourism', async (req, res) => {
     const tourismData = [];
     table.find('tr').each((i, row) => {
       const rowCells = $(row).find('td')
-                            .map((i, cell) =>
+                              .map((i, cell) =>
                                 $(cell).text().trim()).get();
       if (rowCells.length > 0) {
         const description = rowCells[0];
@@ -174,20 +175,49 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
 })
 
 router.get('/api/airplanes', async (req,res) => {
-    const url = 'https://www.veneziaairport.it/it/ajaxflighttoday';
-    await secureScraping.secureGet(url)
-    .then((response) => {
-      res.json({
-        success: true,
-        data: response.data
-      })
+  // Ottieni la data e l'ora attuali
+  const now = new Date();
+
+// Estrai anno, mese e giorno (ricorda che i mesi in JavaScript partono da 0)
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;  // aggiungiamo 1 per avere il mese corretto (1-12)
+  const day = now.getDate();
+
+// Ottieni l'orario attuale in ore (0-23)
+  const currentHour = now.getHours();
+
+// Determina l'intervallo orario in base al valore di currentHour
+  let hourParam;
+  if (currentHour < 6) {
+    hourParam = 0;       // Intervallo 0-6
+  } else if (currentHour < 12) {
+    hourParam = 6;       // Intervallo 6-12
+  } else if (currentHour < 18) {
+    hourParam = 12;      // Intervallo 12-18
+  } else {
+    hourParam = 18;      // Intervallo 18-24
+  }
+
+// Costruisci l'URL dinamico
+  const urlArrival = `https://www.flightstats.com/v2/flight-tracker/arrivals/VCE/?year=${year}&month=${month}&date=${day}&hour=${hourParam}`;
+  const urlDeparture = `https://www.flightstats.com/v2/flight-tracker/departures/VCE/?year=${year}&month=${month}&date=${day}&hour=${hourParam}`;
+  try {
+    const [arrivalResponse, departureResponse] = await Promise.all([
+      secureScraping.secureGet(urlArrival),
+      secureScraping.secureGet(urlDeparture),
+    ]);
+
+    res.json({
+      success: true,
+      arrival: await scrapeFlights(arrivalResponse.data, true),
+      departure: await scrapeFlights(departureResponse.data, false)
     })
-    .catch((error) => {
-      res.status(500).json({
-        success:false,
-        message: `Error on fetching Airplanes data: ${error}`
-      });
-    });
+  }catch(error){
+    res.status(500).json({
+      success: false,
+      message:`Error on fetching current FlightData data: ${error} `
+    })
+  }
 });
 
 

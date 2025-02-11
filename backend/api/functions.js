@@ -205,6 +205,46 @@ async function saveBoatDataToFirebase() {
 }
 
 
+async function scrapeFlights(htmlData,isArrival) {
+    try {
+        const $ = cheerio.load(htmlData);
+
+        // Estrae il contenuto del tag <script> che contiene "__NEXT_DATA__"
+        const scriptText = $('script:contains("__NEXT_DATA__")').text().trim();
+        if (!scriptText) {
+            throw new Error("Impossibile trovare il tag <script> con __NEXT_DATA__");
+        }
+
+        // Trova la posizione del primo '{' e dell'ultimo '}'
+        const firstCurly = scriptText.indexOf('{');
+        const lastCurly = scriptText.lastIndexOf('};');
+        if (firstCurly === -1 || lastCurly === -1) {
+            throw new Error("Impossibile individuare i delimitatori JSON nella stringa");
+        }
+
+        // Estrae la sottostringa che va dalla prima '{' all'ultima '}'
+        const jsonString = scriptText.substring(firstCurly, lastCurly + 1);
+        const nextData = JSON.parse(jsonString);
+
+        let date = nextData.props.initialState.flightTracker.route.header.date;
+        let airportName = nextData.props.initialState.flightTracker.route.header.title;
+        let appHostUrl = nextData.props.initialState.app.appHost;
+        let flights = nextData.props.initialState.flightTracker.route.flights;
+
+        return Object.values({
+            date: date,
+            airportName: airportName,
+            appHostUrl: appHostUrl,
+            flights: flights,
+            isArrival: isArrival,
+        });
+
+    } catch (error) {
+        console.error("Errore nello scraping:", error);
+        throw error;
+    }
+}
+
 
 
 module.exports = {
@@ -215,4 +255,5 @@ module.exports = {
     fetchTideData,
     scrapePopulationData,
     scrapeVeniceTrainsTimeData,
+    scrapeFlights
 };
