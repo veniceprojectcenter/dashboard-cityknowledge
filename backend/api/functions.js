@@ -173,11 +173,11 @@ async function saveBusDataToFirebase() {
                                     // Crea il record normalizzato
                                     allBusData.push({
                                         stopId: busStopId,
-                                        lineName: line.lineName || "Sconosciuto",
+                                        lineName: line.lineName || null,
                                         linePath: line.linePath || null,
                                         sTimeDeparture: stopTime.sTimeDeparture,
                                         departureTimestamp: departureTimestamp,
-                                        sNameNext: stopTime.sNameNext || "Sconosciuto",
+                                        sNameNext: stopTime.sNameNext || null,
                                         sTimeNext: stopTime.sTimeNext || null,
                                         sNameTerminal: stopTime.sNameTerminal || null,
                                         sTimeTerminal: stopTime.sTimeTerminal || null
@@ -202,8 +202,7 @@ async function saveBusDataToFirebase() {
 
 
             const promises = allBusData.map(record => {
-                const ref = busDataRef.child(record.departureTimestamp.toString());
-                return ref.push(record);
+                return busDataRef.push(record);
             });
             await Promise.all(promises);
 
@@ -274,7 +273,7 @@ async function saveBoatDataToFirebase() {
             // Per ogni record, inserisci il record sotto il nodo corrispondente al suo departureTimestamp
             const promises = allBoatData.map(record => {
                 // Usa record.departureTimestamp come chiave principale (convertito in stringa)
-                const ref = admin.database().ref("boatData").child(record.departureTimestamp.toString());
+                const ref = admin.database().ref("boatData")
                 // Qui usiamo push() per aggiungere il record all'interno di quel nodo,
                 // permettendo di avere più record sotto lo stesso timestamp
                 return ref.push(record);
@@ -289,7 +288,7 @@ async function saveBoatDataToFirebase() {
     }
 }
 
-
+/*@TODO store on firebase */
 async function scrapeFlights(htmlData,isArrival) {
     try {
         const $ = cheerio.load(htmlData);

@@ -5,7 +5,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const {
   scrapeVeniceTrainsTimeData,
-  scrapeFlights, saveBusDataToFirebase, saveBoatDataToFirebase
+  scrapeFlights
 } = require('./functions')
 const SecureScraping = require('./secure-scraping');
 const secureScraping = new SecureScraping();
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 });
 
 // Endpoint per ottenere i dati della popolazione
-router.get('/api/population', async (req, res) => {
+router.get('/api/venicePopulation', async (req, res) => {
   try {
     const snapshot = await admin.database()
                                               .ref('dashboard/data/VenicePopulation')
@@ -39,7 +39,7 @@ router.get('/api/population', async (req, res) => {
 
 
 // Endpoint per recuperare i dati delle maree da Firebase
-router.get('/api/tides', async (req, res) => {
+router.get('/api/veniceTides', async (req, res) => {
   try {
     const snapshot = await admin.database()
                                               .ref('dashboard/data/Tides')
@@ -64,8 +64,8 @@ router.get('/api/tides', async (req, res) => {
   }
 });
 
-
-router.get('/api/tourism', async (req, res) => {
+/*@TODO save on firebase*/
+router.get('/api/veniceTourism', async (req, res) => {
   const currentYear = new Date().getFullYear();
   const previousYear = currentYear - 1;
   const url = `https://statistica.regione.veneto.it/jsp/turi1.jsp?D0=${previousYear}&D1=REGIONE+VENETO&D2=00Totale+anno&`+
@@ -113,8 +113,8 @@ router.get('/api/tourism', async (req, res) => {
 
 
 
-
-router.get('/api/air-quality-locations', async (req, res) => {
+/*@TODO save on firebase*/
+router.get('/api/veniceAirQualityLocations', async (req, res) => {
   const lat = 45.437191; // Latitudine di Venezia
   const lng = 12.334590; // Longitudine di Venezia
 
@@ -174,6 +174,7 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   }
 })
 
+/* @TODO: save on firebase*/
 router.get('/api/airplanes', async (req,res) => {
   // Ottieni la data e l'ora attuali
   const now = new Date();
@@ -222,21 +223,71 @@ router.get('/api/airplanes', async (req,res) => {
 
 
 
-/*Da eliminare , è per testing */
-router.get('/api/test',async(req,res) => {
-  try{
-    //await saveBusDataToFirebase();
-    await saveBoatDataToFirebase();
-    await saveBusDataToFirebase();
+router.get('/api/bus', async (req, res) => {
+  try {
+    const now = new Date();
+    const currentTimeSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const endTime = currentTimeSeconds + 600;
 
+    const databaseRef = admin.database().ref('busData');
+    const busSnapshot = await databaseRef
+        .orderByChild('departureTimestamp')
+        .startAt(currentTimeSeconds)
+        .endAt(endTime)
+        .once('value');
 
-  }catch(error){
+    const busResults = [];
+    busSnapshot.forEach((childSnapshot) => {
+      busResults.push(childSnapshot.val());
+    });
+
+    console.log('Results:', busResults);
+    res.json({
+      success: true,
+      data: busResults
+    });
+
+  } catch (error) {
+    console.error('Errore:', error);
     res.status(500).json({
       success: false,
-      message: `Error on fetching Bus data: ${error} `
-    })
+      message: `Errore nel recupero dati: ${error.message}`
+    });
   }
-})
+});
+
+router.get('/api/boat', async (req, res) => {
+  try {
+    const now = new Date();
+    const currentTimeSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const endTime = currentTimeSeconds + 600;
+
+    const databaseRef = admin.database().ref('boatData');
+    const boatSnapshot = await databaseRef
+        .orderByChild('departureTimestamp')
+        .startAt(currentTimeSeconds)
+        .endAt(endTime)
+        .once('value');
+
+    const results = [];
+    boatSnapshot.forEach((childSnapshot) => {
+      results.push(childSnapshot.val());
+    });
+
+    console.log('Results:', results);
+    res.json({
+      success: true,
+      data: results
+    });
+
+  } catch (error) {
+    console.error('Errore:', error);
+    res.status(500).json({
+      success: false,
+      message: `Errore nel recupero dati: ${error.message}`
+    });
+  }
+});
 
 // Esporta il router
 module.exports = router;
