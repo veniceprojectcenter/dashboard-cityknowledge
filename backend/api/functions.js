@@ -20,7 +20,7 @@ async function scrapeVeniceTrainsTimeData(url){
         let allTrainsData = [];
         const singleTitleRow = {};
 
-        const response = await secureScraping.secureGet(url)
+        const response = await axios.get(url);
         const $ = cheerio.load(response.data);
         let listTitleRow = $('thead[id=headerTabId] tr');
 
@@ -146,61 +146,146 @@ async function saveTideDataToFirebase(data, startDate, endDate) {
 async function saveBusDataToFirebase() {
     try {
         const date = new Date().toISOString().split('T')[0];
+        // Lista di stop per gli autobus (ad es. cluster di fermate vicine)
         const listBusStopsIds = ['503','501','505','506','507','508','509','510','511','512','6084','8044','514','515','516','517'];
+        const allBusData = [];
 
-        await deleteExistingData('busData');
-        for (const busStopId of listBusStopsIds) {
-            const url = `https://orari.actv.it/getStopSingle/${date}/AUT/${busStopId}`;
+        // Funzione per convertire "HH:MM:SS" in secondi dall'inizio della giornata
+        function timeStringToSeconds(timeStr) {
+            if (!timeStr || timeStr === "Undefined") return 0;
+            const [hh, mm, ss] = timeStr.split(':').map(Number);
+            return hh * 3600 + mm * 60 + ss;
+        }
 
-            // Definisci la funzione che effettua la richiesta
-            const func = async () => {
-                try {
-                    const { data } = await secureScraping.secureGet(url);
-                    console.log(`Dati ricevuti per busStop ${busStopId}:`, data);
-                    await admin.database().ref(`busData/stop_${busStopId}`).set(data);
-                } catch (error) {
-                    console.error(`Errore nella richiesta per busStop ${busStopId}:`, error.message);
+        // Funzione per recuperare i dati di una singola fermata per gli autobus
+        async function fetchBusStopData(busStopId) {
+            try {
+                const url = `https://orari.actv.it/getStopSingle/${date}/AUT/${busStopId}`;
+                const { data } = await secureScraping.secureGet(url);
+                const busData = data[0];
+
+                if (busData && busData.lines) {
+                    busData.lines.forEach((line) => {
+                        if (line && line.stopTimes) {
+                            line.stopTimes.forEach(stopTime => {
+                                if (stopTime && stopTime.sTimeDeparture && stopTime.sTimeDeparture !== "Undefined") {
+                                    const departureTimestamp = timeStringToSeconds(stopTime.sTimeDeparture);
+                                    // Crea il record normalizzato
+                                    allBusData.push({
+                                        stopId: busStopId,
+                                        lineName: line.lineName || "Sconosciuto",
+                                        linePath: line.linePath || null,
+                                        sTimeDeparture: stopTime.sTimeDeparture,
+                                        departureTimestamp: departureTimestamp,
+                                        sNameNext: stopTime.sNameNext || "Sconosciuto",
+                                        sTimeNext: stopTime.sTimeNext || null,
+                                        sNameTerminal: stopTime.sNameTerminal || null,
+                                        sTimeTerminal: stopTime.sTimeTerminal || null
+                                    });
+                                }
+                            });
+                        }
+                    });
                 }
-            };
+            } catch (error) {
+                console.error(`Errore nella richiesta per busStop ${busStopId}:`, error.message);
+            }
+        }
 
-            const delayTime = Math.floor(Math.random() * 5) * 1000;
-            // Attendi un ritardo casuale e poi esegui func, assicurandoti di risolvere la promise
-            await SecureScraping.delay(func,delayTime);
+        // Esegui le richieste in batch (ad esempio, 4 alla volta con 10 secondi di attesa tra i batch)
+        await secureScraping.processInBatches(listBusStopsIds, fetchBusStopData, 4, 10000);
 
-            console.log(`${busStopId} inserted`);
+
+        if (allBusData.length > 0) {
+            await deleteExistingData('busData/');
+            const busDataRef = admin.database().ref("busData");
+
+
+            const promises = allBusData.map(record => {
+                const ref = busDataRef.child(record.departureTimestamp.toString());
+                return ref.push(record);
+            });
+            await Promise.all(promises);
+
+            console.log(`Dati autobus salvati correttamente con ${allBusData.length} record.`);
+        } else {
+            console.warn('Nessun nuovo dato autobus trovato.');
         }
     } catch (error) {
-        console.error('Error saving Bus Data on firebase:', error);
+        console.error('Errore nel salvataggio dei dati autobus su Firebase:', error);
     }
 }
+
 
 async function saveBoatDataToFirebase() {
     try {
         const date = new Date().toISOString().split('T')[0];
-        const listBoatStopsIds = ['5029','5028','5027','5104','5112','5030','5031'];
+        const listBoatStopsIds = ['5029', '5028', '5027', '5104', '5112', '5030', '5031'];
+        const allBoatData = [];
 
-        await deleteExistingData('boatData');
-        for (const boatStopId of listBoatStopsIds) {
-            const url = `https://orari.actv.it/getStopSingle/${date}/NAV/${boatStopId}`;
-            // Definisci la funzione che effettua la richiesta
-            const func = async () => {
-                try {
-                    const { data } = await secureScraping.secureGet(url);
-                    console.log(`Dati ricevuti per boatStop ${boatStopId}:`, data);
-                    await admin.database().ref(`boatData/stop_${boatStopId}`).set(data);
-                } catch (error) {
-                    console.error(`Errore nella richiesta per boatStop ${boatStopId}:`, error.message);
+        // Converte "HH:MM:SS" in secondi dall'inizio della giornata
+        function timeStringToSeconds(timeStr) {
+            if (!timeStr || timeStr === "Undefined") return 0;
+            const [hh, mm, ss] = timeStr.split(':').map(Number);
+            return hh * 3600 + mm * 60 + ss;
+        }
+
+        // Recupera i dati per una singola fermata
+        async function fetchBoatStopData(boatStopId) {
+            try {
+                const url = `https://orari.actv.it/getStopSingle/${date}/NAV/${boatStopId}`;
+                const { data } = await secureScraping.secureGet(url);
+                const boatData = data[0];
+
+                if (boatData && boatData.lines) {
+                    boatData.lines.forEach((line) => {
+                        if (line && line.stopTimes) {
+                            line.stopTimes.forEach(stopTime => {
+                                if (stopTime && stopTime.sTimeDeparture && stopTime.sTimeDeparture !== "Undefined") {
+                                    const departureTimestamp = timeStringToSeconds(stopTime.sTimeDeparture);
+                                    allBoatData.push({
+                                        stopId: boatStopId,
+                                        lineName: line.lineName || null,
+                                        linePath: line.linePath || null,
+                                        sTimeDeparture: stopTime.sTimeDeparture,
+                                        departureTimestamp: departureTimestamp,
+                                        sNameNext: stopTime.sNameNext || null,
+                                        sTimeNext: stopTime.sTimeNext || null,
+                                        sNameTerminal: stopTime.sNameTerminal || null,
+                                        sTimeTerminal: stopTime.sTimeTerminal || null
+                                    });
+                                }
+                            });
+                        }
+                    });
                 }
-            };
+            } catch (error) {
+                console.error(`Errore nella richiesta per boatStop ${boatStopId}:`, error.message);
+            }
+        }
 
-            const delayTime = (Math.floor(Math.random() * 10 ) + 5) * 1000;
-            // Attendi un ritardo casuale e poi esegui func, assicurandoti di risolvere la promise
-            await SecureScraping.delay(func,delayTime);
+        // Processa le richieste in batch (ad esempio, 4 alla volta con 10 secondi di attesa tra i batch)
+        await secureScraping.processInBatches(listBoatStopsIds, fetchBoatStopData, 4, 10000);
 
-            console.log(`${boatStopId} inserted`);
+        if (allBoatData.length > 0) {
+            // Cancella i dati esistenti
+            await deleteExistingData('boatData/');
+
+            // Per ogni record, inserisci il record sotto il nodo corrispondente al suo departureTimestamp
+            const promises = allBoatData.map(record => {
+                // Usa record.departureTimestamp come chiave principale (convertito in stringa)
+                const ref = admin.database().ref("boatData").child(record.departureTimestamp.toString());
+                // Qui usiamo push() per aggiungere il record all'interno di quel nodo,
+                // permettendo di avere più record sotto lo stesso timestamp
+                return ref.push(record);
+            });
+            await Promise.all(promises);
+            console.log(`Dati vaporetti salvati correttamente con ${allBoatData.length} record.`);
+        } else {
+            console.warn('Nessun nuovo dato vaporetti trovato.');
         }
     } catch (error) {
-        console.error('Error saving Boat Data on firebase:', error);
+        console.error('Errore nel salvataggio dei dati vaporetti su Firebase:', error);
     }
 }
 
@@ -209,20 +294,19 @@ async function scrapeFlights(htmlData,isArrival) {
     try {
         const $ = cheerio.load(htmlData);
 
-        // Estrae il contenuto del tag <script> che contiene "__NEXT_DATA__"
+
         const scriptText = $('script:contains("__NEXT_DATA__")').text().trim();
         if (!scriptText) {
             throw new Error("Impossibile trovare il tag <script> con __NEXT_DATA__");
         }
 
-        // Trova la posizione del primo '{' e dell'ultimo '}'
         const firstCurly = scriptText.indexOf('{');
         const lastCurly = scriptText.lastIndexOf('};');
         if (firstCurly === -1 || lastCurly === -1) {
             throw new Error("Impossibile individuare i delimitatori JSON nella stringa");
         }
 
-        // Estrae la sottostringa che va dalla prima '{' all'ultima '}'
+
         const jsonString = scriptText.substring(firstCurly, lastCurly + 1);
         const nextData = JSON.parse(jsonString);
 

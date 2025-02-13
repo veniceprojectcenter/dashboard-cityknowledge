@@ -5,7 +5,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const {
   scrapeVeniceTrainsTimeData,
-  scrapeFlights
+  scrapeFlights, saveBusDataToFirebase, saveBoatDataToFirebase
 } = require('./functions')
 const SecureScraping = require('./secure-scraping');
 const secureScraping = new SecureScraping();
@@ -123,7 +123,7 @@ router.get('/api/air-quality-locations', async (req, res) => {
   +`&hourly=pm10,pm2_5,carbon_monoxide,carbon_dioxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index,ammonia,methane`;
 
   try {
-    const response = await secureScraping.secureGet(url);
+    const response = await axios.get(url);
 
     const airQualityData = response.data; // Estrai i dati della qualità dell'aria
 
@@ -224,7 +224,18 @@ router.get('/api/airplanes', async (req,res) => {
 
 /*Da eliminare , è per testing */
 router.get('/api/test',async(req,res) => {
+  try{
+    //await saveBusDataToFirebase();
+    await saveBoatDataToFirebase();
+    await saveBusDataToFirebase();
 
+
+  }catch(error){
+    res.status(500).json({
+      success: false,
+      message: `Error on fetching Bus data: ${error} `
+    })
+  }
 })
 
 // Esporta il router

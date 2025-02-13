@@ -73,6 +73,16 @@ class SecureScraping {
     return await func();
   }
 
+  async processInBatches(items, processFunction, limit = 4, delay = 10000) {
+    for (let i = 0; i < items.length; i += limit) {
+      const batch = items.slice(i, i + limit); // Prende un sottoinsieme degli ID
+      await Promise.all(batch.map(item => processFunction(item))); // Esegue il batch
+      if (i + limit < items.length) {
+        console.log(`Attesa  per evitare errori multiconnessione...`);
+        await new Promise(resolve => setTimeout(resolve, delay)); // Aspetta tra i batch
+      }
+    }
+  }
 
 
 
