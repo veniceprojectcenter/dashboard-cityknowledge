@@ -114,7 +114,7 @@ router.get('/api/veniceTourism', async (req, res) => {
 
 
 /*@TODO save on firebase*/
-router.get('/api/veniceAirQualityLocations', async (req, res) => {
+  router.get('/api/veniceAirQualityLocations', async (req, res) => {
   const lat = 45.437191; // Latitudine di Venezia
   const lng = 12.334590; // Longitudine di Venezia
 

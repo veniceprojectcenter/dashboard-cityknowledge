@@ -16,6 +16,7 @@
     "express": "^4.21.2",
     "firebase-admin": "^13.0.2",
     "https-proxy-agent": "^7.0.6",
+    "ioredis": "^5.5.0",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",
     "vercel": "^28.18.5"
