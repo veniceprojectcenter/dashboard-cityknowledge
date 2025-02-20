@@ -42,8 +42,9 @@ router.get('/api/venicePopulation', async (req, res) => {
 router.get('/api/veniceTides', async (req, res) => {
   try {
     const snapshot = await admin.database()
-                                              .ref('dashboard/data/Tides')
-                                               .once('value');
+        .ref('dashboard/data/Tides')
+        .once('value');
+
     const tideData = snapshot.val();
     if (tideData) {
       res.json({
@@ -64,79 +65,60 @@ router.get('/api/veniceTides', async (req, res) => {
   }
 });
 
-/*@TODO save on firebase*/
 router.get('/api/veniceTourism', async (req, res) => {
-  const currentYear = new Date().getFullYear();
-  const previousYear = currentYear - 1;
-  const url = `https://statistica.regione.veneto.it/jsp/turi1.jsp?D0=${previousYear}&D1=REGIONE+VENETO&D2=00Totale+anno&`+
-      `D3=Movimento+annuale+per+tipo+di+esercizio&B1=Visualizza`;
   try {
-    // Fai la richiesta HTTP alla pagina
-    const { data } = await axios.get(url);
+    // 1. First try to get cached data
+    const snapshot = await admin.database()
+        .ref('dashboard/data/Tourism')
+        .once('value');
 
-    // Carica la risposta HTML in Cheerio
-    const $ = cheerio.load(data);
+    if (!snapshot.exists()) {
+      return res.status(404).json({
+        success: false,
+        message: `Tourism data cannot be found!`,
+      });
+    }
 
-    // Seleziona il secondo table (indice 1)
-    const table = $('table').eq(1);
+    const tourismData = snapshot.val();
 
-    // Estrai la descrizione, gli arrivi e le presenze
-    const tourismData = [];
-    table.find('tr').each((i, row) => {
-      const rowCells = $(row).find('td')
-                              .map((i, cell) =>
-                                $(cell).text().trim()).get();
-      if (rowCells.length > 0) {
-        const description = rowCells[0];
-        const arrivals = parseInt(rowCells[rowCells.length - 2].replace(/\./g, ''));
-        const present = parseInt(rowCells[rowCells.length - 1].replace(/\./g, ''));
-
-        tourismData.push({
-          description,
-          arrivals,
-          present
-        });
-      }
-    });
-    // Invia i dati al frontend
     res.json({
-      success: true,
-      data: tourismData
+      date: tourismData,
     });
+
   } catch (error) {
     res.status(500).json({
-      success: false,
-      message: `Errore durante il recupero dei dati turismo: ${error}`
+      error: 'Failed to process request',
+      details: error.message
     });
   }
 });
 
 
 
-/*@TODO save on firebase*/
-  router.get('/api/veniceAirQualityLocations', async (req, res) => {
-  const lat = 45.437191; // Latitudine di Venezia
-  const lng = 12.334590; // Longitudine di Venezia
-
-  // Nuovo URL per l'API Open-Meteo
-  const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lng}`
-  +`&hourly=pm10,pm2_5,carbon_monoxide,carbon_dioxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index,ammonia,methane`;
-
+router.get('/api/veniceAirQualityLocations', async (req, res) => {
   try {
-    const response = await axios.get(url);
+    // 1. First try to get cached data
+    const snapshot = await admin.database()
+        .ref('dashboard/data/VeniceAir')
+        .once('value');
 
-    const airQualityData = response.data; // Estrai i dati della qualità dell'aria
+    if (!snapshot.exists()) {
+      return res.status(404).json({
+        success: false,
+        message: `Venice Air quality data cannot be found!`,
+      });
+    }
 
-    // Restituisci i dati come risposta JSON
+    const tourismData = snapshot.val();
+
     res.json({
-      success: true,
-      data: airQualityData
+      date: tourismData,
     });
+
   } catch (error) {
-    // In caso di errore, restituisci una risposta di errore
     res.status(500).json({
-      success: false,
-      message: `Errore durante il recupero dei dati sulla qualità dell'aria: ${error}`
+      error: 'Failed to process request',
+      details: error.message
     });
   }
 });
@@ -144,7 +126,7 @@ router.get('/api/veniceTourism', async (req, res) => {
 router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
   try{
     const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=True";
-    let trainsArrivalData  = await scrapeVeniceTrainsTimeData(url)
+    let trainsArrivalData  = await axios.get(url)
     res.json({
       success:true,
       data:trainsArrivalData
@@ -161,7 +143,7 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   try{
     const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
 
-    let trainsDepartureData  = await scrapeVeniceTrainsTimeData(url)
+    let trainsDepartureData  = await axios.get(url)
     res.json({
       success:true,
       data:trainsDepartureData

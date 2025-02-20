@@ -15,6 +15,88 @@ async function deleteExistingData(path) {
     }
 }
 
+async function scrapeVeniceAirQualityData(){
+    const lat = 45.437191; // Latitudine di Venezia
+    const lng = 12.334590; // Longitudine di Venezia
+
+    // Nuovo URL per l'API Open-Meteo
+    const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lng}`
+        +`&hourly=pm10,pm2_5,carbon_monoxide,carbon_dioxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index,ammonia,methane`;
+
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (error) {
+        console.log('Error fetching Venice air Quality data',error);
+    }
+}
+
+async function saveVeniceAirDataToFirebase(data){
+    try{
+        const date = new Date().toISOString().split('T')[0];
+        await deleteExistingData('dashboard/data/VeniceAir');
+        await admin.database().ref(`dashboard/data/VeniceAir/${date}/`).set({
+            data: data
+        });
+        console.log(`Dati di qualità aria Venezia salvati correttamente in Firebase`);
+    }catch(error){
+        console.error(`Errore l'eliminazione dei da ${data}`);
+    }
+}
+
+
+async function scrapeVeniceTourismData() {
+    const currentYear = new Date().getFullYear();
+    const previousYear = currentYear - 1;
+    const url = `https://statistica.regione.veneto.it/jsp/turi1.jsp?D0=${previousYear}&D1=REGIONE+VENETO&D2=00Totale+anno&`+
+        `D3=Movimento+annuale+per+tipo+di+esercizio&B1=Visualizza`;
+    try {
+        // Fai la richiesta HTTP alla pagina
+        const { data } = await axios.get(url);
+
+        // Carica la risposta HTML in Cheerio
+        const $ = cheerio.load(data);
+
+        // Seleziona il secondo table (indice 1)
+        const table = $('table').eq(1);
+
+        // Estrai la descrizione, gli arrivi e le presenze
+        const tourismData = [];
+        table.find('tr').each((i, row) => {
+            const rowCells = $(row).find('td')
+                .map((i, cell) =>
+                    $(cell).text().trim()).get();
+            if (rowCells.length > 0) {
+                const description = rowCells[0];
+                const arrivals = parseInt(rowCells[rowCells.length - 2].replace(/\./g, ''));
+                const present = parseInt(rowCells[rowCells.length - 1].replace(/\./g, ''));
+
+                tourismData.push({
+                    description,
+                    arrivals,
+                    present
+                });
+            }
+        });
+        return tourismData;
+    } catch (error) {
+            console.error(`Errore durante il recupero dei dati turismo: ${error}`);
+    }
+}
+
+async function saveVeniceTourismDataToFirebase(data) {
+    try{
+        const date = new Date().toISOString().split('T')[0];
+        await deleteExistingData('dashboard/data/Tourism');
+        await admin.database().ref(`dashboard/data/Tourism/${date}/`).set({
+            data: data
+        });
+        console.log(`Dati di turismo Venezia salvati correttamente in Firebase`);
+    }catch (error) {
+        console.error("Error storing Venice tourism data to Firebase");
+    }
+}
+
 async function scrapeVeniceTrainsTimeData(url){
     try{
         let allTrainsData = [];
@@ -59,7 +141,7 @@ async function scrapeVeniceTrainsTimeData(url){
 async function scrapePopulationData() {
     try {
         const url = 'https://portale.comune.venezia.it/millefoglie/statistiche/scheda/QUARTIERE-POPOLA-2$1$--------'
-        const { data } = await secureScraping.secureGet(url);
+        const { data } = await axios.get(url);
 
         const $ = cheerio.load(data);
 
@@ -137,7 +219,6 @@ async function saveTideDataToFirebase(data, startDate, endDate) {
             meta: data.meta,
             timestamp: new Date().toLocaleString(),
         });
-        console.log(`Dati delle maree salvati correttamente in Firebase: ${path}`);
     } catch (error) {
         console.error('Errore durante il salvataggio dei dati delle maree in Firebase:', error.message);
     }
@@ -305,7 +386,6 @@ async function scrapeFlights(htmlData,isArrival) {
             throw new Error("Impossibile individuare i delimitatori JSON nella stringa");
         }
 
-
         const jsonString = scriptText.substring(firstCurly, lastCurly + 1);
         const nextData = JSON.parse(jsonString);
 
@@ -335,8 +415,13 @@ module.exports = {
     saveTideDataToFirebase,
     saveBusDataToFirebase,
     saveBoatDataToFirebase,
+    saveVeniceTourismDataToFirebase,
+    saveVeniceAirDataToFirebase,
     fetchTideData,
     scrapePopulationData,
     scrapeVeniceTrainsTimeData,
-    scrapeFlights
+    scrapeFlights,
+    scrapeVeniceTourismData,
+    scrapeVeniceAirQualityData,
+
 };
