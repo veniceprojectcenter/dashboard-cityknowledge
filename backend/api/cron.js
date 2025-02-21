@@ -28,14 +28,12 @@ async function handler() {
     try {
         console.log('Crono job started...');
 
-
         const populationData = await scrapePopulationData();
         if (populationData) await savePopulationDataToFirebase(populationData);
-        const veniceAirQualityData = await scrapeVeniceTourismData();
+        const veniceAirQualityData = await scrapeVeniceAirQualityData();
         if(veniceAirQualityData) await saveVeniceAirDataToFirebase(veniceAirQualityData);
         const veniceTourismData = await scrapeVeniceTourismData();
         if(veniceTourismData) await saveVeniceTourismDataToFirebase(veniceTourismData);
-        /*
         const tideData = await fetchTideData(45.4408, 12.3155);
         if (tideData) {
             const today = new Date();
@@ -48,8 +46,6 @@ async function handler() {
 
         await saveBusDataToFirebase() ;
         await saveBoatDataToFirebase() ;
-
-        */
 
         console.log('Crono job completed...');
     } catch (error) {

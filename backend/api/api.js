@@ -2,13 +2,10 @@
 const express = require('express');
 const admin = require('firebase-admin');
 const axios = require("axios");
-const cheerio = require("cheerio");
+const SecureScraping = require("secure-scraping");
 const {
-  scrapeVeniceTrainsTimeData,
   scrapeFlights
 } = require('./functions')
-const SecureScraping = require('./secure-scraping');
-const secureScraping = new SecureScraping();
 
 
 const router = express.Router();
@@ -156,20 +153,16 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   }
 })
 
-/* @TODO: save on firebase*/
-router.get('/api/airplanes', async (req,res) => {
+router.get('/api/airplanes', async (req, res) => {
+  const secureScraping = new SecureScraping();
+
   // Ottieni la data e l'ora attuali
   const now = new Date();
-
-// Estrai anno, mese e giorno (ricorda che i mesi in JavaScript partono da 0)
   const year = now.getFullYear();
-  const month = now.getMonth() + 1;  // aggiungiamo 1 per avere il mese corretto (1-12)
+  const month = now.getMonth() + 1;
   const day = now.getDate();
-
-// Ottieni l'orario attuale in ore (0-23)
   const currentHour = now.getHours();
 
-// Determina l'intervallo orario in base al valore di currentHour
   let hourParam;
   if (currentHour < 6) {
     hourParam = 0;       // Intervallo 0-6
@@ -181,27 +174,40 @@ router.get('/api/airplanes', async (req,res) => {
     hourParam = 18;      // Intervallo 18-24
   }
 
-// Costruisci l'URL dinamico
+  // Costruisci gli URL dinamici
   const urlArrival = `https://www.flightstats.com/v2/flight-tracker/arrivals/VCE/?year=${year}&month=${month}&date=${day}&hour=${hourParam}`;
   const urlDeparture = `https://www.flightstats.com/v2/flight-tracker/departures/VCE/?year=${year}&month=${month}&date=${day}&hour=${hourParam}`;
+
   try {
-    const [arrivalResponse, departureResponse] = await Promise.all([
-      secureScraping.secureGet(urlArrival),
-      secureScraping.secureGet(urlDeparture),
-    ]);
+    // Genera due ritardi casuali (es. tra 500 e 3000 ms)
+    const delayArrival = Math.floor(Math.random() * (5000 - 3000 + 1)) + 500;
+    const delayDeparture = Math.floor(Math.random() * (5000 - 3000 + 1)) + 500;
+
+    // Esegue la richiesta degli arrivi con delay
+    await SecureScraping.delay(() => {}, delayArrival);
+    const arrivalResponse = await axios.get(urlArrival);
+
+    // Esegue la richiesta delle partenze con delay
+    await SecureScraping.delay(() => {}, delayDeparture);
+    const departureResponse = await axios.get(urlDeparture);
+
+    // Elabora i dati con la funzione scrapeFlights (presumibilmente definita altrove)
+    const arrivalData = await scrapeFlights(arrivalResponse.data, true);
+    const departureData = await scrapeFlights(departureResponse.data, false);
 
     res.json({
       success: true,
-      arrival: await scrapeFlights(arrivalResponse.data, true),
-      departure: await scrapeFlights(departureResponse.data, false)
-    })
-  }catch(error){
+      arrival: arrivalData,
+      departure: departureData
+    });
+  } catch (error) {
     res.status(500).json({
       success: false,
-      message:`Error on fetching current FlightData data: ${error} `
-    })
+      message: `Error on fetching current FlightData data: ${error}`
+    });
   }
 });
+
 
 
 
