@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
 const apiRoutes = require('./api');
 const serviceAccount = require("./serviceAccountKey.json");
-const Redis = require("ioredis");
 
 
 const corsOptions = {
@@ -20,10 +19,8 @@ admin.initializeApp({
   databaseURL: process.env.DATABASE_URL,
 });
 
-const  { REDIS_URL } = process.env;
 
 
-const renderRedis = new Redis(REDIS_URL);
 const app = express();
 // Middleware
 app.use(cors(corsOptions));

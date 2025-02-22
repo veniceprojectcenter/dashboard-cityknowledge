@@ -20,7 +20,6 @@ const {
     fetchTideData,
     scrapePopulationData,
     scrapeVeniceAirQualityData,
-    scrapeFlights,
     scrapeVeniceTourismData,
 } = require('./functions');
 

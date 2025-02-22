@@ -1,25 +1,26 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
-/**
- * Create an Instance with create()
- */
+
 class SecureScraping {
   /**
-   * Private constructor.
+   * Private constructor to prevent direct instantiation.
    */
   constructor() {
+    if (!SecureScraping.instance) {
+      SecureScraping.instance = this;
+    }
+    return SecureScraping.instance;
   }
 
   /**
    * Returns a random element from the provided array.
-   * Requires  an instance of the class.
    * @param {Array} arr - The array to pick a random element from.
    * @returns {*} A random element from the array.
    * @throws {Error} If the array is empty or not an array.
    */
   getRandomElement(arr) {
-    if ( arr.length === 0) {
+    if (!Array.isArray(arr) || arr.length === 0) {
       throw new Error('Array must be non-empty.');
     }
     const index = Math.floor(Math.random() * arr.length);
@@ -28,7 +29,6 @@ class SecureScraping {
 
   /**
    * Performs a secure GET request using random proxies and user agents.
-   * Requires  an instance of the class.
    * @param {string} url - The URL for the GET request.
    * @returns {Promise<Object>} The axios response.
    * @throws {Error} If the request fails.
@@ -39,35 +39,42 @@ class SecureScraping {
       throw new Error('No URL provided for the GET request.');
     }
 
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const randomDelay = Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000; // 10-20 sec
+
     try {
+      console.log(`Attesa di ${randomDelay / 1000} secondi prima della richiesta con proxy...`);
+      await delay(randomDelay);
+
       return await axios.get(url, {
         proxy: {
           host: 'proxy-server.scraperapi.com',
           port: 8001,
           auth: {
             username: 'scraperapi',
-            password: process.env.SCRAPEAPY_KEY
+            password: process.env.SCRAPEAPY_KEY,
           },
-          protocol: 'http'
-        }
+          protocol: 'http',
+        },
       });
     } catch (error) {
       console.error('Scraper API request failed, retrying without proxy:', error.message);
 
       try {
-        return await axios.get(url); // Secondo tentativo senza proxy
+        console.log(`Attesa di ${randomDelay / 1000} secondi prima della richiesta senza proxy...`);
+        await delay(randomDelay);
+
+        return await axios.get(url); // Retry senza proxy
       } catch (finalError) {
         console.error('Second GET request also failed:', finalError.message);
-        throw finalError; // Lancia errore finale se entrambe le richieste falliscono
+        throw finalError;
       }
     }
   }
 
 
-
-  /**
+/**
    * Delays execution for a specified time.
-   *
    * @param {Function} func - Optional function to execute after the delay.
    * @param {number} ms - Delay duration in milliseconds.
    * @returns {Promise<void>}
@@ -79,17 +86,17 @@ class SecureScraping {
 
   async processInBatches(items, processFunction, limit = 4, delay = 10000) {
     for (let i = 0; i < items.length; i += limit) {
-      const batch = items.slice(i, i + limit); // Prende un sottoinsieme degli ID
-      await Promise.all(batch.map(item => processFunction(item))); // Esegue il batch
+      const batch = items.slice(i, i + limit);
+      await Promise.all(batch.map(item => processFunction(item)));
       if (i + limit < items.length) {
-        console.log(`Attesa  per evitare errori multiconnessione...`);
-        await new Promise(resolve => setTimeout(resolve, delay)); // Aspetta tra i batch
+        console.log('Waiting to avoid multi-connection errors...');
+        await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
   }
-
-
-
 }
 
-module.exports = SecureScraping;
+// Export a singleton instance
+const instance = new SecureScraping();
+Object.freeze(instance);
+module.exports = instance;

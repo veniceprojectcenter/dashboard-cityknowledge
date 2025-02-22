@@ -2,9 +2,12 @@
 const express = require('express');
 const admin = require('firebase-admin');
 const axios = require("axios");
-const SecureScraping = require("secure-scraping");
+const secureScraping = require('secure-scraping');
+const redisClient = require('redis');
+const redis = redisClient.getClient();
 const {
-  scrapeFlights
+  scrapeFlights,
+  scrapeVeniceTrainsTimeData
 } = require('./functions')
 
 
@@ -154,7 +157,6 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
 })
 
 router.get('/api/airplanes', async (req, res) => {
-  const secureScraping = new SecureScraping();
 
   // Ottieni la data e l'ora attuali
   const now = new Date();
@@ -184,11 +186,11 @@ router.get('/api/airplanes', async (req, res) => {
     const delayDeparture = Math.floor(Math.random() * (5000 - 3000 + 1)) + 500;
 
     // Esegue la richiesta degli arrivi con delay
-    await SecureScraping.delay(() => {}, delayArrival);
+    await secureScraping.delay(() => {}, delayArrival);
     const arrivalResponse = await axios.get(urlArrival);
 
     // Esegue la richiesta delle partenze con delay
-    await SecureScraping.delay(() => {}, delayDeparture);
+    await secureScraping.delay(() => {}, delayDeparture);
     const departureResponse = await axios.get(urlDeparture);
 
     // Elabora i dati con la funzione scrapeFlights (presumibilmente definita altrove)

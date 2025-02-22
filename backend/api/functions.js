@@ -1,8 +1,7 @@
 const admin = require('firebase-admin');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const SecureScraping = require('./secure-scraping');
-const secureScraping = new SecureScraping();
+const secureScraping = require('./secure-scraping');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -369,7 +368,6 @@ async function saveBoatDataToFirebase() {
     }
 }
 
-/*@TODO store on firebase */
 async function scrapeFlights(htmlData,isArrival) {
     try {
         const $ = cheerio.load(htmlData);
