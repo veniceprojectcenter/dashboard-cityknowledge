@@ -18,7 +18,7 @@ class RedisSingleton {
     }
 
     async setData(key,value,expirationInSeconds = 86400){
-        await this.client.set(key,value,'PX',expirationInSeconds);
+        await this.client.set(key,value,'EX',expirationInSeconds);
     }
 
     async getData(key){

@@ -79,7 +79,7 @@ class SecureScraping {
    * @param {number} ms - Delay duration in milliseconds.
    * @returns {Promise<void>}
    */
-  static async delay(func = () => {}, ms) {
+  async delay(func = () => {}, ms) {
     await new Promise(resolve => setTimeout(resolve, ms));
     return await func();
   }
