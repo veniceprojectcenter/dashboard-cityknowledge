@@ -12,19 +12,44 @@ const router = express.Router();
 
 
 async function cacheMiddleware(key, ttlSeconds, fetchFunction) {
-  // Prova a leggere dalla cache
+
   const cachedData = await redisClient.getData(key);
   if (cachedData) {
     return JSON.parse(cachedData);
   }
   // Se non esiste, esegui la funzione fetch
+  console.log("no cached data");
   const freshData = await fetchFunction();
   // Salva in cache
   await redisClient.setData(key, JSON.stringify(freshData), ttlSeconds);
   return freshData;
 }
 
+function getRomeTime() {
+  const now = new Date();
+  const options = { timeZone: 'Europe/Rome', hour12: false };
+  const formatter = new Intl.DateTimeFormat('it-IT', {
+    ...options,
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  });
 
+  const parts = formatter.formatToParts(now);
+  const getPart = (type) => parts.find(p => p.type === type)?.value || '0';
+
+  return {
+    year: parseInt(getPart('year')),
+    month: parseInt(getPart('month')),
+    day: parseInt(getPart('day')),
+    hour: parseInt(getPart('hour')),
+    minute: parseInt(getPart('minute')),
+    second: parseInt(getPart('second')),
+  };
+}
 
 // Endpoint per la radice
 router.get('/', (req, res) => {
@@ -168,131 +193,79 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
 
 router.get('/api/airplanes', async (req, res) => {
   try {
-    // Ottieni la data e l'ora attuali
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const day = now.getDate();
-    const currentHour = now.getHours();
-
-    let hourParam;
-    if (currentHour < 6) {
-      hourParam = 0;       // Intervallo 0-6
-    } else if (currentHour < 12) {
-      hourParam = 6;       // Intervallo 6-12
-    } else if (currentHour < 18) {
-      hourParam = 12;      // Intervallo 12-18
-    } else {
-      hourParam = 18;      // Intervallo 18-24
-    }
-
-    // La chiave della cache include anche la data per evitare conflitti
+    const { year, month, day, hour, minute } = getRomeTime();
+    const currentTime = hour * 60 + minute; // Converti l'orario attuale in minuti
 
     const data = await cacheMiddleware('airplanes', 21600, async () => {
-      // Costruisci gli URL dinamici
-      const urlArrival = `https://www.flightstats.com/v2/flight-tracker/arrivals/VCE/?year=${year}&month=${month}&date=${day}&hour=${hourParam}`;
-      const urlDeparture = `https://www.flightstats.com/v2/flight-tracker/departures/VCE/?year=${year}&month=${month}&date=${day}&hour=${hourParam}`;
+      const urlArrival = `https://www.flightstats.com/v2/flight-tracker/arrivals/VCE/?year=${year}&month=${month}&date=${day}&hour=${Math.floor(hour / 6) * 6}`;
+      const urlDeparture = `https://www.flightstats.com/v2/flight-tracker/departures/VCE/?year=${year}&month=${month}&date=${day}&hour=${Math.floor(hour / 6) * 6}`;
 
-      // Genera due ritardi casuali (es. tra 500 e 3000 ms)
-      const delayArrival = Math.floor(Math.random() * (5000 - 3000 + 1)) + 500;
-      const delayDeparture = Math.floor(Math.random() * (5000 - 3000 + 1)) + 500;
-
-      // Esegue la richiesta degli arrivi con delay
-      await secureScraping.delay(() => {}, delayArrival);
+      await secureScraping.delay(() => {}, Math.floor(Math.random() * (5000 - 3000 + 1)) + 500);
       const arrivalResponse = await axios.get(urlArrival);
 
-      // Esegue la richiesta delle partenze con delay
-      await secureScraping.delay(() => {}, delayDeparture);
+      await secureScraping.delay(() => {}, Math.floor(Math.random() * (5000 - 3000 + 1)) + 500);
       const departureResponse = await axios.get(urlDeparture);
 
-      // Elabora i dati con la funzione scrapeFlights (presumibilmente definita altrove)
-      const arrivalData = await scrapeFlights(arrivalResponse.data, true);
-      const departureData = await scrapeFlights(departureResponse.data, false);
+      const arrivals = await scrapeFlights(arrivalResponse.data, true);
+      const departures = await scrapeFlights(departureResponse.data, false);
 
-      return {
-        arrival: arrivalData,
-        departure: departureData
-      };
+
+      return { arrival: arrivals, departure: departures };
     });
 
-    res.json({
-      success: true,
-      data: data
-    });
+    res.json({ success: true, data });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: `Error on fetching current FlightData data: ${error}`
-    });
+    res.status(500).json({ success: false, message: `Errore: ${error}` });
   }
 });
+
 
 router.get('/api/bus', async (req, res) => {
   try {
-    const now = new Date();
-    const currentTimeSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const { hour, minute, second } = getRomeTime();
+    const currentTimeSeconds = hour * 3600 + minute * 60 + second;
     const endTime = currentTimeSeconds + 600;
 
     const data = await cacheMiddleware('busData', 600, async () => {
-      const databaseRef = admin.database().ref('busData');
-      const busSnapshot = await databaseRef
+      const busSnapshot = await admin.database()
+          .ref('busData')
           .orderByChild('departureTimestamp')
           .startAt(currentTimeSeconds)
           .endAt(endTime)
           .once('value');
 
-      const busResults = [];
-      busSnapshot.forEach((childSnapshot) => {
-        busResults.push(childSnapshot.val());
-      });
-      return busResults;
+      return busSnapshot.val() || [];
     });
 
-    res.json({
-      success: true,
-      data: data
-    });
+    res.json({ success: true, data });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: `Errore nel recupero dati: ${error.message}`
-    });
+    res.status(500).json({ success: false, message: `Errore: ${error}` });
   }
 });
+
 
 router.get('/api/boat', async (req, res) => {
   try {
-    const now = new Date();
-    const currentTimeSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const { hour, minute, second } = getRomeTime();
+    const currentTimeSeconds = hour * 3600 + minute * 60 + second;
     const endTime = currentTimeSeconds + 600;
 
     const data = await cacheMiddleware('boatData', 600, async () => {
-      const databaseRef = admin.database().ref('boatData');
-      const boatSnapshot = await databaseRef
+      const boatSnapshot = await admin.database()
+          .ref('boatData')
           .orderByChild('departureTimestamp')
           .startAt(currentTimeSeconds)
           .endAt(endTime)
           .once('value');
 
-      const results = [];
-      boatSnapshot.forEach((childSnapshot) => {
-        results.push(childSnapshot.val());
-      });
-      return results;
+      return boatSnapshot.val() || [];
     });
 
-    res.json({
-      success: true,
-      data: data
-    });
+    res.json({ success: true, data });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: `Errore nel recupero dati: ${error.message}`
-    });
+    res.status(500).json({ success: false, message: `Errore: ${error}` });
   }
 });
-
 
 // Esporta il router
 module.exports = router;

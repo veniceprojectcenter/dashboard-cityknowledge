@@ -392,11 +392,27 @@ async function scrapeFlights(htmlData,isArrival) {
         let appHostUrl = nextData.props.initialState.app.appHost;
         let flights = nextData.props.initialState.flightTracker.route.flights;
 
+        const now = new Date();
+        const options = { timeZone: "Europe/Rome", hour: "2-digit", minute: "2-digit", hourCycle: "h23" };
+        const currentTime = new Intl.DateTimeFormat("it-IT", options).format(now); // "HH:mm"
+
+        // Filtra solo i voli con orario di arrivo successivo all'orario attuale
+        let filteredFlights;
+        if(isArrival) {
+             filteredFlights = flights.filter(flight => {
+                return flight.arrivalTime.time24 > currentTime;
+            });
+        }else   {
+            filteredFlights= flights.filter(flight => {
+                return flight.departureTime.time24 > currentTime;
+            });
+        }
+
         return Object.values({
             date: date,
             airportName: airportName,
             appHostUrl: appHostUrl,
-            flights: flights,
+            flights: filteredFlights,
             isArrival: isArrival,
         });
 
