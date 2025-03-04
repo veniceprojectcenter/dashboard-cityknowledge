@@ -58,8 +58,6 @@ export class DashboardService implements OnDestroy {
 
   // Add a new dashboard
   async addDashboard(dashboard: Dashboard_interface): Promise<void> {
-    const dashboardsRef = ref(this.db, 'dashboards/last_modified');
-    const modifiedDate = new Date().toISOString();
     const newDashboardRef = ref(this.db, `dashboards/${dashboard.name}`); // Ensure dashboard.pageTitle exists
     //console.log('Adding new dashboard:', dashboard);
 
@@ -70,7 +68,6 @@ export class DashboardService implements OnDestroy {
     }
 
     try {
-      await  set(dashboardsRef,modifiedDate)
       await set(newDashboardRef, dashboard);
       console.log('Dashboard added successfully:', dashboard);
     } catch (error) {

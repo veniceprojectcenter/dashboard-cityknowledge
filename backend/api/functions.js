@@ -408,20 +408,20 @@ async function scrapeFlights(htmlData,isArrival) {
             });
         }
 
-        return Object.values({
+
+        return {
             date: date,
             airportName: airportName,
             appHostUrl: appHostUrl,
             flights: filteredFlights,
-            isArrival: isArrival,
-        });
+            isArrival: isArrival
+        };
 
     } catch (error) {
         console.error("Errore nello scraping:", error);
         throw error;
     }
 }
-
 
 
 module.exports = {
