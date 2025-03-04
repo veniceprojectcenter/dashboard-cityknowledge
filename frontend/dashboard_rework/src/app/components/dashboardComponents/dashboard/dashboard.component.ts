@@ -220,8 +220,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         // Esegui il codice JS del widget, se esiste
         if (decryptedData.js) {
+          // Modifica nella sezione di creazione dello script
           const scriptTag = document.createElement('script');
-          scriptTag.textContent = `(function() { ${decryptedData.js} })();`;
+          const safeScript = this.sanitizer.bypassSecurityTrustScript(decryptedData.js);
+          scriptTag.textContent = `(function() { ${safeScript} })();`;
           contentDiv.appendChild(scriptTag);
         }
 
