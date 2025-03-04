@@ -392,13 +392,13 @@ async function scrapeFlights(htmlData,isArrival) {
         let appHostUrl = nextData.props.initialState.app.appHost;
         let flights = nextData.props.initialState.flightTracker.route.flights;
 
-        return Object.values({
+        return {
             date: date,
             airportName: airportName,
             appHostUrl: appHostUrl,
             flights: flights,
-            isArrival: isArrival,
-        });
+            isArrival: isArrival
+        };
 
     } catch (error) {
         console.error("Errore nello scraping:", error);

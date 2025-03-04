@@ -14,6 +14,7 @@ const router = express.Router();
 async function cacheMiddleware(key, ttlSeconds, fetchFunction) {
   // Prova a leggere dalla cache
   const cachedData = await redisClient.getData(key);
+
   if (cachedData) {
     return JSON.parse(cachedData);
   }
@@ -149,7 +150,7 @@ router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
 router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   try {
     const data = await cacheMiddleware('VeniceTrainsDepartureTime', 600, async () => {
-      const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
+        const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
       return await scrapeVeniceTrainsTimeData(url);
     });
 
@@ -208,7 +209,6 @@ router.get('/api/airplanes', async (req, res) => {
       // Elabora i dati con la funzione scrapeFlights (presumibilmente definita altrove)
       const arrivalData = await scrapeFlights(arrivalResponse.data, true);
       const departureData = await scrapeFlights(departureResponse.data, false);
-
       return {
         arrival: arrivalData,
         departure: departureData
