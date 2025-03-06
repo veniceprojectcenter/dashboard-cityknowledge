@@ -222,8 +222,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (decryptedData.js) {
           // Modifica nella sezione di creazione dello script
           const scriptTag = document.createElement('script');
-          const safeScript = this.sanitizer.bypassSecurityTrustScript(decryptedData.js);
-          scriptTag.textContent = `(function() { ${safeScript} })();`;
+          scriptTag.textContent = `(function() { ${decryptedData.js} })();`;
           contentDiv.appendChild(scriptTag);
         }
 
