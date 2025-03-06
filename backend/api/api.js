@@ -136,7 +136,7 @@ router.get('/api/veniceTourism', async (req, res) => {
 router.get('/api/veniceAirQualityLocations', async (req, res) => {
   try {
     const expirationTime = { hour: 24, minute: 0, second: 0 };
-    const data = await cache.getOrSetCache('VeniceAirQualityLocations', 86400, async () => {
+    const data = await cache.getOrSetCache('VeniceAirQualityLocations',async () => {
       const snapshot = await admin.database()
           .ref('dashboard/data/VeniceAir')
           .once('value');
