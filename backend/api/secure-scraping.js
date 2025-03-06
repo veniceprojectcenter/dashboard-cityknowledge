@@ -2,6 +2,11 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
+/**
+ * @class SecureScraping
+ * @description A singleton class for performing secure web scraping using proxies, random delays,
+ * and batch processing to avoid detection and multi-connection issues.
+ */
 class SecureScraping {
   /**
    * Private constructor to prevent direct instantiation.
@@ -29,11 +34,11 @@ class SecureScraping {
 
   /**
    * Performs a secure GET request using random proxies and user agents.
+   * Includes random delays to avoid detection.
    * @param {string} url - The URL for the GET request.
    * @returns {Promise<Object>} The axios response.
    * @throws {Error} If the request fails.
    */
-
   async secureGet(url) {
     if (!url) {
       throw new Error('No URL provided for the GET request.');
@@ -43,7 +48,7 @@ class SecureScraping {
     const randomDelay = Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000; // 10-20 sec
 
     try {
-      console.log(`Attesa di ${randomDelay / 1000} secondi prima della richiesta con proxy...`);
+      console.log(`Waiting ${randomDelay / 1000} seconds before request with proxy...`);
       await delay(randomDelay);
 
       return await axios.get(url, {
@@ -61,10 +66,10 @@ class SecureScraping {
       console.error('Scraper API request failed, retrying without proxy:', error.message);
 
       try {
-        console.log(`Attesa di ${randomDelay / 1000} secondi prima della richiesta senza proxy...`);
+        console.log(`Waiting ${randomDelay / 1000} seconds before request without proxy...`);
         await delay(randomDelay);
 
-        return await axios.get(url); // Retry senza proxy
+        return await axios.get(url); // Retry without proxy
       } catch (finalError) {
         console.error('Second GET request also failed:', finalError.message);
         throw finalError;
@@ -72,18 +77,25 @@ class SecureScraping {
     }
   }
 
-
-/**
-   * Delays execution for a specified time.
-   * @param {Function} func - Optional function to execute after the delay.
+  /**
+   * Delays execution for a specified time before executing an optional function.
+   * @param {Function} [func] - Optional function to execute after the delay.
    * @param {number} ms - Delay duration in milliseconds.
-   * @returns {Promise<void>}
+   * @returns {Promise<void>} Resolves after delay and optional function execution.
    */
   async delay(func = () => {}, ms) {
     await new Promise(resolve => setTimeout(resolve, ms));
     return await func();
   }
 
+  /**
+   * Processes an array of items in batches to avoid multi-connection errors.
+   * @param {Array} items - List of items to process.
+   * @param {Function} processFunction - Function to apply to each item.
+   * @param {number} [limit=4] - Number of concurrent requests per batch.
+   * @param {number} [delay=10000] - Delay between batches in milliseconds.
+   * @returns {Promise<void>} Resolves when all batches have been processed.
+   */
   async processInBatches(items, processFunction, limit = 4, delay = 10000) {
     for (let i = 0; i < items.length; i += limit) {
       const batch = items.slice(i, i + limit);
@@ -96,7 +108,6 @@ class SecureScraping {
   }
 }
 
-// Export a singleton instance
 const instance = new SecureScraping();
 Object.freeze(instance);
 module.exports = instance;

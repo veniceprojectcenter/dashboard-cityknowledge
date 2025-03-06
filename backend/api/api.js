@@ -7,7 +7,8 @@ const cache = require('./cache');
 const router = express.Router();
 
 /**
- * Restituisce l'orario corrente in "Europe/Rome" come oggetto.
+ * Returns the current time in the "Europe/Rome" timezone as an object.
+ * @returns {Object} An object containing year, month, day, hour, minute, and second.
  */
 function getRomeTime() {
   const now = new Date();
@@ -33,6 +34,11 @@ function getRomeTime() {
   };
 }
 
+/**
+ * Computes a dynamic TTL (time-to-live) for airplane data caching.
+ * The TTL is based on the next target hour (6, 12, 18, or midnight) in "Europe/Rome" time.
+ * @returns {number} The TTL in seconds.
+ */
 function computeAirplanesTTL() {
   const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Rome" }));
   const currentHour = now.getHours();
@@ -54,10 +60,18 @@ function computeAirplanesTTL() {
   return Math.floor((expiration - now) / 1000);
 }
 
+/**
+ * GET /
+ * Returns a welcome message for the scraping API.
+ */
 router.get('/', (req, res) => {
   res.json({ message: 'Benvenuto nell\'API di scraping!' });
 });
 
+/**
+ * GET /api/venicePopulation
+ * Retrieves Venice population data from Firebase using the cache.
+ */
 router.get('/api/venicePopulation', async (req, res) => {
   try {
     const expirationTime = { hour: 24, minute: 0, second: 0 };
@@ -66,7 +80,7 @@ router.get('/api/venicePopulation', async (req, res) => {
           .ref('dashboard/data/VenicePopulation')
           .once('value');
       return snapshot.val();
-    },expirationTime);
+    }, expirationTime);
 
     res.json({
       success: true,
@@ -75,21 +89,24 @@ router.get('/api/venicePopulation', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: `Errore durante il recupero dei dati Popolazione: ${error}`
+      error: `Error retrieving population data: ${error}`
     });
   }
 });
 
-
+/**
+ * GET /api/veniceTides
+ * Retrieves tide data for Venice from Firebase using the cache.
+ */
 router.get('/api/veniceTides', async (req, res) => {
   try {
     const expirationTime = { hour: 24, minute: 0, second: 0 };
-    const data = await cache.getOrSetCache('VeniceTides',  async () => {
+    const data = await cache.getOrSetCache('VeniceTides', async () => {
       const snapshot = await admin.database()
           .ref('dashboard/data/Tides')
           .once('value');
       return snapshot.val();
-    },expirationTime);
+    }, expirationTime);
 
     if (data) {
       res.json({
@@ -99,48 +116,29 @@ router.get('/api/veniceTides', async (req, res) => {
     } else {
       res.status(404).json({
         success: false,
-        message: 'Nessun dato trovato.'
+        message: 'No tide data found.'
       });
     }
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: `Errore durante il recupero dei dati tide: ${error}`
+      message: `Error retrieving tide data: ${error}`
     });
   }
 });
 
+/**
+ * GET /api/veniceTourism
+ * Retrieves Venice tourism data from Firebase using the cache.
+ */
 router.get('/api/veniceTourism', async (req, res) => {
   try {
     const expirationTime = { hour: 24, minute: 0, second: 0 };
-    const data = await cache.getOrSetCache('VeniceTourism',  async () => {
+    const data = await cache.getOrSetCache('VeniceTourism', async () => {
       const snapshot = await admin.database()
           .ref('dashboard/data/Tourism')
           .once('value');
       if (!snapshot.exists()) throw new Error("Tourism data not found");
-      return snapshot.val();
-    },expirationTime);
-
-    res.json({
-      success: true,
-      data: data,
-    });
-  } catch (error) {
-    res.status(500).json({
-      error: 'Failed to process request',
-      details: error.message
-    });
-  }
-});
-
-router.get('/api/veniceAirQualityLocations', async (req, res) => {
-  try {
-    const expirationTime = { hour: 24, minute: 0, second: 0 };
-    const data = await cache.getOrSetCache('VeniceAirQualityLocations',async () => {
-      const snapshot = await admin.database()
-          .ref('dashboard/data/VeniceAir')
-          .once('value');
-      if (!snapshot.exists()) throw new Error("Venice Air quality data not found");
       return snapshot.val();
     }, expirationTime);
 
@@ -156,13 +154,44 @@ router.get('/api/veniceAirQualityLocations', async (req, res) => {
   }
 });
 
+/**
+ * GET /api/veniceAirQualityLocations
+ * Retrieves Venice air quality location data from Firebase using the cache.
+ */
+router.get('/api/veniceAirQualityLocations', async (req, res) => {
+  try {
+    const expirationTime = { hour: 24, minute: 0, second: 0 };
+    const data = await cache.getOrSetCache('VeniceAirQualityLocations', async () => {
+      const snapshot = await admin.database()
+          .ref('dashboard/data/VeniceAir')
+          .once('value');
+      if (!snapshot.exists()) throw new Error("Venice air quality data not found");
+      return snapshot.val();
+    }, expirationTime);
+
+    res.json({
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: 'Failed to process request',
+      details: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/veniceTrainsArrivalTime
+ * Retrieves Venice train arrival time data by scraping a specific URL.
+ */
 router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
   try {
     const data = await cache.getOrSetCache('VeniceTrainsArrivalTime', async () => {
       const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=True";
-      // Assumendo che la funzione scrapeVeniceTrainsTimeData gestisca il parsing
+      // Assumes that scrapeVeniceTrainsTimeData handles the parsing of train timetable data
       return await scrapeVeniceTrainsTimeData(url);
-    },600);
+    }, 600);
 
     res.json({
       success: true,
@@ -171,17 +200,21 @@ router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: `Error on fetching TrainArrival data: ${error}`
+      message: `Error fetching train arrival data: ${error}`
     });
   }
 });
 
+/**
+ * GET /api/veniceTrainsDepartureTime
+ * Retrieves Venice train departure time data by scraping a specific URL.
+ */
 router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   try {
-    const data = await cache.getOrSetCache('VeniceTrainsDepartureTime',  async () => {
-        const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
+    const data = await cache.getOrSetCache('VeniceTrainsDepartureTime', async () => {
+      const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
       return await scrapeVeniceTrainsTimeData(url);
-    },600);
+    }, 600);
 
     res.json({
       success: true,
@@ -190,40 +223,45 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: `Error on fetching TrainDeparture data: ${error}`
+      message: `Error fetching train departure data: ${error}`
     });
   }
 });
 
-
+/**
+ * GET /api/airplanes
+ * Retrieves airplane arrival and departure data by scraping FlightStats.
+ * Data is cached with a TTL based on the next target time.
+ */
 router.get('/api/airplanes', async (req, res) => {
   try {
     const { year, month, day, hour, minute } = getRomeTime();
     const ttl = computeAirplanesTTL();
 
-    const data = await cache.getOrSetCache('airplanes',  async () => {
+    const data = await cache.getOrSetCache('airplanes', async () => {
       const urlArrival = `https://www.flightstats.com/v2/flight-tracker/arrivals/VCE/?year=${year}&month=${month}&date=${day}&hour=${Math.floor(hour / 6) * 6}`;
       const urlDeparture = `https://www.flightstats.com/v2/flight-tracker/departures/VCE/?year=${year}&month=${month}&date=${day}&hour=${Math.floor(hour / 6) * 6}`;
       await secureScraping.delay(() => {}, Math.floor(Math.random() * (5000 - 3000 + 1)) + 500);
       const arrivalResponse = await axios.get(urlArrival);
-
       await secureScraping.delay(() => {}, Math.floor(Math.random() * (5000 - 3000 + 1)) + 500);
       const departureResponse = await axios.get(urlDeparture);
-      
+
       const arrivals = await scrapeFlights(arrivalResponse.data, true);
       const departures = await scrapeFlights(departureResponse.data, false);
-
 
       return { arrival: arrivals, departure: departures };
     }, ttl);
 
     res.json({ success: true, data });
   } catch (error) {
-    res.status(500).json({ success: false, message: `Errore: ${error}` });
+    res.status(500).json({ success: false, message: `Error: ${error}` });
   }
 });
 
-
+/**
+ * GET /api/bus
+ * Retrieves bus data from Firebase based on the current time window (10 minutes).
+ */
 router.get('/api/bus', async (req, res) => {
   try {
     const { hour, minute, second } = getRomeTime();
@@ -243,18 +281,21 @@ router.get('/api/bus', async (req, res) => {
 
     res.json({ success: true, data });
   } catch (error) {
-    res.status(500).json({ success: false, message: `Errore: ${error}` });
+    res.status(500).json({ success: false, message: `Error: ${error}` });
   }
 });
 
-
+/**
+ * GET /api/boat
+ * Retrieves boat (vaporetti) data from Firebase based on the current time window (10 minutes).
+ */
 router.get('/api/boat', async (req, res) => {
   try {
     const { hour, minute, second } = getRomeTime();
     const currentTimeSeconds = hour * 3600 + minute * 60 + second;
     const endTime = currentTimeSeconds + 600;
 
-    const data = await cache.getOrSetCache('boatData',async () => {
+    const data = await cache.getOrSetCache('boatData', async () => {
       const boatSnapshot = await admin.database()
           .ref('boatData')
           .orderByChild('departureTimestamp')
@@ -263,13 +304,13 @@ router.get('/api/boat', async (req, res) => {
           .once('value');
 
       return boatSnapshot.val() || [];
-    },600 );
+    }, 600);
 
     res.json({ success: true, data });
   } catch (error) {
-    res.status(500).json({ success: false, message: `Errore: ${error}` });
+    res.status(500).json({ success: false, message: `Error: ${error}` });
   }
 });
 
-// Esporta il router
+// Export the router
 module.exports = router;

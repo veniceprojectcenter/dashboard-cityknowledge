@@ -23,16 +23,22 @@ const {
     scrapeVeniceTourismData,
 } = require('./functions');
 
+/**
+ * Main function to handle data scraping and saving to Firebase.
+ */
 async function handler() {
     try {
-        console.log('Crono job started...');
+        console.log('Cron job started...');
 
         const populationData = await scrapePopulationData();
         if (populationData) await savePopulationDataToFirebase(populationData);
+
         const veniceAirQualityData = await scrapeVeniceAirQualityData();
-        if(veniceAirQualityData) await saveVeniceAirDataToFirebase(veniceAirQualityData);
+        if (veniceAirQualityData) await saveVeniceAirDataToFirebase(veniceAirQualityData);
+
         const veniceTourismData = await scrapeVeniceTourismData();
-        if(veniceTourismData) await saveVeniceTourismDataToFirebase(veniceTourismData);
+        if (veniceTourismData) await saveVeniceTourismDataToFirebase(veniceTourismData);
+
         const tideData = await fetchTideData(45.4408, 12.3155);
         if (tideData) {
             const today = new Date();
@@ -43,12 +49,12 @@ async function handler() {
             await saveTideDataToFirebase(tideData, startDate, endDate);
         }
 
-        await saveBusDataToFirebase() ;
-        await saveBoatDataToFirebase() ;
+        await saveBusDataToFirebase();
+        await saveBoatDataToFirebase();
 
-        console.log('Crono job completed...');
+        console.log('Cron job completed...');
     } catch (error) {
-        console.log(error.message);
+        console.error('Error during cron job execution:', error.message);
     } finally {
         await admin.app().delete();
         console.log("Firebase app deleted. Exiting...");
@@ -57,4 +63,3 @@ async function handler() {
 }
 
 handler();
-
