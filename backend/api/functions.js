@@ -8,7 +8,6 @@ dotenv.config();
 async function deleteExistingData(path) {
     try {
         await admin.database().ref(path).remove();
-        console.log(`Dati esistenti eliminati correttamente da: ${path}`);
     } catch (error) {
         console.error(`Errore durante l'eliminazione dei dati da ${path}:`, error.message);
     }
@@ -26,7 +25,7 @@ async function scrapeVeniceAirQualityData(){
         const response = await axios.get(url);
         return response.data;
     } catch (error) {
-        console.log('Error fetching Venice air Quality data',error);
+        console.error('Error fetching Venice air Quality data',error);
     }
 }
 
@@ -392,28 +391,11 @@ async function scrapeFlights(htmlData,isArrival) {
         let appHostUrl = nextData.props.initialState.app.appHost;
         let flights = nextData.props.initialState.flightTracker.route.flights;
 
-        const now = new Date();
-        const options = { timeZone: "Europe/Rome", hour: "2-digit", minute: "2-digit", hourCycle: "h23" };
-        const currentTime = new Intl.DateTimeFormat("it-IT", options).format(now); // "HH:mm"
-
-        // Filtra solo i voli con orario di arrivo successivo all'orario attuale
-        let filteredFlights;
-        if(isArrival) {
-             filteredFlights = flights.filter(flight => {
-                return flight.arrivalTime.time24 > currentTime;
-            });
-        }else   {
-            filteredFlights= flights.filter(flight => {
-                return flight.departureTime.time24 > currentTime;
-            });
-        }
-
-
         return {
             date: date,
             airportName: airportName,
             appHostUrl: appHostUrl,
-            flights: filteredFlights,
+            flights: flights,
             isArrival: isArrival
         };
 

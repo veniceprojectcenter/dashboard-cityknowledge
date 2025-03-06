@@ -1,31 +1,14 @@
-// api.js
 const express = require('express');
 const admin = require('firebase-admin');
 const axios = require("axios");
 const secureScraping = require('./secure-scraping');
-const redisClient = require('./redis');
-const {
-  scrapeFlights,
-  scrapeVeniceTrainsTimeData
-} = require('./functions')
+const { scrapeFlights, scrapeVeniceTrainsTimeData } = require('./functions');
+const cache = require('./cache');
 const router = express.Router();
 
-
-async function cacheMiddleware(key, ttlSeconds, fetchFunction) {
-
-  const cachedData = await redisClient.getData(key);
-
-  if (cachedData) {
-    return JSON.parse(cachedData);
-  }
-  // Se non esiste, esegui la funzione fetch
-  console.log("no cached data");
-  const freshData = await fetchFunction();
-  // Salva in cache
-  await redisClient.setData(key, JSON.stringify(freshData), ttlSeconds);
-  return freshData;
-}
-
+/**
+ * Restituisce l'orario corrente in "Europe/Rome" come oggetto.
+ */
 function getRomeTime() {
   const now = new Date();
   const options = { timeZone: 'Europe/Rome', hour12: false };
@@ -38,10 +21,8 @@ function getRomeTime() {
     minute: 'numeric',
     second: 'numeric'
   });
-
   const parts = formatter.formatToParts(now);
   const getPart = (type) => parts.find(p => p.type === type)?.value || '0';
-
   return {
     year: parseInt(getPart('year')),
     month: parseInt(getPart('month')),
@@ -52,20 +33,40 @@ function getRomeTime() {
   };
 }
 
-// Endpoint per la radice
+function computeAirplanesTTL() {
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Rome" }));
+  const currentHour = now.getHours();
+  let targetHour;
+  if (currentHour < 6) {
+    targetHour = 6;
+  } else if (currentHour < 12) {
+    targetHour = 12;
+  } else if (currentHour < 18) {
+    targetHour = 18;
+  } else {
+    targetHour = 24;
+  }
+  let expiration = new Date(now.getFullYear(), now.getMonth(), now.getDate(), targetHour, 0, 0);
+  if (targetHour === 24) {
+    expiration.setDate(expiration.getDate() + 1);
+    expiration.setHours(0);
+  }
+  return Math.floor((expiration - now) / 1000);
+}
+
 router.get('/', (req, res) => {
   res.json({ message: 'Benvenuto nell\'API di scraping!' });
 });
 
-// Endpoint per ottenere i dati della popolazione
 router.get('/api/venicePopulation', async (req, res) => {
   try {
-    const data = await cacheMiddleware('VenicePopulation', 86400, async () => {
+    const expirationTime = { hour: 24, minute: 0, second: 0 };
+    const data = await cache.getOrSetCache('VenicePopulation', async () => {
       const snapshot = await admin.database()
           .ref('dashboard/data/VenicePopulation')
           .once('value');
       return snapshot.val();
-    });
+    },expirationTime);
 
     res.json({
       success: true,
@@ -82,12 +83,13 @@ router.get('/api/venicePopulation', async (req, res) => {
 
 router.get('/api/veniceTides', async (req, res) => {
   try {
-    const data = await cacheMiddleware('VeniceTides', 86400, async () => {
+    const expirationTime = { hour: 24, minute: 0, second: 0 };
+    const data = await cache.getOrSetCache('VeniceTides',  async () => {
       const snapshot = await admin.database()
           .ref('dashboard/data/Tides')
           .once('value');
       return snapshot.val();
-    });
+    },expirationTime);
 
     if (data) {
       res.json({
@@ -110,13 +112,14 @@ router.get('/api/veniceTides', async (req, res) => {
 
 router.get('/api/veniceTourism', async (req, res) => {
   try {
-    const data = await cacheMiddleware('VeniceTourism', 86400, async () => {
+    const expirationTime = { hour: 24, minute: 0, second: 0 };
+    const data = await cache.getOrSetCache('VeniceTourism',  async () => {
       const snapshot = await admin.database()
           .ref('dashboard/data/Tourism')
           .once('value');
       if (!snapshot.exists()) throw new Error("Tourism data not found");
       return snapshot.val();
-    });
+    },expirationTime);
 
     res.json({
       success: true,
@@ -132,13 +135,14 @@ router.get('/api/veniceTourism', async (req, res) => {
 
 router.get('/api/veniceAirQualityLocations', async (req, res) => {
   try {
-    const data = await cacheMiddleware('VeniceAirQualityLocations', 86400, async () => {
+    const expirationTime = { hour: 24, minute: 0, second: 0 };
+    const data = await cache.getOrSetCache('VeniceAirQualityLocations', 86400, async () => {
       const snapshot = await admin.database()
           .ref('dashboard/data/VeniceAir')
           .once('value');
       if (!snapshot.exists()) throw new Error("Venice Air quality data not found");
       return snapshot.val();
-    });
+    }, expirationTime);
 
     res.json({
       success: true,
@@ -154,11 +158,11 @@ router.get('/api/veniceAirQualityLocations', async (req, res) => {
 
 router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
   try {
-    const data = await cacheMiddleware('VeniceTrainsArrivalTime', 600, async () => {
+    const data = await cache.getOrSetCache('VeniceTrainsArrivalTime', async () => {
       const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=True";
       // Assumendo che la funzione scrapeVeniceTrainsTimeData gestisca il parsing
       return await scrapeVeniceTrainsTimeData(url);
-    });
+    },600);
 
     res.json({
       success: true,
@@ -174,10 +178,10 @@ router.get('/api/veniceTrainsArrivalTime', async (req, res) => {
 
 router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
   try {
-    const data = await cacheMiddleware('VeniceTrainsDepartureTime', 600, async () => {
+    const data = await cache.getOrSetCache('VeniceTrainsDepartureTime',  async () => {
         const url = "https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?placeId=3009&arrivals=False";
       return await scrapeVeniceTrainsTimeData(url);
-    });
+    },600);
 
     res.json({
       success: true,
@@ -195,12 +199,11 @@ router.get('/api/veniceTrainsDepartureTime', async (req, res) => {
 router.get('/api/airplanes', async (req, res) => {
   try {
     const { year, month, day, hour, minute } = getRomeTime();
-    const currentTime = hour * 60 + minute; // Converti l'orario attuale in minuti
+    const ttl = computeAirplanesTTL();
 
-    const data = await cacheMiddleware('airplanes', 21600, async () => {
+    const data = await cache.getOrSetCache('airplanes',  async () => {
       const urlArrival = `https://www.flightstats.com/v2/flight-tracker/arrivals/VCE/?year=${year}&month=${month}&date=${day}&hour=${Math.floor(hour / 6) * 6}`;
       const urlDeparture = `https://www.flightstats.com/v2/flight-tracker/departures/VCE/?year=${year}&month=${month}&date=${day}&hour=${Math.floor(hour / 6) * 6}`;
-
       await secureScraping.delay(() => {}, Math.floor(Math.random() * (5000 - 3000 + 1)) + 500);
       const arrivalResponse = await axios.get(urlArrival);
 
@@ -212,7 +215,7 @@ router.get('/api/airplanes', async (req, res) => {
 
 
       return { arrival: arrivals, departure: departures };
-    });
+    }, ttl);
 
     res.json({ success: true, data });
   } catch (error) {
@@ -227,7 +230,7 @@ router.get('/api/bus', async (req, res) => {
     const currentTimeSeconds = hour * 3600 + minute * 60 + second;
     const endTime = currentTimeSeconds + 600;
 
-    const data = await cacheMiddleware('busData', 600, async () => {
+    const data = await cache.getOrSetCache('busData', async () => {
       const busSnapshot = await admin.database()
           .ref('busData')
           .orderByChild('departureTimestamp')
@@ -236,7 +239,7 @@ router.get('/api/bus', async (req, res) => {
           .once('value');
 
       return busSnapshot.val() || [];
-    });
+    }, 600);
 
     res.json({ success: true, data });
   } catch (error) {
@@ -251,7 +254,7 @@ router.get('/api/boat', async (req, res) => {
     const currentTimeSeconds = hour * 3600 + minute * 60 + second;
     const endTime = currentTimeSeconds + 600;
 
-    const data = await cacheMiddleware('boatData', 600, async () => {
+    const data = await cache.getOrSetCache('boatData',async () => {
       const boatSnapshot = await admin.database()
           .ref('boatData')
           .orderByChild('departureTimestamp')
@@ -260,7 +263,7 @@ router.get('/api/boat', async (req, res) => {
           .once('value');
 
       return boatSnapshot.val() || [];
-    });
+    },600 );
 
     res.json({ success: true, data });
   } catch (error) {
