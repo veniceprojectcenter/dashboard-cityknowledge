@@ -202,7 +202,7 @@ Log in to the Firebase Console:
 
 ## License
 
-This project is distributed under the [MIT License](LICENSE)
+This project is distributed under the [Apache License](LICENSE)
 
 ## Contacts
 
