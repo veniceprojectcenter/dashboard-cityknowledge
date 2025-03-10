@@ -130,10 +130,11 @@ Log in to the Firebase Console:
 ## Deployment
 Inside the folders [backend](./backend), [frontend/dashboard_rework](./frontend/dashboard_rework) run:
 
-    ```
     vercel --prod
 
 
+
+**MORE**
 > **⚠️ WARNING**\
 > Crono job -> GitHub Actions (00:30)\
 > Database -> Firebase realtime data (Free plan)
