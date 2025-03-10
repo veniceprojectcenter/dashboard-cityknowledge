@@ -56,7 +56,6 @@ export class ListWidgetsComponent implements OnInit {
   confirmDelete(): void {
     if (this.widgetToDeleteId) {
       this._widgetService.deleteWidgetById(this.widgetToDeleteId).then(() => {
-        console.log(`Widget "${this.widgetToDeleteName}" deleted successfully.`);
         this.loadWidgets(); // Reload widgets after deletion
       }).catch(error => {
         console.error('Error deleting widget:', error);

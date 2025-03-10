@@ -64,8 +64,6 @@ export class RegisterComponent {
     try {
       await this.authService.loginWithGoogle(); // Aspetta il completamento del login
       this.router.navigate(['/home']); // Reindirizza alla home page
-      console.log("Registration successfully!");
-      console.log(this.authService.currentUserSig());
     } catch (err: any) { // Gestisci l'errore
       console.error('Error during Login with Google:', err);
       this.confirmationMessage = 'Login with Google failed. Please try again.'; // Messaggio di errore

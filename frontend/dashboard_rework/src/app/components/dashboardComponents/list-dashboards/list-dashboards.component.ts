@@ -60,7 +60,6 @@ export class ListDashboardsComponent implements OnInit {
     if (this.dashboardToDelete) {
       this._dashboardService.deleteDashboardByName(this.dashboardToDelete)
         .then(() => {
-          console.log(`Dashboard "${this.dashboardToDelete}" deleted successfully.`);
           // Refresh the list after deletion
           this.dashboards = this.dashboards.filter(d => d.name !== this.dashboardToDelete);
         })

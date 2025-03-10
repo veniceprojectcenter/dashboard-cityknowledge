@@ -48,7 +48,6 @@ async function saveVeniceAirDataToFirebase(data){
         await admin.database().ref(`dashboard/data/VeniceAir/${date}/`).set({
             data: data
         });
-        console.log(`Venice air quality data successfully saved to Firebase`);
     } catch(error) {
         console.error(`Error saving Venice air quality data:`, error);
     }

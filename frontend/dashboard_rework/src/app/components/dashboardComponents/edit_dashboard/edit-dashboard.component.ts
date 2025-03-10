@@ -16,7 +16,6 @@ export class EditDashboardComponent {
   constructor(private activatedRoute: ActivatedRoute,) {
     this.activatedRoute.paramMap.subscribe(params => {
       this.dashboardNam = params.get('name');
-      console.log('dashboardNam:', this.dashboardNam);
     });
   }
 }

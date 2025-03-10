@@ -147,7 +147,6 @@ export class WidgetFormComponent implements OnInit {
       this.previewData = data;
       this.contentHTMLForm.patchValue({ contentHTML: decrypt });
     }
-    console.log(this.contentHTMLForm.valid);
   }
 
   submitWidget() {
@@ -186,10 +185,8 @@ export class WidgetFormComponent implements OnInit {
           this.widgetService.addWidget(this.createdWidget).then(() => {
             if(!this.widgetId) {
               this.resetForms();
-              console.log('Widget Created:', this.createdWidget);
               alert('Widget created successfully!');
             }else{
-              console.log('Widget edited:', this.createdWidget);
               alert('Widget edited successfully!');
             }
           }).catch(error => {

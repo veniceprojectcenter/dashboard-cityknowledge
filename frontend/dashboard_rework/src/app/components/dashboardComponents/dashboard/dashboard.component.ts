@@ -103,10 +103,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   protected toggleSaveLayout(): void {
     this.saveLayoutEnabled = !this.saveLayoutEnabled;
     if (this.saveLayoutEnabled) {
-      console.log('Salvataggio layout abilitato');
       this.saveGridStateToLocalStorage(this.gridstackComponent.grid?.getGridItems() || []);
     } else {
-      console.log('Salvataggio layout disabilitato');
       localStorage.removeItem(this.dashboard?.name!);
     }
   }
@@ -163,14 +161,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.addWidgetsToGrid(); // Aggiungi i widget alla griglia
       });
     } else {
-      console.log('No widget IDs found in the dashboard.');
+      console.error('No widget IDs found in the dashboard.');
     }
   }
 
   private addWidgetsToGrid(): void {
     let storedDashboardData = JSON.parse(localStorage.getItem(this.dashboard?.name!)!)
-    //console.log("prova")
-    //console.log(storedDashboardData)
     if(storedDashboardData) {
       let queryDashDate = new Date(this.dashboard!.lastModified);
       let cachedDashboardDate = new Date(storedDashboardData.date);
@@ -231,11 +227,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         //check if we have stored layout
         let storedDashData = JSON.parse(localStorage.getItem(this.dashboard?.name!)!)
-        //console.log('storedDashboardData', storedDashData);
+
         if(storedDashData){
           //layout already saved
           let widgetStored = storedDashData.gridItems.find((gridItem:any) => gridItem.id == widget.id);
-          //console.log(`widgetStored ${widgetStored.h}`);
+
 
           this.gridstackComponent.grid?.makeWidget(widgetElement, {
             w: widgetStored.w || 2,
@@ -245,7 +241,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
             y: widgetStored.y,
           });
         }else {
-          console.log("entro")
           // Aggiungi il widget alla griglia con opzioni di auto-posizionamento
           this.gridstackComponent.grid?.makeWidget(widgetElement, {
             w: widget.width || 2,
@@ -348,8 +343,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openHelpDoc(): void {
-    //console.log("help Doc");
-    //console.log(this.dashboard?.helpDocUrl);
     this.showHelpDoc = true;
   }
 
@@ -368,6 +361,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }));
     let data = {isEnabled: this.saveLayoutEnabled,date:this.dashboard?.lastModified,gridItems: gridState};
     localStorage.setItem(this.dashboard?.name!, JSON.stringify(data));
-    //console.log(data);
   }
 }

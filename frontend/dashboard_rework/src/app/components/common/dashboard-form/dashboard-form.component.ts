@@ -64,14 +64,11 @@ export class DashboardFormComponent implements OnInit {
 
   validateUrlAsync(control: AbstractControl) {
     if (!control.value) {
-      console.log('Campo vuoto, nessun errore.');
       return of(null);
     }
 
-    console.log('Controllo URL:', control.value);
     return this._urlCheckerService.checkUrl(control.value).pipe(
       map((isValid) => {
-        console.log('URL valido?', isValid);
         return isValid ? null : { invalidUrl: true };
       }),
       catchError((error) => {
@@ -82,8 +79,6 @@ export class DashboardFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initial log to debug
-    //console.log('DashboardFormComponent initialized with input:', this.input);
 
     if (this.input) {
       this.dashboardForm.get('name')?.disable();
@@ -92,11 +87,9 @@ export class DashboardFormComponent implements OnInit {
   }
 
   private loadDashboardData(dashboardName: string): void {
-    // console.log('Loading dashboard data for:', dashboardName);
 
     this._dashboardService.getDashboardByName(dashboardName).then(dashboard => {
       if (dashboard) {
-        //console.log('Dashboard found:', dashboard);
         this.selectedWidgetIds = dashboard.widgetsInUse;
 
         // Populate the form with dashboard data

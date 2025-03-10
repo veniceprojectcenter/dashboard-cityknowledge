@@ -40,7 +40,6 @@ export class AutocompleteComponent implements OnInit {
       (widgets) => {
         this.allWidgets = widgets;
         this.filteredItems = widgets; // Inizializza la lista filtrata con tutti i widget
-        console.log('All widgets:', this.allWidgets);
       },
       (error) => {
         console.error('Error loading widgets:', error);

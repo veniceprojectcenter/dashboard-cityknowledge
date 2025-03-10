@@ -31,7 +31,6 @@ export class WidgetService implements OnDestroy {
   // Fetch widget from the database under the widget node
   getWidgets(): Observable<Widget_interface[]> {
     const widgetsRef = ref(this.db, 'widgets'); // Path to widget
-    console.log('Fetching widget from database...');
 
     return new Observable<Widget_interface[]>((observer) => {
       const unsubscribe = onValue(
@@ -42,7 +41,6 @@ export class WidgetService implements OnDestroy {
             const widgets = this.filterAndMapData(Object.values(data)); // Filter and map the widget
             observer.next(widgets);
           } else {
-            console.log('No widget found in database.');
             observer.next([]); // Return empty array if no data
           }
         },
@@ -66,7 +64,6 @@ export class WidgetService implements OnDestroy {
 
   // Fetch a specific widget by ID
   async getWidgetByName(id: string): Promise<Widget_interface | null> {
-    console.log('Fetching widget by name:', id);
     const widgetsRef = ref(this.db, 'widgets');
 
     try {
@@ -79,7 +76,6 @@ export class WidgetService implements OnDestroy {
         const foundWidget = widgets.find(widget => widget.id === id);
         return foundWidget || null; // Return the found widget or null if not found
       } else {
-        console.log('No widgets found.');
         return null;
       }
     } catch (error) {
@@ -107,7 +103,6 @@ export class WidgetService implements OnDestroy {
         if (snapshot.exists()) {
           return this.filterAndMapData([snapshot.val()])[0]; // Return the widget if it exists
         } else {
-          console.log(`Widget with ID ${id} not found.`);
           return null; // Return null if not found
         }
       }).catch(error => {
@@ -144,11 +139,8 @@ export class WidgetService implements OnDestroy {
     const widgetRef = ref(this.db, `widgets/${widgetId}`); // Path to the widget to delete
     const dashboardsRef = ref(this.db, 'dashboards'); // Path to dashboards
 
-    console.log('Deleting widget with ID:', widgetId);
-
     return remove(widgetRef) // Step 1: Delete the widget
       .then(() => {
-        console.log('Widget deleted successfully:', widgetId);
 
         // Step 2: Remove the widget from all dashboards
         return get(dashboardsRef).then(snapshot => {
@@ -168,10 +160,9 @@ export class WidgetService implements OnDestroy {
             // Update the dashboards to remove the widgetId
             const updatesRef = ref(this.db);
             return update(updatesRef, updates).then(() => {
-              console.log(`References to widget ${widgetId} removed from dashboards.`);
             });
           } else {
-            console.log('No dashboards found to update.');
+            console.error('No dashboards found to update.');
             return Promise.resolve(); // No dashboards to update
           }
         });

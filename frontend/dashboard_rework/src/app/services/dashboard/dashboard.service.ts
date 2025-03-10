@@ -30,7 +30,6 @@ export class DashboardService implements OnDestroy {
 
   // Fetch dashboards from the database
   getDashboards(): Observable<Dashboard_interface[]> {
-    console.log('Fetching dashboards...');
     const dashboardsRef = ref(this.db, 'dashboards');
 
     return new Observable<Dashboard_interface[]>(observer => {
@@ -39,7 +38,6 @@ export class DashboardService implements OnDestroy {
         snapshot => {
           const data = snapshot.val();
           const dashboards: Dashboard_interface[] = data ? this.filterAndMapData(Object.values(data)) : [];
-          console.log('Data source: Database');
           observer.next(dashboards);
         },
         error => observer.error(error),
@@ -59,7 +57,6 @@ export class DashboardService implements OnDestroy {
   // Add a new dashboard
   async addDashboard(dashboard: Dashboard_interface): Promise<void> {
     const newDashboardRef = ref(this.db, `dashboards/${dashboard.name}`); // Ensure dashboard.pageTitle exists
-    //console.log('Adding new dashboard:', dashboard);
 
     // Ensure coords is a tuple of two numbers
     if (!Array.isArray(dashboard.coords) || dashboard.coords.length !== 2) {
@@ -69,7 +66,6 @@ export class DashboardService implements OnDestroy {
 
     try {
       await set(newDashboardRef, dashboard);
-      console.log('Dashboard added successfully:', dashboard);
     } catch (error) {
       console.error('Error adding dashboard:', error);
     }
@@ -77,7 +73,6 @@ export class DashboardService implements OnDestroy {
 
   // Fetch a specific dashboard by name
   async getDashboardByName(name: string): Promise<Dashboard_interface | null> {
-    console.log('Fetching dashboard by name:', name);
     const dashboardsRef = ref(this.db, 'dashboards');
 
     try {
@@ -90,7 +85,7 @@ export class DashboardService implements OnDestroy {
         const foundDashboard = dashboards.find(dashboard => dashboard.name === name);
         return foundDashboard || null; // Return the found dashboard or null if not found
       } else {
-        console.log('No dashboards found.');
+        console.error('No dashboards found.');
         return null;
       }
     } catch (error) {
@@ -104,7 +99,6 @@ export class DashboardService implements OnDestroy {
     const dashboardRef = ref(this.db, `dashboards/${name}`);
     try {
       await remove(dashboardRef);
-      console.log(`Dashboard "${name}" deleted successfully.`);
     } catch (error) {
       console.error(`Error deleting dashboard "${name}":`, error);
     }

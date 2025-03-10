@@ -89,7 +89,6 @@ export class AuthService {
 
     const promise = sendPasswordResetEmail(this.firebaseAuth, email)
       .then(() => {
-        console.log('Password reset email sent successfully.');
       });
 
     return from(promise).pipe(
