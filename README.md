@@ -22,7 +22,7 @@ An interactive dashboard developed with Angular/Express.js/Node.js/Firebase stac
 
 This project offers a dynamic and responsive dashboard made with Angular. The goal is to provide a clear and interactive visualization of essential data for citizens and tourists.
 To manage the data, Express.js framework is used with Json as data transmission format and Firebase realtime database to save the data to be displayed and Redis key-value db to speed up queries and reduce load on the database/backend.
-To launch the project in -prod we will use vercel(**hobby plan**).
+To launch the project in ***prod*** we will use vercel(**hobby plan**).
 
 ## Requirements
 
@@ -117,7 +117,7 @@ Log in to the Firebase Console:
 ### Production
 
 > For testing before deploying 
-- Express.js Server: inside 📁 backend run:
+- Express.js Server: inside 📁 [backend](./backend) run:
 
     ```bash
     vercel dev
@@ -126,6 +126,13 @@ Log in to the Firebase Console:
 
     ```bash
     vercel dev
+
+## Deployment
+Inside the folders [backend](./backend), [frontend/dashboard_rework](./frontend/dashboard_rework) run:
+
+    ```
+    vercel --prod
+
 
 > **⚠️ WARNING**\
 > Crono job -> GitHub Actions (00:30)\
