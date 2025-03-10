@@ -1,6 +1,6 @@
 # Venice Dashboard
 
-An interactive dashboard developed with Angular/Express.js/Node.js/Firebase stack, designed to provide monitoring tools and first view of real-time data regarding the city of Venice (Currently browser version only).
+An interactive dashboard developed with Angular/Express.js/Node.js/Firebase stack, designed to provide monitoring tools and first view of real-time data regarding the city of Venice ([Currently browser version only](https://dashboard-rework.vercel.app)).
 
 > **ℹ️ NOTE**\
 > ***It is possible to add other dashboards of various kinds, with or without widgets***
